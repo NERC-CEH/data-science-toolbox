@@ -3,7 +3,74 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+parts:
+- caption: Contextual Information
+  chapters:
+  - title: Purpose and Layout
+    file: contextual_files/purpose
+  - title: Overarching Concepts 
+    file: contextual_files/statistical_considerations
+  - title: Additional Resources
+    file: contextual_files/additional_resources
+- caption: Statistical Methodologies
+  chapters:
+  - title: Gradient Boosted Trees (GBTs)
+    file: notebooks/methods/gradient_boosted_trees
+  - title: Gaussian Processes (GPs)
+    file: notebooks/methods/gaussian_processes
+  - title: Stochastic Partial Differential Equations (SPDEs)
+    file: notebooks/methods/stochastic_partial_diff_equations
+- caption: Inference Techniques
+  chapters:
+  - title: Maximum Likelihood Estimation (MLE)
+    file: notebooks/inference_techniques/maximum_likelihood_estimation
+  - title: Maximum A Posteriori (MAP)
+    file: notebooks/inference_techniques/maximum_a_posteriori
+  - title: Markov Chain Monte Carlo (MCMC)
+    file: notebooks/inference_techniques/markov_chain_monte_carlo
+  - title: Integrated Nested Laplace Approximations (INLA)
+    file: notebooks/inference_techniques/integrated_nested_laplace_approximations
+  - title: Variational Inference
+    file: notebooks/inference_techniques/variational_inference
+- caption: Important Topics
+  chapters:
+  - title: Data and Model Integration
+    file: notebooks/concepts/model_and_data_integration
+  - title: Modelling Data over COVID Years
+    file: notebooks/concepts/modelling_covid_years
+  - title: Causality
+    file: notebooks/concepts/causality
+  - title: Reproducibility Crisis
+    file: notebooks/concepts/reproducibility
+  - title: Common Pitfalls
+    file: notebooks/concepts/pitfalls
+  - title: Uncertainty Quantification
+    file: notebooks/concepts/uncertainty
+  - title: Science to Decision Making
+    file: notebooks/concepts/decision_making
+  - title: Limits of Bad Data
+    file: notebooks/concepts/limits_bad_data
+- caption: Templates
+  chapters:
+  - title: Methodology Notebook
+    file: notebooks/methods/template
+  # - title: Methodology Notebook (Markdown)
+    # file: notebooks/methods/template_markdown
+
+# parts:
+# - caption: Contextual Information
+#   chapters:
+#   - file: contextual_files/purpose
+#     title: Purpose and Layout of Jupyter Book
+#   - file: contextual_files/statistical_considerations
+#     title: Overarching Concepts 
+#   - file: contextual_files/additional_resources
+#     title: Additional Resources
+# - caption: Statistical Methodologies
+#   chapters:
+#   - file: notebooks/methods/gradient_boosted_trees
+#     title: Gradient Boosted Trees (GBTs)
+#   - file: notebooks/methods/gaussian_processes
+#     title: Gaussian Processes (GPs)
+#   - file: notebooks/methods/stochastic_partial_diff_equations
+#     title: Stochastic Partial Differential Equations (SPDEs)
