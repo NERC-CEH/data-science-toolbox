@@ -3,8 +3,8 @@
 Here's some useful information for getting started... 🌱
 
 ## GitHub Workflow for Contributors:
-- The suggested workflow for contributing to this repository is taken from [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow).
-General steps involve:
+The suggested workflow for contributing to this repository is taken from [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow), general steps involve:
+
 1. Examine the remote repository on GitHub and look under the various tabs such as '*Issues*'  to understand current development paths.  Examine what remote branches exist. 
 	
 > [!TIP] 
