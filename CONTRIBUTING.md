@@ -22,9 +22,12 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 4. Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term.  
 
 > [!TIP] 
-> - To work locally on remote branches you need to create a local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name'. 
+> - To work locally on remote branches you need to create a local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. 
 > - You can see current local branches via '*git branch*' and can see the available remote branches via '*git branch -r*'. If you've created a new remote branch via GitHub you'll need to run either '*git fetch origin*' or '*git pull origin*' to observe it when running '*git branch -r*'. 
 > - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'.
+
+> [!IMPORTANT] 
+> It's highly recommended to [create an *'issue'*](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue) for any development work, which details what you're working on. See [here](https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues) for the current list of issues for the repository. Doing this allows early feedback from the community on the idea and additionally allows you to add updating comments that link to commits and highlight progress, keeping the community informed. You can assign individuals to join work on specific '*issues*', link them in specific comments and create a link to the respective development branch that work is being conducted on.   
 
 5. Work on your local branch, making commits at regular intervals. Making regular commits for each specific sub-task within your development goal is a good idea and helps when reviewing the changes ([the right time to commit and branch](https://blog.scottlogic.com/2019/12/19/source-control-when.html#:~:text=Generally%20create%20a%20branch%20for,wherever%20it%20needs%20to%20go.)). 
 > [!TIP] 
