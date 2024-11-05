@@ -16,18 +16,21 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 > [!TIP] 
 > Adjustments made in the remote forked repository can then be submitted to main repository on GitHub via a pull request.
 
-3. [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui) or [create a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) and then clone to create a local copy of the files on your machine. 
+3. [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui) or your forked remote repository respectively, which creates a local copy of the files on your machine. 
 	- This local repository tracks the remote repository hosted on GitHub and you can run commands such as '*git fetch origin*' and '*git pull origin*' to update your local copy when the remote repository changes (see [Git fetch and merge](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)).
+
 4. Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term.  
 
 > [!TIP] 
 > - To work locally on remote branches you need to create a local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name'. 
 > - You can see current local branches via '*git branch*' and can see the available remote branches via '*git branch -r*'. If you've created a new remote branch via GitHub you'll need to run either '*git fetch origin*' or '*git pull origin*' to observe it when running '*git branch -r*'. 
-> - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'. 
-> - Work on your local branch, making commits at regular intervals. Making regular commits for each specific sub-task within your development goal is a good idea and helps when reviewing the changes ([the right time to commit and branch](https://blog.scottlogic.com/2019/12/19/source-control-when.html#:~:text=Generally%20create%20a%20branch%20for,wherever%20it%20needs%20to%20go.)). 
-> 	- If the local branch is linked to a remote branch you can push your changes there periodically using '*git push origin branch_name*'. This is useful if collaborating on a development task. If other collaborators have pushed changes to the remote branch so that is ahead of your local branch, then you can absorb these changes either by using '*git pull origin*' or doing it in stages using '*git fetch origin*' and then '*git checkout branch_name*' and '*git merge origin/branch_name*'. 
+> - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'.
 
-5. If working on a specific development goal then after the work is complete and pushed to the remote development branch you can submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch. 
+5. Work on your local branch, making commits at regular intervals. Making regular commits for each specific sub-task within your development goal is a good idea and helps when reviewing the changes ([the right time to commit and branch](https://blog.scottlogic.com/2019/12/19/source-control-when.html#:~:text=Generally%20create%20a%20branch%20for,wherever%20it%20needs%20to%20go.)). 
+> [!TIP] 
+> If the local branch is linked to a remote branch you can push your changes there periodically using '*git push origin branch_name*'. This is useful if collaborating on a development task. If other collaborators have pushed changes to the remote branch so that is ahead of your local branch, then you can absorb these changes either by using '*git pull origin*' or doing it in stages using '*git fetch origin*' and then '*git checkout branch_name*' and '*git merge origin/branch_name*'. 
+
+6. If working on a specific development goal then after the work is complete and pushed to the specific remote development branch you can submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch. 
 
 > [!TIP] 
 >- Taken directly from [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow): 
@@ -35,4 +38,4 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 >- Reviewers will typically leave comments/suggestions on the pull request and these can be addressed, see "[Reviewing changes in pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests).
 >- Once the pull request is approved the development branch can be merged with the main repository branch.  
 
-6. After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain. 
+7. After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain. 
