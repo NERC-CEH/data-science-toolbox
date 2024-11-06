@@ -11,7 +11,8 @@
 
 This is a collection of data science methods used within UKCEH for a range of environmental applications. The purpose is to apply **FAIR** principles (Findable, Accessible, Interoperable, and Reusable) to statistical methodologies at UKCEH. The hope being that this will encourage **cross-disciplinary use of methods**, enhancing research. Focus is placed upon including methods that are applicable to a wide variety of environmental disciplines and that incorporate **integration of multiple data sets**. 
 
-```{tableofcontents}
-```
+If you're interested in contributing to this project it would be great to hear from you and you can find details of how to do so via the `CONTRIBUTING.md` page in the root of the repository. 🌞
+
+The table of contents for the book is given in the left side bar. There are 4 main sections of the book including: Contextual Information; Statistical Methodologies; Inference Techniques; Important Topics. For further detail see: [Purpose and Layout](../contextual_files/purpose.md).
 
 
