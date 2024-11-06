@@ -19,7 +19,7 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 3. [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui) or your forked remote repository respectively, which creates a local copy of the files on your machine. 
 	- This local repository tracks the remote repository hosted on GitHub and you can run commands such as '*git fetch origin*' and '*git pull origin*' to update your local copy when the remote repository changes (see [Git fetch and merge](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)).
 
-4. Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term.  
+4. Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term. Make sure you have ['*checked out*'](https://www.atlassian.com/git/tutorials/using-branches/git-checkout) the local branch before starting work on it, this can be done via *'git checkout branch_name'*. 
 
 > [!TIP] 
 > - To work locally on remote branches you need to create a local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. 
@@ -41,7 +41,11 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 >- Reviewers will typically leave comments/suggestions on the pull request and these can be addressed, see "[Reviewing changes in pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests).
 >- Once the pull request is approved the development branch can be merged with the main repository branch.  
 
-7. After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain. 
+7. After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain.
+
+> [!TIP] 
+> - The remote development branch can be [deleted on GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#deleting-a-branch). Then to no longer see the remote branch on your local machine you'll need to run '*git fetch origin -p*', which prunes the branches. To delete a local branch that tracked the remote branch we can do *'git branch -d branch-name'*.
+
 
 ## Jupyter Book Workflow for Contributors:
 
