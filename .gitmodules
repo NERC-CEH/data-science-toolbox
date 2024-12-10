@@ -1,0 +1,4 @@
+[submodule "notebooks/methods/Bias_Correction_Application"]
+	path = notebooks/methods/Bias_Correction_Application
+	url = https://github.com/Jez-Carter/Bias_Correction_Application.git
+	branch = jupyterbook_render

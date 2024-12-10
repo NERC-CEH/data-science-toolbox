@@ -18,6 +18,8 @@ parts:
     file: notebooks/methods/gradient_boosted_trees
   - title: Gaussian Processes (GPs)
     file: notebooks/methods/gaussian_processes
+  - title: Bias Correction of Climate Models using Bayesian Hierarchical Model and Gaussian Processes
+    file: "notebooks/methods/Bias_Correction_Application/Walkthrough Tutorial"
   - title: Stochastic Partial Differential Equations (SPDEs)
     file: notebooks/methods/stochastic_partial_diff_equations
 - caption: Inference Techniques
