@@ -13,6 +13,8 @@ This is a collection of data science methods used within UKCEH for a range of en
 
 If you're interested in contributing to this project it would be great to hear from you and you can find details of how to do so via the `CONTRIBUTING.md` page in the root of the repository. 🌞
 
+The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the repository linked at the top of each notebook to get access to the relevant files and then to test running different sections of the code in your favourite IDE, perhaps attempting to run it with data specific to your personal research area and field of interest.
+
 <!-- The table of contents for the book is given in the left side bar. There are 4 main sections of the book including: Contextual Information; Statistical Methodologies; Inference Techniques; Important Topics. For further detail see: [Purpose and Layout](../contextual_files/purpose.md). -->
 
 | Notebooks | Key Statistical Concepts | Key Datasets |
