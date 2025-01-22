@@ -17,28 +17,19 @@ Timescales: Proof of concept with notebooks for GPs, GBTs and SPDEs by end of Fe
 - Decision making through qualitative reference or optimising cost functions.  
 
 
-# Current Content Plan:
-- Contextual information (Markdown Files): 
-    - Purpose of Jupyter Book.
-    - Overarching description of data science pipelines, statistical models, performance metrics and other important concepts/caveats. 
-    - Useful additional resources (EDS book and Kaggle Notebooks etc.).
-- Statistical Methodologies (Jupyter Notebooks - R and Python versions):
-    - Gradient Boosted Trees (GBTs).
-        - XGBoost / LightGBM / CatBoost ([GBTs Podcast](https://www.superdatascience.com/podcast/gradient-boosting-xgboost-lightgbm-and-catboost-with-kirill-eremenko))
-    - Gaussian Processes (GPs).
-        - Numpyro / TinyGP / GPFlow / PyMC
-    - Stochastic Partial Differential Equations (SPDEs).
-        - R-INLA / Joint SPDEs Stan
-- Inference Techniques (Jupyter Notebook):
-    - Maximum Likelihood Estimation (MLE).
-    - Maximum A Posteriori (MAP).
-    - Markov Chain Monte Carlo (MCMC).
-    - Integrated Nested Laplace Approximations (INLA).
-    - Variational Inference.
+# Current Content Structure:
+- Intro Page (Description of book, table showing methods incorporated, table highlighting generalisability of methods).
+- Data science methodology notebooks.
+- Template documents for notebooks. 
+
+# Potential Future Content:
+- Further Contextual information (e.g. overarching descriptions of best practice and approaches to integrative modelling, introductory detail on specific models, performance metrics & important caveats, useful additional resources (e.g. EDS book)). 
+
 - Important topics in Environmental Data Science:
     - Data and model integration. 
     - Modelling data over COVID years.
     - Causality.
+    - Inference techniques.
     - Combatting the reproducibility crisis and pitfalls of data science.
     - Uncertainty quantification in Bayesian and Frequentist settings. 
         - How does it work when considering basic multiple linear regression and what about more complex scenarios with models that integrate data sources at different levels of aggregation etc.? 
@@ -48,9 +39,11 @@ Timescales: Proof of concept with notebooks for GPs, GBTs and SPDEs by end of Fe
 
 # Considerations:
 - Issues with licenses around access to relevant data sets.
-    - Access to the data will encourage engagement as people often like working in their own IDE. 
-- Size of data sets and compute required for fitting models.
-    - Start with minimum working examples.
+    - Ideally the notebook will utilise open-access data so that users can run the code themselves in their own IDE. Notebooks with limited-access data are still valuable however and it is encouraged to put information around the relevant contact points to get access.   
+- Issues around the size of notebooks and what to incorporate. 
+    - Ideally we'd include all the relevant steps involved in the data science pipeline for the methodology. It is however, a balance between detail and approachability. It is recommmended where possible to limit unnecessary code blocks and to focus in on the interesting components. Making use of special content blocks and dropdowns will help in terms of readability.
+- Issues around the size of datasets and compute required for fitting models. 
+    - Notebooks should ideally run top-to-bottom sequentially without error and in a reasonable run-time (<10mins). To achieve this for complex models/large datasets it is recommended to provide the code for inference/prections but to comment it out and to instead run the code separately and then load in the output for the notebook. A link to the results data can be provided for the user to download.  
 - Initial focus is proof of concept with basic, minimal working examples incorporated.
 - It's important to be clear on the purpose of the notebooks, that is primarily to demonstrate applications of statistical methodologies in environmental research. Focusing on the applicability of methods to a wide variety of environmental disciplines and the advantages of integrating multiple different data sets. The initial purpose is not to conduct scientific research itself in the notebooks, although they provide a spring board from which additional ideas can be generated and easily tested, leading to papers.  
 - It's important to avoid pitfalls learnt from previous attempts at similar projects. The DSNE project for example struggled to get much engagement from PhD students, which may have originated from resistance to being asked to contribute code outside of IDE each individual is familiar with. Hopefully having a GIT repository that allows contributors to engage while staying in their preferred IDE will help. Additionally, not being too focused on specific formats for the notebooks but encouraging creativity and focusing on just getting the content in there quickly. 
