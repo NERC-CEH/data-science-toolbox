@@ -7,7 +7,7 @@ parts:
 - caption: Methodology Notebooks
   chapters:
   - title: Bias Correction of Climate Models
-    file: notebooks/methods/gaussian_processes
+    file: "notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
   - title: Downscaling UK Surface Ozone
     file: notebooks/methods/gradient_boosted_trees
   - title: UK Species Distribution Modelling
