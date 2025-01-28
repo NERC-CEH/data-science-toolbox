@@ -1,52 +1,33 @@
-<img align="left" width=300 src="UKCEH_EDST_Logo.png">
+<p align="center">
+<img width="300" height="300" src="UKCEH_EDST_Logo.png" alt="GPJax's logo">
+</p>
 
-This repository is for a UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The idea is to apply **FAIR** principles (Findable, Accessible, Interoperable, and Reusable) to statistical methodologies at UKCEH, building upon ideas from the [EDS Jupyter Book](https://edsbook.org/notebooks/gallery) and the platform Kaggle. The concept is to create a collection of Jupyter Notebooks that present the step-by-step nature of data science and that introduce the sophisticated methodologies used at UKCEH in this context.
+This repository is for a UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH. These methods are expected to be generalizable across different disciplines and to have a strong focus on integrative modelling. This aligns with **FAIR** principles (Findable, Accessible, Interoperable, and Reusable). This resource will enhance collaborative use of data science methods across multiple disciplines and will support the UK's national capability in delivering world-leading environmental science. 
 
-The hope is that this resource will act as a springboard that encourags uptake of new statistical methods across multiple areas of application, as well as demonstrating the important components of data science pipelines. Focus is placed upon including methods that are applicable to a wide variety of environmental disciplines and that incorporate **integration of multiple data sets**. 
+# Contributing
 
-Timescales: Proof of concept with notebooks for GPs, GBTs and SPDEs by end of Feb.
+If you're interested in incorporating some methodology into this Jupyter book, or if you're interested in contributing in another way, then please see these [contributing guidelines](/CONTRIBUTING.md) 🌞. Additionally, if you have any questions please either raise them through the discussions tab or through direct email to [Jeremy Carter](https://github.com/Jez-Carter/) at jercar@ceh.ac.uk. 
 
-# Data Science Pipeline:
-- Providing context and determining initial goals and performance metrics.
-- Data exploration, including examining skew, missing data, feature design and collinearity.
-- Model design, starting with simplest model possible and detailing assumptions. Thinking about the data generating process.
-- Debugging, training the model and examining initial results, identifying areas for improvement.
-- Iteratively building up model complexity and examining results (and/or incorporating additional data).
-- Finding balance between interpretability, computational performance and predictive performance.
-- Drawing up conclusions and commenting on applicability to other domains.
-- Decision making through qualitative reference or optimising cost functions.  
+# Published Book 
 
+The Jupyter book is currently in very early stages of development. The current published version of the book is available here: [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The book is deployed via [gh-pages](https://jupyterbook.org/en/stable/start/publish.html).
 
-# Current Content Structure:
-- Intro Page (Description of book, table showing methods incorporated, table highlighting generalisability of methods).
-- Data science methodology notebooks.
-- Template documents for notebooks. 
+# Current and Future Content
 
-# Potential Future Content:
-- Further Contextual information (e.g. overarching descriptions of best practice and approaches to integrative modelling, introductory detail on specific models, performance metrics & important caveats, useful additional resources (e.g. EDS book)). 
+The current content structure is very simple and consists of: 
+- Landing page providing context, including tables summarising features of the current methodologies incorporated.
+- Data science notebooks labelled by challenge.
+- Template document for notebook design.
 
-- Important topics in Environmental Data Science:
-    - Data and model integration. 
-    - Modelling data over COVID years.
-    - Causality.
-    - Inference techniques.
-    - Combatting the reproducibility crisis and pitfalls of data science.
-    - Uncertainty quantification in Bayesian and Frequentist settings. 
-        - How does it work when considering basic multiple linear regression and what about more complex scenarios with models that integrate data sources at different levels of aggregation etc.? 
-    - From science to decision making.
-        - Discussion around creating cost functions and using the whole joint posterior distribution to optimise.
-    - The limits of bad data.
+In terms of future content plans, there's various additional elements that could be incorporated. This includes for example: guides on UKCEH best practices around research code development and use of computational resources; overarching information around approaches to integrative modelling and creating generalizable methods; notebooks detailing specific elements of data science pipelines such as Bayesian parameter inference techniques and uncertainty quantification; and links to additional resources joining up NC projects.   
 
-# Considerations:
-- Issues with licenses around access to relevant data sets.
-    - Ideally the notebook will utilise open-access data so that users can run the code themselves in their own IDE. Notebooks with limited-access data are still valuable however and it is encouraged to put information around the relevant contact points to get access.   
-- Issues around the size of notebooks and what to incorporate. 
-    - Ideally we'd include all the relevant steps involved in the data science pipeline for the methodology. It is however, a balance between detail and approachability. It is recommmended where possible to limit unnecessary code blocks and to focus in on the interesting components. Making use of special content blocks and dropdowns will help in terms of readability.
-- Issues around the size of datasets and compute required for fitting models. 
-    - Notebooks should ideally run top-to-bottom sequentially without error and in a reasonable run-time (<10mins). To achieve this for complex models/large datasets it is recommended to provide the code for inference/prections but to comment it out and to instead run the code separately and then load in the output for the notebook. A link to the results data can be provided for the user to download.  
-- Initial focus is proof of concept with basic, minimal working examples incorporated.
-- It's important to be clear on the purpose of the notebooks, that is primarily to demonstrate applications of statistical methodologies in environmental research. Focusing on the applicability of methods to a wide variety of environmental disciplines and the advantages of integrating multiple different data sets. The initial purpose is not to conduct scientific research itself in the notebooks, although they provide a spring board from which additional ideas can be generated and easily tested, leading to papers.  
-- It's important to avoid pitfalls learnt from previous attempts at similar projects. The DSNE project for example struggled to get much engagement from PhD students, which may have originated from resistance to being asked to contribute code outside of IDE each individual is familiar with. Hopefully having a GIT repository that allows contributors to engage while staying in their preferred IDE will help. Additionally, not being too focused on specific formats for the notebooks but encouraging creativity and focusing on just getting the content in there quickly. 
-- Some templates and initial contextual information on the purpose/vision for the Jupyter Book will be useful. 
-- Having a mix of R and Python notebooks would improve engagement. The same notebooks can be generated in both R and Python. 
+# Discussion Topics
 
+1. What to include in the methodology notebooks?
+    - The current position is to keep this quite open ended and down to collaborators to incorporate what they feel is most valuable and that meets the projects goals. However, is recommended to consider incorporating key components of the data science pipeline including: initial context and goals; data exploration; model design; training/inference; predictive performance and results; conclusions. On top of this, having dropdown sections providing some information around the statistical methods used and their generalizability is recommended, as well as having links to relevant papers and/or repositories at the start of the notebook.
+
+2. Where to house data needed for the notebooks?
+    - This is an unresolved issue currently, although there are several options including: in the same repository that holds the notebook; as a published data source made available via Zenodo; in the UKCEH DataLabs infrastructure; and as part of external infrastructures with information provided on how to access. It is recommended to try and keep the size of the data used as small as possible while still relevant for the methodology. Ideally the notebook would utilise open-access data, although if limited-access data is used it's recommended to include information around relevant contact points to get access.
+
+3. What about methodologies that are highly computationally demanding with long run-times? What's the computational back-end of the notebooks?
+    - It's recommended that the notebooks should run top-to-bottom without error in <10 mins. In circumstances where it takes longer than this to perform inference on the model, it is recommended to include the code for inference but block comment it out and instead load in the output from a linked dataset. Currently users are expected to clone the repository containing the notebook and run the code locally in their favourite IDE, which means it's useful to limit the computational demands. In the future it's possible specific compute resource will be dedicated to the notebooks, allowing users to run the code in the cloud and without barriers associated with downloading relevant data and installing necessary packages.
