@@ -2,38 +2,66 @@
 
 Here's some useful information for getting started... 🌱
 
+[**GitHub Workflow**](#github-workflow-for-contributors)
+| [**Jupyter Book Workflow**](#jupyter-book-workflow-for-contributors)
+
 ## GitHub Workflow for Contributors:
 The suggested workflow for contributing to this repository is taken from [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow), general steps involve:
 
-1. Examine the remote repository on GitHub and look under the various tabs such as '*Issues*'  to understand current development paths.  Examine what remote branches exist. 
-	
-> [!TIP] 
-> - Branches are spaces to develop code, edit files and make commits without affecting the parent branch (normally labelled *'main'* or *'master'*). 
-> - Remote and local branches exist. Remote branches show up on GitHub and to work on them you'll have to create a linked local branch, which you push changes from (described later). Remote branches are normally connected with specific developments (e.g. adding a Gaussian process notebook...) and they allow for collaboration. 
+[**1. Examine Current Issues**](#examine-current-issues)
+| [**2. Fork/Request Access**](#fork)
+| [**3. Clone Repository**](#clone-repository)
+| [**4. Create Issue**](#create-issue)
+| [**5. Create Branch**](#create-branch)
+| [**6. Create Submodule**](#create-submodule)
+| [**7. Commit Changes**](#commit-changes)
+| [**8. Pull Changes**](#pull-changes)
+| [**9. Close Issue**](#close-issue)
 
-2. If external to UKCEH and only expecting to have minor input to the project then [create a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), which is a remote copy of the repository to your personal GitHub account. If internal to UKCEH and wanting to contribute regularly to the project then request to become a collaborator on the GitHub repository or email me at jercar@ceh.ac.uk .
+The [**Create Submodule**](#create-submodule) advice is specific to contributors wanting to incorporate notebooks. 
+
+### 1. Examine Current Issues <a id='examine-current-issues'></a>
+- Examine the remote repository on GitHub and look under the various tabs such as '*Issues*'  to understand current development paths.  
+
+### 2. Request Collaborator Access or Fork Repository <a id='fork'></a>
+- If external to UKCEH and only expecting to have minor input to the project then [create a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), which is a remote copy of the repository to your personal GitHub account. If internal to UKCEH and wanting to contribute regularly to the project then request to become a collaborator on the GitHub repository or email me at jercar@ceh.ac.uk .
 
 > [!TIP] 
 > Adjustments made in the remote forked repository can then be submitted to main repository on GitHub via a pull request.
 
-3. [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui) or your forked remote repository respectively, which creates a local copy of the files on your machine. 
-	- This local repository tracks the remote repository hosted on GitHub and you can run commands such as '*git fetch origin*' and '*git pull origin*' to update your local copy when the remote repository changes (see [Git fetch and merge](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)).
+### 3. Clone repository <a id='clone-repository'></a>
 
-4. Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term. Make sure you have ['*checked out*'](https://www.atlassian.com/git/tutorials/using-branches/git-checkout) the local branch before starting work on it, this can be done via *'git checkout branch_name'*. 
+- [Clone the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository?tool=webui) or your forked remote repository respectively, which creates a local copy of the files on your machine. 
+- This local repository tracks the remote repository hosted on GitHub and you can run commands such as '*git fetch origin*' and '*git pull origin*' to update your local copy when the remote repository changes (see [Git fetch and merge](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)).
 
+### 4. Create Issue <a id='create-issue'></a>
+- [Create an *'issue'*](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue) for any development work, which details what you're working on. See [here](https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues) for the current list of issues for the repository. Doing this allows early feedback from the community on the idea and additionally allows you to add updating comments that link to commits and highlight progress, keeping the community informed. You can assign individuals to join work on specific '*issues*', link them in specific comments and create a link to the respective development branch that work is being conducted on.   
+
+### 5. Create Branch <a id='create-branch'></a>
+- Create a branch either locally ('*git branch new_branch_name*') or on the remote GitHub page ([creating branch via GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository)). A remote branch can be created directly from the 'issue' you created, which also links it. Naming convention for branches is {yourname}/{branchname} (e.g. jez/bias-correction). It is recommended to use local branches for just playing around with the code and remote branches for specific development goals that you hope to share with the community. Ideally, to keep remote branches from deviating too much from the main branch, their scope should remain focused and relatively short term. Make sure you have ['*checked out*'](https://www.atlassian.com/git/tutorials/using-branches/git-checkout) the local branch before starting work on it, this can be done via *'git checkout branch_name'*. 
+	
 > [!TIP] 
-> - To work locally on remote branches you need to create a local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. 
+> - Branches are spaces to develop code, edit files and make commits without affecting the parent branch (normally labelled *'main'* or *'master'*). 
+> - Remote and local branches exist. Remote branches show up on GitHub and to work on them you'll have to create a linked local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'.   
 > - You can see current local branches via '*git branch*' and can see the available remote branches via '*git branch -r*'. If you've created a new remote branch via GitHub you'll need to run either '*git fetch origin*' or '*git pull origin*' to observe it when running '*git branch -r*'. 
 > - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'.
 
-> [!IMPORTANT] 
-> It's highly recommended to [create an *'issue'*](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue) for any development work, which details what you're working on. See [here](https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues) for the current list of issues for the repository. Doing this allows early feedback from the community on the idea and additionally allows you to add updating comments that link to commits and highlight progress, keeping the community informed. You can assign individuals to join work on specific '*issues*', link them in specific comments and create a link to the respective development branch that work is being conducted on.   
+### 6. Create Submodule for Notebook Repository <a id='create-submodule'></a>
+- If intending to add a notebook into the Jupyter book, store the notebook in a separate external repository and [create a submodule](https://gist.github.com/gitaarik/8735255) within your working branch of the Jupyter book repository that points at this location. This is important as it reduces the total file size of the Jupyter book repository and keeps it clean while also allowing you to include additional files related to your notebook in the external repository, such as modules, images and small data files. 
 
-5. Work on your local branch, making commits at regular intervals. Making regular commits for each specific sub-task within your development goal is a good idea and helps when reviewing the changes ([the right time to commit and branch](https://blog.scottlogic.com/2019/12/19/source-control-when.html#:~:text=Generally%20create%20a%20branch%20for,wherever%20it%20needs%20to%20go.)). 
+> [!TIP] 
+> - An option for the external repository housing the notebook, is to create a branch named 'jupyterbook-render' from the repository that contains the code used in the notebook.
+> - To add the submodule pointing at the particular branch of another repository the following command can be used: '*git submodule add -b {branch-name} {url-of-repository}*'. As an example: '*git submodule add -b jupyterbook_render https://github.com/Jez-Carter/Bias_Correction_Application.git*'. Do this after changing directory to the correct folder of the Jupyter book repository, so probably /notebooks/methods/.  
+> - Work on the notebook in the external repository and then pull in changes to the Jupyter book repository by changing directory into the submodule folder and running '*git pull origin*'. When you're in the directory of the submodule, git should automatically be checked-out on the branch of your external repository holding the notebook.
+> - After pulling changes from the external repository, the changes can be commited to your branch on the Jupyter book repository. Additionally, you can build the Jupyter book (see: [**Jupyter Book Workflow**](#jupyter-book-workflow-for-contributors)) to see how the notebook renders in that environment.
+
+### 7. Make Changes and Commit <a id='commit-changes'></a>
+- Work on your local branch, making commits at regular intervals. Making regular commits for each specific sub-task within your development goal is a good idea and helps when reviewing the changes ([the right time to commit and branch](https://blog.scottlogic.com/2019/12/19/source-control-when.html#:~:text=Generally%20create%20a%20branch%20for,wherever%20it%20needs%20to%20go.)). 
 > [!TIP] 
 > If the local branch is linked to a remote branch you can push your changes there periodically using '*git push origin branch_name*'. This is useful if collaborating on a development task. If other collaborators have pushed changes to the remote branch so that is ahead of your local branch, then you can absorb these changes either by using '*git pull origin*' or doing it in stages using '*git fetch origin*' and then '*git checkout branch_name*' and '*git merge origin/branch_name*'. 
 
-6. If working on a specific development goal then after the work is complete and pushed to the specific remote development branch you can submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch. 
+### 8. Pull Changes into Main Branch <a id='pull-changes'></a>
+- If working on a specific development goal then after the work is complete and pushed to the specific remote development branch you can submit a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch. 
 
 > [!TIP] 
 >- Taken directly from [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow): 
@@ -41,7 +69,8 @@ The suggested workflow for contributing to this repository is taken from [GitHub
 >- Reviewers will typically leave comments/suggestions on the pull request and these can be addressed, see "[Reviewing changes in pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests).
 >- Once the pull request is approved the development branch can be merged with the main repository branch.  
 
-7. After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain.
+### 9. Delete Branch and Close Issue <a id='close-issue'></a>
+- After merging the given development branch with the main repository branch, the development branch can be deleted. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain.
 
 > [!TIP] 
 > - The remote development branch can be [deleted on GitHub](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#deleting-a-branch). Then to no longer see the remote branch on your local machine you'll need to run '*git fetch origin -p*', which prunes the branches. To delete a local branch that tracked the remote branch we can do *'git branch -d branch-name'*.
@@ -64,3 +93,6 @@ A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised c
 
 4. Follow the GitHub workflow advice above to contribute your changes to the repository. For the changes to appear on the online published book, this is done via [GitHub pages](https://jupyterbook.org/en/stable/start/publish.html#publish-your-book-online-with-github-pages). Please request this directly by emailing Jeremy Carter at jercar@ceh.ac.uk rather than attempting to do it yourself.   
 
+| [**Clone Repository**](1-examine-current-issues) 
+
+[**GitHub Workflow**](#github-workflow-for-contributors)
