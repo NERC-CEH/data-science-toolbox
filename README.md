@@ -2,6 +2,12 @@
 <img width="300" height="300" src="UKCEH_EDST_Logo.png" alt="GPJax's logo">
 </p>
 
+[**Contributing**](#contributing)
+| [**Published Book**](#published-book)
+| [**User Engagement**](#user-engagement)
+| [**Current/Future Content**](#current-and-future-content)
+| [**Discussion Topics**](#discussion-topics)
+
 This repository is for a UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH. These methods are expected to be generalizable across different disciplines and to have a strong focus on integrative modelling. This aligns with **FAIR** principles (Findable, Accessible, Interoperable, and Reusable). This resource will enhance collaborative use of data science methods across multiple disciplines and will support the UK's national capability in delivering world-leading environmental science. 
 
 # Contributing
@@ -11,6 +17,10 @@ If you're interested in incorporating some methodology into this Jupyter book, o
 # Published Book 
 
 The Jupyter book is currently in very early stages of development. The current published version of the book is available here: [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The book is deployed via [gh-pages](https://jupyterbook.org/en/stable/start/publish.html).
+
+# User Engagement
+
+To engage with the Jupyter book it is advised to visit the published version at: [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The landing page provides context on the different data science methods incorporated and their key components, including datasets, statistical concepts and generalizability to different applications. The notebooks should contain a link to the respective repository housing it and to any papers linked to the method. Additionally, introductory context such as how to set up the environment for running the notebook top-to-bottom will be present. In general, it is expected that users will clone the notebook repository locally, create the virtual environment with relevant packages installed and then run the code in their favourite IDE. 
 
 # Current and Future Content
 
