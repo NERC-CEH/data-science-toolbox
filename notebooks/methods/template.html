@@ -62,8 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/methods/template';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Template Notebook for Methodologies" href="template_markdown.html" />
-    <link rel="prev" title="Content needs filling." href="../concepts/limits_bad_data.html" />
+    <link rel="prev" title="Content needs filling." href="stochastic_partial_diff_equations.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,41 +180,15 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contextual Information</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../contextual_files/purpose.html">Purpose and Layout</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contextual_files/statistical_considerations.html">Overarching Concepts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../contextual_files/additional_resources.html">Additional Resources</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Statistical Methodologies</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="gradient_boosted_trees.html">Gradient Boosted Trees (GBTs)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian_processes.html">Gaussian Processes (GPs)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stochastic_partial_diff_equations.html">Stochastic Partial Differential Equations (SPDEs)</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Inference Techniques</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../inference_techniques/maximum_likelihood_estimation.html">Maximum Likelihood Estimation (MLE)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inference_techniques/maximum_a_posteriori.html">Maximum A Posteriori (MAP)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inference_techniques/markov_chain_monte_carlo.html">Markov Chain Monte Carlo (MCMC)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inference_techniques/integrated_nested_laplace_approximations.html">Integrated Nested Laplace Approximations (INLA)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inference_techniques/variational_inference.html">Variational Inference</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Important Topics</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../concepts/model_and_data_integration.html">Data and Model Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/modelling_covid_years.html">Modelling Data over COVID Years</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/causality.html">Causality</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/reproducibility.html">Reproducibility Crisis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/pitfalls.html">Common Pitfalls</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/uncertainty.html">Uncertainty Quantification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/decision_making.html">Science to Decision Making</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../concepts/limits_bad_data.html">Limits of Bad Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient_boosted_trees.html">Downscaling UK Surface Ozone</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stochastic_partial_diff_equations.html">UK Species Distribution Modelling</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Templates</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Methodology Notebook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="template_markdown.html">Methodology Notebook (Markdown)</a></li>
 </ul>
 
     </div>
@@ -1403,7 +1376,7 @@ dtype: float64
 <img alt="../../_images/be5a4ed79375b633d30362ca9e0d3c94e383448dab2632ecd90cb34ad80bc768.png" src="../../_images/be5a4ed79375b633d30362ca9e0d3c94e383448dab2632ecd90cb34ad80bc768.png" />
 </div>
 </div>
-<p>While the predictive performance of the random forest model is a clear improvement over the linear regression model, it’s also clear from these figures that both models experience a negative bias at higher house values and a positive bias at lower house values. That is both models on average under-predict the value for the most expensive houses and over-predict for the cheapest houses. It is ususal for models to struggle with predicting extream values and the bias is the result of differences in the relationships with predictors for the bulk data and extreams. One avenue for correcting this might be to model the extreams independently of the bulk data. Additionally, we could try to incorporate extra predictors that are targeted at improving understanding in the extreams. Further exploration of the extreams and for example their spatial locations will help in identifying the best avenue for further improvement.</p>
+<p>The figures illustrate the improved predictive performance of the random forest model over linear regression. Additionally, while both models experience a negative bias at higher house values and a positive bias at lower house values, the bias appears partially reduced in the random forest instance. It is ususal for models to struggle with predicting extream values and the bias is the result of differences in the relationships with predictors for the bulk data and tail ends. One avenue for correcting this might be to model the extreams independently of the bulk data. Additionally, we could try to incorporate extra predictors that are targeted at capturing important features that distinguish the extreams. Further exploration of the extreams and for example their spatial locations would help in identifying the best avenue for further improvement.</p>
 </section>
 </section>
 <section id="conclusions">
@@ -1443,22 +1416,13 @@ dtype: float64
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../concepts/limits_bad_data.html"
+       href="stochastic_partial_diff_equations.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Content needs filling.</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="template_markdown.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Template Notebook for Methodologies</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
