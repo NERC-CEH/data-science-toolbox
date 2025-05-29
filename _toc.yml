@@ -8,10 +8,8 @@ parts:
   chapters:
   - title: Bias Correction of Climate Models
     file: "notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
-  - title: Downscaling UK Surface Ozone
-    file: notebooks/methods/gradient_boosted_trees
-  - title: UK Species Distribution Modelling
-    file: notebooks/methods/stochastic_partial_diff_equations
+  - title: Calculator of Risk to Terrestrial C Pool
+    file: notebooks/methods/NCI_WP2A2/scripts/RiskQuantificationNotebook
 - caption: Templates
   chapters:
   - title: Methodology Notebook
