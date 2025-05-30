@@ -9,7 +9,7 @@ parts:
   - title: Bias Correction of Climate Models
     file: "notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
   - title: Calculator of Risk to Terrestrial C Pool
-    file: notebooks/methods/NCI_WP2A2/scripts/RiskQuantificationNotebook
+    file: notebooks/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
 - caption: Templates
   chapters:
   - title: Methodology Notebook
