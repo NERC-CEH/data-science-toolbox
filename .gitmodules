@@ -7,3 +7,6 @@
 	path = notebooks/methods/NCI_WP2A2
 	url = https://github.com/vmyrgiotis/NCI_WP2A2.git
 	branch = jupyterbook_render
+[submodule "notebooks/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool"]
+	path = notebooks/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-risk-terrestrial-carbon-pool.git
