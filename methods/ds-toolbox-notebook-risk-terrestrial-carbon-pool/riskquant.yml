@@ -1,0 +1,26 @@
+name: riskquant
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy
+  - xarray
+  - hvplot
+  - rioxarray
+  - geopandas
+  - matplotlib
+  - scikit-learn
+  - seaborn
+  - rasterio
+  - folium
+  - requests
+  - pip
+  - netcdf4
+  - h5netcdf
+  - jupyter_bokeh
+  - dask
+  - fastparquet
+  - pip:
+      - pygadm
