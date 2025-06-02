@@ -15,7 +15,8 @@ The current recommended workflow for interactively engaging with the code in the
 
 | Methods | Key Concepts | Key Datasets |
 | :--- | --- | ---: |
-| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development`| Gaussian Processes, Bayesian Hierarchical Modelling | Climate Model Output, In-situ Weather Station Measurements 
+| [Bias Correction of Climate Models](<../methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development`| Gaussian Processes, Bayesian Hierarchical Modelling | Climate Model Output, In-situ Weather Station Measurements 
+| [Calculating Risk to Terrestrial Carbon Pool](<../methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb>) {bdg-warning-line}`Ongoing Development` | Data Access, Data Integration | MODIS Land Cover and Net Primary Production Products, European Space Agency (ESA) Climate Change Initiative (CCI) Soil Moisture Dataset, Global Standardized Precipitation-Evapotranspiration Index (SPEI) Dataset.
 | Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
 | Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | Multivariate Methods, Uncertainty, Theory | |
 | Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
