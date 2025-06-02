@@ -13,16 +13,30 @@ If you're interested in contributing to this project it would be great to hear f
 The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the repository linked at the top of each notebook (e.g. {bdg-link-info}`Code Repository (Branch jupyterbook_render) <https://github.com/Jez-Carter/Bias_Correction_Application/tree/jupyterbook_render>`) to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
 
 
-| Methods | Key Statistical Concepts | Key Datasets |
+| Methods | Key Concepts | Key Datasets |
 | :--- | --- | ---: |
-| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) | Gaussian Processes, Bayesian Hierarchical Modelling | Climate Model Output, In-situ Weather Station Measurements 
-| Downscaling UK Surface Ozone Concentrations (Planned) | Machine Learning, Gradient Boosted Trees | EMEP4UK Atmospheric Chemistry Transport Model Output, WRF Weather Forecast Model Output, In-situ Ozone Monitoring Network Data
-| UK Species Distribution Modelling (Planned) | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
+| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development`| Gaussian Processes, Bayesian Hierarchical Modelling | Climate Model Output, In-situ Weather Station Measurements 
+| Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
+| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | Multivariate Methods, Uncertainty, Theory | |
+| Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
+| Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` | | |
+| River Utility Tools {bdg-warning-line}`Planned` | Spatio-temporal Integration, Networks | |
+| CSV File Checker {bdg-warning-line}`Planned` | Data Quality, Data Integrity | |
+| Spatio-temporal Data Integration with INLA {bdg-warning-line}`Tentative` | Spatio-temporal Integration, Bayesian | | 
+| Understanding and Modelling Spatio-temporal Lags along Networks {bdg-warning-line}`Tentative` | Spatio-temporal Integration, Networks | |
+| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` | Data Quality, Data Integrity | |
 
 <br>
 
-| Methods | Generalisability |
+<!-- | Methods | Generalisability |
 | :--- | ---: |
-| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) | Combining good-coverage biased datasets with poor-coverage unbiased datasets. Modelling uncertainty when interpolating spatial and/or temporal data. 
-| Downscaling UK Surface Ozone Concentrations (Planned) | Using observations and high-resolution predictors to downscale area averaged datasets.
-| UK Species Distribution Modelling (Planned) | Combining spatio-temporal datasets  from different observational campaigns.
+| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development` | Combining good-coverage biased datasets with poor-coverage unbiased datasets. Modelling uncertainty when interpolating spatial and/or temporal data. 
+| Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | 
+| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | 
+| Accessing EA Data via an API {bdg-warning-line}`Planned` | 
+| Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` |
+| River Utility Tools {bdg-warning-line}`Planned` | 
+| CSV File Checker {bdg-warning-line}`Planned` |
+| Spatio-temporal Data Integration with INLA {bdg-warning-line}`Tentative` |
+| Understanding and Modelling Spatio-temporal Lags along Networks {bdg-warning-line}`Tentative` |
+| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` |  -->
