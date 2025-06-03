@@ -13,7 +13,7 @@ Here we'll go through the basic steps for contributing a method or notebook to t
 
 1. [Create a standalone repository for the notebook/method](#create-standalone-repository). Upload the notebook and any necessary files to run it. Do this in the NERC-CEH GitHub organisation and follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction).
 
-2. [Request collaborator access]((#access)) to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk. 
+2. [Request collaborator access](#access) to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk. 
 
 3. [Clone the repository](#clone-repository) to your local machine:
 ```bash
