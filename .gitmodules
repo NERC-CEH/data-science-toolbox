@@ -5,3 +5,6 @@
 	path = methods/Bias_Correction_Application
 	url = https://github.com/Jez-Carter/Bias_Correction_Application.git
 	branch = jupyterbook_render
+[submodule "methods/ds-toolbox-notebook-demo"]
+	path = methods/ds-toolbox-notebook-demo
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-demo.git

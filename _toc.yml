@@ -10,3 +10,5 @@ parts:
     file: "methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
   - title: Calculator of Risk to Terrestrial C Pool
     file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+  - title: Demo Notebook
+    file: methods/ds-toolbox-notebook-demo/template.ipynb
