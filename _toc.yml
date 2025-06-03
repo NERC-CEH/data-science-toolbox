@@ -7,12 +7,6 @@ parts:
 - caption: Methodology Notebooks
   chapters:
   - title: Bias Correction of Climate Models
-    file: "notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
-  - title: Downscaling UK Surface Ozone
-    file: notebooks/methods/gradient_boosted_trees
-  - title: UK Species Distribution Modelling
-    file: notebooks/methods/stochastic_partial_diff_equations
-- caption: Templates
-  chapters:
-  - title: Methodology Notebook
-    file: notebooks/methods/template
+    file: "methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial"
+  - title: Calculator of Risk to Terrestrial C Pool
+    file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
