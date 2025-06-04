@@ -1,7 +1,6 @@
 [submodule "methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool"]
 	path = methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-risk-terrestrial-carbon-pool.git
-[submodule "methods/Bias_Correction_Application"]
-	path = methods/Bias_Correction_Application
-	url = https://github.com/Jez-Carter/Bias_Correction_Application.git
-	branch = jupyterbook_render
+[submodule "methods/ds-toolbox-notebook-biascorrection"]
+	path = methods/ds-toolbox-notebook-biascorrection
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-biascorrection.git
