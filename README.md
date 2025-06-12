@@ -7,7 +7,7 @@
 </p>
 
 
->ℹ️ **Note**: This Jupyter Book is a work in progress and is being developed as part of the NCUK task to provide a suite of open-source, adaptable analytical methods for the academic community. The methodologies and notebooks are expected to evolve over time, with contributions from various researchers at UKCEH and external organisations.
+>ℹ️ **Note: This Jupyter Book is a work in progress and is currently in a prototype stage**. It is being developed as part of the NCUK task to provide a suite of open-source, adaptable analytical methods for the academic community. The methodologies and notebooks are expected to evolve over time, with contributions from various researchers at UKCEH and external organisations.
 
 [**Contributing**](#contributing)
 | [**Published Book**](#published-book)
@@ -15,7 +15,7 @@
 | [**Current/Future Content**](#current-and-future-content)
 | [**Discussion Topics**](#discussion-topics)
 
-This repository is for a UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different disciplines and to have a strong focus on integrative modelling. This aligns with **FAIR** principles (Findable, Accessible, Interoperable, and Reusable). This resource will enhance collaborative use of data science methods across multiple disciplines and will support the UK's national capability in delivering world-leading environmental science. 
+This repository houses the UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different disciplines and to have a strong focus on integrative modelling. This aligns with **FAIR** principles (Findable, Accessible, Interoperable, and Reusable). This resource will enhance collaborative use of data science methods across multiple disciplines and will support the UK's national capability in delivering world-leading environmental science. 
 
 # Contributing
 
