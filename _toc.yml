@@ -10,3 +10,7 @@ parts:
     file: "methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb"
   - title: Calculator of Risk to Terrestrial C Pool
     file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+  - title: Understanding Error of Multispecies Biodiversity Indicators
+    file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+  - title: Fitting Joint Species Distribution Models with jsdmstan
+    file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb

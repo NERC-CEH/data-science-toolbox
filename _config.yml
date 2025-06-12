@@ -41,8 +41,8 @@ latex:
     targetname: book.tex
 
 # Add a bibtex file so that we can create citations
-bibtex_bibfiles:
-  - references.bib
+# bibtex_bibfiles:
+#   - references.bib
 
 # Information about where the book exists on the web
 repository:
@@ -56,6 +56,16 @@ html:
   use_issues_button: true
   use_repository_button: true
 
+sphinx:
+  config:
+    nb_custom_formats:
+        .Rmd:
+            - jupytext.reads
+            - fmt: Rmd
+    exclude_patterns: [
+      "**/renv/**",
+      "**/skeleton.*"
+    ]
 
 # parse:
 #   myst_enable_extensions:
