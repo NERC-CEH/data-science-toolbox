@@ -19,7 +19,7 @@ This repository houses the UKCEH Jupyter Book that aligns with the NCUK task of 
 
 # Contributing
 
-If you're interested in incorporating some methodology into this Jupyter book, or if you're interested in contributing in another way, then please see these [contributing guidelines](/CONTRIBUTING.md) 🌞. Additionally, if you have any questions please either raise them through the discussions tab or through direct email to [Jeremy Carter](https://github.com/Jez-Carter/) at jercar@ceh.ac.uk. 
+If you're interested in incorporating some methodology into this Jupyter book, or if you're interested in contributing in another way, then please see these [contributing guidelines](/CONTRIBUTING.md) 🌞. Additionally, if you have any questions please either raise them through the [GitHub Discussions](https://github.com/NERC-CEH/data-science-toolbox/discussions) tab or through direct email to [Jeremy Carter](https://github.com/Jez-Carter/) at jercar@ceh.ac.uk. 
 
 # Published Book 
 
@@ -47,6 +47,12 @@ In terms of future content plans, there's various additional elements that could
 
 3. What about methodologies that are highly computationally demanding with long run-times? What's the computational back-end of the notebooks?
     - It's recommended that the notebooks should run top-to-bottom without error in <10 mins. In circumstances where it takes longer than this to perform inference on the model, it is recommended to include the code for inference but block comment it out and instead load in the output from a linked dataset. Currently users are expected to clone the repository containing the notebook and run the code locally in their favourite IDE, which means it's useful to limit the computational demands. In the future it's possible specific compute resource will be dedicated to the notebooks, allowing users to run the code in the cloud and without barriers associated with downloading relevant data and installing necessary packages.
+
+> Logo Credits: 
+The current Jupyter book logo was generated using OpenAI.
+
+> Accessibility Statement:
+This Jupyter Book is being developed with accessibility in mind, following guidelines from the [UKCEH accessibility statement](https://www.ceh.ac.uk/accessibility-statement). We aim to ensure that all content is accessible to a wide range of users, including those with disabilities. If you encounter any accessibility issues or have suggestions for improvement, please let us know through the [GitHub Discussions](https://github.com/NERC-CEH/data-science-toolbox/discussions). 
 
 > Funding Statement:
 This research was supported by NERC, through the UKCEH National Capability for UK Challenges Programme NE/Y006208/1
