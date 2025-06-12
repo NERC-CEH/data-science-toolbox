@@ -6,6 +6,9 @@
 <img width="300" height="300" src="images/ukceh-edsb-logo.png" alt="Environmental Data Science Book Logo">
 </p>
 
+
+>This research was supported by NERC, through the UKCEH National Capability for UK Challenges Programme NE/Y006208/1
+
 [**Contributing**](#contributing)
 | [**Published Book**](#published-book)
 | [**User Engagement**](#user-engagement)
