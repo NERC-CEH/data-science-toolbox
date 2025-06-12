@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: My sample book
-author: The Jupyter Book Community
+title: UKCEH Environmental Data Science Book
+author: UKCEH 
 logo: images/ukceh-edsb-logo.png
 
 # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
@@ -56,6 +56,8 @@ html:
   use_issues_button: true
   use_repository_button: true
   favicon: images/edsb-favicon.png  # Path to a favicon for your book
+  announcement: >
+    ℹ️ This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please contact us at jercar@ceh.ac.uk
 
 
 # parse:
