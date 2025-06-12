@@ -1,4 +1,4 @@
-<p align="right">
+<p align="center">
 <img width="400" src="images/NatCapUK_colour.png" alt="NCUK Logo">
 </p>
 
