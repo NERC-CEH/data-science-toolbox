@@ -15,7 +15,7 @@
 | [**Current/Future Content**](#current-and-future-content)
 | [**Discussion Topics**](#discussion-topics)
 
-This repository houses the UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different disciplines and to have a strong focus on integrative modelling. This aligns with **FAIR** principles (Findable, Accessible, Interoperable, and Reusable). This resource will enhance collaborative use of data science methods across multiple disciplines and will support the UK's national capability in delivering world-leading environmental science. 
+This repository houses the UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science. 
 
 # Contributing
 
