@@ -1,5 +1,5 @@
 <p align="right">
-<img width="300" height="100" src="images/NatCapUK_colour.png" alt="NCUK Logo">
+<img width="400" src="images/NatCapUK_colour.png" alt="NCUK Logo">
 </p>
 
 <p align="center">
