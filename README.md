@@ -1,5 +1,9 @@
+<p align="right">
+<img width="300" height="100" src="images/NatCapUK_colour.png" alt="NCUK Logo">
+</p>
+
 <p align="center">
-<img width="300" height="300" src="UKCEH_EDST_Logo.png" alt="GPJax's logo">
+<img width="300" height="300" src="images/ukceh-edsb-logo.png" alt="Environmental Data Science Book Logo">
 </p>
 
 [**Contributing**](#contributing)
