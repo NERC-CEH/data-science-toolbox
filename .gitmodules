@@ -4,6 +4,9 @@
 [submodule "methods/ds-toolbox-notebook-biascorrection"]
 	path = methods/ds-toolbox-notebook-biascorrection
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-biascorrection.git
+[submodule "methods/ds-toolbox-notebook-multispecies-biodiversity-indicators"]
+	path = methods/ds-toolbox-notebook-multispecies-biodiversity-indicators
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-multispecies-biodiversity-indicators.git
 [submodule "methods/ds-toolbox-notebook-jsdmstan"]
 	path = methods/ds-toolbox-notebook-jsdmstan
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdmstan.git

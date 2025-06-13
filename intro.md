@@ -1,4 +1,11 @@
-```{image} EDS_Abstract.jpg 
+```{image} images/NatCapUK_colour.png
+:alt: natcapuk-logo
+:class: bg-primary mb-1
+:align: right
+:width: 400px
+```
+
+```{image} images/eds-abstract-image.jpg 
 :alt: abstract-environmental-data-science
 :class: bg-primary mb-1 sd-rounded-3
 :align: center
