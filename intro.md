@@ -11,13 +11,13 @@
 :align: center
 ```
 
-# UKCEH Data Science Book
+# UKCEH Data Science Toolbox
 
-This is a collection of data science methods used within UKCEH for a range of environmental applications. The purpose is to apply **FAIR** principles (Findable, Accessible, Interoperable, and Reusable) to statistical methodologies at UKCEH. The hope being that this will encourage **cross-disciplinary use of methods**, enhancing research. Focus is placed upon including methods that are applicable to a wide variety of environmental disciplines and that incorporate **integration of multiple data sets**. 
+This is a **prototype** version of the UK Centre for Ecology & Hydrology (UKCEH) Environmental Data Science Toolbox. The aim is to apply FAIR principles (Findable, Accessible, Interoperable, and Reusable) to a collection of data science methods that are generalizable across different environmental applications, with a focus on integrative modelling. The hope being that this will encourage cross-disciplinary use of methods, enhancing national environmental research. 
 
 If you're interested in contributing to this project it would be great to hear from you and you can find details of how to do so via the `CONTRIBUTING.md` page in the root of the repository. 🌞
 
-The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the repository linked at the top of each notebook (e.g. {bdg-link-info}`Code Repository (Branch jupyterbook_render) <https://github.com/Jez-Carter/Bias_Correction_Application/tree/jupyterbook_render>`) to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
+The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the {bdg-link-info}`Notebook Repository` linked at the top of each notebook to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
 
 | Methods | Key Concepts | Key Datasets |
 | :--- | --- | ---: |

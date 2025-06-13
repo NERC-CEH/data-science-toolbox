@@ -7,7 +7,7 @@
 </p>
 
 
->ℹ️ **Note: This Jupyter Book is a work in progress and is currently in a prototype stage**. 
+> ⚠️ ***PROTOTYPE: This Jupyter Book is a work in progress and is currently in a prototype stage***.
 
 [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox)
 

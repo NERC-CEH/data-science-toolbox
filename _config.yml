@@ -57,7 +57,7 @@ html:
   use_repository_button: true
   favicon: images/edsb-favicon.png  # Path to a favicon for your book
   announcement: >
-    ℹ️ This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+    ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
 
 # parse:
 #   myst_enable_extensions:
