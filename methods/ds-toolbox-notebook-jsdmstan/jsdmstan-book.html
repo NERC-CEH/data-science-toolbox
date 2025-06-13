@@ -1,0 +1,1519 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitting Joint Species Distribution Models with jsdmstan &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Understanding the error of Multispecies Biodiversity Indicators: A simulated example" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">ℹ️ This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    UKCEH Data Science Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fitting Joint Species Distribution Models with jsdmstan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-joint-species-distribution-models">Introduction to Joint Species Distribution Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underlying-maths">Underlying maths</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-generalised-linear-mixed-models">Multivariate Generalised Linear Mixed Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-linear-latent-variable-models">Generalised Linear Latent Variable Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-environmental-covariates">Relationship to environmental covariates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-simulated-data">Examples with Simulated Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-mglmm">Fitting a MGLMM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-gllvm">Fitting a GLLVM</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-real-data">Examples with Real Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mglmm-with-broadleaved-woodland-survey-data">MGLMM with broadleaved woodland survey data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gllvm-with-spider-data">GLLVM with spider data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fitting-joint-species-distribution-models-with-jsdmstan">
+<h1>Fitting Joint Species Distribution Models with jsdmstan<a class="headerlink" href="#fitting-joint-species-distribution-models-with-jsdmstan" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-jsdmstan.git"><span>Notebook Repository</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/jsdmstan.git"><span>Method Repository</span></a></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/fiona-seaton">Dr. Fiona Seaton</a></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Challenge:</div>
+<p class="sd-card-text">Modelling ecological communities involves understanding not just how individual species respond to their environment, but also how they interact with one another. Species often co-occur or exhibit similar patterns of response to environmental conditions, meaning their distributions are not independent. Traditional species distribution models, which treat each species in isolation, miss this shared structure. The challenge is to develop models that can capture these interdependencies, enabling more accurate and ecologically realistic predictions by leveraging information across multiple species simultaneously.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Approach:</div>
+<p class="sd-card-text">Joint Species Distribution Models (JSDMs) address this challenge by modelling all species in a community together. They incorporate environmental covariates, species-specific effects (like individual intercepts), and—critically—covariance between species to account for shared variation and co-occurrence patterns. This covariance can be specified either through a full multivariate model that directly estimates the species covariance matrix, or more efficiently via latent variable models (GLLVMs), which reduce dimensionality by capturing shared structure with a small number of latent factors.</p>
+<p class="sd-card-text">The jsdmstan R package is an interface for fitting joint species
+distribution models (JSDMs) in Stan. First, we will go through an
+introduction to joint species distribution models in general, followed
+by examples of how to use the jsdmstan package to simulate data and fit
+JSDMs to this simulated data, and finally two examples of using jsdmstan
+on real ecological data.</p>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction-to-joint-species-distribution-models">
+<h1>Introduction to Joint Species Distribution Models<a class="headerlink" href="#introduction-to-joint-species-distribution-models" title="Link to this heading">#</a></h1>
+<p>Joint Species Distibution Models are models that model an entire
+community of species simultaneously. The idea behind these is that they
+allow information to be borrowed across species, such that the
+covariance between species can be used to inform the predictions of
+distributions of related or commonly co-occurring species.</p>
+<p>In plain language (or as plain as I can manage) JSDMs involve the
+modelling of an entire species community as a function of some
+combination of intercepts, covariate data and species covariance.
+Therefore the change of a single species is related to not only change
+in the environment but also how it relates to other species. There are
+several decisions to be made in how to specify these models - the
+standard decisions on which covariates to include, whether each species
+should have its own intercept (generally yes) and how to represent
+change across sites - but also how to represent the covariance between
+species. There are two options for representing this species covariance
+in this package. First, the original way of running JSDMs was to model
+the entire covariance matrix between species in a multivariate
+generalised linear mixed model (MGLMM). However, more recently there
+have been methods developed that involve representing the covariance
+matrix with a set of linear latent variables - known as generalised
+linear latent variable models (GLLVM).</p>
+<p>The jsdmstan package aims to provide an interface for fitting these
+models in <a class="reference external" href="https://mc-stan.org/">Stan</a> using the Stan Hamiltonian Monte
+Carlo sampling as a robust Bayesian methodology.</p>
+<section id="underlying-maths">
+<h2>Underlying maths<a class="headerlink" href="#underlying-maths" title="Link to this heading">#</a></h2>
+<p>Feel free to skip this bit if you don’t want to read equations, it is
+largely based on Warton et
+al. (<a class="reference external" href="http:://doi.org/10.1016/j.tree.2015.09.007">2015</a>). We model the
+community data <span class="math notranslate nohighlight">\(m_{ij}\)</span> for each site <span class="math notranslate nohighlight">\(i\)</span> and taxon <span class="math notranslate nohighlight">\(j\)</span> as a function of
+a species intercept, environmental covariates and species covariance
+matrix:</p>
+<div class="math notranslate nohighlight">
+\[g(m_{ij}) = \beta_{0j} + \mathbf{x}_i^\intercal\beta_j + u_{ij}\]</div>
+<p>where <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is the link function, <span class="math notranslate nohighlight">\(\mathbf{x}_i^\intercal\)</span> is the
+transpose of vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, and for each taxon <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(\beta_{0j}\)</span>
+is an intercept and <span class="math notranslate nohighlight">\(beta_j\)</span> is a vector of regression coefficients
+related to measured predictors.</p>
+<p>A site effect <span class="math notranslate nohighlight">\(\alpha_{i}\)</span> can also be added to adjust for total
+abundance or richness:</p>
+<div class="math notranslate nohighlight">
+\[g(m_{ij}) = \alpha_{i} + \beta_{0j} + \mathbf{x}_i^\intercal\beta_j + u_{ij}\]</div>
+<section id="multivariate-generalised-linear-mixed-models">
+<h3>Multivariate Generalised Linear Mixed Models<a class="headerlink" href="#multivariate-generalised-linear-mixed-models" title="Link to this heading">#</a></h3>
+<p>The entire matrix of covariance between species is modelled in MGLMMs.</p>
+<div class="math notranslate nohighlight">
+\[u_{ij} \sim \mathrm{N}(\mathbf{0},\mathbf{\Sigma})\]</div>
+<p>Fitting the entire covariance matrix means that the amount of time
+required to fit these models scales with the number of species cubed,
+and the data required scales with the number of species squared. This
+makes these models both computationally and data intensive.</p>
+</section>
+<section id="generalised-linear-latent-variable-models">
+<h3>Generalised Linear Latent Variable Models<a class="headerlink" href="#generalised-linear-latent-variable-models" title="Link to this heading">#</a></h3>
+<p>In response to some of these issues in fitting MGLMMs, GLLVMs were
+developed in which <span class="math notranslate nohighlight">\(u_{ij}\)</span> is now specified as a linear function of a
+set of latent variables <span class="math notranslate nohighlight">\(\mathbf{z_i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[y_{ij}|\mathbf{u}_i \sim \mathrm{F}(m_{ij},\phi_j)\]</div>
+<div class="math notranslate nohighlight">
+\[u_{ij} = \mathbf{z}_i^\intercal \lambda_j\]</div>
+<p>The latent variables <span class="math notranslate nohighlight">\(\mathbf{z_i}\)</span> are treated as random by assuming:</p>
+<div class="math notranslate nohighlight">
+\[y_{ij}|\mathbf{z_i} \sim \mathrm{F}(m_{ij},\phi_j)\]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{z_i} \sim \mathrm{N}(\mathbf{0},\mathbf{1})\]</div>
+<p>Treating the species covariance as pulling from a set of latent variables greatly
+reduces the computational time required to fit these models.</p>
+</section>
+<section id="relationship-to-environmental-covariates">
+<h3>Relationship to environmental covariates<a class="headerlink" href="#relationship-to-environmental-covariates" title="Link to this heading">#</a></h3>
+<p>Within jsdmstan the response of species to environmental covariates can
+either be unstructured (the default) or constrained by a covariance
+matrix between the environmental covariates. This second option
+(specified by setting <code class="docutils literal notranslate"><span class="pre">beta_param</span> <span class="pre">=</span> <span class="pre">&quot;cor&quot;</span></code>) assumes that if one species
+is strongly positively related to multiple covariates then it is more
+likely that other species will either also be positively related to all
+these covariates, or negatively related. Mathematically this corresponds
+to:</p>
+<div class="math notranslate nohighlight">
+\[\beta_j \sim \mathrm{N}(\mathbf{0},\mathbf{\Sigma})\]</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examples-with-simulated-data">
+<h1>Examples with Simulated Data<a class="headerlink" href="#examples-with-simulated-data" title="Link to this heading">#</a></h1>
+<p>First, we’ll load in the R packages we’ll be using here. The jsdmstan
+package can be installed from github using the remotes package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># remotes::install_github(&quot;NERC-CEH/jsdmstan&quot;)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">jsdmstan</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">3757892</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fitting-a-mglmm">
+<h2>Fitting a MGLMM<a class="headerlink" href="#fitting-a-mglmm" title="Link to this heading">#</a></h2>
+<p>We can use the in-built functions for simulating data according to the
+MGLMM model - we’ll choose to simulate 15 species over 200 sites with 2
+environmental covariates. The species are assumed to follow a Poisson
+distribution (with a log-link), and we use the defaults of including a
+species-specific intercept but no site-specific intercept. At the moment
+only default priors (standard normal distribution) are supported. We can
+do this using either the <code class="docutils literal notranslate"><span class="pre">jsdm_sim_data()</span></code> function with
+<code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;mglmm&quot;</span></code> or with the <code class="docutils literal notranslate"><span class="pre">mglmm_sim_data()</span></code> function which just
+calls <code class="docutils literal notranslate"><span class="pre">jsdm_sim_data()</span></code> in the background.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">nsites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">75</span>
+<span class="n">nspecies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span>
+<span class="n">ncovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span>
+<span class="n">mglmm_test_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mglmm_sim_data</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nsites</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                  </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncovar</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pois&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This returns a list, which includes the Y matrix, the X matrix, plus
+also the exact parameters used to create the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">mglmm_test_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Y&quot;    &quot;pars&quot; &quot;N&quot;    &quot;S&quot;    &quot;D&quot;    &quot;K&quot;    &quot;X&quot;   
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, to fit the model we can use the <code class="docutils literal notranslate"><span class="pre">stan_jsdm()</span></code> function, which
+interfaces to Stan through the <a class="reference external" href="https://mc-stan.org/rstan/">rstan
+package</a>. There are multiple ways to supply
+data to the <code class="docutils literal notranslate"><span class="pre">stan_jsdm()</span></code> function, one is to supply the data as a list
+with the appropriate named components (the <code class="docutils literal notranslate"><span class="pre">jsdm_sim_data()</span></code> functions
+supply data in the correct format already), the second way is to specify
+the Y and X matrices directly, and the third way is to use a formula for
+the environmental covariates and supply the environmental data to the
+<code class="docutils literal notranslate"><span class="pre">data</span></code> argument, which is what we’ll use here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mglmm_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">stan_jsdm</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">V2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dat</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mglmm_test_data</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pois&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mglmm&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">refresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we print the model object we will get a brief overview of the type of
+jSDM and the data, plus if there are any parameters with Rhat &gt; 1.01 or
+effective sample size ratio (Neff/N) &lt; 0.05 then they will be printed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mglmm_fit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: poisson 
+ Model type: mglmm
+  Number of species: 8
+  Number of sites: 75
+  Number of predictors: 3
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a summary of all the model parameters we can use <code class="docutils literal notranslate"><span class="pre">summary()</span></code>,
+there are many parameters in these models so we just include a few here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor_species&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                   mean    sd    15%    85%  Rhat Bulk.ESS Tail.ESS
+cor_species[2,1] -0.258 0.261 -0.534  0.019 1.002     1589     2574
+cor_species[3,1]  0.552 0.152  0.390  0.713 1.001     2483     4145
+cor_species[4,1] -0.268 0.152 -0.424 -0.111 1.002     2736     4083
+cor_species[5,1]  0.450 0.190  0.251  0.651 1.001     2326     3703
+cor_species[6,1] -0.096 0.164 -0.264  0.076 1.001     2650     4743
+cor_species[7,1] -0.348 0.115 -0.470 -0.228 1.002     2600     4817
+cor_species[8,1]  0.046 0.114 -0.072  0.162 1.000     2448     4063
+cor_species[1,2] -0.258 0.261 -0.534  0.019 1.002     1589     2574
+cor_species[2,2]  1.000 0.000  1.000  1.000 1.000     7833       NA
+cor_species[3,2] -0.255 0.259 -0.525  0.015 1.002     1984     3235
+cor_species[4,2]  0.206 0.253 -0.057  0.474 1.002     1541     2820
+cor_species[5,2] -0.241 0.267 -0.520  0.041 1.002     2687     3983
+cor_species[6,2]  0.207 0.265 -0.077  0.483 1.001     1641     2579
+cor_species[7,2]  0.190 0.255 -0.083  0.459 1.001      957     2053
+cor_species[8,2]  0.050 0.274 -0.242  0.346 1.001      831     1558
+cor_species[1,3]  0.552 0.152  0.390  0.713 1.001     2483     4145
+cor_species[2,3] -0.255 0.259 -0.525  0.015 1.002     1984     3235
+cor_species[3,3]  1.000 0.000  1.000  1.000 1.000     8019     7569
+cor_species[4,3] -0.378 0.153 -0.537 -0.219 1.000     3941     5536
+cor_species[5,3]  0.380 0.199  0.170  0.592 1.003     2514     4534
+cor_species[6,3] -0.194 0.176 -0.377 -0.012 1.002     2675     4889
+cor_species[7,3] -0.222 0.131 -0.357 -0.088 1.001     3087     4432
+cor_species[8,3] -0.121 0.133 -0.261  0.016 1.004     2096     4288
+cor_species[1,4] -0.268 0.152 -0.424 -0.111 1.002     2736     4083
+cor_species[2,4]  0.206 0.253 -0.057  0.474 1.002     1541     2820
+cor_species[3,4] -0.378 0.153 -0.537 -0.219 1.000     3941     5536
+cor_species[4,4]  1.000 0.000  1.000  1.000 1.000     8152       NA
+cor_species[5,4] -0.172 0.180 -0.357  0.019 1.001     3464     5486
+cor_species[6,4]  0.557 0.162  0.384  0.728 1.001     4349     5516
+cor_species[7,4] -0.276 0.145 -0.425 -0.126 1.002     2578     3579
+cor_species[8,4]  0.403 0.144  0.254  0.555 1.004     1868     3774
+cor_species[1,5]  0.450 0.190  0.251  0.651 1.001     2326     3703
+cor_species[2,5] -0.241 0.267 -0.520  0.041 1.002     2687     3983
+cor_species[3,5]  0.380 0.199  0.170  0.592 1.003     2514     4534
+cor_species[4,5] -0.172 0.180 -0.357  0.019 1.001     3464     5486
+cor_species[5,5]  1.000 0.000  1.000  1.000 1.000     7881     7281
+cor_species[6,5] -0.169 0.208 -0.382  0.049 1.001     3431     5608
+cor_species[7,5] -0.380 0.193 -0.581 -0.171 1.001     1486     3017
+cor_species[8,5] -0.065 0.177 -0.248  0.119 1.004     1543     2996
+cor_species[1,6] -0.096 0.164 -0.264  0.076 1.001     2650     4743
+cor_species[2,6]  0.207 0.265 -0.077  0.483 1.001     1641     2579
+cor_species[3,6] -0.194 0.176 -0.377 -0.012 1.002     2675     4889
+cor_species[4,6]  0.557 0.162  0.384  0.728 1.001     4349     5516
+cor_species[5,6] -0.169 0.208 -0.382  0.049 1.001     3431     5608
+cor_species[6,6]  1.000 0.000  1.000  1.000 1.000     8015       NA
+cor_species[7,6] -0.139 0.151 -0.297  0.020 1.000     2866     4823
+cor_species[8,6]  0.475 0.137  0.334  0.620 1.002     2467     4808
+cor_species[1,7] -0.348 0.115 -0.470 -0.228 1.002     2600     4817
+cor_species[2,7]  0.190 0.255 -0.083  0.459 1.001      957     2053
+cor_species[3,7] -0.222 0.131 -0.357 -0.088 1.001     3087     4432
+cor_species[4,7] -0.276 0.145 -0.425 -0.126 1.002     2578     3579
+cor_species[5,7] -0.380 0.193 -0.581 -0.171 1.001     1486     3017
+cor_species[6,7] -0.139 0.151 -0.297  0.020 1.000     2866     4823
+cor_species[7,7]  1.000 0.000  1.000  1.000 1.000     7748       NA
+cor_species[8,7] -0.157 0.109 -0.272 -0.041 1.002     2728     4274
+cor_species[1,8]  0.046 0.114 -0.072  0.162 1.000     2448     4063
+cor_species[2,8]  0.050 0.274 -0.242  0.346 1.001      831     1558
+cor_species[3,8] -0.121 0.133 -0.261  0.016 1.004     2096     4288
+cor_species[4,8]  0.403 0.144  0.254  0.555 1.004     1868     3774
+cor_species[5,8] -0.065 0.177 -0.248  0.119 1.004     1543     2996
+cor_species[6,8]  0.475 0.137  0.334  0.620 1.002     2467     4808
+cor_species[7,8] -0.157 0.109 -0.272 -0.041 1.002     2728     4274
+cor_species[8,8]  1.000 0.000  1.000  1.000 1.000     7797     7780
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a better overview of the R-hat and effective sample size we can
+use the <code class="docutils literal notranslate"><span class="pre">mcmc_plot()</span></code> function to plot histograms of R-hat and ESS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rhat_hist&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7877078a88e749377894f29726364ce7b676a545ae9a63491a250f8185e0af4c.png" src="../../_images/7877078a88e749377894f29726364ce7b676a545ae9a63491a250f8185e0af4c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neff_hist&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/42a0e9a81746561cbb231f3d9d759d42d8e41b2cf6f58c9f0c83d8c4096f8d21.png" src="../../_images/42a0e9a81746561cbb231f3d9d759d42d8e41b2cf6f58c9f0c83d8c4096f8d21.png" />
+</div>
+</div>
+<p>We can also examine the output for each parameter visually using a
+traceplot combined with a density plot, which is given by the default
+<code class="docutils literal notranslate"><span class="pre">plot()</span></code> command:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">ask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ac97dd96cf9762b12f9ecb9b436dfeaba19f49176353b60d3b542d6fea8e6a2f.png" src="../../_images/ac97dd96cf9762b12f9ecb9b436dfeaba19f49176353b60d3b542d6fea8e6a2f.png" />
+<img alt="../../_images/9876d3ac854b0e554e9dd5f72a793ae3ca29e7469317c3d8a53a8da4296c0f0c.png" src="../../_images/9876d3ac854b0e554e9dd5f72a793ae3ca29e7469317c3d8a53a8da4296c0f0c.png" />
+<img alt="../../_images/128e433b152bf8c4c4fc5d94f5d349064d456a591097122bb3e99b115d9a4a78.png" src="../../_images/128e433b152bf8c4c4fc5d94f5d349064d456a591097122bb3e99b115d9a4a78.png" />
+<img alt="../../_images/98076fbe2e38b1013c283b537ef2db44a57f902ff05c0bb50fa9fdd600041693.png" src="../../_images/98076fbe2e38b1013c283b537ef2db44a57f902ff05c0bb50fa9fdd600041693.png" />
+</div>
+</div>
+<p>By default the <code class="docutils literal notranslate"><span class="pre">plot()</span></code> command plots all of the parameters with sigma
+or kappa in their name plus a random selection of 20 other parameters,
+but this can be overridden by either specifying the parameters by name
+(with or without regular expression matching) or changing the number of
+parameters to be randomly sampled. Use the <code class="docutils literal notranslate"><span class="pre">get_parnames()</span></code> function to
+get the names of parameters within a model - and the <code class="docutils literal notranslate"><span class="pre">jsdm_stancode()</span></code>
+function can also be used to see the underlying structure of the model.</p>
+<p>All the mcmc plot types within bayesplot are supported by the
+<code class="docutils literal notranslate"><span class="pre">mcmc_plot()</span></code> function, and to see a full list either use
+<code class="docutils literal notranslate"><span class="pre">bayesplot::available_mcmc()</span></code> or run <code class="docutils literal notranslate"><span class="pre">mcmc_plot()</span></code> with an incorrect
+type and the options will be printed.</p>
+<p>We can also view the environmental effect parameters for each species
+using the <code class="docutils literal notranslate"><span class="pre">envplot()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b4bd9899ddc1201714896ef894c09b1d5a1bb3ee6befa5868b613affd157f712.png" src="../../_images/b4bd9899ddc1201714896ef894c09b1d5a1bb3ee6befa5868b613affd157f712.png" />
+</div>
+</div>
+<p>Posterior predictions can be extracted from the models using either
+<code class="docutils literal notranslate"><span class="pre">posterior_linpred()</span></code> or <code class="docutils literal notranslate"><span class="pre">posterior_predict()</span></code>, where the linpred
+function extracts the linear predictor for the community composition
+within each draw and the predict function combines this linear predictor
+extraction with a random generation based on the predicted probability
+for the family. Both functions by default return a list of length equal
+to the number of draws extracted, where each element of the list is a
+sites by species matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">mglmm_pp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">posterior_predict</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">)</span>
+<span class="nf">length</span><span class="p">(</span><span class="n">mglmm_pp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 8000
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] 75  8
+</pre></div>
+</div>
+</div>
+</div>
+<p>As well as the MCMC plotting functions within bayesplot the ppc_ family
+of functions is also supported through the <code class="docutils literal notranslate"><span class="pre">pp_check()</span></code> function. This
+family of functions provides a graphical way to check your posterior
+against the data used within the model to evaluate model fit - called a
+posterior retrodictive check (or posterior predictive historically and
+when the prior only has been sampled from). To use these you need to
+have set <code class="docutils literal notranslate"><span class="pre">save_data</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> within the <code class="docutils literal notranslate"><span class="pre">stan_jsdm()</span></code> call. Unlike in
+other packages by default <code class="docutils literal notranslate"><span class="pre">pp_check()</span></code> for <code class="docutils literal notranslate"><span class="pre">jsdmStanFit</span></code> objects
+extracts the posterior predictions then calculates summary statistics
+over the rows and plots those summary statistics against the same for
+the original data. The default behaviour is to calculate the sum of all
+the species per site - i.e. total abundance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1c9f45707ccb400057cf624682bcac49d85202ccc530887c4ca73b32bb850681.png" src="../../_images/1c9f45707ccb400057cf624682bcac49d85202ccc530887c4ca73b32bb850681.png" />
+</div>
+</div>
+<p>The summary statistic can be changed, as can whether it is calculated
+for every species or every site:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">summary_stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">calc_over</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;species&quot;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/836690c92431c3abadde4b991bf9a7ceae11ae3afda7861874f0742fe8f138d1.png" src="../../_images/836690c92431c3abadde4b991bf9a7ceae11ae3afda7861874f0742fe8f138d1.png" />
+</div>
+</div>
+<p>We can examine the species-specific posterior predictive check through
+using <code class="docutils literal notranslate"><span class="pre">multi_pp_check()</span></code>, or examine how well the relationships between
+specific species are recovered using <code class="docutils literal notranslate"><span class="pre">pp_check()</span></code> with
+<code class="docutils literal notranslate"><span class="pre">plotfun</span> <span class="pre">=</span> <span class="pre">&quot;pairs&quot;</span></code>.</p>
+<p>As we have run the above model on simulated data and the original data
+list contains the parameters used to simulate the data we can use the
+<code class="docutils literal notranslate"><span class="pre">mcmc_recover_</span></code> functions from <code class="docutils literal notranslate"><span class="pre">bayesplot</span></code> to see how the model did:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;sigmas_species[&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,</span><span class="s">&quot;]&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mglmm_test_data</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">sigmas_species</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e6e6aa4b92375bd19e3e15cd8f344496388bfba2456255b076b5f4e0abcaadaa.png" src="../../_images/e6e6aa4b92375bd19e3e15cd8f344496388bfba2456255b076b5f4e0abcaadaa.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">mglmm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_intervals&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;cor_species[&quot;</span><span class="p">,</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span><span class="n">nspecies</span><span class="o">:</span><span class="m">1</span><span class="p">),</span><span class="s">&quot;,&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nf">unlist</span><span class="p">(</span><span class="nf">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="p">,</span><span class="m">8</span><span class="p">)),</span><span class="s">&quot;]&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">mglmm_test_data</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">cor_species</span><span class="p">[</span><span class="nf">lower.tri</span><span class="p">(</span><span class="n">mglmm_test_data</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">cor_species</span><span class="p">,</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)]))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/34f67d3fb7a4fe9450ff46474c3ccdc03f81c89ea2ec88719865224e53ae92e3.png" src="../../_images/34f67d3fb7a4fe9450ff46474c3ccdc03f81c89ea2ec88719865224e53ae92e3.png" />
+</div>
+</div>
+</section>
+<section id="fitting-a-gllvm">
+<h2>Fitting a GLLVM<a class="headerlink" href="#fitting-a-gllvm" title="Link to this heading">#</a></h2>
+<p>The model fitting workflow for latent variable models is very similar to
+that above, with the addition of specifying the number of latent
+variables (D) in the data simulation and model fit. Here we change the
+family to a Bernoulli family (i.e. the special case of the binomial
+where the number of trials is 1 for all observations), make the
+covariate effects on each species draw from a correlation matrix such
+that information can be shared across species, and change the prior to
+be a Student’s T prior on the predictor-specific sigma parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">3562251</span><span class="p">)</span>
+<span class="n">gllvm_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">gllvm_sim_data</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bernoulli&quot;</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">beta_param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">prior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsdm_prior</span><span class="p">(</span><span class="n">sigmas_preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;student_t(3,0,1)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">gllvm_fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">stan_jsdm</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gllvm_data</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gllvm_data</span><span class="o">$</span><span class="n">X</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gllvm_data</span><span class="o">$</span><span class="n">D</span><span class="p">,</span><span class="w">  </span>
+<span class="w">                       </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bernoulli&quot;</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gllvm&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                       </span><span class="n">beta_param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cor&quot;</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">prior</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">jsdm_prior</span><span class="p">(</span><span class="n">sigmas_preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;student_t(3,0,1)&quot;</span><span class="p">),</span>
+<span class="w">                       </span><span class="n">refresh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="n">gllvm_fit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: bernoulli 
+ Model type: gllvm with 2 latent variables
+  Number of species: 12
+  Number of sites: 50
+  Number of predictors: 2
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, the diagnostic statistics seem reasonable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">gllvm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rhat_hist&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/74c5998477bcb35c25eae190e57ef14db6ab425cdc45b6655e08fa5e0f5c8add.png" src="../../_images/74c5998477bcb35c25eae190e57ef14db6ab425cdc45b6655e08fa5e0f5c8add.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">gllvm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neff_hist&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/58cdbd3678c168c5b0a9dfdd75f743d0160f1d5f40a7d86bc3d17380b8a2edc1.png" src="../../_images/58cdbd3678c168c5b0a9dfdd75f743d0160f1d5f40a7d86bc3d17380b8a2edc1.png" />
+</div>
+</div>
+<p>For brevity’s sake we will not go into the detail of the different
+functions again here, however there is one plotting function
+specifically for GLLVM models - <code class="docutils literal notranslate"><span class="pre">ordiplot()</span></code>. This plots the species or
+sites scores against the latent variables from a random selection of
+draws:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">gllvm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e3c264835eeb270da2fc878bc05115874837b70722fec0e4421d01c8d1296e02.png" src="../../_images/e3c264835eeb270da2fc878bc05115874837b70722fec0e4421d01c8d1296e02.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">gllvm_fit</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sites&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/000703572f29e1c0afc5b4c0ddf4e19762d388920689fb0d2a0b0328e6a393b5.png" src="../../_images/000703572f29e1c0afc5b4c0ddf4e19762d388920689fb0d2a0b0328e6a393b5.png" />
+</div>
+</div>
+<p>You can change the latent variables selected by specifying the <code class="docutils literal notranslate"><span class="pre">choices</span></code>
+argument, and alter the number of draws or whether you want to plot
+species or sites with the other arguments.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examples-with-real-data">
+<h1>Examples with Real Data<a class="headerlink" href="#examples-with-real-data" title="Link to this heading">#</a></h1>
+<section id="mglmm-with-broadleaved-woodland-survey-data">
+<h2>MGLMM with broadleaved woodland survey data<a class="headerlink" href="#mglmm-with-broadleaved-woodland-survey-data" title="Link to this heading">#</a></h2>
+<p>We read in the bunce71 data from the jsdmstan package, giving a response
+matrix of 45 tree genera over 103 sites and an environmental information
+matrix that contains site location, number of plots per site as well as
+five predictor variables - annual rainfall, maximum temperature in
+summer, minimum temperature in winter, soil organic matter and soil pH.
+We’re also changing the plotting theme, but that’s just to make the
+following plots easier to parse and can be skipped if preferred.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="s">&quot;bunce71&quot;</span><span class="p">)</span>
+<span class="nf">theme_set</span><span class="p">(</span><span class="n">bayesplot</span><span class="o">::</span><span class="nf">theme_default</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">            </span><span class="nf">theme</span><span class="p">(</span><span class="n">panel.grid.major.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;grey92&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We scale and centre the environmental predictor data - this is
+particularly necessary as the rainfall data is centred around 1000. We
+also sort the columns of the data frame of abundance, but this is purely
+to make the graphs easier to read later on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">bunce71_env</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mutate</span><span class="p">(</span><span class="n">bunce71</span><span class="o">$</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="nf">across</span><span class="p">(</span><span class="n">pH</span><span class="o">:</span><span class="n">WinterMinTemp</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">))</span>
+<span class="n">bunce71_abund</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bunce71</span><span class="o">$</span><span class="n">abund</span><span class="p">[,</span><span class="nf">names</span><span class="p">(</span><span class="nf">sort</span><span class="p">(</span><span class="nf">colSums</span><span class="p">(</span><span class="n">bunce71</span><span class="o">$</span><span class="n">abund</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span>
+<span class="w">                                           </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We fit the model with unstructured environmental effects, default
+priors, a binomial family distribution (Number of trials = number of
+plots per site) and the default number of iterations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">bwmod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">stan_mglmm</span><span class="p">(</span><span class="o">~</span><span class="n">Rainfall</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SummerMaxTemp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">WinterMinTemp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">pH</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SOM</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bunce71_env</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bunce71_abund</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">Ntrials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bunce71_env</span><span class="o">$</span><span class="n">Nplots</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;binomial&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">bwmod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: binomial 
+ Model type: mglmm
+  Number of species: 45
+  Number of sites: 103
+  Number of predictors: 6
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+Parameters with Rhat &gt; 1.01, or Neff/N &lt; 0.05:
+                   mean sd 15% 85% Rhat Bulk.ESS Tail.ESS
+cor_species[15,15]    1  0   1   1    1     8215     7647
+cor_species[17,17]    1  0   1   1    1     7959     7566
+</pre></div>
+</div>
+</div>
+</div>
+<p>No warnings are returned, the model has run acceptably with all Rhats &lt;
+1.01 and effective sample sizes &gt; 500. Now we can evaluate fit to data,
+first by looking at some summary statistics and then by looking at fit
+for each individual species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">bwmod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b5ff01dc9e37377c63371f006d3b6f4060412941e2bb26dbe505c45b164aea90.png" src="../../_images/b5ff01dc9e37377c63371f006d3b6f4060412941e2bb26dbe505c45b164aea90.png" />
+<img alt="../../_images/5d9a7be1097c67c27d9cc85be8b07881bf7be9a76151f2334b12567b8ce11bf0.png" src="../../_images/5d9a7be1097c67c27d9cc85be8b07881bf7be9a76151f2334b12567b8ce11bf0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">bwmod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/931fbe5aac6fd1b7a6efe2e788aaf6b2e7cdb2e69b0fe5e308fdae0c3c04ad42.png" src="../../_images/931fbe5aac6fd1b7a6efe2e788aaf6b2e7cdb2e69b0fe5e308fdae0c3c04ad42.png" />
+<img alt="../../_images/6a56f26320fe6068bb066fd5f47d21192c9c279408c82b5fc5b9df37077dbb7a.png" src="../../_images/6a56f26320fe6068bb066fd5f47d21192c9c279408c82b5fc5b9df37077dbb7a.png" />
+<img alt="../../_images/b9422a37a802ee40faf164e9b20b289ad9cdc833efe415261777a5e4e06a5a2e.png" src="../../_images/b9422a37a802ee40faf164e9b20b289ad9cdc833efe415261777a5e4e06a5a2e.png" />
+<img alt="../../_images/b787bfd20d77b921810b8725476a6e13f64f3a4dc5da017f61d3ee3f539199f7.png" src="../../_images/b787bfd20d77b921810b8725476a6e13f64f3a4dc5da017f61d3ee3f539199f7.png" />
+<img alt="../../_images/c053b3b964fe581d6d185fba60267a1ad1d0caf1a09b868af2fc043fe7edf4a8.png" src="../../_images/c053b3b964fe581d6d185fba60267a1ad1d0caf1a09b868af2fc043fe7edf4a8.png" />
+</div>
+</div>
+<p>We can now plot the environmental effects for each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">bwmod</span><span class="p">,</span><span class="w"> </span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ddf2a663bc8424e9640634348f3e4372e2fbc716a99cc1bc0390cb6e72b5ac7d.png" src="../../_images/ddf2a663bc8424e9640634348f3e4372e2fbc716a99cc1bc0390cb6e72b5ac7d.png" />
+</div>
+</div>
+<p>We can also plot the modelled correlations between species once this
+environmental effect was accounted for:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">corrplot</span><span class="p">(</span><span class="n">bwmod</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Betula&quot;</span><span class="p">,</span><span class="s">&quot;Fraxinus&quot;</span><span class="p">,</span><span class="s">&quot;Quercus&quot;</span><span class="p">,</span><span class="s">&quot;Corylus&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a6d8b993cce0a778a3b602359c25a41dfa9682fad712fde958414cb02a70187d.png" src="../../_images/a6d8b993cce0a778a3b602359c25a41dfa9682fad712fde958414cb02a70187d.png" />
+</div>
+</div>
+<p>A subset of these plots are combined for the paper:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">e1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">envplot</span><span class="p">(</span><span class="n">bwmod</span><span class="p">,</span><span class="w"> </span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.4</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">preds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;pH&quot;</span><span class="p">,</span><span class="s">&quot;SOM&quot;</span><span class="p">))</span>
+<span class="n">c1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">corrplot</span><span class="p">(</span><span class="n">bwmod</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Betula&quot;</span><span class="p">,</span><span class="s">&quot;Fraxinus&quot;</span><span class="p">))</span>
+<span class="n">ggpubr</span><span class="o">::</span><span class="nf">ggarrange</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;a)&quot;</span><span class="p">,</span><span class="s">&quot;b)&quot;</span><span class="p">,</span><span class="s">&quot;c)&quot;</span><span class="p">,</span><span class="s">&quot;d)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/28bd5d29ef18182ce7e520e429774991d2d708812f526f197435148d8f2854b8.png" src="../../_images/28bd5d29ef18182ce7e520e429774991d2d708812f526f197435148d8f2854b8.png" />
+</div>
+</div>
+</section>
+<section id="gllvm-with-spider-data">
+<h2>GLLVM with spider data<a class="headerlink" href="#gllvm-with-spider-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">theme_set</span><span class="p">(</span><span class="n">bayesplot</span><span class="o">::</span><span class="nf">theme_default</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We use the spider data from the mvabund package to run a gllvm model
+with two latent variables and a negative binomial response. All other
+options are set to the default. Environmental predictors are scaled.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="s">&quot;spider&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mvabund&quot;</span><span class="p">)</span>
+<span class="n">spider</span><span class="o">$</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="n">spider</span><span class="o">$</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">spmod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">stan_gllvm</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spider</span><span class="o">$</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spider</span><span class="o">$</span><span class="n">abund</span><span class="p">,</span><span class="w"> </span><span class="n">D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">                    </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neg&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">spmod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: neg_binomial 
+ With parameters: kappa 
+Model type: gllvm with 2 latent variables
+  Number of species: 12
+  Number of sites: 28
+  Number of predictors: 7
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>No warnings are returned, the model has run acceptably with all Rhats &lt;
+1.01 and effective sample sizes &gt; 500. Now we can evaluate fit to data,
+first by looking at some summary statistics and then by looking at fit
+for each individual species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pp_check</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abundance&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">750</span><span class="p">))</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pp_check</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w">  </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">summary_stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Richness&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">))</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8a6164c699b6765eda5aba4c11b84500f098e318a2310fe9eb5f2adc8a52cf6f.png" src="../../_images/8a6164c699b6765eda5aba4c11b84500f098e318a2310fe9eb5f2adc8a52cf6f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/13968758d51eb08bd56efd63b3549d930992b482d4a0e602bdd5af136693786b.png" src="../../_images/13968758d51eb08bd56efd63b3549d930992b482d4a0e602bdd5af136693786b.png" />
+</div>
+</div>
+<p>We can now plot the environmental effects for each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/88a299685ed466b75043e54145670305f9cf3df055882bc0b5f95aa9a70b51c4.png" src="../../_images/88a299685ed466b75043e54145670305f9cf3df055882bc0b5f95aa9a70b51c4.png" />
+</div>
+</div>
+<p>We can also plot latent variable loadings for the species and sites:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">o1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span>
+<span class="w">               </span><span class="n">errorbar_linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span><span class="w"> </span>
+<span class="n">o2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sites&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">               </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span>
+<span class="n">o1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9ef43b8ac20d964da8ec5a5729bccd92d81fd905243a88b09bb2ac726b49141e.png" src="../../_images/9ef43b8ac20d964da8ec5a5729bccd92d81fd905243a88b09bb2ac726b49141e.png" />
+</div>
+</div>
+<p>Note that while the model fits the data well, the estimates for the
+latent variable loadings indicate that the model are trending towards a
+linear fit with each other indicating the model does not have sufficient
+information to estimate these latent variables on top of the six
+environmental predictors. Therefore, we shall fit a reduced model with
+fewer environmental predictors included.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">spmod2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">spmod</span><span class="p">,</span><span class="w"> </span><span class="n">newX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spider</span><span class="o">$</span><span class="n">x</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;soil.dry&quot;</span><span class="p">,</span><span class="s">&quot;herb.layer&quot;</span><span class="p">)],</span>
+<span class="w">                 </span><span class="n">cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">spmod2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: neg_binomial 
+ With parameters: kappa 
+Model type: gllvm with 2 latent variables
+  Number of species: 12
+  Number of sites: 28
+  Number of predictors: 3
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>No warnings are returned, the model has run acceptably with all Rhats &lt;
+1.01 and effective sample sizes &gt; 500. Now we can evaluate fit to data,
+first by looking at some summary statistics and then by looking at fit
+for each individual species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">p1b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pp_check</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Abundance&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">750</span><span class="p">))</span>
+<span class="n">p2b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">pp_check</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w">  </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">         </span><span class="n">summary_stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Richness&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">))</span>
+<span class="n">p1b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/aeb84940f7a57b4653b2b4bd7e2f50b8ad039630e686452e1f2a3a84f8dfefe0.png" src="../../_images/aeb84940f7a57b4653b2b4bd7e2f50b8ad039630e686452e1f2a3a84f8dfefe0.png" />
+</div>
+</div>
+<p>We combine (some of) the posterior predictive check plots for the two
+models for the paper:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c010835f0af91085f5398b3ecf03d8860845be1a06633c297f4f1bb9a384116e.png" src="../../_images/c010835f0af91085f5398b3ecf03d8860845be1a06633c297f4f1bb9a384116e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a953e0805065733c6a69c1e82613f0841541e690ba9e09e15c457bcedd21ec67.png" src="../../_images/a953e0805065733c6a69c1e82613f0841541e690ba9e09e15c457bcedd21ec67.png" />
+</div>
+</div>
+<p>We can also plot the environmental effects for each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w"> </span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1.2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eb5cd6ea46435de4d0e7358618d7c0ba1b5343ecd4c1d7389cef9e7e37b1063e.png" src="../../_images/eb5cd6ea46435de4d0e7358618d7c0ba1b5343ecd4c1d7389cef9e7e37b1063e.png" />
+</div>
+</div>
+<p>We can also plot latent variable loadings for the species and sites:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">o1v2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span>
+<span class="w">                 </span><span class="n">errorbar_linewidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">o2v2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ordiplot</span><span class="p">(</span><span class="n">spmod2</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sites&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                 </span><span class="n">errorbar_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span>
+<span class="n">o1v2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o2v2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d14ecd2b5c22ba12370a3d45a2b0c3fa1d8b08e88906edfae337de3e364c57ff.png" src="../../_images/d14ecd2b5c22ba12370a3d45a2b0c3fa1d8b08e88906edfae337de3e364c57ff.png" />
+</div>
+</div>
+<p>Comparing the latent variable plots for the two models shows clearly
+that the reduced model loses the linear trend in latent variable
+loadings.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">o1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o1v2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">o2v2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/887c7723b7921a9e029384e836e554d2abf7bce1ea2d438111e4a104da795a61.png" src="../../_images/887c7723b7921a9e029384e836e554d2abf7bce1ea2d438111e4a104da795a61.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>Warton et al (2015) So many variables: joint modeling in community
+ecology. Trends in Ecology &amp; Evolution, 30:766-779. DOI:
+<a class="reference external" href="http:://doi.org/10.1016/j.tree.2015.09.007">10.1016/j.tree.2015.09.007</a>.</p>
+<p>Wilkinson et al (2021) Defining and evaluating predictions of joint
+species distribution models. Methods in Ecology and Evolution,
+12:394-404. DOI:
+<a class="reference external" href="http:://doi.org/10.1111/2041-210X.13518">10.1111/2041-210X.13518</a>.</p>
+<p>Vehtari, A., Gelman, A., and Gabry, J. (2017). Practical Bayesian model
+evaluation using leave-one-out cross-validation and WAIC. Statistics and
+Computing. 27(5), 1413–1432. DOI:
+<a class="reference external" href="http::doi.org/10.1007/s11222-016-9696-4">10.1007/s11222-016-9696-4</a>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./methods\ds-toolbox-notebook-jsdmstan"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Understanding the error of Multispecies Biodiversity Indicators: A simulated example</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-joint-species-distribution-models">Introduction to Joint Species Distribution Models</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underlying-maths">Underlying maths</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-generalised-linear-mixed-models">Multivariate Generalised Linear Mixed Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-linear-latent-variable-models">Generalised Linear Latent Variable Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-to-environmental-covariates">Relationship to environmental covariates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-simulated-data">Examples with Simulated Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-mglmm">Fitting a MGLMM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-a-gllvm">Fitting a GLLVM</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-with-real-data">Examples with Real Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mglmm-with-broadleaved-woodland-survey-data">MGLMM with broadleaved woodland survey data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gllvm-with-spider-data">GLLVM with spider data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

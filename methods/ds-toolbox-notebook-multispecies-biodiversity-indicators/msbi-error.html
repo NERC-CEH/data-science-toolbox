@@ -1,0 +1,1151 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding the error of Multispecies Biodiversity Indicators: A simulated example &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fitting Joint Species Distribution Models with jsdmstan" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html" />
+    <link rel="prev" title="Calculator of Risk to Terrestrial Carbon Pool" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">ℹ️ This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    UKCEH Data Science Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding the error of Multispecies Biodiversity Indicators: A simulated example</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-example">Simulated example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-universe">Create a virtual universe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-simulate-species-occupancy">Function to simulate species occupancy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-a-virtual-community-of-species">Simulate a virtual community of species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-growth-rates">Calculate growth rates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-sample-inclusion-for-species">Define sample inclusion for species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-mengs-identity-an-aside">Validating Meng’s identity: an aside</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-cross-species-error">Assessing cross-species error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-within-species-error">Assessing within-species error</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-the-error-of-multispecies-biodiversity-indicators-a-simulated-example">
+<h1>Understanding the error of Multispecies Biodiversity Indicators: A simulated example<a class="headerlink" href="#understanding-the-error-of-multispecies-biodiversity-indicators-a-simulated-example" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-multispecies-biodiversity-indicators.git"><span>Notebook Repository</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://ecoevorxiv.org/repository/view/8838/"><span>Paper</span></a>
+<span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Ongoing Development</span> <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Theory Heavy</span></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/robin-boyd">Dr. Rob Boyd</a></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Challenge:</div>
+<p class="sd-card-text">A common benchmark for monitoring progress towards species abundance
+targets is the Multispecies Biodiversity Indicator (MSI). MSIs have been
+defined in various ways, but to us the term is best described as an
+estimate of the ‘average’ rate of change in abundance, relative to some
+reference time, across a predefined set of species and geographic area.
+A prominent example, which was recently reinstated as a ‘component’
+indicator for monitoring progress towards the Global Biodiversity Framework (GBF), is the Living Planet
+Index (LPI). According to its website, the LPI measures the “the average rate
+of change in … population sizes of native [vertebrate] species”
+globally. Other examples include the EU’s grassland butterfly index and
+England’s ‘all species’ index, which will be used to measure progress
+towards the respective governments’ legal commitments.</p>
+<p class="sd-card-text">MSIs have nominal spatial and taxonomic extents that should, in theory,
+align with the relevant species abundance target. Spatial extents might
+be defined in terms of, say, a country or administrative unit (or even
+globally in the case of the LPI), and they can be divided conceptually
+into areal units or ‘sites’ (e.g. grid squares on a map). Taxonomic
+extents are usually defined in terms of a set of species. In statistical
+parlance, the complete set of sites and species to which an MSI
+nominally pertains is known as the target population or simply the
+population (not to be confused with the ecological concept of a
+population).</p>
+<p class="sd-card-text">Given the limited spatial and taxonomic coverage of biodiversity data,
+it is likely that the set of sites and species for which abundance data
+are available will differ from the population. It follows that the MSI
+obtained using the data in hand is likely to differ from the one that
+would have been obtained had all species and locations in the population
+been sampled. To use more statistical language, the sample-based MSI is
+known as the estimator, and the population MSI is the target parameter
+or estimand. Since it is the estimand that is of interest, the hope is
+that the (proportional) difference between it and the estimator—the
+estimation error—is small.</p>
+<p class="sd-card-text">The ratio of the estimator to the estimand gives the proportional, or
+relative, estimation error. Colleagues and I decomposed the relative
+error of MSIs algebraically into a cross-species component reflecting
+the impact of non-sampled species and a within-species component
+reflecting the impact of non-sampled sites. Define the following
+quantities:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\bar{w}_t\)</span>: the observed MSI at time <span class="math notranslate nohighlight">\(t\)</span> given sampled species and
+sites.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\bar{W}_t\)</span>: the true MSI at time <span class="math notranslate nohighlight">\(t\)</span> given all species and sites in
+the target population.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(s_{1,t}^J\)</span>: the set of species included in the sample at time <span class="math notranslate nohighlight">\(t\)</span>;
+<span class="math notranslate nohighlight">\(n_{1,t}^J\)</span> is its size.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(N_{1,t}^J\)</span>: the total number of species in the population at time
+<span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(W_{jt}\)</span>: the population growth rate in mean occupancy <span class="math notranslate nohighlight">\(j\)</span> at time
+<span class="math notranslate nohighlight">\(t\)</span> relative to time <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\bar{Y}_{jt}\)</span>: the true mean occupancy of species <span class="math notranslate nohighlight">\(j\)</span> across all
+sites in the population at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(\bar{y}_{jt}\)</span>: the sample mean occupancy of species <span class="math notranslate nohighlight">\(j\)</span> across
+sampled sites at time <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+</ul>
+<p class="sd-card-text">Then, the full decomposition is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ln\left( \frac{\bar{w}_t}{\bar{W}_t} \right) =
+\underbrace{
+\left(
+\frac{1}{n_{1,t}^J} \sum_{j \in s_{1,t}^J} \ln W_{jt}
+-
+\frac{1}{N_{1,t}^J} \sum_{j=1}^{N_{1,t}^J} \ln W_{jt}
+\right)
+}_{\substack{\text{cross-species} \\\\ \text{component}}}
++
+\underbrace{
+\left(
+\frac{1}{n_{1,t}^J} \sum_{j \in s_{1,t}^J}
+\left[
+\ln\left(1 + \frac{\bar{y}_{jt} - \bar{Y}_{jt}}{\bar{Y}_{jt}} \right)
+-
+\ln\left(1 + \frac{\bar{y}_{j1} - \bar{Y}_{j1}}{\bar{Y}_{j1}} \right)
+\right]
+\right)
+}_{\substack{\text{within-species} \\\\ \text{component}}}.
+\end{split}\]</div>
+<p class="sd-card-text">Notice that the error essentially boils down to the differences between
+sample and population means. The cross-species component is literally
+the difference between the sample and population mean growth rates
+across species. The numerators within the logs in the within-species
+error component represent the differences between the sample and
+population mean occupancy in time-periods t and 1 (i.e. the baseline
+year). In most realistic circumstances <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, reducing the differences
+between these sample and population means will reduce the cross- and
+within-species error components and thus the total relative error.</p>
+<p class="sd-card-text">Meng (2018) re-expressed the differences between sample and population
+means in terms of three conceptually interesting quantities, and we can
+exploit his expression to further decompose the cross- and
+within-species error components. Let <span class="math notranslate nohighlight">\(\bar{g}\)</span> denote the sample mean of
+an arbitrary variable <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(\bar{G}\)</span> be its population mean. Meng
+showed that</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{g} - \bar{G} = \rho_{g, R} \cdot \sigma_g \cdot \sqrt{\frac{1 - f}{f}},
+\]</div>
+<p class="sd-card-text">where <span class="math notranslate nohighlight">\(\rho_{g, R}\)</span> is the <strong>data defect correlation</strong> (i.e., the
+correlation between the variable <span class="math notranslate nohighlight">\(g\)</span> and the sample inclusion indicator
+<span class="math notranslate nohighlight">\(R \in \{0, 1\}\)</span>), <span class="math notranslate nohighlight">\(\sigma_g\)</span> is the <strong>problem difficulty</strong> (i.e. the
+population standard deviation of <span class="math notranslate nohighlight">\(g\)</span>), and <span class="math notranslate nohighlight">\(f = n / N\)</span> is the <strong>sampling
+fraction</strong>, where <span class="math notranslate nohighlight">\(n\)</span> is the sample size and <span class="math notranslate nohighlight">\(N\)</span> is the population size.
+By substituting <span class="math notranslate nohighlight">\(g\)</span> for <span class="math notranslate nohighlight">\(\ln(W_t)\)</span> and <span class="math notranslate nohighlight">\(y_t\)</span>, we can apply Meng’s
+decomposition to the cross- and within-species error components of MSIs,
+respectively. Doing so gives us a cross-species variant of each of the
+three quantities and a within-species variant for every species (e.g. a
+within-species data defect correlation for species j, etc.).</p>
+<p class="sd-card-text">Meng’s decomposition is remarkable, because it shows that three, and
+only three, factors affect the difference between a sample and
+population mean. The data defect correlation determines the sign and to
+some extent the magnitude of the difference (error). The problem
+difficulty and sampling fraction further scale the magnitude of the
+error. Of course, if one knew the values of the data defect correlation,
+the problem difficulty and the sampling fraction, then they could
+calculate the error of the sample mean. Unfortunately, it is only the
+sampling fraction that is measurable (assuming a well-defined
+population); the other two quantities must be assessed qualitatively or
+otherwise approximated.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Approach:</div>
+<p class="sd-card-text">In this document, I demonstrate how one might approximate the values of
+the cross- and within-species data defect correlations and problem
+difficulties. Rather than using real data, I simulate a virtual
+community of species in a virtual landscape comprising 1000 sites.
+Non-zero data defect correlations and problem difficulties are
+introduced by design.</p>
+</div>
+</div>
+<section id="simulated-example">
+<h2>Simulated example<a class="headerlink" href="#simulated-example" title="Link to this heading">#</a></h2>
+<p>First load in the required packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load required libraries</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="create-a-virtual-universe">
+<h3>Create a virtual universe<a class="headerlink" href="#create-a-virtual-universe" title="Link to this heading">#</a></h3>
+<p>The universe comprises two years and a landscape made up of 1000 sites.
+Each site is characterised by a variable <span class="math notranslate nohighlight">\(z\)</span>, which varies slightly
+between years. The probability that each site was sampled in a given
+year is a function of <span class="math notranslate nohighlight">\(z\)</span>. Since there is an interaction between year
+and <span class="math notranslate nohighlight">\(z\)</span>, the effect of <span class="math notranslate nohighlight">\(z\)</span> varies slightly between years.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">301</span><span class="p">)</span>
+
+<span class="n">n_sites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1000</span>
+<span class="n">years</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">nspecies</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">20</span><span class="w">  </span><span class="c1"># increased to 20 species</span>
+
+<span class="c1"># Site covariates for occupancy and inclusion</span>
+<span class="n">z_base</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_sites</span><span class="p">)</span>
+<span class="n">z_year2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">z_base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n_sites</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span>
+
+<span class="c1"># Expand site-year grid</span>
+<span class="n">site_year_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">expand.grid</span><span class="p">(</span><span class="n">site</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_sites</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">years</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">arrange</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">z_base</span><span class="p">[</span><span class="n">site</span><span class="p">],</span><span class="w"> </span><span class="n">z_year2</span><span class="p">[</span><span class="n">site</span><span class="p">])</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Generate sample inclusion once for all site-years</span>
+<span class="n">gamma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-1.2</span>
+<span class="n">gamma_year</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+<span class="n">gamma_z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.7</span>
+<span class="n">gamma_int</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+
+<span class="n">site_year_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">site_year_df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">logit_pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gamma_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gamma_year</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gamma_z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gamma_int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="p">,</span>
+<span class="w">    </span><span class="kc">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">plogis</span><span class="p">(</span><span class="n">logit_pi</span><span class="p">),</span>
+<span class="w">    </span><span class="n">I</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">(),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">pi</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">site</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="function-to-simulate-species-occupancy">
+<h3>Function to simulate species occupancy<a class="headerlink" href="#function-to-simulate-species-occupancy" title="Link to this heading">#</a></h3>
+<p>The probability that any one site is occupied by a focal species in a
+given year is also given as a function of <span class="math notranslate nohighlight">\(z\)</span> and year. Since <span class="math notranslate nohighlight">\(z\)</span>
+determines both species occupancy probabilities and sample inclusion
+probabilities, it induces a dependence between the two (i.e. a
+<strong>non-zero within-species data defect correlation</strong>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_occupancy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta_year</span><span class="p">,</span><span class="w"> </span><span class="n">beta_z</span><span class="p">,</span><span class="w"> </span><span class="n">z_vals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">z_vals</span><span class="o">$</span><span class="n">z</span>
+<span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">z_vals</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">logit_phi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">beta_year</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z_vals</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">beta_z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z</span>
+<span class="w">  </span><span class="n">phi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plogis</span><span class="p">(</span><span class="n">logit_phi</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">site</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_vals</span><span class="o">$</span><span class="n">site</span><span class="p">,</span>
+<span class="w">    </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z_vals</span><span class="o">$</span><span class="n">year</span><span class="p">,</span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span>
+<span class="w">    </span><span class="n">phi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phi</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulate-a-virtual-community-of-species">
+<h3>Simulate a virtual community of species<a class="headerlink" href="#simulate-a-virtual-community-of-species" title="Link to this heading">#</a></h3>
+<p>Now we will use the function described above to simulate a virtual
+community of 20 species. For simplicity, we will randomly draw
+parameters for the function that gives the occupancy probabilities from
+uniform distributions whose range should ensure a mix of increasing and
+decreasing trends.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">species_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">list</span><span class="p">(</span>
+<span class="w">    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-1.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">       </span><span class="c1"># baseline occupancy</span>
+<span class="w">    </span><span class="n">beta_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">),</span><span class="w">   </span><span class="c1"># some declining, some increasing</span>
+<span class="w">    </span><span class="n">beta_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">        </span><span class="c1"># positive covariate effect</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;sp&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">)</span>
+
+<span class="c1"># Simulate all species</span>
+<span class="n">species_data_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">),</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">sp_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">species_params</span><span class="p">[[</span><span class="n">sp_name</span><span class="p">]]</span>
+<span class="w">  </span><span class="n">occ_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulate_occupancy</span><span class="p">(</span>
+<span class="w">    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">alpha</span><span class="p">,</span>
+<span class="w">    </span><span class="n">beta_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">beta_year</span><span class="p">,</span>
+<span class="w">    </span><span class="n">beta_z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">beta_z</span><span class="p">,</span>
+<span class="w">    </span><span class="n">z_vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">site_year_df</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="n">occ_data</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sp_name</span>
+<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="n">occ_data</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># Combine species and add shared inclusion</span>
+<span class="n">all_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bind_rows</span><span class="p">(</span><span class="n">species_data_list</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">site_year_df</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;site&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;year&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;I&quot;</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;site&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;year&quot;</span><span class="p">))</span>
+
+<span class="c1"># Filter sampled sites</span>
+<span class="n">sampled_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">all_species</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">I</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-growth-rates">
+<h3>Calculate growth rates<a class="headerlink" href="#calculate-growth-rates" title="Link to this heading">#</a></h3>
+<p>The next step is to convert each species’ values of occupancy in years
+one and two into a growth rate (their ratio). Growth rates are how
+population trends are usually formulated in MSIs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">compute_growth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">summarise</span><span class="p">(</span><span class="n">mean_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">.groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_occ</span><span class="p">,</span><span class="w"> </span><span class="n">names_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;year_&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">    </span><span class="nf">mutate</span><span class="p">(</span><span class="n">growth_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year_2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">year_1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">growth_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compute_growth</span><span class="p">(</span><span class="n">all_species</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="n">growth_sampled</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compute_growth</span><span class="p">(</span><span class="n">sampled_data</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sampled&quot;</span><span class="p">)</span>
+
+<span class="n">growth_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bind_rows</span><span class="p">(</span><span class="n">growth_all</span><span class="p">,</span><span class="w"> </span><span class="n">growth_sampled</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="p">,</span><span class="w"> </span><span class="n">year_1</span><span class="p">,</span><span class="w"> </span><span class="n">year_2</span><span class="p">,</span><span class="w"> </span><span class="n">growth_rate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-sample-inclusion-for-species">
+<h3>Define sample inclusion for species<a class="headerlink" href="#define-sample-inclusion-for-species" title="Link to this heading">#</a></h3>
+<p>We will assume that species’ sample inclusion probabilities depend on
+their values of <span class="math notranslate nohighlight">\(\beta_z\)</span> (i.e. their sensitivity to <span class="math notranslate nohighlight">\(z\)</span>), which can be
+considered a trait.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract trait (beta_z) per species from species_params</span>
+<span class="n">traits_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">),</span>
+<span class="w">  </span><span class="n">trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">species_params</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">beta_z</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Define parameters for trait-based inclusion</span>
+<span class="n">gamma_0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">-1</span><span class="w">   </span><span class="c1"># baseline inclusion probability on logit scale</span>
+<span class="n">gamma_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w">    </span><span class="c1"># strength of trait effect on inclusion</span>
+
+<span class="c1"># Compute inclusion probabilities and simulate Bernoulli draws</span>
+<span class="n">traits_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">traits_df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">logit_pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gamma_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gamma_1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">trait</span><span class="p">,</span>
+<span class="w">    </span><span class="kc">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">plogis</span><span class="p">(</span><span class="n">logit_pi</span><span class="p">),</span>
+<span class="w">    </span><span class="n">included_in_sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">(),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">pi</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Remove any earlier inclusion or trait columns before joining</span>
+<span class="n">growth_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">growth_summary</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&quot;included_in_sample&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&quot;trait&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">left_join</span><span class="p">(</span><span class="n">traits_df</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;species&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">log_growth_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">growth_rate</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+
+<span class="c1"># View updated summary</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">growth_summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 40 × 10
+   species dataset year_1 year_2 growth_rate  trait logit_pi    pi
+   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1 sp1     all      0.268  0.195       0.728  0.665    0.330 0.582
+ 2 sp10    all      0.451  0.553       1.23   0.573    0.145 0.536
+ 3 sp11    all      0.154  0.12        0.779  0.297   -0.406 0.400
+ 4 sp12    all      0.364  0.241       0.662  0.607    0.213 0.553
+ 5 sp13    all      0.311  0.176       0.566 -0.304   -1.61  0.167
+ 6 sp14    all      0.156  0.083       0.532  0.610    0.220 0.555
+ 7 sp15    all      0.229  0.184       0.803  0.696    0.392 0.597
+ 8 sp16    all      0.341  0.213       0.625  0.588    0.176 0.544
+ 9 sp17    all      0.43   0.294       0.684  0.588    0.177 0.544
+10 sp18    all      0.58   0.609       1.05  -0.314   -1.63  0.164
+# ℹ 30 more rows
+# ℹ 2 more variables: included_in_sample &lt;lgl&gt;, log_growth_rate &lt;dbl&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="validating-mengs-identity-an-aside">
+<h3>Validating Meng’s identity: an aside<a class="headerlink" href="#validating-mengs-identity-an-aside" title="Link to this heading">#</a></h3>
+<p>Now we will pause to check Meng’s identity is exact for the difference
+between the sample and population mean log growth rates across species.
+Barring some rounding error, it is correct.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">growth_top</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">growth_summary</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">dataset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;all&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">inclusion_numeric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">included_in_sample</span><span class="p">))</span>
+
+<span class="n">y_sample_mean</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">growth_top</span><span class="o">$</span><span class="n">log_growth_rate</span><span class="p">[</span><span class="n">growth_top</span><span class="o">$</span><span class="n">included_in_sample</span><span class="p">])</span>
+<span class="n">y_pop_mean</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">growth_top</span><span class="o">$</span><span class="n">log_growth_rate</span><span class="p">)</span>
+<span class="n">diff_mean</span><span class="w">     </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">y_sample_mean</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y_pop_mean</span>
+
+<span class="n">cor_inclusion_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">growth_top</span><span class="o">$</span><span class="n">inclusion_numeric</span><span class="p">,</span><span class="w"> </span><span class="n">growth_top</span><span class="o">$</span><span class="n">log_growth_rate</span><span class="p">)</span>
+<span class="n">sd_y</span><span class="w">            </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sd</span><span class="p">(</span><span class="n">growth_top</span><span class="o">$</span><span class="n">log_growth_rate</span><span class="p">)</span>
+<span class="n">f</span><span class="w">               </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">growth_top</span><span class="o">$</span><span class="n">inclusion_numeric</span><span class="p">)</span>
+<span class="n">cor_identity</span><span class="w">    </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor_inclusion_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sd_y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">((</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">f</span><span class="p">)</span>
+
+<span class="n">result_check</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">  </span><span class="n">mean_diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diff_mean</span><span class="p">,</span>
+<span class="w">  </span><span class="n">correlation_identity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cor_identity</span>
+<span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">result_check</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   mean_diff correlation_identity
+1 0.07211732           0.07399081
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="assessing-cross-species-error">
+<h3>Assessing cross-species error<a class="headerlink" href="#assessing-cross-species-error" title="Link to this heading">#</a></h3>
+<p>Assume that the analyst has data on the trait <span class="math notranslate nohighlight">\(\beta_z\)</span> for every
+species, but it is measured with (random) error. One way to diagnose a
+non-zero cross-species data defect correlation is to compare the sample
+and population distributions of the measured trait values. To estimate
+the cross-species problem difficulty, i.e. the population standard
+deviation of the growth rates across species, one can use the sample
+standard deviation. The sample standard deviation tends be smaller than
+its population counterpart but can serve as a lower bound. The
+cross-species sampling fraction, which is to say the fraction of species
+in the population that were sampled, is known for a well-defined
+population.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create X = trait + epsilon (epsilon ~ N(0, 0.05))</span>
+<span class="n">growth_summary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">growth_summary</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span>
+<span class="w">    </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trait</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="nf">n</span><span class="p">(),</span><span class="w"> </span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="c1"># Split dataset to match analyst&#39;s access</span>
+<span class="c1"># Only dataset == &quot;all&quot; has one row per species</span>
+<span class="n">growth_all_only</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">growth_summary</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">dataset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># The analyst only sees: </span>
+<span class="c1"># - log_growth_rate</span>
+<span class="c1"># - X</span>
+<span class="c1"># - inclusion status (but not the full population)</span>
+<span class="c1"># So they might compare included vs. not-included X values to assess correlation</span>
+
+<span class="c1"># 1. Analyst tries to assess whether inclusion depends on X</span>
+<span class="c1">#    (proxy for trait that determines sampling bias)</span>
+<span class="n">cor_inclusion_X</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cor</span><span class="p">(</span><span class="n">growth_all_only</span><span class="o">$</span><span class="n">included_in_sample</span><span class="p">,</span><span class="w"> </span><span class="n">growth_all_only</span><span class="o">$</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Compare the distribution of X for included vs. not</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">growth_all_only</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">included_in_sample</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution of Trait Proxy X by Sample Inclusion&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Trait Proxy (X)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Included in Sample&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/35e1ee290c961c54b91421afcd0409e423c7fd8a064eeef0d5b12bef4e89f0a9.png" src="../../_images/35e1ee290c961c54b91421afcd0409e423c7fd8a064eeef0d5b12bef4e89f0a9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                         what     value
+1 cor(inclusion, growth rate) 0.2190484
+2           cor(inclusion, X) 0.0852794
+3     sd(log growth) - sample 0.1526563
+4       sd(log growth) - true 0.2478649
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="assessing-within-species-error">
+<h3>Assessing within-species error<a class="headerlink" href="#assessing-within-species-error" title="Link to this heading">#</a></h3>
+<p>The within-species data defect correlation and problem difficulty can be
+assessed in the same way as their cross-species counterparts. We will
+assume that data on <span class="math notranslate nohighlight">\(z\)</span> is available, but measured with random error,
+and compare its sample and population distributions. I have simulated
+the data in such a way that <span class="math notranslate nohighlight">\(z\)</span> is the only explanatory variable
+affecting species’ occupancy probabilities in a given year, and every
+species has a non-zero probability of being observed given that it
+occupies a sampled site. These two simplifications make assessing the
+within-species data defect correlations much simpler, because the set of
+sampled sites does not differ between species, and we need only consider
+<span class="math notranslate nohighlight">\(z\)</span> rather than a larger set of explanatory variables. Hence, we can
+simply compare the distribution of the measured proxy for <span class="math notranslate nohighlight">\(z\)</span> at the set
+of sampled sites, which does not vary between species, with its
+population distribution. Like the cross-species problem difficulty, we
+can obtain lower bounds for the within-species problem difficulties
+using their sample analogues. The within-species sampling fractions are
+directly measurable from the available data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">rho</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.5</span>
+<span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">n_sites</span>
+
+<span class="c1"># Generate epsilon</span>
+<span class="n">epsilon_base</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">epsilon_year2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># x = rho * z + sqrt(1 - rho^2) * epsilon</span>
+<span class="n">x_base</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z_base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rho</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">epsilon_base</span>
+<span class="n">x_year2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rho</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">z_year2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">rho</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">epsilon_year2</span>
+
+<span class="c1"># Add to site_year_df</span>
+<span class="n">site_year_df</span><span class="o">$</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">site_year_df</span><span class="o">$</span><span class="n">year</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">x_base</span><span class="p">[</span><span class="n">site_year_df</span><span class="o">$</span><span class="n">site</span><span class="p">],</span><span class="w"> </span><span class="n">x_year2</span><span class="p">[</span><span class="n">site_year_df</span><span class="o">$</span><span class="n">site</span><span class="p">])</span>
+
+<span class="c1"># Prepare data</span>
+<span class="n">plot_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">site_year_df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">sampled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">I</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sampled&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Population&quot;</span><span class="p">))</span>
+
+<span class="c1"># Faceted density plot: one panel per year</span>
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">plot_df</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sampled</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey70&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;dodgerblue&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span>
+<span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Distribution of Covariate Proxy x: Sampled vs. Population&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;x (proxy for z)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f94472cece33f872947895ce3e69800774d4118e6d01a9c8616f4cbeb889d76a.png" src="../../_images/f94472cece33f872947895ce3e69800774d4118e6d01a9c8616f4cbeb889d76a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 40 × 3
+   species  year      ddc
+   &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 sp1         1  0.211  
+ 2 sp1         2  0.0765 
+ 3 sp10        1  0.112  
+ 4 sp10        2  0.146  
+ 5 sp11        1  0.00366
+ 6 sp11        2  0.0104 
+ 7 sp12        1  0.150  
+ 8 sp12        2  0.121  
+ 9 sp13        1 -0.0530 
+10 sp13        2 -0.0323 
+# ℹ 30 more rows
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 40 × 4
+   species  year pop_sd sample_sd
+   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
+ 1 sp1         1  0.443     0.489
+ 2 sp1         2  0.396     0.420
+ 3 sp10        1  0.498     0.500
+ 4 sp10        2  0.497     0.483
+ 5 sp11        1  0.361     0.363
+ 6 sp11        2  0.325     0.330
+ 7 sp12        1  0.481     0.499
+ 8 sp12        2  0.428     0.458
+ 9 sp13        1  0.463     0.449
+10 sp13        2  0.381     0.369
+# ℹ 30 more rows
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>In theory, the differences between sample and population mean
+occupancy for a given species need not be small to render a small
+within-species error component, so long as they have a similar sign and
+magnitude in both periods. How the analyst would know that they are in
+this situation is unclear, however, so a better strategy is to aim for
+zero error in both periods.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./methods\ds-toolbox-notebook-multispecies-biodiversity-indicators"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Calculator of Risk to Terrestrial Carbon Pool</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fitting Joint Species Distribution Models with jsdmstan</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-example">Simulated example</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-virtual-universe">Create a virtual universe</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-to-simulate-species-occupancy">Function to simulate species occupancy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-a-virtual-community-of-species">Simulate a virtual community of species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-growth-rates">Calculate growth rates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-sample-inclusion-for-species">Define sample inclusion for species</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validating-mengs-identity-an-aside">Validating Meng’s identity: an aside</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-cross-species-error">Assessing cross-species error</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-within-species-error">Assessing within-species error</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

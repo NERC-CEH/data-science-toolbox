@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>UKCEH Data Science Book &#8212; My sample book</title>
+    <title>UKCEH Data Science Book &#8212; UKCEH Environmental Data Science Book</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -60,9 +60,10 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <link rel="icon" href="_static/edsb-favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bias Correction of Climate Model Output" href="notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html" />
+    <link rel="next" title="Bias Correction of Climate Model Output" href="methods/ds-toolbox-notebook-biascorrection/bias-correction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -114,6 +115,10 @@
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">ℹ️ This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
 
   
     <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
@@ -156,8 +161,8 @@
       
     
     
-    <img src="_static/UKCEH_EDST_Logo.png" class="logo__image only-light" alt="My sample book - Home"/>
-    <script>document.write(`<img src="_static/UKCEH_EDST_Logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+    <img src="_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
   
   
 </a></div>
@@ -184,13 +189,14 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html">Bias Correction of Climate Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/methods/gradient_boosted_trees.html">Downscaling UK Surface Ozone</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/methods/stochastic_partial_diff_equations.html">UK Species Distribution Modelling</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Templates</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/methods/template.html">Methodology Notebook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
 </ul>
 
     </div>
@@ -388,7 +394,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <img alt="abstract-environmental-data-science" class="bg-primary mb-1 sd-rounded-3 align-center" src="_images/EDS_Abstract.jpg" />
+  <a class="bg-primary mb-1 reference internal image-reference" href="_images/NatCapUK_colour.png"><img alt="natcapuk-logo" class="bg-primary mb-1 align-right" src="_images/NatCapUK_colour.png" style="width: 400px;" /></a>
+<img alt="abstract-environmental-data-science" class="bg-primary mb-1 sd-rounded-3 align-center" src="_images/eds-abstract-image.jpg" />
 <section class="tex2jax_ignore mathjax_ignore" id="ukceh-data-science-book">
 <h1>UKCEH Data Science Book<a class="headerlink" href="#ukceh-data-science-book" title="Link to this heading">#</a></h1>
 <p>This is a collection of data science methods used within UKCEH for a range of environmental applications. The purpose is to apply <strong>FAIR</strong> principles (Findable, Accessible, Interoperable, and Reusable) to statistical methodologies at UKCEH. The hope being that this will encourage <strong>cross-disciplinary use of methods</strong>, enhancing research. Focus is placed upon including methods that are applicable to a wide variety of environmental disciplines and that incorporate <strong>integration of multiple data sets</strong>.</p>
@@ -396,49 +403,72 @@ document.write(`
 <p>The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the repository linked at the top of each notebook (e.g. <a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/Jez-Carter/Bias_Correction_Application/tree/jupyterbook_render"><span>Code Repository (Branch jupyterbook_render)</span></a>) to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>Notebooks</p></th>
-<th class="head"><p>Key Statistical Concepts</p></th>
+<tr class="row-odd"><th class="head text-left"><p>Methods</p></th>
+<th class="head"><p>Key Concepts</p></th>
 <th class="head text-right"><p>Key Datasets</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html"><span class="doc std std-doc">Bias Correction of Climate Models</span></a></p></td>
+<tr class="row-even"><td class="text-left"><p><a class="reference internal" href="methods/ds-toolbox-notebook-biascorrection/bias-correction.html"><span class="doc std std-doc">Bias Correction of Climate Models</span></a> <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Ongoing Development</span></p></td>
 <td><p>Gaussian Processes, Bayesian Hierarchical Modelling</p></td>
 <td class="text-right"><p>Climate Model Output, In-situ Weather Station Measurements</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/gradient_boosted_trees.html"><span class="doc std std-doc">Downscaling UK Surface Ozone Concentrations</span></a></p></td>
-<td><p>Machine Learning, Gradient Boosted Trees</p></td>
-<td class="text-right"><p>EMEP4UK Atmospheric Chemistry Transport Model Output, WRF Weather Forecast Model Output, In-situ Ozone Monitoring Network Data</p></td>
+<tr class="row-odd"><td class="text-left"><p><a class="reference internal" href="methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html"><span class="doc std std-doc">Calculating Risk to Terrestrial Carbon Pool</span></a> <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Ongoing Development</span></p></td>
+<td><p>Data Access, Data Integration</p></td>
+<td class="text-right"><p>MODIS Land Cover and Net Primary Production Products, European Space Agency (ESA) Climate Change Initiative (CCI) Soil Moisture Dataset, Global Standardized Precipitation-Evapotranspiration Index (SPEI) Dataset.</p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/stochastic_partial_diff_equations.html"><span class="doc std std-doc">UK Species Distribution Modelling</span></a></p></td>
+<tr class="row-even"><td class="text-left"><p>Joint Species Distribution Models in Stan <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
 <td><p>Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations</p></td>
 <td class="text-right"><p>UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers’ Riverfly Monitoring Initiative</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Decomposing Error in Multispecies Indicators <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<td><p>Multivariate Methods, Uncertainty, Theory</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Accessing EA Data via an API <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<td><p>Data Access, Data Integration</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Data Pipelines for JULES Emulation/Portable JULES <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<td><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>River Utility Tools <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<td><p>Spatio-temporal Integration, Networks</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>CSV File Checker <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<td><p>Data Quality, Data Integrity</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Spatio-temporal Data Integration with INLA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<td><p>Spatio-temporal Integration, Bayesian</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Understanding and Modelling Spatio-temporal Lags along Networks <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<td><p>Spatio-temporal Integration, Networks</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>State Tagging for Environmental Data QA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<td><p>Data Quality, Data Integrity</p></td>
+<td class="text-right"><p></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <br>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>Notebooks</p></th>
-<th class="head text-right"><p>Generalisability</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html"><span class="doc std std-doc">Bias Correction of Climate Models</span></a></p></td>
-<td class="text-right"><p>Combining good-coverage biased datasets with poor-coverage unbiased datasets. Modelling uncertainty when interpolating spatial and/or temporal data.</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/gradient_boosted_trees.html"><span class="doc std std-doc">Downscaling UK Surface Ozone Concentrations</span></a></p></td>
-<td class="text-right"><p>Using observations and high-resolution predictors to downscale area averaged datasets.</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p><a class="reference internal" href="notebooks/methods/stochastic_partial_diff_equations.html"><span class="doc std std-doc">UK Species Distribution Modelling</span></a></p></td>
-<td class="text-right"><p>Combining spatio-temporal datasets  from different observational campaigns.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="toctree-wrapper compound">
-</div>
+<!-- | Methods | Generalisability |
+| :--- | ---: |
+| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development` | Combining good-coverage biased datasets with poor-coverage unbiased datasets. Modelling uncertainty when interpolating spatial and/or temporal data. 
+| Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | 
+| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | 
+| Accessing EA Data via an API {bdg-warning-line}`Planned` | 
+| Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` |
+| River Utility Tools {bdg-warning-line}`Planned` | 
+| CSV File Checker {bdg-warning-line}`Planned` |
+| Spatio-temporal Data Integration with INLA {bdg-warning-line}`Tentative` |
+| Understanding and Modelling Spatio-temporal Lags along Networks {bdg-warning-line}`Tentative` |
+| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` |  -->
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -474,7 +504,7 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough%20Tutorial.html"
+       href="methods/ds-toolbox-notebook-biascorrection/bias-correction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -498,7 +528,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By The Jupyter Book Community
+By UKCEH
 </p>
 
   </div>
