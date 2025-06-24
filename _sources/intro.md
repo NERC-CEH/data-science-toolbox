@@ -11,20 +11,20 @@
 :align: center
 ```
 
-# UKCEH Data Science Book
+# Environmental Data Science Toolbox
 
-This is a collection of data science methods used within UKCEH for a range of environmental applications. The purpose is to apply **FAIR** principles (Findable, Accessible, Interoperable, and Reusable) to statistical methodologies at UKCEH. The hope being that this will encourage **cross-disciplinary use of methods**, enhancing research. Focus is placed upon including methods that are applicable to a wide variety of environmental disciplines and that incorporate **integration of multiple data sets**. 
+This is a **prototype** version of the National Capability UK (NC-UK) Environmental Data Science Toolbox, hosted by the UK Centre for Ecology & Hydrology (UKCEH). The aim is to apply FAIR principles (Findable, Accessible, Interoperable, and Reusable) to a collection of data science methods that are generalizable across different environmental applications, with a focus on integrative modelling. The hope being that this will encourage cross-disciplinary use of methods, enhancing national environmental research. 
 
 If you're interested in contributing to this project it would be great to hear from you and you can find details of how to do so via the `CONTRIBUTING.md` page in the root of the repository. 🌞
 
-The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the repository linked at the top of each notebook (e.g. {bdg-link-info}`Code Repository (Branch jupyterbook_render) <https://github.com/Jez-Carter/Bias_Correction_Application/tree/jupyterbook_render>`) to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
+The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the {bdg-info}`Notebook Repository` linked at the top of each notebook to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
 
 | Methods | Key Concepts | Key Datasets |
 | :--- | --- | ---: |
 | [Bias Correction of Climate Models](<../methods/ds-toolbox-notebook-biascorrection/bias-correction>) {bdg-warning-line}`Ongoing Development`| Gaussian Processes, Bayesian Hierarchical Modelling | Climate Model Output, In-situ Weather Station Measurements 
 | [Calculating Risk to Terrestrial Carbon Pool](<../methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook>) {bdg-warning-line}`Ongoing Development` | Data Access, Data Integration | MODIS Land Cover and Net Primary Production Products, European Space Agency (ESA) Climate Change Initiative (CCI) Soil Moisture Dataset, Global Standardized Precipitation-Evapotranspiration Index (SPEI) Dataset.
-| Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
-| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | Multivariate Methods, Uncertainty, Theory | |
+| [Understanding the error of Multispecies Biodiversity Indicators](<../methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error>) {bdg-warning-line}`Ongoing Development` | Bias, Uncertainty | Simulated Dataset (Multispecies Occupancy).
+| [Joint Species Distribution Models with jsdmstan](<../methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book>) | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations,  | Simulated Dataset (Multispecies Populations).
 | Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
 | Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` | | |
 | River Utility Tools {bdg-warning-line}`Planned` | Spatio-temporal Integration, Networks | |
@@ -34,6 +34,9 @@ The current recommended workflow for interactively engaging with the code in the
 | State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` | Data Quality, Data Integrity | |
 
 <br>
+
+<!-- | Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
+| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | Multivariate Methods, Uncertainty, Theory | | -->
 
 <!-- | Methods | Generalisability |
 | :--- | ---: |

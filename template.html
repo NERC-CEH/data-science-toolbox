@@ -1,0 +1,1544 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Template Notebook for Methodologies &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'template';</script>
+    <link rel="icon" href="_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Fitting Joint Species Distribution Models with jsdmstan" href="methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    UKCEH Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Example Launch Button</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/template.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/template.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Ftemplate.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/template.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Template Notebook for Methodologies</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-required-libraries">Importing Required Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-histograms">Marginal Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-and-pairplot">Correlation Matrix and PairPlot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-maps">Spatial Maps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-pre-processing">Data Pre-Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-and-truncated-variables">Outliers and Truncated Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-data">Scaling Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test-splits">Train and Test Splits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training-and-evaluation">Model Training and Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-predictions-and-comparisons">Examining Predictions and Comparisons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="template-notebook-for-methodologies">
+<h1>Template Notebook for Methodologies<a class="headerlink" href="#template-notebook-for-methodologies" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#importing-required-libraries" id="id2">Importing Required Libraries</a></p></li>
+<li><p><a class="reference internal" href="#data-exploration" id="id3">Data Exploration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#marginal-histograms" id="id4">Marginal Histograms</a></p></li>
+<li><p><a class="reference internal" href="#correlation-matrix-and-pairplot" id="id5">Correlation Matrix and PairPlot</a></p></li>
+<li><p><a class="reference internal" href="#spatial-maps" id="id6">Spatial Maps</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#data-pre-processing" id="id7">Data Pre-Processing</a></p>
+<ul>
+<li><p><a class="reference internal" href="#outliers-and-truncated-variables" id="id8">Outliers and Truncated Variables</a></p></li>
+<li><p><a class="reference internal" href="#feature-engineering" id="id9">Feature Engineering</a></p></li>
+<li><p><a class="reference internal" href="#scaling-data" id="id10">Scaling Data</a></p></li>
+<li><p><a class="reference internal" href="#train-and-test-splits" id="id11">Train and Test Splits</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#model-training-and-evaluation" id="id12">Model Training and Evaluation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linear-regression" id="id13">Linear Regression</a></p></li>
+<li><p><a class="reference internal" href="#random-forest" id="id14">Random Forest</a></p></li>
+<li><p><a class="reference internal" href="#examining-predictions-and-comparisons" id="id15">Examining Predictions and Comparisons</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#conclusions" id="id16">Conclusions</a></p></li>
+</ul>
+</nav>
+<!-- https://jupyterbook.org/en/stable/structure/configure.html --><section id="introduction">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>This notebook focuses on the California housing dataset, which is a classic example set used in many statistics tutorials. Various instances of the dataset exist with slight variations. Here we load an instance directly available from the sklearn package (<a class="reference external" href="https://inria.github.io/scikit-learn-mooc/python_scripts/datasets_california_housing.html">California Housing Dataset</a>).</p></li>
+<li><p>The goal is typically to create a model that predicts the median house value in a block based on predictors such as: median income; median house age; avg. rooms per household; avg. bedrooms per household; total population; avg. members of households; latitude and longitude.</p></li>
+<li><p>The performance of the model is typically assessed through predictive capability and metrics such as <span class="math notranslate nohighlight">\(\text{RMSE}\)</span> and <span class="math notranslate nohighlight">\(\text{R}^2\)</span>.</p></li>
+<li><p>This notebook aims to present a basic data science pipeline for predictive analysis, using <strong>linear regression</strong> and <strong>random forests</strong>.</p></li>
+</ul>
+</section>
+<section id="importing-required-libraries">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Importing Required Libraries</a><a class="headerlink" href="#importing-required-libraries" title="Link to this heading">#</a></h2>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% Importing Required Libraries</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial</span> <span class="kn">import</span> <span class="n">KDTree</span> 
+
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">Normalize</span><span class="p">,</span> <span class="n">LogNorm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">ticker</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="data-exploration">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Data Exploration</a><a class="headerlink" href="#data-exploration" title="Link to this heading">#</a></h2>
+<p>Loading the California housing data from scikit-learn, printing description and converting to Pandas dataframe:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading Data</span>
+<span class="n">california</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">california</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">california</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">california</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">california</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.. _california_housing_dataset:
+
+California Housing dataset
+--------------------------
+
+**Data Set Characteristics:**
+
+:Number of Instances: 20640
+
+:Number of Attributes: 8 numeric, predictive attributes and the target
+
+:Attribute Information:
+    - MedInc        median income in block group
+    - HouseAge      median house age in block group
+    - AveRooms      average number of rooms per household
+    - AveBedrms     average number of bedrooms per household
+    - Population    block group population
+    - AveOccup      average number of household members
+    - Latitude      block group latitude
+    - Longitude     block group longitude
+
+:Missing Attribute Values: None
+
+This dataset was obtained from the StatLib repository.
+https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
+
+The target variable is the median house value for California districts,
+expressed in hundreds of thousands of dollars ($100,000).
+
+This dataset was derived from the 1990 U.S. census, using one row per census
+block group. A block group is the smallest geographical unit for which the U.S.
+Census Bureau publishes sample data (a block group typically has a population
+of 600 to 3,000 people).
+
+A household is a group of people residing within a home. Since the average
+number of rooms and bedrooms in this dataset are provided per household, these
+columns may take surprisingly large values for block groups with few households
+and many empty houses, such as vacation resorts.
+
+It can be downloaded/loaded using the
+:func:`sklearn.datasets.fetch_california_housing` function.
+
+.. rubric:: References
+
+- Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+  Statistics and Probability Letters, 33 (1997) 291-297
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Summary statistics for columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>MedHouseVal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+      <td>20640.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>3.870671</td>
+      <td>28.639486</td>
+      <td>5.429000</td>
+      <td>1.096675</td>
+      <td>1425.476744</td>
+      <td>3.070655</td>
+      <td>35.631861</td>
+      <td>-119.569704</td>
+      <td>2.068558</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>1.899822</td>
+      <td>12.585558</td>
+      <td>2.474173</td>
+      <td>0.473911</td>
+      <td>1132.462122</td>
+      <td>10.386050</td>
+      <td>2.135952</td>
+      <td>2.003532</td>
+      <td>1.153956</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.499900</td>
+      <td>1.000000</td>
+      <td>0.846154</td>
+      <td>0.333333</td>
+      <td>3.000000</td>
+      <td>0.692308</td>
+      <td>32.540000</td>
+      <td>-124.350000</td>
+      <td>0.149990</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.563400</td>
+      <td>18.000000</td>
+      <td>4.440716</td>
+      <td>1.006079</td>
+      <td>787.000000</td>
+      <td>2.429741</td>
+      <td>33.930000</td>
+      <td>-121.800000</td>
+      <td>1.196000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.534800</td>
+      <td>29.000000</td>
+      <td>5.229129</td>
+      <td>1.048780</td>
+      <td>1166.000000</td>
+      <td>2.818116</td>
+      <td>34.260000</td>
+      <td>-118.490000</td>
+      <td>1.797000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>4.743250</td>
+      <td>37.000000</td>
+      <td>6.052381</td>
+      <td>1.099526</td>
+      <td>1725.000000</td>
+      <td>3.282261</td>
+      <td>37.710000</td>
+      <td>-118.010000</td>
+      <td>2.647250</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>15.000100</td>
+      <td>52.000000</td>
+      <td>141.909091</td>
+      <td>34.066667</td>
+      <td>35682.000000</td>
+      <td>1243.333333</td>
+      <td>41.950000</td>
+      <td>-114.310000</td>
+      <td>5.000010</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note: Missing Data</p>
+<p>In this particular example there’s no missing data or null values present, which means we don’t need to worry about data imputation, although typically this will be an important component of the data science pipeline.</p>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note: Categorical Data</p>
+<p>All the columns in this example are numerical. Typically we might also expect categorical columns, which will need pre-processing. The categorical columns may be ordinal or nominal. Ordinal categories could be transformed into corresponding ordinal integers, while nominal categories could be handled with one-hot encoding.</p>
+</div>
+<section id="marginal-histograms">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Marginal Histograms</a><a class="headerlink" href="#marginal-histograms" title="Link to this heading">#</a></h3>
+<p>A useful next step is to examine the marginal distributions of each column to determine what assumptions we can make, whether there’s any clear outliers and whether it makes sense to apply any transformations to the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Marginal Histograms</span>
+<span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b05031b1c4b7c36b222e2f95265831f18eaf9fd8a53362b209466970ef09f5ed.png" src="_images/b05031b1c4b7c36b222e2f95265831f18eaf9fd8a53362b209466970ef09f5ed.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Outliers are clearly present in the data, including:</p>
+<ul>
+<li><p>The peaks shown at the upper ends of <em>HouseAge</em> and <em>MedHouseVal</em> are likely the result of truncating records. For example, values above $500,000 are all recorded as $500,001. If this is simply ignored it’ll result in a downward bias in estimates. If these data points are excluded then we’ll be optimising against values less than $500,000 and the model may not generalise well to more expensive regions. Ideally we would use a censored regression, modelling these data points as being at least $500,000. For simplicity in this notebook we’ll just exclude the points above $500,000.</p></li>
+<li><p>Suspected outliers for <em>AveRooms</em>, <em>AveBedrms</em>, <em>Population</em> and <em>AveOccup</em>. These are suspected due to the high maximum x axis values. Without treatment these outliers might have a significant impact on our regression and reduce how well our model represents bulk relationships.</p></li>
+</ul>
+</li>
+<li><p>There appears to be some unusual regularly spaced gaps for <em>HouseAge</em>. It’s unclear what’s caused this but it’s unlikely to have a significant impact on our predictions.</p></li>
+<li><p>Many of the distributions are either skewed or multi-modal. To reduce the skew it’s common to apply a log-transformation.</p></li>
+</ul>
+<p>Examining the data with a crude removal of outliers can be interesting:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bulk</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># Marginal Histogram Outliers Removed</span>
+<span class="n">df_bulk</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7e09ed4a10b454d62c508a83bd7d1b56abbd6fabf33c991160d09bb48adad6aa.png" src="_images/7e09ed4a10b454d62c508a83bd7d1b56abbd6fabf33c991160d09bb48adad6aa.png" />
+</div>
+</details>
+</div>
+</section>
+<section id="correlation-matrix-and-pairplot">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Correlation Matrix and PairPlot</a><a class="headerlink" href="#correlation-matrix-and-pairplot" title="Link to this heading">#</a></h3>
+<p>It’s also useful to examine the correlation between all the columns in the data to quickly get a feel for which variables will have the best predictive potential and to understand colinearity between predictors.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">corrMat</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="nb">id</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Function to plot correlation of features &#39;&#39;&#39;</span>
+    
+    <span class="n">corr_mat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ix</span> <span class="o">=</span> <span class="n">corr_mat</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">corr_mat_sorted</span> <span class="o">=</span> <span class="n">corr_mat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ix</span><span class="p">,</span> <span class="n">ix</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_mat_sorted</span><span class="p">,</span><span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">,</span><span class="n">square</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">cbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">corrMat</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/4f1d238cf0a1acc0e94d15253f0828f45bc4a36a9d560e10a259b4f3fa4a37db.png" src="_images/4f1d238cf0a1acc0e94d15253f0828f45bc4a36a9d560e10a259b4f3fa4a37db.png" />
+</div>
+</div>
+<p>From the correlation matrix it’s clear that medium income is likely to be the strongest predictor, with all other columns being relatively weak predictors. Additionally, we see a clear strong correlation between <em>AveRooms</em> and <em>AveBedrms</em>, which makes sense and indicates perhaps we don’t need both predictors in our model. Finally, it’s interesting to note that <em>Longitude</em> and <em>Latitude</em> have relatively weak relationships with <em>MedHouseVal</em> and have a strong negative correlation with each other. The high negative correlation is due to the fact that the coast of California goes approximately diagonally to <em>Longitude</em> and <em>Latitude</em> and the vast majority of houses lie close to the coast. It’ll be important to conduct some feature design to get a spatial predictor that better represents the important components of the data, such as distance to coast.</p>
+<p>Again examining the correlations after removing outliers can be interesting, in particular <em>AveRooms</em> and <em>AveOccup</em> show noticably stronger correlation with <em>MedHouseVal</em>, and the correlation between <em>AveRooms</em> and <em>AveBedrms</em> is noticably reduced:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrMat</span><span class="p">(</span><span class="n">df_bulk</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/97e60780d32b426b9dc215735b63a3a8dc40fcafb5d58b5dbd292948e182797c.png" src="_images/97e60780d32b426b9dc215735b63a3a8dc40fcafb5d58b5dbd292948e182797c.png" />
+</div>
+</details>
+</div>
+<p>A pairplot can be used to further examine relationships between pairs of variables, here we remove outliers, although it can also be useful to focus on the outliers specifically:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39; Draw a Bivariate Seaborn Pairgrid /w KDE density w/ &#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">snsPairGrid</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Plots a Seaborn Pairgrid w/ KDE &amp; scatter plot of df features&#39;&#39;&#39;</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">corner</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">map_diag</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">,</span><span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span> 
+    <span class="n">g</span><span class="o">.</span><span class="n">map_lower</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">map_lower</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;plasma&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="n">snsPairGrid</span><span class="p">(</span><span class="n">df_bulk</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c96fdddbe49104ef81ff98409bf6ec043c2a3a35b64b103a357f0a62b82dafbb.png" src="_images/c96fdddbe49104ef81ff98409bf6ec043c2a3a35b64b103a357f0a62b82dafbb.png" />
+</div>
+</details>
+</div>
+<p>The pairplot indicates two major clusters of data points around specific longitude and latitude values, which is likely the result of two major cities. It would be advantageous to create a feature that captures this, maybe two columns with distance to each major city respectively.</p>
+</section>
+<section id="spatial-maps">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Spatial Maps</a><a class="headerlink" href="#spatial-maps" title="Link to this heading">#</a></h3>
+<p>Since the data is spatial in nature it is important to plot a map of the values. Here the spatial distribution for the response variable <em>MedHouseVal</em> and the 3 most significant predictors (<em>MedInc</em>, <em>AveRooms</em> and <em>AveOccup</em>) are plot.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">column</span><span class="p">,</span><span class="n">ax</span><span class="p">,</span><span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Plot the spatial distribution of the data &#39;&#39;&#39;</span>
+    <span class="c1"># Create a GeoDataFrame</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
+    <span class="c1"># Set the CRS</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># WGS84</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span> 
+
+    <span class="c1"># Normalize price values for color mapping</span>
+    <span class="k">if</span> <span class="n">limits</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+        <span class="n">vmin</span><span class="p">,</span><span class="n">vmax</span> <span class="o">=</span> <span class="n">limits</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vmin</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">vmax</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">transform</span> <span class="o">==</span> <span class="s1">&#39;log&#39;</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">LogNorm</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">viridis</span>  <span class="c1"># You can choose other colormaps like &#39;plasma&#39;, &#39;cividis&#39;, etc.</span>
+    <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+    
+    <span class="c1"># Plot the points</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">markersize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> 
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">])</span>
+    <span class="c1"># Add a basemap</span>
+    <span class="c1"># ctx.add_basemap(ax, crs=gdf.crs.to_string(), source=ctx.providers.CartoDB.Positron)</span>
+    <span class="c1"># ctx.add_basemap(ax, crs=gdf.crs.to_string(), source=ctx.providers.OpenStreetMap.Mapnik)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_string</span><span class="p">(),</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">CartoDB</span><span class="o">.</span><span class="n">Voyager</span><span class="p">)</span>
+
+    <span class="c1"># Set plot title and labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">)</span>
+    <span class="c1"># Create a colorbar</span>
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">([])</span>  <span class="c1"># Only needed for the colorbar</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">column</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;MedInc&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;AveRooms&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/e93bfd3c9cab1bb27e3c66bcd85348cc900e51abb2dd73bd5afd1bf2175496f4.png" src="_images/e93bfd3c9cab1bb27e3c66bcd85348cc900e51abb2dd73bd5afd1bf2175496f4.png" />
+</div>
+</div>
+<p>The spatial map clearly illustrates the importance of the coastline in determining both the location of houses and their respective values. Two major cities exist on the coast, San Francisco and Los Angeles, with house prices nearer these cities being higher on average. It’s also clear that there are rural areas where the <em>AveRooms</em> is much higher as presumably the cost of land is reduced or perhaps there are a lot of large farm houses.</p>
+<p>It’s also interesting to look at the spatial plots for the other columns in case there’s something we can identify that limits their predictive power:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;AveBedrms&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">50</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d00066cd2d24d7d4408c00c2892e8e764ee0cc52de64f66f84e7a05013179cd2.png" src="_images/d00066cd2d24d7d4408c00c2892e8e764ee0cc52de64f66f84e7a05013179cd2.png" />
+</div>
+</details>
+</div>
+<p>The spatial map potentially sheds some light on why <em>Population</em> is so weakly correlated with <em>MedHouseVal</em>, which is due to high variance between nearby sites. That is there can be vastly different populations for neighbouring blocks. One possibility here is we could create a new predictor, which is the smoothed population. This might incorporate the idea that the most expensive houses are likely to be in blocks with low population but located near the centre of cities where the population will be highest.</p>
+</section>
+</section>
+<section id="data-pre-processing">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Data Pre-Processing</a><a class="headerlink" href="#data-pre-processing" title="Link to this heading">#</a></h2>
+<section id="outliers-and-truncated-variables">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Outliers and Truncated Variables</a><a class="headerlink" href="#outliers-and-truncated-variables" title="Link to this heading">#</a></h3>
+<p>Outliers can have a significant impact on model estimates. In general excluding outliers will make modelling of the bulk popuation simpler, although often outliers are the most interesting part of the data and being able to handle/predict them is highly desirable. Modelling outliers can improve understanding of underlying processes and can be important for the end decision making procedures post-predictions. Similarly, unusal features in the data set, such as trucation of values above some max threshold, would ideally be accounted for in the model.</p>
+<p>Here for simplicity we choose to not incorporate the truncated values in the training and accept that our model may not accurately represent relationships between predictors and the response beyond the truncated values. Specifically, we remove the collection of <em>MedHouseVal</em> = $500,001 and we remove the collection of <em>HouseAge</em> = 52.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_adj</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">5.00001</span><span class="p">]</span> 
+<span class="n">df_adj</span> <span class="o">=</span> <span class="n">df_adj</span><span class="p">[</span><span class="n">df_adj</span><span class="p">[</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">52</span><span class="p">]</span> 
+
+<span class="n">df_adj</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="_images/9556e821e26290c4fb5f8fa573b856644875155470c80beab7b33862d691b42b.png" src="_images/9556e821e26290c4fb5f8fa573b856644875155470c80beab7b33862d691b42b.png" />
+</div>
+</details>
+</div>
+<p>Instead of removing outliers we’ll apply a log transformation that will reduce their influence. Additionally, as a number of the variables (<em>MedInc</em>, <em>Population</em>, <em>MedHouseVal</em>, etc.) are skewed towards values closer to zero we’ll apply a log transform to help reduce skew in these variables.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vars_transform</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">,</span><span class="s1">&#39;AveRooms&#39;</span><span class="p">,</span><span class="s1">&#39;AveBedrms&#39;</span><span class="p">,</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">vars_transform</span><span class="p">:</span>
+    <span class="n">df_adj</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_adj</span><span class="p">[</span><span class="n">var</span><span class="p">])</span>
+<span class="n">df_adj</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="_images/117b7a2813826f1e0218eee361022566f0d3752488cb78a99674c8941c9f7b6e.png" src="_images/117b7a2813826f1e0218eee361022566f0d3752488cb78a99674c8941c9f7b6e.png" />
+</div>
+</details>
+</div>
+</section>
+<section id="feature-engineering">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Feature Engineering</a><a class="headerlink" href="#feature-engineering" title="Link to this heading">#</a></h3>
+<p>The most obvious feature to engineer is a spatial variable that captures distance to the coast. There are various methods for this but in this notebook we take advantage of the geometry of the coastline to do a very crude estimate through simply adding the <em>Longitude</em> and <em>Latitude</em> values.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_adj</span><span class="p">[</span><span class="s1">&#39;Diagonal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_adj</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_adj</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">])</span>         <span class="c1"># &#39;diagonal coordinate&#39;, works for this coord</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">124</span><span class="p">,</span><span class="o">-</span><span class="mi">116</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;Diagonal&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">86</span><span class="p">,</span><span class="o">-</span><span class="mi">82</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/9d15e376849e14a33bf072be02a50b56b764ed1a0f598c14f7fca3738e3bae05.png" src="_images/9d15e376849e14a33bf072be02a50b56b764ed1a0f598c14f7fca3738e3bae05.png" />
+</div>
+</div>
+<p>Note that this is a poor approximation as the coast is not a diagonal line, but for the purposes of this notebook it will do. Note the relatively high magnitude negative correlation now shown for the predictor ‘<em>Diagonal</em>’ with <em>MedHouseVal</em>:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrMat</span><span class="p">(</span><span class="n">df_adj</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="_images/c08116e29701530d11115298338d7cea1a3c5e561c8bffc648f97456ff540afe.png" src="_images/c08116e29701530d11115298338d7cea1a3c5e561c8bffc648f97456ff540afe.png" />
+</div>
+</details>
+</div>
+<p>It was also mentioned earlier that it would be interesting to create a smoothed <em>Population</em> variable. Here we follow a basic spatial smoothing presented in this post: <a class="reference external" href="https://www.linkedin.com/pulse/spatial-smoothing-python-ameya-damle-8pkze">Spatial Smoothing with Python</a>.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spatial_smoothing_gaussian</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">df_adj</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">df_adj</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">set_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>  <span class="c1"># WGS84</span>
+    <span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span> 
+
+    <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;centroid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span> 
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">gdf</span><span class="o">.</span><span class="n">centroid</span><span class="p">])</span> 
+    <span class="n">kdtree</span> <span class="o">=</span> <span class="n">KDTree</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span> 
+
+    <span class="n">values</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">smoothed_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">centroid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
+        <span class="n">distances</span><span class="p">,</span> <span class="n">indices</span> <span class="o">=</span> <span class="n">kdtree</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">centroid</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">distances</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">bandwidth</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">smoothed_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">smoothed_values</span> 
+
+<span class="n">df_adj</span><span class="p">[</span><span class="s1">&#39;Smoothed_Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">spatial_smoothing_gaussian</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">spatialMap</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="s1">&#39;Smoothed_Population&#39;</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/5a1def90e7446114a9ebe2fc121fbb99b9ce42b99a5596b414ef5bb568aa926e.png" src="_images/5a1def90e7446114a9ebe2fc121fbb99b9ce42b99a5596b414ef5bb568aa926e.png" />
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrMat</span><span class="p">(</span><span class="n">df_adj</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="_images/0c9f87cc4b97ac47bc2e46cc227200d944952642b6aa86707d7b7399e47c844a.png" src="_images/0c9f87cc4b97ac47bc2e46cc227200d944952642b6aa86707d7b7399e47c844a.png" />
+</div>
+</details>
+</div>
+<p><em>Smoothed_Population</em> is not that strongly correlated with <em>MedHouseVal</em> either but perhaps together with <em>Population</em> they’ll be important predictors.</p>
+</section>
+<section id="scaling-data">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Scaling Data</a><a class="headerlink" href="#scaling-data" title="Link to this heading">#</a></h3>
+<p>It’s normally a good idea to scale the data as we don’t want some variables to have a disproportionately high impact just because of the baseline scale at which they’re measured.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">,</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span><span class="s1">&#39;AveRooms&#39;</span><span class="p">,</span><span class="s1">&#39;AveBedrms&#39;</span><span class="p">,</span><span class="s1">&#39;Smoothed_Population&#39;</span><span class="p">,</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span><span class="s1">&#39;Diagonal&#39;</span><span class="p">,</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span>
+<span class="n">predictors</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;MedHouseVal&#39;</span>
+<span class="n">df_adj</span><span class="o">=</span> <span class="n">df_adj</span><span class="p">[</span><span class="nb">vars</span><span class="p">]</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">df_adj</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_adj</span><span class="p">),</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_adj</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df_adj</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9019b17bf4490e3078d1390226e9bcbc6ceb291be901732d483560dda3267509.png" src="_images/9019b17bf4490e3078d1390226e9bcbc6ceb291be901732d483560dda3267509.png" />
+</div>
+</div>
+</section>
+<section id="train-and-test-splits">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Train and Test Splits</a><a class="headerlink" href="#train-and-test-splits" title="Link to this heading">#</a></h3>
+<p>To evaluate the model it’s normal to split the dataset in to train and test sets, which helps identify overfitting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %% Splitting into Training and Testing Data </span>
+<span class="n">df_adj_train</span><span class="p">,</span><span class="n">df_adj_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_adj</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">43</span><span class="p">)</span> <span class="c1"># 70-30 split</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-training-and-evaluation">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Model Training and Evaluation</a><a class="headerlink" href="#model-training-and-evaluation" title="Link to this heading">#</a></h2>
+<p>Normally model design is an important component of the data science pipeline. Starting with simple model designs and iteratively improving complexity and performance. Here as we’re not doing any complicated model design we just demonstrate evaluating performance for two off the shelf methods of linear regression and random forests.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">,</span><span class="s1">&#39;HouseAge&#39;</span><span class="p">,</span><span class="s1">&#39;AveRooms&#39;</span><span class="p">,</span><span class="s1">&#39;AveBedrms&#39;</span><span class="p">,</span><span class="s1">&#39;Smoothed_Population&#39;</span><span class="p">,</span><span class="s1">&#39;Population&#39;</span><span class="p">,</span><span class="s1">&#39;AveOccup&#39;</span><span class="p">,</span><span class="s1">&#39;Diagonal&#39;</span><span class="p">]</span>
+<span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;MedHouseVal&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="linear-regression">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Linear Regression</a><a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linear Regression</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear Regression Model&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">predictors</span><span class="p">],</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+<span class="n">df_adj_train</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+<span class="n">df_adj_test</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+
+<span class="c1"># Unscaling the target variable and taking the exponential to undo the log transformation</span>
+<span class="n">df_adj_test_unscaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df_adj_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])),</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">)</span>
+<span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df_adj_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]))[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]:</span>
+    <span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="n">var</span><span class="p">])</span>
+<span class="n">df_adj_test_unscaled_lr</span> <span class="o">=</span> <span class="n">df_adj_test_unscaled</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># saving copy for later comparison</span>
+
+<span class="c1"># Model Evaluation</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df_adj_test_unscaled_lr</span><span class="p">[</span><span class="n">target</span><span class="p">],</span><span class="n">df_adj_test_unscaled_lr</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">predictors</span><span class="p">],</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2: </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear Regression Coefficients Sorted:&quot;</span><span class="p">)</span>
+<span class="n">feature_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">predictors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feature_importance</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear Regression Model
+MSE: 0.3402969437452842
+R2: 0.6481180816272228
+Linear Regression Coefficients Sorted:
+MedInc                 0.665349
+Diagonal              -0.387176
+AveOccup              -0.180541
+AveBedrms              0.179110
+AveRooms              -0.157178
+HouseAge               0.047846
+Smoothed_Population    0.043232
+Population             0.014238
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The linear regression model explains ~65% of the variance seen in the response variable <em>MedHouseVal</em> with a mean error of <span class="math notranslate nohighlight">\(\sqrt{0.34}=0.58=\$58,000\)</span> , which is a good start. It is expected that these metrics could be substantially improved by both using more sophisticated models and more sophisticated feature design. Models that capture non-linear relationships in the data are likely to outperform standard linear regression and improving the quality of features, such as incorporating an actual distance to coast predictor, will also aid predictive performance. It is interesting to note that from the coefficients of the regression the <em>Smoothed_Population</em> and <em>Population</em> features have relatively weak predictive strength. This indicates that the <em>Smoothed_Population</em> predictor isn’t quite capturing what we want, which is some measure of the surrounding population density and whether we’re located in a city. An improvement might be to sum all the block populations within a certain distance from the target point and to compute the relative distance from the closest major city.</p>
+</section>
+<section id="random-forest">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Random Forest</a><a class="headerlink" href="#random-forest" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random Forest</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Random Forest Model&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">predictors</span><span class="p">],</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+<span class="n">df_adj_train</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_adj_train</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+<span class="n">df_adj_test</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+
+<span class="c1"># Unscaling the response variable and taking the exponential to undo the log transformation</span>
+<span class="n">df_adj_test_unscaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df_adj_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])),</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">)</span>
+<span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df_adj_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]))[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]:</span>
+    <span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">df_adj_test_unscaled</span><span class="p">[</span><span class="n">var</span><span class="p">])</span>
+<span class="n">df_adj_test_unscaled_rf</span> <span class="o">=</span> <span class="n">df_adj_test_unscaled</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># saving copy for later comparison</span>
+
+<span class="c1"># Model Evaluation</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df_adj_test_unscaled_rf</span><span class="p">[</span><span class="n">target</span><span class="p">],</span><span class="n">df_adj_test_unscaled_rf</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">])</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">predictors</span><span class="p">],</span><span class="n">df_adj_test</span><span class="p">[</span><span class="n">target</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R2: </span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random Forest Feature Importances:&quot;</span><span class="p">)</span>
+<span class="n">feature_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">predictors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feature_importance</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="nb">abs</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Random Forest Model
+MSE: 0.2388388013843185
+R2: 0.7669026729219449
+Random Forest Feature Importances:
+Diagonal               0.426999
+MedInc                 0.309790
+AveOccup               0.088110
+Smoothed_Population    0.040944
+AveRooms               0.040814
+HouseAge               0.034302
+Population             0.032156
+AveBedrms              0.026885
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>The random forest regression model shows a clear improvement in predictive performance, explaining ~77% of the variance seen in the response variable <em>MedHouseVal</em> with a mean error of <span class="math notranslate nohighlight">\(\sqrt{0.24}=0.49=\$49,000\)</span>. Substantial improvements are still expected by refining the model and incorporating more sophisticated feature design. It is interesting to note that the <em>Diagonal</em> predictor has now become the most important, which indicates that there are important non-linear relationships in with this predictor that the random forest algorithm is able to partially represent.</p>
+</section>
+<section id="examining-predictions-and-comparisons">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Examining Predictions and Comparisons</a><a class="headerlink" href="#examining-predictions-and-comparisons" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting Predicted vs Actual</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">7.5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">df</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,[</span><span class="n">df_adj_test_unscaled_lr</span><span class="p">,</span><span class="n">df_adj_test_unscaled_rf</span><span class="p">]):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Actual Median House Value&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted Median House Value&#39;</span><span class="p">)</span>
+
+    <span class="n">tick</span> <span class="o">=</span> <span class="n">ticker</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;$ </span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100000</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Linear Regression&#39;</span> <span class="k">if</span> <span class="n">ax</span><span class="o">==</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/b18c087bbd5732dabf183132a89800c1ac8b7c50dcf8211c6cdac6164fd56511.png" src="_images/b18c087bbd5732dabf183132a89800c1ac8b7c50dcf8211c6cdac6164fd56511.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plottin Residuals vs Actual</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mf">7.5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">df</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,[</span><span class="n">df_adj_test_unscaled_lr</span><span class="p">,</span><span class="n">df_adj_test_unscaled_rf</span><span class="p">]):</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Residual&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">]</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Residual&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Actual Median House Value&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Residual&#39;</span><span class="p">)</span>
+
+    <span class="n">tick</span> <span class="o">=</span> <span class="n">ticker</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;$ </span><span class="si">{</span><span class="n">x</span><span class="o">*</span><span class="mi">100000</span><span class="si">:</span><span class="s1">,.0f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Linear Regression&#39;</span> <span class="k">if</span> <span class="n">ax</span><span class="o">==</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/e4a3e0f2807d16122fb4ecb43b606db58904af33c9f64a67ebb690486fb776ac.png" src="_images/e4a3e0f2807d16122fb4ecb43b606db58904af33c9f64a67ebb690486fb776ac.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting Distributions of Actual and Predicted</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">df</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,[</span><span class="n">df_adj_test_unscaled_lr</span><span class="p">,</span><span class="n">df_adj_test_unscaled_rf</span><span class="p">]):</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;MedHouseVal&#39;</span><span class="p">],</span> <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Predicted&#39;</span><span class="p">],</span> <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Median House Value&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Linear Regression&#39;</span> <span class="k">if</span> <span class="n">ax</span><span class="o">==</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/be5a4ed79375b633d30362ca9e0d3c94e383448dab2632ecd90cb34ad80bc768.png" src="_images/be5a4ed79375b633d30362ca9e0d3c94e383448dab2632ecd90cb34ad80bc768.png" />
+</div>
+</div>
+<p>The figures illustrate the improved predictive performance of the random forest model over linear regression. Additionally, while both models experience a negative bias at higher house values and a positive bias at lower house values, the bias appears partially reduced in the random forest instance. It is ususal for models to struggle with predicting extream values and the bias is the result of differences in the relationships with predictors for the bulk data and tail ends. One avenue for correcting this might be to model the extreams independently of the bulk data. Additionally, we could try to incorporate extra predictors that are targeted at capturing important features that distinguish the extreams. Further exploration of the extreams and for example their spatial locations would help in identifying the best avenue for further improvement.</p>
+</section>
+</section>
+<section id="conclusions">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Conclusions</a><a class="headerlink" href="#conclusions" title="Link to this heading">#</a></h2>
+<p>A very basic data science pipeline is presented as a template for the sort of style expected in the more sophisticated methodology notebooks to be incorporated. The aim is to present the various steps involved when applying a certain methodology, beyond just the training step. The goal is not to focus too heavily on the science but to comment where necessary to motivate methodology choices. Hopefully the notebooks will provide a gentle step-by-step introduction for sharing methodologies within the environmental sciences community.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "Jez-Carter/UKCEH_Data_Science_Book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fitting Joint Species Distribution Models with jsdmstan</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-required-libraries">Importing Required Libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-exploration">Data Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-histograms">Marginal Histograms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix-and-pairplot">Correlation Matrix and PairPlot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-maps">Spatial Maps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-pre-processing">Data Pre-Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers-and-truncated-variables">Outliers and Truncated Variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-engineering">Feature Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-data">Scaling Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-and-test-splits">Train and Test Splits</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training-and-evaluation">Model Training and Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-predictions-and-comparisons">Examining Predictions and Comparisons</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusions">Conclusions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
