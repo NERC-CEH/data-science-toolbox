@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<img width="300" height="300" src="images/ukceh-edsb-logo.png" alt="Environmental Data Science Book Logo">
+<img width="300" style="height: auto;" src="images/ukceh-edsb-logo.png" alt="Environmental Data Science Book Logo">
 </p>
 
 
