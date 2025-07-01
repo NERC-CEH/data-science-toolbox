@@ -1,0 +1,23 @@
+name: jbook_BCA
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - arviz
+  - cartopy
+  - geopandas
+  - jax
+  - jaxlib
+  - matplotlib
+  - numpy
+  - numpyro
+  - pandas
+  - python=3.11
+  - scikit-learn
+  - scipy
+  - seaborn
+  - tinygp
+  - tqdm
+  - xarray
+  - ipykernel
+  - fiona
