@@ -9,7 +9,7 @@
 
 > ⚠️ ***PROTOTYPE: This Jupyter Book is a work in progress and is currently in a prototype stage***.
 
-[UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox)
+[NC-UK Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox)
 
 [**Contributing**](#contributing)
 | [**Published Book**](#published-book)
@@ -17,7 +17,7 @@
 | [**Current/Future Content**](#current-and-future-content)
 | [**Discussion Topics**](#discussion-topics)
 
-This repository houses the UKCEH Jupyter Book that aligns with the NCUK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science. The book is currently in a prototyping stage with methodologies/notebooks expected to evolve over time.
+This repository houses the NC-UK Jupyter Book that aligns with the NC-UK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science. The book is currently in a prototyping stage with methodologies/notebooks expected to evolve over time.
 
 # Contributing
 
@@ -25,11 +25,11 @@ If you're interested in incorporating some methodology into this Jupyter book, o
 
 # Published Book 
 
-The Jupyter book is currently in very early stages of development. The current published version of the book is available here: [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The book is deployed via [gh-pages](https://jupyterbook.org/en/stable/start/publish.html).
+The Jupyter book is currently in very early stages of development. The current published version of the book is available here: [NC-UK Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The book is deployed via [gh-pages](https://jupyterbook.org/en/stable/start/publish.html).
 
 # User Engagement
 
-To engage with the Jupyter book it is advised to visit the published version at: [UKCEH Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The landing page provides context on the different data science methods incorporated and their key components, including datasets, statistical concepts. The notebooks should contain a link to the respective repository housing it and to any papers linked to the method. Additionally, introductory context such as how to set up the environment for running the notebook top-to-bottom will be present. In general, it is expected that users will clone the notebook repository locally, create the virtual environment with relevant packages installed and then run the code in their favourite IDE. 
+To engage with the Jupyter book it is advised to visit the published version at: [NC-UK Environmental Data Science Toolbox 🌱](https://NERC-CEH.github.io/data-science-toolbox). The landing page provides context on the different data science methods incorporated and their key components, including datasets, statistical concepts. The notebooks should contain a link to the respective repository housing it and to any papers linked to the method. Additionally, introductory context such as how to set up the environment for running the notebook top-to-bottom will be present. In general, it is expected that users will clone the notebook repository locally, create the virtual environment with relevant packages installed and then run the code in their favourite IDE. 
 
 # Current and Future Content
 
