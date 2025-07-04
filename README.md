@@ -49,6 +49,8 @@ In terms of future content plans, there's various additional elements that could
 
 3. What about methodologies that are highly computationally demanding with long run-times? What's the computational back-end of the notebooks?
     - It's recommended that the notebooks should run top-to-bottom without error in <10 mins. In circumstances where it takes longer than this to perform inference on the model, it is recommended to include the code for inference but block comment it out and instead load in the output from a linked dataset. Currently users are expected to clone the repository containing the notebook and run the code locally in their favourite IDE, which means it's useful to limit the computational demands. In the future it's possible specific compute resource will be dedicated to the notebooks, allowing users to run the code in the cloud and without barriers associated with downloading relevant data and installing necessary packages.
+  
+> Inspired by the [Environmental Data Science book](https://edsbook.org/) produced by The Alan Turing Institute: EDS book community. Environmental Data Science book (Version v2025.7.1) [Computer software] 
 
 > Logo Credits: 
 The current Jupyter book logo was generated using OpenAI.
