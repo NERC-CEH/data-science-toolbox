@@ -14,3 +14,5 @@ parts:
     file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
   - title: Fitting Joint Species Distribution Models with jsdmstan
     file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+  - title: Non-target Analysis of Environmental Mass Spectrometry Data 
+    file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
