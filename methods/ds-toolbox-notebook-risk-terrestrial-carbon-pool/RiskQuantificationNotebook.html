@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -194,6 +194,8 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
 </ul>
 
     </div>
@@ -248,7 +250,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/NERC-CEH/data-science-toolbox/jez/executable?urlpath=tree/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -266,7 +268,7 @@
       
       
       
-      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/NERC-CEH/data-science-toolbox/blob/jez/executable/methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -279,6 +281,24 @@
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
 </li>
       
   </ul>
@@ -297,7 +317,7 @@
       
       
       
-      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +334,7 @@
       
       
       
-      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -564,31 +584,31 @@ For each country you're working with, a dedicated subdirectory will be created h
 <div style="border: 2px solid #ffa500; background-color: #fffbe6; padding: 10px; border-radius: 6px; margin: 10px 0;">
     <strong>Note:</strong> <span style="color: #d35400;">Set the path to your home directory in the following block of code.</span>
 </div><div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Importing packages and setting home directory path</span>
 <span class="n">homeDir</span> <span class="o">=</span> <span class="s1">&#39;c:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">jercar</span><span class="se">\\</span><span class="s1">OneDrive - UKCEH</span><span class="se">\\</span><span class="s1">VSCode</span><span class="se">\\</span><span class="s1">Jupyter_Books</span><span class="se">\\</span><span class="s1">UKCEH_Data_Science_Book</span><span class="se">\\</span><span class="s1">notebooks</span><span class="se">\\</span><span class="s1">methods</span><span class="se">\\</span><span class="s1">NCI_WP2A2</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">ncidata</span><span class="se">\\</span><span class="s1">&#39;</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">BoundaryNorm</span>
-<span class="kn">from</span> <span class="nn">rasterio.enums</span> <span class="kn">import</span> <span class="n">Resampling</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span><span class="p">,</span> <span class="n">BoundaryNorm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resampling</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">pygadm</span> 
-<span class="kn">import</span> <span class="nn">folium</span> <span class="k">as</span> <span class="nn">fl</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">r</span>
-<span class="kn">import</span> <span class="nn">getpass</span><span class="o">,</span> <span class="nn">pprint</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pygadm</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">folium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">r</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">getpass</span><span class="o">,</span><span class="w"> </span><span class="nn">pprint</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
 </div>
 </div>
@@ -761,10 +781,10 @@ For each country you're working with, a dedicated subdirectory will be created h
 <li><p>Authenticate with AρρEEARS API</p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Step 1 : Authenticate with AρρEEARS API</span>
@@ -782,10 +802,10 @@ For each country you're working with, a dedicated subdirectory will be created h
 <li><p>Create a list for products to be requested</p></li>
 </ol>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Step 2 : Create a list for products to be requested</span>
@@ -817,10 +837,10 @@ For each country you're working with, a dedicated subdirectory will be created h
 <li><p>Define area of interest – use the geometry of aoi produced previously</p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Step 3 : Define area of interest -- use the geometry of aoi produced previously</span>
@@ -836,10 +856,10 @@ For each country you're working with, a dedicated subdirectory will be created h
 <li><p>Create a task request</p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Step 4 : Create a task request </span>
@@ -895,10 +915,10 @@ For each country you're working with, a dedicated subdirectory will be created h
 <li><p>Post json to the API task service and track progress</p></li>
 </ol>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Step 5 : Post json to the API task service and track progress</span>
@@ -989,10 +1009,10 @@ Downloaded files can be found at: c:\Users\jercar\OneDrive - UKCEH\VSCode\Jupyte
 </div>
 <p>Plot the Land Cover (LC) data:</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define land cover classes and colors (MODIS LC_Type5)</span>
@@ -1077,10 +1097,10 @@ Downloaded files can be found at: c:\Users\jercar\OneDrive - UKCEH\VSCode\Jupyte
 </pre></div>
 </div>
 </div>
-<details class="hide below-input">
+<details class="admonition hide below-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell output</span>
-<span class="expanded">Hide code cell output</span>
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-20010101000000-fv09.1.nc
@@ -2296,10 +2316,10 @@ ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-20201228000000-fv09.1.nc
 <section id="plotting-input-data-and-risk-to-terrestrial-c-pool">
 <h2><a class="toc-backref" href="#id15" role="doc-backlink">Plotting Input Data and Risk to Terrestrial C Pool</a><a class="headerlink" href="#plotting-input-data-and-risk-to-terrestrial-c-pool" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### PLOTTING FOR NPP </span>
@@ -2395,8 +2415,8 @@ ESACCI-SOILMOISTURE-L3S-SSMV-COMBINED-20201228000000-fv09.1.nc
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "NERC-CEH/data-science-toolbox",
+            ref: "jez/executable",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -196,6 +196,8 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
 </ul>
 
     </div>
@@ -250,7 +252,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/NERC-CEH/data-science-toolbox/jez/executable?urlpath=tree/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -268,7 +270,7 @@
       
       
       
-      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/NERC-CEH/data-science-toolbox/blob/jez/executable/methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -281,6 +283,24 @@
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
 </li>
       
   </ul>
@@ -299,7 +319,7 @@
       
       
       
-      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +336,7 @@
       
       
       
-      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -670,7 +690,7 @@ probabilities, it induces a dependence between the two (i.e. a
 <strong>non-zero within-species data defect correlation</strong>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_occupancy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta_year</span><span class="p">,</span><span class="w"> </span><span class="n">beta_z</span><span class="p">,</span><span class="w"> </span><span class="n">z_vals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">simulate_occupancy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta_year</span><span class="p">,</span><span class="w"> </span><span class="n">beta_z</span><span class="p">,</span><span class="w"> </span><span class="n">z_vals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">z_vals</span><span class="o">$</span><span class="n">z</span>
 <span class="w">  </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">z_vals</span><span class="p">)</span>
 <span class="w">  </span>
@@ -700,7 +720,7 @@ uniform distributions whose range should ensure a mix of increasing and
 decreasing trends.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">species_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">species_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nf">list</span><span class="p">(</span>
 <span class="w">    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-1.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">       </span><span class="c1"># baseline occupancy</span>
 <span class="w">    </span><span class="n">beta_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-0.8</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">),</span><span class="w">   </span><span class="c1"># some declining, some increasing</span>
@@ -710,7 +730,7 @@ decreasing trends.</p>
 <span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;sp&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nspecies</span><span class="p">)</span>
 
 <span class="c1"># Simulate all species</span>
-<span class="n">species_data_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">),</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">sp_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">species_data_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">lapply</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">),</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">sp_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">species_params</span><span class="p">[[</span><span class="n">sp_name</span><span class="p">]]</span>
 <span class="w">  </span><span class="n">occ_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">simulate_occupancy</span><span class="p">(</span>
 <span class="w">    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">alpha</span><span class="p">,</span>
@@ -719,7 +739,7 @@ decreasing trends.</p>
 <span class="w">    </span><span class="n">z_vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">site_year_df</span>
 <span class="w">  </span><span class="p">)</span>
 <span class="w">  </span><span class="n">occ_data</span><span class="o">$</span><span class="n">species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sp_name</span>
-<span class="w">  </span><span class="nf">return</span><span class="p">(</span><span class="n">occ_data</span><span class="p">)</span>
+<span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">occ_data</span><span class="p">)</span>
 <span class="p">})</span>
 
 <span class="c1"># Combine species and add shared inclusion</span>
@@ -740,7 +760,7 @@ one and two into a growth rate (their ratio). Growth rates are how
 population trends are usually formulated in MSIs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">compute_growth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">compute_growth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">    </span><span class="nf">group_by</span><span class="p">(</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
 <span class="w">    </span><span class="nf">summarise</span><span class="p">(</span><span class="n">mean_occ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">.groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;drop&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
@@ -771,7 +791,7 @@ considered a trait.</p>
 <div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract trait (beta_z) per species from species_params</span>
 <span class="n">traits_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
 <span class="w">  </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">species_params</span><span class="p">),</span>
-<span class="w">  </span><span class="n">trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">species_params</span><span class="p">,</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">beta_z</span><span class="p">)</span>
+<span class="w">  </span><span class="n">trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sapply</span><span class="p">(</span><span class="n">species_params</span><span class="p">,</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="n">p</span><span class="o">$</span><span class="n">beta_z</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="c1"># Define parameters for trait-based inclusion</span>
@@ -1024,8 +1044,8 @@ zero error in both periods.</p>
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "NERC-CEH/data-science-toolbox",
+            ref: "jez/executable",
         },
         codeMirrorConfig: {
             theme: "abcdef",

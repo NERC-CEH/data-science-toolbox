@@ -1,0 +1,1615 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Non-Target Analysis of Environmental Mass Spectrometry Data &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis';</script>
+    <link rel="icon" href="../../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="Fitting Joint Species Distribution Models with jsdmstan" href="../../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Environmental Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/NERC-CEH/data-science-toolbox/jez/executable?urlpath=tree/methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/NERC-CEH/data-science-toolbox/blob/jez/executable/methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NERC-CEH/data-science-toolbox/issues/new?title=Issue%20on%20page%20%2Fmethods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Non-Target Analysis of Environmental Mass Spectrometry Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Non-Target Analysis of Environmental Mass Spectrometry Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data">Downloading data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis">Principal component analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upset-plot-analysis">UpSet plot analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-datasets-available-on-norman-dsfp">Other datasets available on NORMAN-DSFP</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="non-target-analysis-of-environmental-mass-spectrometry-data">
+<h1>Non-Target Analysis of Environmental Mass Spectrometry Data<a class="headerlink" href="#non-target-analysis-of-environmental-mass-spectrometry-data" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://link.springer.com/article/10.1007/s00216-015-8681-7"><span>Reference [1]</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://doi.org/10.1016/j.trac.2023.116944"><span>Reference [2]</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://doi.org/10.1016/j.trac.2019.04.008"><span>Reference [3]</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://pubmed.ncbi.nlm.nih.gov/36174727/"><span>Reference [4]</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://dsfp.norman-data.eu/"><span>DSFP Homepage</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/DSFP-PyExplorer"><span>Notebook Repository</span></a>
+<span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Ongoing Development</span>
+<img alt="alt text" src="../../../_images/ukceh-logo-badge4.png" /></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/ezra-kitson">Dr. Ezra Kitson</a> | Notebook Top-to-Bottom Runtime ~ 5 Minutes</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Challenge:</div>
+<p class="sd-card-text">Environmental mass-spectrometry often returns data on many more compounds than just those compounds that were the target of the analysis. Non-target analysis is the analysis of the non-target compounds in an analytical spectrum. The first step in non-target analysis for mass spectrometry is non-target screening, which involves starting with a peak in the spectrum at a mass of interest and using all the available information (e.g. retention time, isotope peaks, fragment peaks) to go from a mass to an unequivocal molecular formula, and eventually a confirmed structure [1].</p>
+<p class="sd-card-text">In recent years there has been work to standardise and refine this workflow [2], [3] resulting in the creation of the NORMAN Digital Sample Freezing Platform (DSFP), a web portal where users can upload raw mass spectrometry data from a particular project (known as a collection) and have the data automatically screened for non-target analysis peaks [3]. This non-target screening data is then available publicly for download.</p>
+<p class="sd-card-text">The second step of non-target analysis is to perform statistical analysis of the non-target screening data. There are currently a lack of tools to do this on the data available on the NORMAN-DSFP. The purpose of this work was to develop a Python library to make it easier to download, process and analyse the wealth of non-target analysis data available on the NORMAN-DSFP.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Approach:</div>
+<p class="sd-card-text">We developed a Python library, DSFP-PyExplorer  to enable statistical analysis of non-target analysis data present on the NORMAN Digital Sample Freezing Platform  (DSFP). The library can be run from the command line and the scripts are parametrised by a single .yaml file. The library uses the REST API of the DSFP to download collections and then uses the Pandas and Numpy Python libraries to process the data into a metadata table and an ordination matrix, ready for statistical analysis</p>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Running the Notebook:</p>
+<p>To run the notebook it is advised to first clone the repository housing the notebook (’<em>git clone <a class="github reference external" href="https://github.com/NERC-CEH/DSFP-PyExplorer">NERC-CEH/DSFP-PyExplorer</a></em>’). This will create a folder in the current directory called <em>DSFP-PyExplorer</em>, which holds all the relevant files including the notebook, environment file and relevant input data.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#downloading-data" id="id2">Downloading data</a></p></li>
+<li><p><a class="reference internal" href="#principal-component-analysis" id="id3">Principal component analysis</a></p></li>
+<li><p><a class="reference internal" href="#upset-plot-analysis" id="id4">UpSet plot analysis</a></p></li>
+<li><p><a class="reference internal" href="#other-datasets-available-on-norman-dsfp" id="id5">Other datasets available on NORMAN-DSFP</a></p></li>
+</ul>
+</nav>
+<!-- https://jupyterbook.org/en/stable/structure/configure.html --><section id="introduction">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>This notebook demonstrates how to use the DSFP-PyExplorer Python library, to download, process and analyse non target analysis mass spectrometry data located on the NORMAN Digital Sample Freezing Platform (DSFP).</p>
+</section>
+<section id="downloading-data">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Downloading data</a><a class="headerlink" href="#downloading-data" title="Link to this heading">#</a></h2>
+<div class="note dropdown admonition">
+<p class="admonition-title">Data Access:</p>
+<p>Life-APEX data has been pre-downloaded from the NORMAN-DSFP and stored in the GitHub repository housing this notebook. As such, you do not need to run the commands in the ‘downloading data’ section of this notebook, however if you would like to process a different data collection, feel free to do so. Life-APEX data is published by the University of Athens under an <a class="reference external" href="https://dsfp.norman-data.eu/dataset/27df0a3e-3578-4a30-b9e4-1505f9da010d">open license.</a></p>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">LIFE-APEX:</p>
+<p>The Life Apex project [collection ID 333] was a pan-EU initiative to perform targeted and non-targeted screening of biota, specifically Apex predators and their prey. To generate this data mass spectrometry was performed with two instrument setups, LC-ESI Positive mode-maXis QTOF (Submission #10) and LC ESI Negative mode-maXis QTOF (Submission #11) on tissue samples from various predator and prey animals prepared with a 50:50 water:methanol solvent. Scans were made from 50 – 1000 m/z, with a resolving power of 30000 for positive mode and 500 for negative mode.Further information on the method is available [4].</p>
+</div>
+<div class="warning dropdown admonition">
+<p class="admonition-title">Warning: Computational Demands</p>
+<p>The code in this section will take over twenty minutes to run (depending on your internet connection speed). It has therefore been commented out.</p>
+</div>
+<p>Data on the NORMAN-DSFP is organised into collections. A collection is a group of samples submitted together to the DSFP which may represent a single sampling campaign, or multiple sampling campaigns across a project. With DSFP-PyExplorer we download the molecular data and metadata separately using two different scripts: <code class="docutils literal notranslate"><span class="pre">ordination_mat.py</span></code> downloads the molecular data and constructs an ordination matrix, and <code class="docutils literal notranslate"><span class="pre">metadata.py</span></code> downloads the associated metadata.</p>
+<p>To specify which collection to download we edit the <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file in the root folder of the repository. Let’s have a look an example <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file that will download data from the LIFE APEX collection.</p>
+<p>There are a few aspects of this <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file to unpick. Starting from top:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">COLLECTION_ID</span></code> instructs the script which data collection from the DSFP to process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOWNLOAD:</span> <span class="pre">True</span></code> instructs the script to download molecular data from the NORMAN-DSFP and store it in <code class="docutils literal notranslate"><span class="pre">DOWNLOAD_DIR</span></code>.</p></li>
+</ul>
+<p>Next are arguments for constructing the ordination matrix:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDPATH</span></code> specifies where the ordination matrix should be saved to.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">METHOD</span></code> specifies how to deal with compounds that match to multiple peaks in a sample. <code class="docutils literal notranslate"><span class="pre">max</span></code> takes the maximum peak area value, <code class="docutils literal notranslate"><span class="pre">sum</span></code>, sums the peak area values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">THREADS</span></code> specifies how many parallel CPU threads to use when downloading/loading/ordinating molecular data.</p></li>
+</ul>
+<p>The command line scripts below will run both scripts with the specified parameters. They have been commented out since the data has been pre-downloaded and processed for this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
+#python ../metadata.py notebook_config.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+#python ../ordination_mat.py notebook_config.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output of the scripts are two <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files that we can open using the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> library in Python. We’ll start by opening the ordination matrix. This consists of over 400 biological samples as rows, and over 50,000 molecules as columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="c1">#read the ordination data (this will take a few seconds)</span>
+<span class="n">ordinationData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../ordination/333_ordination.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#print the matrix shape (rows x columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ordinationData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1">#print the first five rows </span>
+<span class="n">ordinationData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(413, 56248)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NS00037893</th>
+      <th>NS00058165</th>
+      <th>NS00043788</th>
+      <th>NS00043046</th>
+      <th>NS00047083</th>
+      <th>NS00017860</th>
+      <th>NS00060002</th>
+      <th>NS00083992</th>
+      <th>NS00029295</th>
+      <th>NS00073764</th>
+      <th>...</th>
+      <th>NS00096343</th>
+      <th>NS00014879</th>
+      <th>NS00068277</th>
+      <th>NS00032640</th>
+      <th>NS00100956</th>
+      <th>NS00024942</th>
+      <th>NS00024645</th>
+      <th>NS00066989</th>
+      <th>NS00059513</th>
+      <th>NS00080368</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19082</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>51058.1526</td>
+      <td>NaN</td>
+      <td>54269.933000</td>
+      <td>8552.862857</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>21537</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4752.300889</td>
+      <td>23547.166500</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19919</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>15188.6000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19129</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>172948.164843</td>
+      <td>251080.432380</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>19871</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3433.188727</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>10713.063529</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 56248 columns</p>
+</div></div></div>
+</div>
+<p>The metadata table helps us decipher what samples the row indices in the ordination matrix refer to. The ‘ID’ column of the metadata table maps to the index column of the ordination matrix.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#read the metadata table</span>
+<span class="n">metaData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../metadata/333_metadata.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#print the matrix shape (rows x columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metaData</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># print the columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metaData</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1">#print the first five rows </span>
+<span class="n">metaData</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<details class="admonition hide below-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(436, 27)
+Index([&#39;Collection&#39;, &#39;Sample type&#39;, &#39;Short name for contribution&#39;,
+       &#39;Sampling date&#39;, &#39;Analysis date&#39;, &#39;Instrument setup used&#39;,
+       &#39;Monitored City&#39;, &#39;Monitored country&#39;, &#39;Latitude&#39;, &#39;Longitude&#39;,
+       &#39;Alive or not&#39;, &#39;Basis of measurement&#39;, &#39;Biota species name (in Latin)&#39;,
+       &#39;Distance from the river source (km)&#39;,
+       &#39;Fat content (% of total wet matter)&#39;,
+       &#39;Name of river, estuary, lake, reservoir, sea&#39;, &#39;Number of orgnanisms&#39;,
+       &#39;Origin of biota&#39;, &#39;Proxy pressures&#39;, &#39;River basin name&#39;, &#39;Size (mm)&#39;,
+       &#39;Species group&#39;, &#39;Tissue&#39;, &#39;Water content(%)&#39;, &#39;Weight (kg)&#39;,
+       &#39;field_country&#39;, &#39;matrix&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Collection</th>
+      <th>Sample type</th>
+      <th>Short name for contribution</th>
+      <th>Sampling date</th>
+      <th>Analysis date</th>
+      <th>Instrument setup used</th>
+      <th>Monitored City</th>
+      <th>Monitored country</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>...</th>
+      <th>Origin of biota</th>
+      <th>Proxy pressures</th>
+      <th>River basin name</th>
+      <th>Size (mm)</th>
+      <th>Species group</th>
+      <th>Tissue</th>
+      <th>Water content(%)</th>
+      <th>Weight (kg)</th>
+      <th>field_country</th>
+      <th>matrix</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>37</th>
+      <td>LIFE APEX</td>
+      <td>Real Sample</td>
+      <td>LIFE APEX 01 Bream Muscle from Danube Jochenstein</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>Wed, 01/01/2020 - 00:00</td>
+      <td>LC-Bruker maXis QTOF: Submission #10</td>
+      <td>Jochenstein</td>
+      <td>NaN</td>
+      <td>51.83</td>
+      <td>12.22</td>
+      <td>...</td>
+      <td>River</td>
+      <td>NaN</td>
+      <td>Danube river basin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Muscle</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Germany</td>
+      <td>biota</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>LIFE APEX</td>
+      <td>Real Sample</td>
+      <td>LIFE APEX 02 Bream Muscle from Elbe</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>Wed, 01/01/2020 - 00:00</td>
+      <td>LC-Bruker maXis QTOF: Submission #10</td>
+      <td>Wittenberge</td>
+      <td>Germany</td>
+      <td>53.01</td>
+      <td>11.75</td>
+      <td>...</td>
+      <td>River</td>
+      <td>NaN</td>
+      <td>Elbe river basin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Muscle</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Germany</td>
+      <td>biota</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>LIFE APEX</td>
+      <td>Real Sample</td>
+      <td>LIFE APEX 03 Bream Muscle from Rhine Bimmen</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>Wed, 01/01/2020 - 00:00</td>
+      <td>LC-Bruker maXis QTOF: Submission #10</td>
+      <td>Emmerich</td>
+      <td>Germany</td>
+      <td>51.85</td>
+      <td>6.24</td>
+      <td>...</td>
+      <td>River</td>
+      <td>NaN</td>
+      <td>Rhine river basin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Muscle</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Germany</td>
+      <td>biota</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>LIFE APEX</td>
+      <td>Real Sample</td>
+      <td>LIFE APEX 04 Bream Muscle from Belauer See</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>Wed, 01/01/2020 - 00:00</td>
+      <td>LC-Bruker maXis QTOF: Submission #10</td>
+      <td>Neumunster</td>
+      <td>Germany</td>
+      <td>54.07</td>
+      <td>9.98</td>
+      <td>...</td>
+      <td>River</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Muscle</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Germany</td>
+      <td>biota</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>LIFE APEX</td>
+      <td>Real Sample</td>
+      <td>LIFE APEX 05 Bream Muscle from Saar Gudingen</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>Thu, 01/01/2015 - 00:00</td>
+      <td>LC-Bruker maXis QTOF: Submission #10</td>
+      <td>Saarbrucken</td>
+      <td>Germany</td>
+      <td>49.25</td>
+      <td>6.97</td>
+      <td>...</td>
+      <td>River</td>
+      <td>NaN</td>
+      <td>Rhine river basin</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Muscle</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Germany</td>
+      <td>biota</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 27 columns</p>
+</div></div></div>
+</details>
+</div>
+</section>
+<section id="principal-component-analysis">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Principal component analysis</a><a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h2>
+<p>Now we can start to perform statistical analysis on the non target analysis data. Principal component analysis (PCA) is an unsupervised dimensionality reduction technique which is done by performing eigen decomposition of the covariance matrix of the ordination matrix, and then visualising the principal eigenvectors of this transformation. In simple language this allows us to visualise how similar samples are to one another along the main drivers of variation across compounds. DSFP-PyExplorer saves the sample scores (i.e. the PC1,PC2,…,PCN values for each sample), the PCA loadings (i.e. how each compound is transformed to generate the principal component aces) and PCA biplots and loading plots which can be styled using the metadata table. The library offers advanced options for peak-area normalisation and missing-data imputation, which reflect the latest statistical research.</p>
+<p>To perform PCA we first need to add the following parameters to the the <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file.</p>
+<p>Let’s unpick the above, starting from the top:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SUBSET:</span> <span class="pre">&quot;Instrument</span> <span class="pre">setup</span> <span class="pre">used&quot;</span></code> determines whether to subset the data before performing PCA. Set to <code class="docutils literal notranslate"><span class="pre">none</span></code> to do PCA on all the data. Subsetting means the data is divided based on a categorical variable in the metadata table, and PCA is performed independently on each division of the dataset.</p></li>
+</ul>
+<p>Next we have parameters that determine how the PCA biplots and loading plots should be made:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PLOT:</span> <span class="pre">True</span></code> determines whether <code class="docutils literal notranslate"><span class="pre">.svg.</span></code> plot figures should be saved to <code class="docutils literal notranslate"><span class="pre">PCAPATH</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HUE:</span> <span class="pre">'Tissue'</span></code> - determines the column of the metadata file to colour the scatter points by in PCA biplots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STYLE:</span> <span class="pre">'Species</span> <span class="pre">group'</span></code> - determines the column of the metadata file to style the the scatter points by in PCA biplots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LEGEND_BBOX_X</span></code> and <code class="docutils literal notranslate"><span class="pre">LEGEND_BBOX_Y</span></code> determines where in the plot the legend should be placed.</p></li>
+</ul>
+<p>Then there are parameters about how to normalise the data before performing PCA. Normalisation can take place row-wise (to account for concentration differences between samples) and column-wise (to account for heteroskedasticity of compounds). A good primer on peak area normalisation can be read <a class="reference external" href="https://link.springer.com/article/10.1186/1471-2164-7-142">here</a>. Peak area normalisation is performed using the <a class="reference external" href="https://github.com/Kzra/pykrev">PyKrev Python library</a>. See the documentation for PyKrev.normalise_intensity() for more information on the parameters below.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NORM_ORDER:</span> <span class="pre">&quot;rowcol&quot;</span></code> specifies what order to normalise the data in. One of <code class="docutils literal notranslate"><span class="pre">row</span></code>, <code class="docutils literal notranslate"><span class="pre">col</span></code>, <code class="docutils literal notranslate"><span class="pre">rowcol</span></code>, <code class="docutils literal notranslate"><span class="pre">colrow</span></code> or <code class="docutils literal notranslate"><span class="pre">none</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROW_METHOD:</span> <span class="pre">&quot;sum&quot;</span></code> specifies how to row-normalise the ordination data before doing PCA.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROW_TRANSFORM:</span> <span class="pre">&quot;power3&quot;</span></code> specifies to row-transform the ordination data before doing PCA.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COL_METHOD:</span> <span class="pre">&quot;sum&quot;</span></code> specifies how to column-normalise the ordination data before doing PCA.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COL_TRANSFORM:</span> <span class="pre">&quot;power3&quot;</span></code>specifies how to column-transform the ordination data before doing PCA.</p></li>
+</ul>
+<p>Then there are parameters that determine the number of principal components, and loadings associated with those components to keep.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">COMPONENTS:</span> <span class="pre">4</span></code> - Number of principal components to keep, PCA biplots will be made for all combinations of these loadings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOADINGS:</span> <span class="pre">10</span></code> - Number of positive and negative loadings (ranked by coefficient) to plot. The top 10 positive and negative loadings will be plotted.</p></li>
+</ul>
+<p>Finally there are parameters for the <code class="docutils literal notranslate"><span class="pre">susdat.py</span></code> script which converts the NORMAN SUSDAT IDs (e.g. NS00037893) of the top loadings into compound names or some other chemical identifier:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SUSDAT:</span> <span class="pre">&quot;Compound</span> <span class="pre">name&quot;</span></code> specifies which field in the susdat json file to replace the NSID with. Set to “None” if you don’t want to change the IDs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CACHE:</span> <span class="pre">True</span></code> determines whether or not to use the downloaded susdat json files cached locally. The script will look in <code class="docutils literal notranslate"><span class="pre">SUSPATH</span></code> to see whether or not susdat json files have been downloaded. If they haven’t the script will download them.</p></li>
+</ul>
+<p>The command line scripts below will run PCA on the Life-Apex data, subsetting the data first by Instrument setup used, colouring the scatter points by tissue type, and styling them by species.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+python ../pca.py notebook_config.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6395.71it/s]
+susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6498.26it/s]
+susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6228.09it/s]
+susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6883.24it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at each the first two principal components as a biplot and as loading plots. We’ll focus on Instrument Setup #10 which was LC-ESI Positive Mode. The biplot of the two leading principal components shows a clear separation of tissue type on the first principal component, with muscle tissue samples being found generally with negative PC1 values, amd liver tissue samples being found generally to have positive PC1 values. There is also a separation of species along PC1, with fish samples generally having negative scores and bird samples generally having positive scores. ‘Other’ species have a mix of both positive and negative scores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
+<span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../pca/333/LC-Bruker maXis QTOF Submission 11/PC1_PC2.svg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/f11c9fb1ba1c78f5615c9d6455edfebf96f096de3b3f5fd03823acb234ae8253.svg" src="../../../_images/f11c9fb1ba1c78f5615c9d6455edfebf96f096de3b3f5fd03823acb234ae8253.svg" />
+</div>
+</div>
+<p>Looking at the top 10 loadings along PC1 can help elucidate what compounds were responsible for driving this sample separation. We can see that the compound ‘Inosine’ was particularly associated with negative PC1 scores. This suggests a link between inosine and muscle tissue in fish. Indeed, inosine (a type of nucleoside found in tRNAs) has been shown to form as a <a class="reference external" href="https://academic.oup.com/ijfst/article/41/4/341/7863908">degradation product of ATP in chill-stored post-mortem fish storage</a>, which may explain this finding.</p>
+<p>In a similar way we can see that a type of octadecatrienoic acid is associated with some liver tissue samples, especially that of birds. Searching for the <a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/compound/5497123">compound on the pubchem database</a> we find that it is primary peroxidation product of alpha-linoleic acid, an intermediate compound metabolism of certain lipids like prostaglandin, a function which occurs primarily in the liver of most organisms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../pca/333/LC-Bruker maXis QTOF Submission 11/PC1_loadings.svg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c2f486d60884650b598ddcae6cf4aa01c3b76fac22f0b5f04e1bdf639166ab3f.svg" src="../../../_images/c2f486d60884650b598ddcae6cf4aa01c3b76fac22f0b5f04e1bdf639166ab3f.svg" />
+</div>
+</div>
+<p>The loadings that PCA gives us are averaged across many samples, so to confirm the trends indicated by the PCA plots, we can access the raw data and create box plots of the compounds of interest across the relevant metadata categories. The boxplots below support our interpretation of the PCA, namely that inosine is concentration in fish liver tissue, and octadecatrienoic acid is mainly found in bird liver tissue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">compoundNames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Inosine&#39;</span><span class="p">,</span><span class="s1">&#39;(9Z,11E,15Z)-13-Hydroperoxy-9,11,15-octadecatrienoic acid&#39;</span><span class="p">]</span>
+<span class="c1"># read metadata table</span>
+<span class="n">metaData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../metadata/333_metadata.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># make metadata row order match ordination data row order</span>
+<span class="n">metaData</span> <span class="o">=</span> <span class="n">metaData</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ordinationData</span><span class="o">.</span><span class="n">index</span><span class="p">,:]</span>
+<span class="c1">#filter both datasets to be just submission 11 </span>
+<span class="n">boolFilter</span> <span class="o">=</span> <span class="n">metaData</span><span class="p">[</span><span class="s1">&#39;Instrument setup used&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;LC-Bruker maXis QTOF: Submission #11&quot;</span>
+<span class="n">metaFilter</span> <span class="o">=</span> <span class="n">metaData</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">boolFilter</span><span class="p">,:]</span>
+<span class="n">ordFilter</span> <span class="o">=</span> <span class="n">ordinationData</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">boolFilter</span><span class="p">,:]</span>
+<span class="c1"># loadings data</span>
+<span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../pca/333/LC-Bruker maXis QTOF Submission 11/PC1_loadings.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">compoundNames</span><span class="p">)):</span>
+    <span class="c1"># retrieve nsid for the compound of interest </span>
+    <span class="n">nsid</span> <span class="o">=</span> <span class="n">loadings</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;mols&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">compoundNames</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;sus&#39;</span><span class="p">]</span>
+    <span class="c1">#create a dataframe to plot from</span>
+    <span class="n">plotData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span> 
+    <span class="n">plotData</span><span class="p">[</span><span class="s1">&#39;peak area&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ordFilter</span><span class="p">[</span><span class="n">nsid</span><span class="p">]</span>
+    <span class="c1">#move the metadata rows to plot data </span>
+    <span class="n">plotData</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaFilter</span><span class="p">[</span><span class="s1">&#39;Tissue&#39;</span><span class="p">]</span>
+    <span class="n">plotData</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metaFilter</span><span class="p">[</span><span class="s1">&#39;Species group&#39;</span><span class="p">]</span>
+    <span class="c1">#use seaborn to plot </span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">plotData</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;peak area&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Species&#39;</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Tissue&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">compoundNames</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/5f5ca2e213fb55111a074fd896a605524018fa88c61d4c1df227b8e770d6f364.png" src="../../../_images/5f5ca2e213fb55111a074fd896a605524018fa88c61d4c1df227b8e770d6f364.png" />
+</div>
+</div>
+</section>
+<section id="upset-plot-analysis">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">UpSet plot analysis</a><a class="headerlink" href="#upset-plot-analysis" title="Link to this heading">#</a></h2>
+<p>UpSet plots are a way to visualise the intersections of compounds in different groups of samples. UpSet plots are similar in principal to venn diagrams, but work better when you have more than three groups. DSFP-PyExplorer uses the <a class="reference external" href="https://github.com/jnothman/UpSetPlot">UpSetPlot Python library</a> to perform the intersection analysis and create the plots. The groups for the intersection analysis can be any metadata variable from the metadata table. Users can specify to first filter the data to the top n compounds by peak area in a group to reduce the computational time needed to calculate intersections.</p>
+<p>We can use UpSet plots to look at what compounds are unique to different tissues, or different species groups.</p>
+<p>To perform UpSet plot analysis we need to add the following parameters to the <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file:</p>
+<p>Here’s an explanation of the parameters, starting from the top:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SUBSET:</span> <span class="pre">&quot;Instrument</span> <span class="pre">setup</span> <span class="pre">used&quot;</span></code> determines whether to subset the data before performing UpSet plot analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UPSET_PATH</span></code> is where the UpSet plot image files, and intersection data will be stored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GROUPING</span></code> is the metadata category from the metadata table used to create the intersections.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FILTER_TOP_N</span></code> is the number of compounds (ranked by peak area) from each group to include in the analysis. If False, all compounds will be used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX_SUBSET_RANK</span></code> determines whether to limit the number of intersections plotted (ranked by intersection size).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MIN_SUBSET_SIZE</span></code> determines whether to limit the number of intersections plotted based on a minimum intersection size threshold.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUSDAT:</span> <span class="pre">&quot;Compound</span> <span class="pre">name&quot;</span></code> specifies which field in the SUSDAT json file to replace the NSID with. Set to “None” if you don’t want to change the IDs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CACHE:</span> <span class="pre">True</span></code> determines whether or not to use the downloaded susdat json files cached locally. The script will look in <code class="docutils literal notranslate"><span class="pre">SUSPATH</span></code> to see whether or not susdat json files have been downloaded. If they haven’t the script will download them.</p></li>
+</ul>
+<p>If you have more than five groups, it is recommended to set <code class="docutils literal notranslate"><span class="pre">MAX_SUBSET_RANK</span></code> and <code class="docutils literal notranslate"><span class="pre">MIN_SUBSET_SIZE</span></code> to increase the readability of the plots. <code class="docutils literal notranslate"><span class="pre">FILTER_TOP_N</span></code> is recommended for large datasets (i.e. with more than 10,000 compounds) to reduce computational time.</p>
+<p>The command line script below will run UpSet plot analysis on the Life-Apex data, subsetting the data first by Instrument setup used, and using Tissue group to form intersections.</p>
+<div class="warning dropdown admonition">
+<p class="admonition-title">Warning: Computational Demands</p>
+<p>The code in this section will take about ten minutes to run if SUSDAT is not cached. Ignore the FutureWarning, this does not affect the results of the script.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> 
+python ../upset.py notebook_config.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>susdat: 100%|██████████| 56248/56248 [00:31&lt;00:00, 1768.38it/s]
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/data.py:385: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+  df.fillna(False, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;linewidth&quot;].fillna(1, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:796: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;facecolor&quot;].fillna(self._facecolor, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:797: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;edgecolor&quot;].fillna(styles[&quot;facecolor&quot;], inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:798: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;linestyle&quot;].fillna(&quot;solid&quot;, inplace=True)
+susdat: 100%|██████████| 56248/56248 [00:58&lt;00:00, 966.72it/s] 
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/data.py:385: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+  df.fillna(False, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:795: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;linewidth&quot;].fillna(1, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:796: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;facecolor&quot;].fillna(self._facecolor, inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:797: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;edgecolor&quot;].fillna(styles[&quot;facecolor&quot;], inplace=True)
+/home/ezrkit/.local/lib/python3.9/site-packages/upsetplot/plotting.py:798: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  styles[&quot;linestyle&quot;].fillna(&quot;solid&quot;, inplace=True)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s have a look at the UpSet plot that we have just created. We can see that <em>liver</em> has the most unique compounds (311) and <em>muscle</em> the least (79), the largest intersection (400) is compounds found in all tissue types, the smallest intersection (71) is compounds shared between <em>liver</em> and <em>other</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;../upset/333/LC-Bruker maXis QTOF Submission 11/upset_plot.svg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/ab623c8c4ee07cb9d3e4ea1dc5c192d61ca85e3e836db21ca1dbcd8611d238a2.svg" src="../../../_images/ab623c8c4ee07cb9d3e4ea1dc5c192d61ca85e3e836db21ca1dbcd8611d238a2.svg" />
+</div>
+</div>
+<p>We can read the data behind the plot saved in <code class="docutils literal notranslate"><span class="pre">fromContents.csv</span></code> to look at precisely what compounds were in each intersection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fromContents</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../upset/333/LC-Bruker maXis QTOF Submission 11/fromContents.csv&quot;</span><span class="p">)</span>
+<span class="n">fromContents</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Liver</th>
+      <th>Muscle</th>
+      <th>Other</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>Hydrazine, phenyl-, hydrochloride (1:?)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>6,7,12b,13-Tetrahydro-2H,4H,10H-[1,3]dioxolo[4...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>1-Phenylethyl 2-methylbutyrate</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>Ethyl 1-acetylpiperidine-4-carboxylate</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>1-(Hexadecylmethylamino)propan-2-ol</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1603</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>(E)-2-methoxy-4-(1-propenyl)phenyl isovalerate</td>
+    </tr>
+    <tr>
+      <th>1604</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>6-Hydroxy-3,4-dihydro-2(1H)-quinolinone</td>
+    </tr>
+    <tr>
+      <th>1605</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>(3aS,7aR,10R,11aS,11bS)-Decahydro-10-hydroxy-7...</td>
+    </tr>
+    <tr>
+      <th>1606</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>2-(3A,4,5,6,7,7a-Hexahydro-1H-4,7-methanoinden...</td>
+    </tr>
+    <tr>
+      <th>1607</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>Thenalidine tartrate</td>
+    </tr>
+  </tbody>
+</table>
+<p>1608 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>To find out the compounds unique to liver tissue, we can use boolean indexing. This gives us a list of 311 compounds found in the liver but not in muscle or other tissue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">liverCompounds</span> <span class="o">=</span> <span class="n">fromContents</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">fromContents</span><span class="p">[</span><span class="s1">&#39;Liver&#39;</span><span class="p">]</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">fromContents</span><span class="p">[</span><span class="s1">&#39;Muscle&#39;</span><span class="p">]</span><span class="o">|</span><span class="n">fromContents</span><span class="p">[</span><span class="s1">&#39;Other&#39;</span><span class="p">])),</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<span class="n">liverCompounds</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0               Hydrazine, phenyl-, hydrochloride (1:?)
+1     6,7,12b,13-Tetrahydro-2H,4H,10H-[1,3]dioxolo[4...
+11                            Oleic acid diethanolamide
+17       2-Methyl-N-phenyl-N-(4-piperidinyl)propanamide
+19    4-(3,3-Dimethylbicyclo[2.2.1]hept-2-yl)-2-ethy...
+Name: id, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Large language models:</p>
+<p>The following section involves running an open-source large language model (GPT-OSS-20B) hosted on a private company’s servers.
+What an AI company does with the input data you feed their model is not always transparent, so you should treat any use of a free-tier API like the one below with caution.
+In this case we are only feeding the model data that already exists in the public-domain, so it is a low-risk application.</p>
+<p>In order to run the below code, you will need to register an API key with Groq. The code has been commented out, and the LLM output has been cached so it can be printed without running the code.</p>
+<p>Note, the Groq-GPT-OSS-20B plan was included in free-tier at time of writing (October 2025), but this may change.</p>
+</div>
+<p>One way we can screen this list for potentially interesting molecules is using a large language model API. When choosing a large language model API in Python there are three things to consider:</p>
+<ol class="arabic simple">
+<li><p>Which model will you use? In this instance we are using the open-source model gpt-oss-20b model developed by OpenAI.</p></li>
+<li><p>Which organisation’s servers will you choose (or are you going to run the model locally)? In this case we are using US cloud company Groq’s hosting of the gpt-oss-20b as it’s covered by a free tier plan.</p></li>
+<li><p>Which Python library will you use to handle the API requests? In this instance we are opting for <a class="reference external" href="https://github.com/openai/openai-python">openAI</a> as it is compatible with Groq’s gpt-oss-20b endpoint.</p></li>
+</ol>
+<p>We will create a prompt asking the LLM to screen the list of liverCompounds and flag any that are associated with liver function in the scientific literature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">from openai import OpenAI</span>
+<span class="sd">import os</span>
+<span class="sd">from dotenv import load_dotenv</span>
+
+<span class="sd">#save your api key in .env</span>
+<span class="sd">load_dotenv(&#39;../.env&#39;)</span>
+
+<span class="sd">client = OpenAI(</span>
+<span class="sd">    api_key=os.environ.get(&quot;GROQ_API_KEY&quot;),</span>
+<span class="sd">    base_url=&quot;https://api.groq.com/openai/v1&quot;,</span>
+<span class="sd">)</span>
+
+<span class="sd">completion = client.chat.completions.create(</span>
+<span class="sd">        model=&quot;openai/gpt-oss-20b&quot;,</span>
+<span class="sd">        messages=[</span>
+<span class="sd">            {&quot;role&quot;: &quot;developer&quot;, &quot;content&quot;: &quot;Present results in a table&quot;},</span>
+<span class="sd">            {</span>
+<span class="sd">                &quot;role&quot;: &quot;user&quot;,</span>
+<span class="sd">                &quot;content&quot;: f&quot;Look through the compounds following this message. Can you link any of these compounds with the liver: {list(liverCompounds)}&quot;,</span>
+<span class="sd">            },</span>
+<span class="sd">        ],</span>
+<span class="sd">    )</span>
+
+<span class="sd">print(completion.choices[0].message.content)</span>
+<span class="sd">with open(&quot;LLM_output.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as file:</span>
+<span class="sd">    file.write(content)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;LLM_output.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">content</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>**Liver‑Related Compounds (selected from the list)**  
+
+| # | Compound (common name or key descriptor) | Liver‑related relevance (metabolism, hepatotoxicity, therapeutic use, etc.) |
+|---|------------------------------------------|--------------------------------------------------------------------------|
+| 1 | **Testosterone ketolaurate** | An ester of testosterone; hydrolyzed in the liver to active testosterone. Liver enzymes (CYP3A4) are responsible for its metabolism. Monitoring of liver function is recommended in long‑term therapy. |
+| 2 | **Pazufloxacin** | Fluoroquinolone antibiotic. Primarily metabolised by the liver (CYP1A2, CYP2C9). Reported cases of drug‑induced liver injury (DILI) in patients, especially with pre‑existing hepatic disease. |
+| 3 | **Fusidic acid** | Topical or systemic antibiotic. Liver‑mediated oxidation (CYP3A4) produces inactive metabolites. Hepatotoxicity is uncommon but can occur, especially with prolonged systemic exposure. |
+| 4 | **Caverject | Alprostadil** (Prostaglandin‑E1 analogue) | Metabolised by the liver (β‑oxidation, esterases). Used clinically for erectile dysfunction and peripheral vascular disease. Hepatic impairment reduces clearance, necessitating dose adjustment. |
+| 5 | **Iloprost** | Prostacyclin analogue used for pulmonary hypertension. Rapidly metabolised in the liver (hydrolysis, β‑oxidation). Hepatic dysfunction prolongs half‑life and increases risk of systemic side‑effects. |
+| 6 | **Simvastatin (carboxylic acid metabolite)** | Active form of simvastatin, a cholesterol‑lowering statin. Extensive first‑pass hepatic metabolism via CYP3A4. Major hepatotoxicity risk; baseline and periodic LFTs are recommended. |
+| 7 | **Loratadine** | Second‑generation antihistamine. Metabolised in the liver (CYP3A4, CYP2D6) to active N‑hydroxylated metabolite. Minor hepatic side‑effects; liver disease requires caution. |
+| 8 | **Cyproheptadine** | Antihistamine/antiserotonergic agent. Hepatically metabolised by CYP3A4, CYP2D6. Rarely causes mild elevations in liver enzymes. |
+| 9 | **Betahistine** | Vestibular medication used for Ménière’s disease. Metabolised in the liver (CYP2D6) to inactive metabolites. Hepatic dysfunction may increase exposure. |
+|10 | **7‑Oxolithocholic acid** | A bile acid derivative, produced during hepatic bile acid metabolism. Accumulation indicates cholestasis and can worsen liver injury. |
+|11 | **6‑Ketoprostaglandin F1α** | Prostaglandin‑derived vasodilator used in some clinical settings. Undergoes hepatic hydrolysis and β‑oxidation; hepatic dysfunction prolongs activity. |
+|12 | **Di‑sec‑butyl adipate** | Plasticiser/solvent; in vivo studies show it is metabolised in the liver and can produce hepatotoxic metabolites. |
+|13 | **Diisooctyl isophthalate** | Plasticiser; hepatotoxic in rodents via hepatic metabolism to reactive intermediates. |
+|14 | **Triadimenol metabolite P08** | Fungicide metabolite; shown to induce liver enzyme elevations in animal studies. |
+|15 | **Diethylammonium hexadecyl sulfate** | Surfactant; systemic absorption leads to hepatic accumulation and potential cytotoxicity. |
+|16 | **Diethyl hydrogen phosphate (compound with guanidine)** | Organic phosphate; hepatic metabolism can generate reactive metabolites. |
+|17 | **7‑(4‑Methoxyphenyl)methyl‑1,3‑dimethylpurine‑2,6‑dione** | Purine derivative; hepatic metabolism via CYP450s, may cause mild liver enzyme elevations. |
+|18 | **Sodium N,N‑bis(2‑hydroxyethyl)glycinate** | Chelator used in pharmaceuticals; hepatic excretion is major route. |
+|19 | **P‑(2,2‑dimethoxyethoxy)anisole** | Ester used in fragrance; undergoes hepatic hydrolysis. |
+|20 | **Methyl 2‑(p‑nitrophenoxy)tetradecanoate** | Pesticide/industrial intermediate; hepatotoxic in high doses due to hepatic oxidative metabolism. |
+
+&gt; **Notes**  
+&gt; *Only compounds with documented hepatic metabolism, therapeutic use related to the liver, or known hepatotoxicity were selected.  
+&gt; *Many of the larger, obscure‑named molecules on the list lack specific data on liver interaction; they were omitted for brevity.  
+&gt; *If a compound is a pro‑drug or metabolite, the table references its hepatic conversion pathway.  
+&gt; *Clinicians should still refer to up‑to‑date drug information sheets for dosage and liver‑monitoring guidance.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reading through this information can help give context to the results of the UpSet plot and filter down the search for compounds of interest: for example Betahistine is indeed a medication for Meniere’s disease, and it is metabolised by the liver, which could explain why the UpSet plot analysis did not find it present in other tissue types.</p>
+<p>However, large language models hallucinate and often produce false results, so it’s important to fact-check all of the claims made here. A big problem with large language models is they don’t actually understand if what they are telling you is true, so they are unable to refuse a request on the grounds that they can’t answer it properly. For example, if you ask gpt-oss-20b to provide references to support the above data table, it will create fake references that look plausible, but that don’t actually exist.</p>
+</section>
+<section id="other-datasets-available-on-norman-dsfp">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Other datasets available on NORMAN-DSFP</a><a class="headerlink" href="#other-datasets-available-on-norman-dsfp" title="Link to this heading">#</a></h2>
+<p>There are many other collections of data available on the NORMAN-DSFP in a range of locations and from diverse environmental matrices (including biota, wastewater, surface water, sediment). Below we cycle through the metadata files downloaded by <code class="docutils literal notranslate"><span class="pre">metadata.py</span></code> and use them to create a map of showing the samples currently available on the NORMAN-DSFP. (Note this only includes samples that have unrestricted access).
+If you have LC-MS or GC-MS data that you would like to perform non-target analysis on, it is free to submit to the NORMAN-DSFP and your data will be automatically processed by a peer-reviewed non-target analysis pipeline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">metafiles</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;../metadata&#39;</span><span class="p">)</span>
+<span class="n">collections</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">metafiles</span><span class="p">])</span>
+<span class="c1">#merge all the metadata into one dataframe</span>
+<span class="n">baseDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">:</span>
+    <span class="n">cData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;../metadata/</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">_metadata.csv&quot;</span><span class="p">)</span>
+    <span class="n">cData</span><span class="p">[</span><span class="s1">&#39;collectionID&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">c</span>
+    <span class="n">baseDf</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">baseDf</span><span class="p">,</span><span class="n">cData</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">contextily</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">mapDf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">baseDf</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span><span class="s1">&#39;matrix&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span><span class="n">baseDf</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">baseDf</span><span class="o">.</span><span class="n">Latitude</span><span class="p">))</span>
+
+
+<span class="c1"># Define Europe bounding box</span>
+<span class="n">eu_lat_min</span><span class="p">,</span> <span class="n">eu_lat_max</span> <span class="o">=</span> <span class="mf">35.0</span><span class="p">,</span> <span class="mf">71.0</span>
+<span class="n">eu_lon_min</span><span class="p">,</span> <span class="n">eu_lon_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">45.0</span>
+
+<span class="c1"># Filter GeoDataFrame to Europe bounds</span>
+<span class="n">europe_mapDf</span> <span class="o">=</span> <span class="n">mapDf</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">eu_lat_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">eu_lat_max</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">eu_lon_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">eu_lon_max</span><span class="p">)</span>
+<span class="p">]</span>
+
+
+<span class="c1"># Define UK bounding box</span>
+<span class="n">uk_lat_min</span><span class="p">,</span> <span class="n">uk_lat_max</span> <span class="o">=</span> <span class="mf">49.9</span><span class="p">,</span> <span class="mf">60.9</span>
+<span class="n">uk_lon_min</span><span class="p">,</span> <span class="n">uk_lon_max</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.6</span><span class="p">,</span> <span class="mf">1.8</span>
+
+<span class="c1"># Filter GeoDataFrame to UK bounds</span>
+<span class="n">uk_mapDf</span> <span class="o">=</span> <span class="n">mapDf</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">uk_lat_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">uk_lat_max</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">uk_lon_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">mapDf</span><span class="p">[</span><span class="s1">&#39;Longitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">uk_lon_max</span><span class="p">)</span>
+<span class="p">]</span>
+
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">europe_mapDf</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;matrix&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">crs</span><span class="o">=</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">uk_mapDf</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Collection&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;matrix&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">1e2</span><span class="p">)</span>
+<span class="n">cx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">crs</span><span class="o">=</span><span class="s1">&#39;epsg:4326&#39;</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/02993b7fe51f786bbb0d534023a84e27b0b784672687e16baab7cd90ea50feba.png" src="../../../_images/02993b7fe51f786bbb0d534023a84e27b0b784672687e16baab7cd90ea50feba.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
+<p>In this notebook we looked at how to use DSFP-PyExplorer library to analyse non-target analysis mass-spectrometry data. We studied two scripts in detail, <code class="docutils literal notranslate"><span class="pre">pca.py</span></code> and <code class="docutils literal notranslate"><span class="pre">upset.py</span></code>. These scripts were used to analyse the chemical make up of biological tissue samples in the Life-APEX collection. DSFP-PyExplorer can be used for additional analysis not covered in this notebook, for example Linear Discriminant Analysis, or K-means clustering. For a full overview of the library, see the GitHub page: <a class="github reference external" href="https://github.com/NERC-CEH/DSFP-PyExplorer">NERC-CEH/DSFP-PyExplorer</a></p>
+<p><img alt="logo" src="../../../_images/dsfp-pylogo.png" /></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "NERC-CEH/data-science-toolbox",
+            ref: "jez/executable",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./methods\DSFP-PyExplorer\notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Fitting Joint Species Distribution Models with jsdmstan</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Non-Target Analysis of Environmental Mass Spectrometry Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-data">Downloading data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis">Principal component analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upset-plot-analysis">UpSet plot analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-datasets-available-on-norman-dsfp">Other datasets available on NORMAN-DSFP</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
