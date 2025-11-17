@@ -16,3 +16,5 @@ parts:
     file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
   - title: Non-target Analysis of Environmental Mass Spectrometry Data 
     file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+  - title: RO-Crate Tutorial 
+    file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
