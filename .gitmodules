@@ -13,3 +13,6 @@
 [submodule "methods/DSFP-PyExplorer"]
 	path = methods/DSFP-PyExplorer
 	url = https://github.com/NERC-CEH/DSFP-PyExplorer
+[submodule "methods/ds-toolbox-notebook-rocrate-tutorial"]
+	path = methods/ds-toolbox-notebook-rocrate-tutorial
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git
