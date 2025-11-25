@@ -54,6 +54,10 @@ In terms of future content plans, there's various additional elements that could
 
 If you would like to cite the Environmental Data Science Jupyter Book, please use the "Cite this repository" button on this repository's landing page in the right sidebar. If you would like to cite an individual method's Jupyter Notebook, click on the "Notebook Repository" button at the top of the notebook and then use the "Cite this repository" button on that repository's landing page. See [here](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files) for more information on how GitHub generates these citation buttons from `CITATION.cff` files.
 
+<p align="left">
+<img width="400" style="height: auto;" src="images/cite-repository-button.png" alt="Screenshot of 'Cite this repository' button on repository landing page">
+</p>
+
 > Inspired by the [Environmental Data Science book](https://edsbook.org/) produced by The Alan Turing Institute: EDS book community. Environmental Data Science book (Version v2025.7.1) [Computer software] 
 
 > Logo Credits: 
