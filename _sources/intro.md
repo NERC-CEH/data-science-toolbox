@@ -26,6 +26,7 @@ The current recommended workflow for interactively engaging with the code in the
 | [Understanding the error of Multispecies Biodiversity Indicators](<../methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error>) {bdg-warning-line}`Ongoing Development` | Bias, Uncertainty | Simulated Dataset (Multispecies Occupancy).
 | [Joint Species Distribution Models with jsdmstan](<../methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book>) | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations,  | Simulated Dataset (Multispecies Populations).
 | [Non-target Analysis of Environmental Mass Spectrometry Data](<../methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis>) {bdg-warning-line}`Ongoing Development` | Cheminformatics, Data Access, Non-target Analysis, Large Language Models, Principal Component Analysis, UpSet Analysis | Processed LC-MS and GC-MS Data hosted on the NORMAN Digital Sample Freezing Platform (DSFP).
+| [RO-Crate Tutorial](<../methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial>) {bdg-warning-line}`Ongoing Development` | Data Access, Metadata, Data Integrity | COSMOS Dataset from EIDC
 | Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
 | Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` | | |
 | River Utility Tools {bdg-warning-line}`Planned` | Spatio-temporal Integration, Networks | |

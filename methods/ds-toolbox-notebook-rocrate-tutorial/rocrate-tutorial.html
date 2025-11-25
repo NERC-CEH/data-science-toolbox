@@ -1,0 +1,1646 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RO-Crate Tutorial Notebook. &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Non-Target Analysis of Environmental Mass Spectrometry Data" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Environmental Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">RO-Crate Tutorial</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>RO-Crate Tutorial Notebook.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-ro-crate-object-from-the-eidc">Retrieve the RO-Crate object from the EIDC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-take-a-quick-look-inside-the-crate">Let take a quick look inside the crate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-hold-of-some-data">Lets get hold of some data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-that-we-can-see-we-have-data-files-lets-extract-one-and-look-at-our-data">Now that we can see we have data files lets extract one and look at our data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-about-information-on-the-quality-of-the-data">What about information on the quality of the data?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ro-crate-tutorial-notebook">
+<h1>RO-Crate Tutorial Notebook.<a class="headerlink" href="#ro-crate-tutorial-notebook" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git"><span>Notebook Repository</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://www.researchobject.org/ro-crate/"><span>RO-Crate Specification</span></a>
+<span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Ongoing Development</span>
+<img alt="alt text" src="../../_images/ukceh-logo-badge5.png" /></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/michael-hollaway">Dr. Michael Hollaway</a></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Challenge:</div>
+<p class="sd-card-text">Any data science project or workflow always starts with the data itself. This often requires an understanding of the data’s structure, the context in which is was collected, any underlying assumptions about the data, licencing information and the provenance of the data. This information is collectively known as metadata and is usually supplied with the data but is often in separate files or documentation. In addition the data itself often comes in multiple files that sometimes need to be downloaded individually and uploaded to separate platfoms in order to perform any analysis. This can provide a challenge to working with the data and lead to large amounts of time spent getting the data ready for analysis.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Approach:</div>
+<p class="sd-card-text">This notebook demonstrates the use of a Research Object Crate or RO-Crate (<a class="reference external" href="https://www.researchobject.org/ro-crate/">https://www.researchobject.org/ro-crate/</a>) to extract data from the Environmental Information Data Centre (EIDC), inspect its metadata and then read in the data itself. An RO-Crate is a way of packaging up the entire research object (data, metadata, methods, etc) so that the data and metadata are linked in a coherant context no matter where they are stored. RO-Crate can also be used read in the data directly from source rather than hacing to donwload it manually first.</p>
+</div>
+</div>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Running the Notebook:</p>
+<p>To run the notebook it is advised to first clone the repository housing the notebook (’<em>git clone <a class="github reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git">NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git</a></em>’). This will create a folder in the current directory called <em>ds-toolbox-notebook-rocrate-tutorial</em>, which holds all the relevant files including the notebook, environment file and relevant input data. The next step is to create a conda environment with the right packages installed using the clean yml file (’<em>conda env create -f environment_clean.yml</em>’), which creates the <em>rocrate-tutorial</em> environment that can be activated using ‘<em>conda activate rocrate-tutorial</em>’. At this point the user can either run code from the notebook in their preferred IDE or via the jupyter interface using the command ‘<em>jupyter notebook</em>’.</p>
+</div>
+<div class="note dropdown admonition">
+<p class="admonition-title">Generalisability:</p>
+<p>This notebook is setup up to be generalisable to other EIDC datasets that are have been packaged as RO-Crate objects. In order to use the notebook for a different EIDC dataset the user is onlyu required to change the RO-Crate URL that the notebooks read in. This notebook is setup to inspect the specific metadata of the example dataset used, however, the concepts deomnstrated here should be applicable to other RO-Crate objects and can be easily adapatable to understand the contents of other RO-Crate objects.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#retrieve-the-ro-crate-object-from-the-eidc" id="id1">Retrieve the RO-Crate object from the EIDC</a></p></li>
+<li><p><a class="reference internal" href="#let-take-a-quick-look-inside-the-crate" id="id2">Let take a quick look inside the crate</a></p></li>
+<li><p><a class="reference internal" href="#lets-get-hold-of-some-data" id="id3">Lets get hold of some data.</a></p></li>
+<li><p><a class="reference internal" href="#now-that-we-can-see-we-have-data-files-lets-extract-one-and-look-at-our-data" id="id4">Now that we can see we have data files lets extract one and look at our data.</a></p></li>
+<li><p><a class="reference internal" href="#what-about-information-on-the-quality-of-the-data" id="id5">What about information on the quality of the data?</a></p></li>
+</ul>
+</nav>
+<!-- https://jupyterbook.org/en/stable/structure/configure.html --><p>This notebook demonstrates how to read an detached RO-CRATE from the EIDC. An detached RO-CRATE is one where the JSON-LD describing the data sits separetely to the data and provides remote links to access the data. In this case the JSON-LD is read directly from the EIDC URL for the dataset. This then provides all of the metadata describing the data and also the ability to read in the data directly.</p>
+<p>First load in the required libraries for the notebook</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rocrate.rocrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">ROCrate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="retrieve-the-ro-crate-object-from-the-eidc">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Retrieve the RO-Crate object from the EIDC</a><a class="headerlink" href="#retrieve-the-ro-crate-object-from-the-eidc" title="Link to this heading">#</a></h2>
+<p>The first step of the workflow is to get hold of the RO-CRATE from the EIDC for the dataset that we want to explore. In this case we want to look at the COSMOS (cosmic-ray soil moisture) dataset. In order to get hold of the RO-CRATE object we need the unique ID of the dataset which in this example we will supply as a URL. This is for demonstration purposes only, in the future the hope is that we will be able to directly provide the unique ID from the EIDC to the notebook and the data will be ready to load. The first step is to create a function that gets hold of the crate using the URL.</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_detached_crate</span><span class="p">(</span><span class="n">crate_url</span><span class="p">):</span>
+
+    <span class="n">detach_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">crate_url</span><span class="p">)</span>
+    <span class="c1">#Raise for status - if passed code will continue if not will report URL error.</span>
+    <span class="n">detach_response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    <span class="n">crate_out</span> <span class="o">=</span> <span class="n">ROCrate</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">detach_response</span><span class="o">.</span><span class="n">text</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">crate_out</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Specify the URL.</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://catalogue.ceh.ac.uk/documents/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a?format=rocrate&quot;</span>
+
+<span class="c1">#Read in the RO-Crate object.</span>
+<span class="n">EIDC_crate</span> <span class="o">=</span> <span class="n">read_detached_crate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1">#Check that we have read in the correct type of object.</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">EIDC_crate</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;rocrate.rocrate.ROCrate&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="let-take-a-quick-look-inside-the-crate">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Let take a quick look inside the crate</a><a class="headerlink" href="#let-take-a-quick-look-inside-the-crate" title="Link to this heading">#</a></h2>
+<p>We have 2 types of entity stored in a crate:</p>
+<ol class="arabic simple">
+<li><p>Data Entities - These primarily exist in their own right as a file or directory (can either be a direct file in the RO-Crate root or downloadable via URL).</p></li>
+<li><p>Contextual Entities - These exist primarily outside the digital sphere (E.g. A Person of a place) or are conceptual descriptions that mainly exist as metadata such as coordinates or a contact point for the data.</p></li>
+</ol>
+<p>To add slight confusion to the mix some contextual entities can also be considered data entities whereby the content can be downloaded. A licence is a very good example of this whereby you can download the licence itself but is not usually considered a data/research output so would therefore be better classed as a contextual entity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#List the contextual entities of the dataset.</span>
+<span class="c1">#Also print the type and id.</span>
+<span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">contextual_entities</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>#eidc-dataCatalogue DataCatalog
+https://ror.org/04xw4m193 Organization
+https://doi.org/10.5285/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a PropertyValue
+#bbox0 Place
+#geoshape0 GeoShape
+https://orcid.org/0000-0002-8303-2969 Person
+https://orcid.org/0000-0001-6011-4075 Person
+#creator2 Person
+https://orcid.org/0000-0002-0203-5958 Person
+https://orcid.org/0000-0001-7398-9268 Person
+https://orcid.org/0000-0002-1033-4712 Person
+https://orcid.org/0000-0002-6436-5266 Person
+https://orcid.org/0000-0002-7439-0393 Person
+#creator8 Person
+https://orcid.org/0000-0002-1382-3407 Person
+https://orcid.org/0000-0002-7473-7916 Person
+https://orcid.org/0000-0001-5704-9006 Person
+https://orcid.org/0000-0003-4194-1416 Person
+#creator13 Person
+https://orcid.org/0000-0003-1142-4039 Person
+https://orcid.org/0009-0003-9102-5413 Person
+https://orcid.org/0000-0003-4465-2169 Person
+https://orcid.org/0000-0002-9822-316X Person
+https://orcid.org/0009-0004-4445-8272 Person
+#creator19 Person
+#creator20 Person
+#creator21 Person
+https://orcid.org/0000-0003-2987-488X Person
+https://orcid.org/0000-0002-1847-3127 Person
+https://orcid.org/0000-0003-1611-2042 Person
+#creator25 Person
+#creator26 Person
+https://orcid.org/0000-0002-7426-1153 Person
+#creator28 Person
+https://orcid.org/0000-0002-6447-6740 Person
+#creator30 Person
+#creator31 Person
+https://orcid.org/0000-0002-5820-7093 Person
+#creator33 Person
+https://orcid.org/0000-0002-8350-4823 Person
+https://orcid.org/0000-0002-6233-8942 Person
+#creator36 Person
+https://orcid.org/0000-0001-8881-185X Person
+#creator38 Person
+https://orcid.org/0000-0002-1318-5281 Person
+#fund0 Organization
+#distribution0 DataDownload
+https://ror.org/00pggkr55 Organization
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets have a look at one of the contextual entities in more detail. We will look at the funder of the work. To get hold of this we need the id of the entity which in this case is <strong>#fund0</strong> from the list of contextual entities above. We can then cycle through the funder entity and list its information. To get a specific entity we use the get command.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fund_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;#fund0&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">fund_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">fund_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id #fund0
+@type Organization
+name Natural Environment Research Council
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the above simple print out we can see that the type of entity is an organisation and its name is Natural Environment Research council so we can see that NERC funded this work. How about trying one of the authors of this data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">person_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;#creator2&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">person_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">person_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id #creator2
+@type Person
+name Askquith-Ellis, A.
+familyName Askquith-Ellis
+givenName A.
+email enquiries@ceh.ac.uk
+affiliation &lt;https://ror.org/00pggkr55 Organization&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here we can see the name of the author and how to contact regarding the dataset which is the generic UKCEH enquiries address. Under the affiliation entry we can see that we are linked to another contextual entity describing the organisation. Lets look at that and see which organisation they were at when working on this dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">org_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://ror.org/00pggkr55&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">org_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">org_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id https://ror.org/00pggkr55
+@type Organization
+name UK Centre for Ecology &amp; Hydrology
+identifier https://ror.org/00pggkr55
+</pre></div>
+</div>
+</div>
+</div>
+<p>This tells us as expected that the person worked at UKCEH and this is an organisation. There is also a link to the Research Organization Registry (ROR) entry for UKCEH, which handily is also the id to link us to this particular organisation entry in the crate.</p>
+</section>
+<section id="lets-get-hold-of-some-data">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Lets get hold of some data.</a><a class="headerlink" href="#lets-get-hold-of-some-data" title="Link to this heading">#</a></h2>
+<p>Now that we have explored the contextual element of our crate lets look at the actual data that it contains. Our first place to look will be just to print all the available entities in the crate. The first one will be the dataset entity itself which will tell us more detail about the dataset itself (keywords, access options) and more importantly which files it contains.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#List the contextual entities of the dataset.</span>
+<span class="c1">#Also print the type and id.</span>
+<span class="k">for</span> <span class="n">data_entity</span> <span class="ow">in</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get_entities</span><span class="p">():</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data_entity</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;Dataset&#39;</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">data_entity</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">data_entity</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://catalogue.ceh.ac.uk/id/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/ Dataset
+</pre></div>
+</div>
+</div>
+</div>
+<p>This gives us the ID of the dataset which is also the URL of where it sits in the EIDC. We can use this ID to find out a little more about our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://catalogue.ceh.ac.uk/id/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dataset_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id
+@type
+datePublished
+name
+identifier
+creditText
+description
+isAccessibleForFree
+variableMeasured
+keywords
+creator
+contactPoint
+temporalCoverage
+spatialCoverage
+funder
+license
+distribution
+publisher
+provider
+includedInDataCatalog
+hasPart
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>A note on licencing:</strong> If you were to go to the entry in the EIDC catalogue for this dataset and try to download the data you will be presented with the following message and a link to the licence under which the data is distributed.</p>
+<p>“<em>By accessing or using this dataset, you agree to the terms of the relevant licence agreement(s). You will ensure that this dataset is cited in any publication that describes research in which the data have been used.</em>”</p>
+<p>“<em>This dataset is available under the terms of the Open Government Licence</em>”</p>
+<p>You will note in the above list of items there is an entry labelled license. If we print out this entry, we get the following information which contains a URL linking to the conditions on which the data is shared and any conditions that you must agree to access and use it. This URL links to the same information that a user of the data would see if they had gone directly through the EIDC catalogue and as it is supplied as part of the metadata in the RO-CRATE it indicates that the same conditions apply when accessing the data using this programatic method. It is best practice when accessing any dataset to first check if there are any licensing conditions supplied with the data and what you need to do to satistfy them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;license&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://eidc.ac.uk/licences/ogl/plain
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will also notice that the dataset specific information also has some crossover with the contextual data but also contains some extra metadata information about the dataset. Indeed some of the entries here will just point to the respective contextual entity. An example of printing out the funder is below and just points to the id of the corresponding contextual entity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Print the funder.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;funder&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;#fund0 Organization&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Some of the entities such as <strong>keywords</strong> print us a list of relevant keywords to describe the dataset. Or we could look at some information describining the temporal coverage of the dataset as described in the ‘temporalCoverage’ variable. We can also look at the spatial coverage which links us back to the bounding box contextual entity which then links through to the geoshape contextual entity (This holds the actual bounding coordinates of the dataset). This all gets quite complex but shows you the links between all of the respective metadata and information describing the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Print the keywords</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;keywords&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Absolute humidity&#39;, &#39;Atmospheric pressure&#39;, &#39;Cosmic-Ray sensing probe&#39;, &#39;COSMOS-UK&#39;, &#39;Latent heat&#39;, &#39;Longwave radiation&#39;, &#39;Net radiation&#39;, &#39;Potential evapotranspiration&#39;, &#39;Rainfall&#39;, &#39;Relative humidity&#39;, &#39;Sensible heat&#39;, &#39;Shortwave radiation&#39;, &#39;Soil depth 10cm&#39;, &#39;Soil depth 20cm&#39;, &#39;Soil depth 2cm&#39;, &#39;Soil depth 50cm&#39;, &#39;Soil depth 5cm&#39;, &#39;Soil heat flux&#39;, &#39;Soil humidity&#39;, &#39;Soil temperature&#39;, &#39;Soil water content&#39;, &#39;Soil wetness&#39;, &#39;UK&#39;, &#39;Volumetric water content&#39;, &#39;VWC&#39;, &#39;Wind direction&#39;, &#39;Wind speed&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/1&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/12&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/17&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/4&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/6&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/7&#39;, &#39;http://onto.nerc.ac.uk/CEHMD/topic/9&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/281&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/3022&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/626&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/637&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/7843&#39;, &#39;http://www.eionet.europa.eu/gemet/concept/7874&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;temporalCoverage&#39;</span><span class="p">],</span> <span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;spatialCoverage&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;2013-01-01/2024-12-31&#39;] [&lt;#bbox0 Place&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">place_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;#bbox0&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">place_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">place_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id #bbox0
+@type Place
+geo &lt;#geoshape0 GeoShape&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;#geoshape0&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">shape_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">shape_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id #geoshape0
+@type GeoShape
+box -8.648 49.864, 1.768 60.861
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally lets list the actual files that make up the dataset. This gives us a rather long list of the files that make up the dataset and their respective ids in the crate. For simplicty lets print out the first 10 entries only.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;hasPart&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_daily_2015-2024.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_daily_2015-2024_flags.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_sh_2015-2024.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_sh_2015-2024_flags.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_sh_2015-2024_qc_flags.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_balrd_hydrosoil_daily_2014-2024.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_balrd_hydrosoil_daily_2014-2024_flags.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_balrd_hydrosoil_sh_2014-2024.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_balrd_hydrosoil_sh_2014-2024_flags.csv File&gt;,
+ &lt;https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_balrd_hydrosoil_sh_2014-2024_qc_flags.csv File&gt;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="now-that-we-can-see-we-have-data-files-lets-extract-one-and-look-at-our-data">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Now that we can see we have data files lets extract one and look at our data.</a><a class="headerlink" href="#now-that-we-can-see-we-have-data-files-lets-extract-one-and-look-at-our-data" title="Link to this heading">#</a></h2>
+<p>Lets pick the first file from the list which should give us daily values of soil hydrology information for the first site in the list which happens to be Alice Holt. We can see from the list above that the type of this data entity is a file and that from its id it appears to be a csv file. It should be noted here that the list above is just a list of data entities that make up the dataset held in the crate. If we want to know more information about a particular entity we can extract this directly and double check that it actually is a csv file we are expecting.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Read in the correct data entity and print the available information about it.</span>
+<span class="n">data_entity</span> <span class="o">=</span> <span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;hasPart&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data_entity</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data_entity</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>@id https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_daily_2015-2024.csv
+@type File
+name cosmos-uk_alic1_hydrosoil_daily_2015-2024.csv
+encodingFormat text/csv
+sha256 277e1b794455e4bb98e6d38a9f54bbb5f0fca9daa5a61adabaa682888fc57d26
+lastModified 2025-06-24T08:54:15
+bytes 1040867
+contentUrl https://catalogue.ceh.ac.uk/datastore/eidchub/2dce161d-2fab-47bb-9fe6-38e7ed1ae18a/cosmos-uk_alic1_hydrosoil_daily_2015-2024.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>The above confirms that the dataset entity is a csv file, its size (~1MB), when it was last modified and the URL where it can be accessed (which in this case happens to be the same as the ID.)</p>
+<p>Now its time to get hold of the actual data which is as simple as just reading it in using the <strong>contentURL</strong> and pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_in</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_entity</span><span class="p">[</span><span class="s1">&#39;contentUrl&#39;</span><span class="p">])</span>
+<span class="n">df_in</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE_TIME</th>
+      <th>SITE_ID</th>
+      <th>LWIN</th>
+      <th>LWOUT</th>
+      <th>SWIN</th>
+      <th>SWOUT</th>
+      <th>RN</th>
+      <th>PRECIP</th>
+      <th>PRECIP_TIPPING</th>
+      <th>PRECIP_RAINE</th>
+      <th>...</th>
+      <th>STP_TSOIL50</th>
+      <th>COSMOS_VWC</th>
+      <th>CTS_MOD_CORR</th>
+      <th>D86_75M</th>
+      <th>SNOW</th>
+      <th>SNOW_DEPTH</th>
+      <th>SWE</th>
+      <th>ALBEDO</th>
+      <th>PE</th>
+      <th>GCC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-03-06</td>
+      <td>ALIC1</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>-9999.0</td>
+      <td>-9999.0</td>
+      <td>-9999.00000</td>
+      <td>-9999.00000</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>-9999.000</td>
+      <td>-9999.0</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-03-07</td>
+      <td>ALIC1</td>
+      <td>23.7</td>
+      <td>30.5</td>
+      <td>13.3</td>
+      <td>1.9</td>
+      <td>4.6</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>5.6</td>
+      <td>41.2</td>
+      <td>1127.86170</td>
+      <td>22.12836</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.126</td>
+      <td>1.7</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-03-08</td>
+      <td>ALIC1</td>
+      <td>27.1</td>
+      <td>30.5</td>
+      <td>4.8</td>
+      <td>0.7</td>
+      <td>0.7</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>5.7</td>
+      <td>43.2</td>
+      <td>1118.28578</td>
+      <td>21.68494</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.116</td>
+      <td>0.6</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-03-09</td>
+      <td>ALIC1</td>
+      <td>28.3</td>
+      <td>29.7</td>
+      <td>2.4</td>
+      <td>0.4</td>
+      <td>0.7</td>
+      <td>0.1</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>5.9</td>
+      <td>39.1</td>
+      <td>1138.72068</td>
+      <td>22.63179</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.111</td>
+      <td>0.3</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-03-10</td>
+      <td>ALIC1</td>
+      <td>23.5</td>
+      <td>29.8</td>
+      <td>12.4</td>
+      <td>1.8</td>
+      <td>4.3</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>5.9</td>
+      <td>46.3</td>
+      <td>1105.15844</td>
+      <td>21.05842</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.121</td>
+      <td>1.6</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3584</th>
+      <td>2024-12-27</td>
+      <td>ALIC1</td>
+      <td>29.5</td>
+      <td>29.5</td>
+      <td>1.2</td>
+      <td>0.1</td>
+      <td>1.0</td>
+      <td>0.5</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>8.4</td>
+      <td>40.8</td>
+      <td>1129.76166</td>
+      <td>22.22113</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.101</td>
+      <td>0.3</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>3585</th>
+      <td>2024-12-28</td>
+      <td>ALIC1</td>
+      <td>29.1</td>
+      <td>29.2</td>
+      <td>1.1</td>
+      <td>0.1</td>
+      <td>0.9</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>8.4</td>
+      <td>40.3</td>
+      <td>1132.54062</td>
+      <td>22.33910</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.113</td>
+      <td>0.3</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>3586</th>
+      <td>2024-12-29</td>
+      <td>ALIC1</td>
+      <td>29.2</td>
+      <td>29.3</td>
+      <td>1.7</td>
+      <td>0.2</td>
+      <td>1.4</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>8.3</td>
+      <td>40.2</td>
+      <td>1132.84181</td>
+      <td>22.36297</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.112</td>
+      <td>0.3</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>3587</th>
+      <td>2024-12-30</td>
+      <td>ALIC1</td>
+      <td>29.5</td>
+      <td>30.4</td>
+      <td>1.8</td>
+      <td>0.2</td>
+      <td>0.6</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>8.2</td>
+      <td>39.0</td>
+      <td>1138.92442</td>
+      <td>22.65681</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.121</td>
+      <td>0.4</td>
+      <td>-9999</td>
+    </tr>
+    <tr>
+      <th>3588</th>
+      <td>2024-12-31</td>
+      <td>ALIC1</td>
+      <td>29.5</td>
+      <td>31.4</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>-0.6</td>
+      <td>0.0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>...</td>
+      <td>8.2</td>
+      <td>39.9</td>
+      <td>1134.20340</td>
+      <td>22.43514</td>
+      <td>0</td>
+      <td>-9999</td>
+      <td>-9999</td>
+      <td>0.128</td>
+      <td>0.4</td>
+      <td>-9999</td>
+    </tr>
+  </tbody>
+</table>
+<p>3589 rows × 52 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="what-about-information-on-the-quality-of-the-data">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">What about information on the quality of the data?</a><a class="headerlink" href="#what-about-information-on-the-quality-of-the-data" title="Link to this heading">#</a></h2>
+<p>Handily if we inspect our list of data files again we can see that it also contains a corresponding flags file for that site. Lets read that in and inspect. We will use the same approach as before.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_in_flags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">EIDC_crate</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dataset_entity</span><span class="p">[</span><span class="s1">&#39;hasPart&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)[</span><span class="s1">&#39;contentUrl&#39;</span><span class="p">])</span>
+<span class="n">df_in_flags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE_TIME</th>
+      <th>SITE_ID</th>
+      <th>LWIN_FLAG</th>
+      <th>LWOUT_FLAG</th>
+      <th>SWIN_FLAG</th>
+      <th>SWOUT_FLAG</th>
+      <th>RN_FLAG</th>
+      <th>PRECIP_FLAG</th>
+      <th>PRECIP_TIPPING_FLAG</th>
+      <th>PRECIP_RAINE_FLAG</th>
+      <th>...</th>
+      <th>STP_TSOIL50_FLAG</th>
+      <th>COSMOS_VWC_FLAG</th>
+      <th>CTS_MOD_CORR_FLAG</th>
+      <th>D86_75M_FLAG</th>
+      <th>SNOW_FLAG</th>
+      <th>SNOW_DEPTH_FLAG</th>
+      <th>SWE_FLAG</th>
+      <th>ALBEDO_FLAG</th>
+      <th>PE_FLAG</th>
+      <th>GCC_FLAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2015-03-06</td>
+      <td>ALIC1</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2015-03-07</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2015-03-08</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2015-03-09</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2015-03-10</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3584</th>
+      <td>2024-12-27</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3585</th>
+      <td>2024-12-28</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3586</th>
+      <td>2024-12-29</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3587</th>
+      <td>2024-12-30</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>3588</th>
+      <td>2024-12-31</td>
+      <td>ALIC1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>M</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>E</td>
+      <td>M</td>
+    </tr>
+  </tbody>
+</table>
+<p>3589 rows × 52 columns</p>
+</div></div></div>
+</div>
+<p>There we have it, we have showed how RO-Crate can be easily used to read in some data, inspect its corresponding metadata and understand all the contextual information of the data. This notebook can easily be adapted to other EIDC datasets and then its up to the user to do feed it into their data science workflow and do some interesting analysis!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./methods\ds-toolbox-notebook-rocrate-tutorial"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Non-Target Analysis of Environmental Mass Spectrometry Data</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieve-the-ro-crate-object-from-the-eidc">Retrieve the RO-Crate object from the EIDC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-take-a-quick-look-inside-the-crate">Let take a quick look inside the crate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lets-get-hold-of-some-data">Lets get hold of some data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-that-we-can-see-we-have-data-files-lets-extract-one-and-look-at-our-data">Now that we can see we have data files lets extract one and look at our data.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-about-information-on-the-quality-of-the-data">What about information on the quality of the data?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
