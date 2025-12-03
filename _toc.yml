@@ -18,3 +18,6 @@ parts:
     file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
   - title: RO-Crate Tutorial 
     file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+  - title: Integration of Metals Data across Environmental Compartments 
+    file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+

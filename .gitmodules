@@ -16,3 +16,6 @@
 [submodule "methods/ds-toolbox-notebook-rocrate-tutorial"]
 	path = methods/ds-toolbox-notebook-rocrate-tutorial
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git
+[submodule "methods/ds-toolbox-notebook-metals_EEX_demo"]
+	path = methods/ds-toolbox-notebook-metals_EEX_demo
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-metals_EEX_demo.git
