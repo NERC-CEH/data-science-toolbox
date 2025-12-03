@@ -1,0 +1,1138 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Integration of Metals Data across Environmental Compartments &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="RO-Crate Tutorial Notebook." href="../ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Environmental Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html">RO-Crate Tutorial</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Integration of Metals Data across Environmental Compartments</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Integration of Metals Data across Environmental Compartments</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metals-pollution">Metals Pollution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-loop-diagram">Causal loop diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulty-to-study-across-compartments">The difficulty to study across compartments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predatory-birds-and-otters-data">Predatory birds and otters data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#river-water-quality-data">River water quality data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-of-integration">The power of integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-the-data-together">(1) Displaying the data together</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-data-ready-for-statistical-or-machine-learning-analysis">(2) Getting data ready for statistical or machine learning analysis</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="integration-of-metals-data-across-environmental-compartments">
+<h1>Integration of Metals Data across Environmental Compartments<a class="headerlink" href="#integration-of-metals-data-across-environmental-compartments" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-metals_EEX_demo.git"><span>Notebook Repository</span></a>
+<img alt="alt text" src="../../_images/ukceh-logo-badge3.png" /></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/michael-tso">Dr. Michael Tso</a></p>
+<!-- | Notebook Top-to-Bottom Runtime ~ 5 Minutes -->
+<!-- {bdg-link-info}Reference [1] <https://link.springer.com/article/10.1007/s00216-015-8681-7> {bdg-link-info}Reference [2] <https://doi.org/10.1016/j.trac.2023.116944> {bdg-link-info}Reference [3] <https://doi.org/10.1016/j.trac.2019.04.008> {bdg-link-info}Reference [4] <https://pubmed.ncbi.nlm.nih.gov/36174727/> {bdg-link-info}DSFP Homepage <https://dsfp.norman-data.eu/> {bdg-link-info}Notebook Repository <https://github.com/NERC-CEH/DSFP-PyExplorer> {bdg-warning-line}Ongoing Development -->
+<div class="callout-tip docutils">
+<h2 class="rubric" id="challenge">Challenge</h2>
+<p>While polltants know no boundaries, pollution analysis are often limited to a single compartment. By integrating data across compartments, we can better understand their effects and responses holistically.</p>
+<p>However, data from many different sources are difficult to discover and integrate. The purpose of this notebook and the UK Environmental Exposure (UK-EEX) Hub is to make it easier to discover, process, analyse, and visualize the wealth of data regarding environmental pressures and responses, particularly related to chemical substances.</p>
+</div>
+<div class="callout-tip docutils">
+<h2 class="rubric" id="approach">Approach</h2>
+<p>This notebook demonstrates various ways to integrate data from various compartments from a single substance. Cadmium (Cd), a heavy metal, is used as an example. It shows various methods of combining gridded and point data, and make them ready for statistical and machine learning analysis. All maps in this notebook are generated by the <code class="docutils literal notranslate"><span class="pre">tmap</span></code> R package.</p>
+</div>
+<div class="{.callout-note docutils">
+<h2 class="rubric" id="downloading-data">Downloading data</h2>
+<p>The following datasets are used in the is notebook:</p>
+<ul class="simple">
+<li><p>Otter data: <a class="reference external" href="https://catalogue.ceh.ac.uk/documents/0fbb2c90-5b54-427a-a083-55c022802a80">Biological characteristics, liver metal concentrations, habitat biogeochemistry and habitat contamination sources of UK otters (2006-2017)</a>, also available on Datalabs asset repo</p></li>
+<li><p><a class="reference external" href="https://geoportal.statistics.gov.uk/datasets/e9cfbf2e478a481bb367eb2f2891d504_0/about">UK NUTS regions</a></p></li>
+<li><p><a class="reference external" href="https://esdac.jrc.ec.europa.eu/content/cadmium-topsoils-european-union">EU topsoils Cadmium</a></p></li>
+<li><p><a class="reference external" href="https://environment.data.gov.uk/water-quality/view/landing">Environmental Agency Water Quality Archive</a>: mean Cd data aggregate from the sensor integration tool API mentioned below.</p></li>
+</ul>
+<p>In addition, the following portals are mentioned:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://hydrosensordata.ceh.ac.uk/?dist=10&amp;amp;latitude=52&amp;amp;longitude=-1">Hydrological sensor data integration tool</a></p></li>
+<li><p><a class="reference external" href="https://naei.energysecurity.gov.uk/emissionsapp/">National Air Emissions Inventory (NAEI) maps</a></p></li>
+</ul>
+</div>
+<div class="{.callout-caution docutils">
+<h2 class="rubric" id="computational-demands">Computational demands</h2>
+<p>No heavy computation is included in this notebook.</p>
+</div>
+<section id="metals-pollution">
+<h2>Metals Pollution<a class="headerlink" href="#metals-pollution" title="Link to this heading">#</a></h2>
+<p>Heavy metals are natural constituents of the Earth’s crust. They are stable and cannot be degraded or destroyed, and therefore they tend to accumulate in soils and sediments. However, human activities have drastically altered the biochemical and geochemical cycles and balance of some heavy metals. The principal man-made sources of heavy metals are industrial point sources, e.g. mines, foundries and smelters, and diffuse sources such as combustion by-products, traffic, etc. Relatively volatile heavy metals and those that become attached to air-borne particles (particulates) can be widely dispersed throughout the atmosphere, often being deposited thousands of miles from the site of initial release. In general, the smaller and lighter a particle is, the longer it will stay in the air. Larger particles (greater than 10 micrometers (µm) in diameter) tend to settle to the ground by gravity in a matter of hours whereas the smallest particles (less than 1µm in diameter ) can stay in the atmosphere for weeks and are mostly removed by precipitation.</p>
+</section>
+<section id="causal-loop-diagram">
+<h2>Causal loop diagram<a class="headerlink" href="#causal-loop-diagram" title="Link to this heading">#</a></h2>
+<p>Metals pollution were typically studied in compartments (e.g. air, soil, biota, water). Metals pollution is a complex issue with impacts that span across different environmental compartments and influence ecosystems and human health through the food chain. Systems thinking helps to map these connections and understand that problems like industrial runoff, waste disposal, and agricultural use are not isolated issues but are interconnected parts of a larger system.</p>
+<p>By considering the whole system holistically, policymakers and scientists can better identify key leverage points for more effective, integrated strategies that avoid unintended consequences.</p>
+<p>To adopt a systems thinking view, a causal loop diagram is often constructed to describe all the potential linkages between environmental pressures and responses. Here is an example:</p>
+<!-- ![Causal loop diagram for metals pollution.](img/Picture1.jpg){.lightbox} -->
+<!-- https://ncase.me/loopy/v1.1/?embed=1&data=[[[4,741,329,0.5,%22Rain%22,4],[5,1067,153,0.5,%22soil%22,3],[6,505,116,0.5,%22Air%22,4],[7,933,768,0.5,%22Rivers%22,4],[8,1126,751,0.5,%22Lakes%22,4],[9,1339,726,0.5,%22Sea%22,4],[10,1403,191,0,%22terrestrial%22,1],[12,395,768,0,%22Marine%22,1],[13,483,369,0,%22Avian%22,1],[14,17,436,0,%22Freshwater%22,1],[15,1604,319,0,%22Humans%22,1],[16,788,-63,1,%22Mining%22,0],[17,1416,-75,0.5,%22Spills%252Fleaks%22,0],[18,-17,-4,0.83,%22Combustion%22,0],[19,501,-109,0.66,%22Industry%22,0],[20,1190,-114,0.83,%22Waste%2520disposal%22,0],[21,200,9,0.66,%22Transport%22,0]],[[6,5,56,1,0],[4,5,25,1,0],[6,4,18,1,0],[4,7,-13,1,0],[7,8,-3,1,0],[8,9,58,1,0],[5,7,18,1,0],[5,8,18,1,0],[5,9,46,1,0],[5,10,78,1,0],[6,13,-47,1,0],[4,13,36,1,0],[5,13,841,1,0],[9,12,43,1,0],[7,14,21,1,0],[8,14,36,1,0],[12,13,147,1,0],[14,13,33,1,0],[13,15,-507,1,0],[14,15,-184,1,0],[12,15,-25,1,0],[10,15,78,1,0],[16,5,-63,1,0],[17,5,25,1,0],[18,6,-41,1,0],[21,6,14,1,0],[19,6,23,1,0],[19,5,-46,1,0],[16,6,-71,1,0],[20,5,-21,1,0],[20,6,-75,1,0],[18,5,158,1,0],[21,5,242,1,0],[10,13,122,1,0],[18,4,-87,1,0],[21,7,-215,1,0],[17,7,41,1,0],[16,7,34,1,0]],[[-147,733,%22Metal%2520bioaccumulation%22]],21%5D -->
+<iframe width="800" height="880" frameborder="0" src="https://ncase.me/loopy/v1.1/?embed=1&amp;data=[[[7,586,176,0.33,%22FIREFOAMS%22,5],[10,761,659,0.83,%22DISTRIBUTION%22,4],[12,676,482,0.5,%22APPLICATION%22,1],[13,757,816,1,%22PFAS%2520PRODUCTION%22,0],[14,861,519,0.66,%22MANUFACTURING%22,2],[15,1009,416,0,%22CLOTHING%22,2],[16,964,650,0.33,%22DOMESTIC%2520PRODUCTS%22,2],[17,1119,549,0.5,%22VEHICLES%22,2],[18,853,338,0,%22INDUSTRY%22,2],[19,461,46,0.33,%22INDUSTRIAL%2520SITES%22,5],[20,805,57,0.33,%22AIRPORTS%22,5],[21,373,213,0.33,%22WILDFIRES%22,5],[22,13,657,0,%22WWTP%22,1],[23,463,452,0,%22SLUDGE%2520TO%2520LAND%22,0],[24,1420,447,0.33,%22PRODUCT%2520USE%22,0],[25,1342,107,0.66,%22RUN%2520OFF%22,0],[26,265,366,0,%22PESTICIDES%22,0],[27,378,792,0.5,%22TO%2520WASTE%2520WATER%22,0],[28,100,483,0,%22TO%2520SOIL%22,0],[29,183,234,0,%22TO%2520GROUND%2520WATER%22,0],[30,253,75,0,%22TO%2520AIR%22,0],[31,1310,817,0.5,%22TO%2520LANDFILL%22,0],[33,49,305,0.33,%22soil%2520fauna%22,3],[34,-13,12,0.33,%22birds%22,3],[35,8,105,0.33,%22terrestrial%2520wildlife%22,3],[36,185,731,0.33,%22aquatic%2520wildlife%22,3],[37,870,172,0.33,%22terrestrial%2520animals%22,3],[38,313,636,0.33,%22vegetation%22,3],[39,1009,100,0.33,%22man%22,3],[40,62,856,0.33,%22freshwaters%22,3],[41,255,854,0.33,%22marine%22,3]],[[13,10,-31,1,0],[10,14,31,1,0],[10,12,-46,1,0],[14,18,20,1,0],[14,15,-15,1,0],[14,16,10,1,0],[14,17,9,1,0],[7,19,16,1,0],[7,21,-37,1,0],[7,20,-23,1,0],[12,7,24,1,0],[12,26,-37,1,0],[12,23,-46,1,0],[22,23,-36,1,0],[18,25,-24,1,0],[16,24,6,1,0],[17,25,19,1,0],[24,25,76,1,0],[14,25,-31,1,0],[18,25,42,1,0],[15,25,-41,1,0],[25,27,298,1,0],[18,27,-131,1,0],[27,22,161,1,0],[23,27,-43,1,0],[16,27,37,1,0],[17,27,210,1,0],[14,27,-33,1,0],[24,27,68,1,0],[12,27,65,1,0],[21,30,-34,1,0],[19,30,-29,1,0],[20,30,-88,1,0],[26,29,41,1,0],[26,28,-39,1,0],[23,28,-15,1,0],[23,29,-50,1,0],[21,28,137,1,0],[20,28,59,1,0],[19,28,148,1,0],[15,30,-69,1,0],[17,30,-74,1,0],[16,31,-48,1,0],[17,31,32,1,0],[15,31,186,1,0],[18,31,227,1,0],[31,29,126,1,0],[31,27,120,-1,0],[28,33,12,-1,0],[33,35,14,-1,0],[33,34,-9,-1,0],[33,35,-29,-1,0],[34,35,23,-1,0],[35,34,6,-1,0],[36,34,58,-1,0],[38,35,14,-1,0],[38,34,65,-1,0],[38,37,-64,-1,0],[38,39,142,-1,0],[37,39,-29,-1,0],[30,39,102,-1,0],[30,37,21,-1,0],[30,34,-22,-1,0],[30,35,24,-1,0],[22,40,55,-1,0],[40,41,10,-1,0],[40,36,20,-1,0],[41,36,-6,-1,0]],[],41%5D">
+</iframe>
+</section>
+<section id="the-difficulty-to-study-across-compartments">
+<h2>The difficulty to study across compartments<a class="headerlink" href="#the-difficulty-to-study-across-compartments" title="Link to this heading">#</a></h2>
+<p>Using cadmium (Cd) as an example chemical, if one would like to visualize Cd pollution across air, land, water, and biota, they will need to go to different portals for each dataset, or downloading the individual datasets.</p>
+<ul class="simple">
+<li><p>Air</p></li>
+<li><p>Soil</p></li>
+<li><p>Predatory Birds</p></li>
+<li><p>River water</p></li>
+</ul>
+<p>Here are some example screenshots of web portals:</p>
+<p><img alt="NAEI portal." src="../../_images/NAEI_Cd.png" />{.lightbox}</p>
+<p><img alt="Soil and PBMS data for metals pollution." src="../../_images/Screenshot_2025-08-13_150808.png" />{.lightbox}</p>
+<!-- ![Casual loop diagram for metals pollution.](img/Picture1.jpg){.lightbox} -->
+<p><img alt="River flow data from portal" src="../../_images/Screenshot_2025-08-13_60337.png" />{.lightbox}</p>
+<p>The following code shows how to plot air and soil pollution maps, individually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tmap</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">viridis</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">readr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cols4all</span><span class="p">)</span><span class="w">  </span><span class="c1"># for flipping colour bar in tmap</span>
+
+<span class="n">dataset_path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&#39;temp/datasets&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">tmap_mode</span><span class="p">(</span><span class="s">&quot;plot&quot;</span><span class="p">)</span>
+<span class="c1"># tm_shape(cd_NAEI_raster ) +</span>
+<span class="c1">#   tm_raster(</span>
+<span class="c1">#     col.scale = tm_scale_continuous_log10(</span>
+<span class="c1">#       ticks = c(5e-5,5e-4, 5e-3,5e-2) # Define log increments for the legend</span>
+<span class="c1">#     )</span>
+<span class="c1">#   )</span>
+
+<span class="n">cd_NAEI_raster</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">rast</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span><span class="s">&#39;NAEI_maps/naei_cd_2023/GeoTIFF_layers/totalcd23_2023.tif&#39;</span><span class="p">))</span>
+<span class="n">cd_EUSO_raster</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">rast</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="s">&#39;data/topsoil_Cd_UK_small.tif&#39;</span><span class="p">))</span>
+
+<span class="n">NAEI_tmap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">tm_shape</span><span class="p">(</span><span class="n">cd_NAEI_raster</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_raster</span><span class="p">(</span>
+<span class="w">    </span><span class="n">col.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span>
+<span class="w">        </span>
+<span class="w">      </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;fixed&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-6</span><span class="p">,</span><span class="m">1e-5</span><span class="p">,</span><span class="m">1e-4</span><span class="p">,</span><span class="m">3e-4</span><span class="p">,</span><span class="m">1e-3</span><span class="p">,</span><span class="m">3e-3</span><span class="p">,</span><span class="m">1e-2</span><span class="p">,</span><span class="w"> </span><span class="m">3e-2</span><span class="p">),</span>
+<span class="w">      </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span>
+<span class="w">      </span><span class="c1">#labels =  c(&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)</span>
+<span class="w">      </span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="n">col.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_legend</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;UK emissions\n of Cd (tonnes/km)&quot;</span><span class="p">,</span>
+<span class="w">                           </span><span class="n">labels.fomat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;scientific&#39;</span><span class="p">),</span>
+<span class="w">    </span>
+<span class="w">  </span><span class="p">)</span>
+
+<span class="n">EUSO_tmap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span>
+<span class="w">  </span><span class="n">tmap</span><span class="o">::</span><span class="nf">tm_shape</span><span class="p">(</span><span class="n">cd_EUSO_raster</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">      </span><span class="n">tmap</span><span class="o">::</span><span class="nf">tm_raster</span><span class="p">(</span>
+<span class="w">          </span><span class="n">col.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmap</span><span class="o">::</span><span class="nf">tm_scale_continuous_sqrt</span><span class="p">(</span>
+<span class="w">              </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;brewer.rd_yl_gn&quot;</span><span class="p">,</span>
+<span class="w">              </span><span class="n">midpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span>
+<span class="w">          </span><span class="c1"># col.legend = tm_legend(title = &quot;Modelled Cd in soil&quot;,</span>
+<span class="w">          </span><span class="c1">#                  labels.fomat = &#39;scientific&#39;)</span>
+<span class="w">    </span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">tm_title</span><span class="p">(</span><span class="s">&quot;Top soil Cd (mg/L) -- Sqrt. transformed&quot;</span><span class="p">)</span>
+
+<span class="n">NAEI_tmap</span>
+
+<span class="n">EUSO_tmap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> tmap modes <span class=" -Color -Color-Bold -Color-Bold-Blue">&quot;plot&quot;</span> - <span class=" -Color -Color-Blue">&quot;view&quot;</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning messages:
+1: Values have found that are less than the lowest break. They are assigned to the lowest interval 
+2: Values have found that are higher than the highest break. They are assigned to the highest interval 
+</pre></div>
+</div>
+<img alt="../../_images/340958b8b55c0d8d8594d06837409b940b7de78650f63fd07a5743038254aa8f.png" src="../../_images/340958b8b55c0d8d8594d06837409b940b7de78650f63fd07a5743038254aa8f.png" />
+<img alt="../../_images/05e1b7672b10e95e40e11ba15ece6b69420252911dc294e1f8730e64cc307e03.png" src="../../_images/05e1b7672b10e95e40e11ba15ece6b69420252911dc294e1f8730e64cc307e03.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#bivariate map</span>
+<span class="c1"># raster1_projected &lt;- project(cd_EUSO_raster, cd_NAEI_raster , method = &quot;bilinear&quot;) # no need if scale matches</span>
+<span class="n">raster1_projected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cd_EUSO_raster</span>
+
+<span class="n">r_stack</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">raster1_projected</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">cd_NAEI_raster</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">r_stack</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;var1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;var2&quot;</span><span class="p">)</span>
+
+<span class="n">r_stack</span><span class="o">$</span><span class="n">var1</span><span class="p">[</span><span class="n">r_stack</span><span class="o">$</span><span class="n">var1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1e-3</span><span class="w">  </span><span class="c1"># abitrary, just for quantiles</span>
+
+<span class="n">r_stack</span><span class="o">$</span><span class="n">var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">r_stack</span><span class="o">$</span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="c1"># soil</span>
+
+
+<span class="n">r_stack</span><span class="o">$</span><span class="n">var2</span><span class="p">[</span><span class="n">r_stack</span><span class="o">$</span><span class="n">var2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1e-6</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w"> </span><span class="c1"># remove off shore</span>
+
+<span class="n">r_stack</span><span class="o">$</span><span class="n">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">r_stack</span><span class="o">$</span><span class="n">var2</span><span class="p">)</span><span class="w"> </span><span class="c1">#NAEI</span>
+
+
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">r_stack</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">tm_raster</span><span class="p">(</span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_vars</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;var1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;var2&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">multivariate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span>
+<span class="w">        </span><span class="n">col.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quantile&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;-carto.earth&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7226b51780fc4a9500414c45bd5d655df0aed40c6f342c9f4f56dca43d63765d.png" src="../../_images/7226b51780fc4a9500414c45bd5d655df0aed40c6f342c9f4f56dca43d63765d.png" />
+</div>
+</div>
+<p>But how are air and soil pollution hotspots co-located? Here we can use an integration tool called <em>bivariate plots</em>. Essentially, this is to colour the pixels on the map with a two-dimensional colour map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">stevens.bluered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;#E8E8E8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#E4ACAC&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#C85A5A&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;#B0D5DF&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#AD9EA5&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#985356&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="s">&quot;#64ACBE&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#627F8C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;#574249&quot;</span><span class="p">),</span>
+<span class="w">                 </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">r_stack</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">tm_raster</span><span class="p">(</span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_vars</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;var2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;var1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">multivariate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">        </span><span class="n">col.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_bivariate</span><span class="p">(</span>
+<span class="w">        </span><span class="n">scale1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quantile&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">scale2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quantile&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;stevens.pinkgreen&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># 97.94% colour-blind friendly</span>
+<span class="w">        </span><span class="n">col.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_legend_bivariate</span><span class="p">(</span>
+<span class="w">            </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;top&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;right&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Soil&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Air&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">xlab.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ylab.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">text.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="p">))</span><span class="o">+</span>
+<span class="w">    </span><span class="c1">#tm_credits(&quot;UKCEH&quot;) +</span>
+<span class="w">    </span><span class="nf">tm_compass</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;arrow&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_scalebar</span><span class="p">()</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_components</span><span class="p">(</span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_layout</span><span class="p">(</span><span class="n">inner.margins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f09cfb4da9571595710ad3e5078644bfca23ef9ed58000009ccb0afa781ac63e.png" src="../../_images/f09cfb4da9571595710ad3e5078644bfca23ef9ed58000009ccb0afa781ac63e.png" />
+</div>
+</div>
+</section>
+<section id="predatory-birds-and-otters-data">
+<h2>Predatory birds and otters data<a class="headerlink" href="#predatory-birds-and-otters-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># otter_metals &lt;- read_csv(&#39;/assets/bio-xter-liver-metal-habitat-uk-otters-2006-2017-v1/data/Concentrations_of_inorganic_elements_in_UK_otter_livers_2006–2017.csv&#39;)</span>
+<span class="n">otter_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;data/Concentrations_of_inorganic_elements_in_UK_otter_livers_2006–2017.csv&#39;</span><span class="p">)</span>
+<span class="n">otter_metals</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="s">&#39;lat&#39;</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="nf">sf_project</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="m">27700</span><span class="p">),</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="m">4326</span><span class="p">),</span><span class="w">  </span><span class="n">otter_metals</span><span class="p">[,</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;X&#39;</span><span class="p">,</span><span class="s">&#39;Y&#39;</span><span class="p">)])</span>
+
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">otter_metals</span><span class="p">,</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;long&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lat&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4326</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_basemap</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_symbols</span><span class="p">(</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Cd&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;maroon&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale</span><span class="p">(</span><span class="n">values.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">tm_title</span><span class="p">(</span><span class="s">&quot;Otter Cd (mg/L)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">278</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">57</span>
+<span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Red">chr</span>  (6): Sex, AgeClass, Al, Sb, V, Mine
+<span class=" -Color -Color-Green">dbl</span> (51): UWCRef, Year, Batch, Weight, Length, sSMI, X, Y, DM, Mn, Fe, Co, N...
+
+<span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+<img alt="../../_images/412c64c4a7b8b26a4efdd9e3038596676f44b88c6d80a87a76b737cd2689284a.png" src="../../_images/412c64c4a7b8b26a4efdd9e3038596676f44b88c6d80a87a76b737cd2689284a.png" />
+</div>
+</div>
+</section>
+<section id="river-water-quality-data">
+<h2>River water quality data<a class="headerlink" href="#river-water-quality-data" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">riv_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#39;data/Cd_mean_2025.csv&#39;</span><span class="p">)</span>
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">riv_metals</span><span class="p">,</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;lon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lat&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4326</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_basemap</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_symbols</span><span class="p">(</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Cd_mean&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;steelblue&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="c1"># fill.legend = tm_legend(</span>
+<span class="w">    </span><span class="c1">#   title = &quot;Mean Cd (mg/L)&quot;,</span>
+<span class="w">    </span><span class="c1">#   show = TRUE</span>
+<span class="w">    </span><span class="c1"># ),</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale</span><span class="p">(</span><span class="n">values.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">tm_title</span><span class="p">(</span><span class="s">&quot;River mean Cd (mg/L)&quot;</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>New names:
+<span class=" -Color -Color-Cyan">•</span> `` -&gt; `...1`
+<span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">404</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">22</span>
+<span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
+<span class=" -Color -Color-Red">chr</span> (10): site_id, site_name, region, G_ID, S_ID, wb_id, organisation, mater...
+<span class=" -Color -Color-Green">dbl</span> (12): ...1, easting, northing, min_year, max_year, HA_NUM, rbd_id, mncat...
+
+<span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
+<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+</pre></div>
+</div>
+<img alt="../../_images/b6fbb8d13d60b9848b9769b900230b7ce3fb44f27cd7308343ad9eba1aabf854.png" src="../../_images/b6fbb8d13d60b9848b9769b900230b7ce3fb44f27cd7308343ad9eba1aabf854.png" />
+</div>
+</div>
+</section>
+<section id="the-power-of-integration">
+<h2>The power of integration<a class="headerlink" href="#the-power-of-integration" title="Link to this heading">#</a></h2>
+<section id="displaying-the-data-together">
+<h3>(1) Displaying the data together<a class="headerlink" href="#displaying-the-data-together" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># tmap_mode(&quot;view&quot;)</span>
+<span class="c1"># tm_basemap(c(StreetMap = &quot;OpenStreetMap&quot;, TopoMap = &quot;OpenTopoMap&quot;)) +</span>
+<span class="c1"># NAEI_tmap</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#| fig-cap: &quot;Bivariate chloropleth plot for air and soil cadmium levels, overlaid by otter and river water cadmium levels&quot;</span>
+
+<span class="c1"># tmap_mode(&quot;view&quot;)</span>
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">r_stack</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="nf">tm_raster</span><span class="p">(</span>
+<span class="w">        </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_vars</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;var2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;var1&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">multivariate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span>
+<span class="w">        </span><span class="n">col.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_bivariate</span><span class="p">(</span>
+<span class="w">        </span><span class="n">scale1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quantile&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">scale2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale_intervals</span><span class="p">(</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;quantile&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;L&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;M&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;H&quot;</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s">&quot;stevens.pinkgreen&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1"># 97.94% colour-blind friendly</span>
+<span class="w">        </span><span class="n">col.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_legend_bivariate</span><span class="p">(</span>
+<span class="w">            </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;top&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;right&quot;</span><span class="p">),</span>
+<span class="w">            </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Soil&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Air&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">xlab.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ylab.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">item.height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="n">text.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">            </span><span class="p">))</span><span class="o">+</span>
+<span class="nf">tm_shape</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">riv_metals</span><span class="p">,</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;lon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lat&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4326</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_symbols</span><span class="p">(</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Cd_mean&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;#FEFE62&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="c1">#  shape = 1,</span>
+<span class="w">    </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale</span><span class="p">(</span><span class="n">values.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_shape</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">otter_metals</span><span class="p">,</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;long&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lat&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4326</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_symbols</span><span class="p">(</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Cd&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">#&quot;#CC79A7&quot;,</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;black&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="n">size.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">tm_scale</span><span class="p">(</span><span class="n">values.scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="c1">#tm_credits(&quot;UKCEH&quot;) +</span>
+<span class="w">    </span><span class="nf">tm_compass</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;arrow&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_scalebar</span><span class="p">()</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_components</span><span class="p">(</span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="o">+</span>
+<span class="w">    </span><span class="nf">tm_layout</span><span class="p">(</span><span class="n">inner.margins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.15</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.02</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3c92d3cb9573d751d0dd181268c17014f673072d9a1a75bee90b7eb0183b6000.png" src="../../_images/3c92d3cb9573d751d0dd181268c17014f673072d9a1a75bee90b7eb0183b6000.png" />
+</div>
+</div>
+</section>
+<section id="getting-data-ready-for-statistical-or-machine-learning-analysis">
+<h3>(2) Getting data ready for statistical or machine learning analysis<a class="headerlink" href="#getting-data-ready-for-statistical-or-machine-learning-analysis" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Point process modelling<a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<!-- Locations of Solanum plant species in Bolivia from January 2015 to December 2022 obtained from GBIF. ![Point process model points.](https://www.paulamoraga.com/book-spatial/book-spatial_files/figure-html/pplgcpobservedpredictionlocations-cap-1.png){.lightbox} Maps with the posterior mean of the intensity of the point process of species in Bolivia (left), and lower (center) and upper (right) limits of 95% credible intervals. ![Point process model prediction.](https://www.paulamoraga.com/book-spatial/book-spatial_files/figure-html/pplgcpmapintensity-1.png){.lightbox} -->
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+<span class="n">uk_nuts1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">vect</span><span class="p">(</span><span class="s">&#39;data/NUTS_Level_1_January_2018_FCB_in_the_United_Kingdom.shp&#39;</span><span class="p">)</span>
+<span class="n">eng_wales</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">uk_nuts1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span>
+<span class="c1"># eng_wales &lt;- terra::aggregate(uk_nuts1[1:10,])</span>
+
+
+
+<span class="n">metals_map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">otter_metals</span><span class="p">,</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Y&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">eng_wales</span><span class="p">))</span>
+
+<span class="c1"># qtm(metals_map)</span>
+
+
+
+<span class="c1"># Prediction</span>
+<span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">rast</span><span class="p">(</span><span class="n">eng_wales</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">nrows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span>
+<span class="n">xy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">xyFromCell</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">ncell</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+
+<span class="n">Pred_loc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">xy</span><span class="p">),</span><span class="w"> </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;y&quot;</span><span class="p">),</span>
+<span class="w">                 </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">eng_wales</span><span class="p">))</span>
+<span class="n">Pred_loc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_filter</span><span class="p">(</span><span class="n">Pred_loc</span><span class="p">,</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">eng_wales</span><span class="p">))</span><span class="w"> </span><span class="c1"># filter out points outside domain</span>
+
+<span class="c1"># qtm(Pred_loc)</span>
+
+
+<span class="c1">### method (1) closest obs</span>
+<span class="c1"># Voronoi</span>
+<span class="n">v</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">terra</span><span class="o">::</span><span class="nf">voronoi</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">vect</span><span class="p">(</span><span class="n">metals_map</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">250</span><span class="p">,</span><span class="s">&#39;Cd&#39;</span><span class="p">]),</span><span class="w"> </span><span class="n">bnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eng_wales</span><span class="p">)</span><span class="w"> </span><span class="c1"># some bug: can&#39;t deal with last few lines</span>
+<span class="c1"># plot(v)</span>
+<span class="c1"># points(vect(metals_map), cex = 0.5)</span>
+
+<span class="c1"># # voronoi map</span>
+<span class="nf">tm_shape</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">eng_wales</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">tm_polygons</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">tm_shape</span><span class="p">(</span><span class="n">metals_map</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_dots</span><span class="p">(</span><span class="s">&quot;Cd&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">)</span>
+
+<span class="c1"># tm_shape(v) +</span>
+<span class="c1">#   tm_fill(col = &quot;Cd&quot;, palette = &quot;viridis&quot;, alpha = 0.6) + ### need changing&gt;&gt; what is the &#39;vble&#39; column</span>
+<span class="c1">#  tm_shape(metals_map) +</span>
+<span class="c1">#   tm_dots(&quot;Cd&quot;, palette = &quot;viridis&quot;)+</span>
+<span class="c1">#   tm_shape(eng_wales) +</span>
+<span class="c1">#    tm_borders(lwd = 2)</span>
+
+<span class="c1"># raster map</span>
+
+<span class="n">resp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_intersection</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">Pred_loc</span><span class="p">)</span>
+<span class="n">resp</span><span class="o">$</span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">resp</span><span class="o">$</span><span class="n">Cd</span><span class="p">)</span>
+<span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">rasterize</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pred&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">)</span>
+<span class="n">Cd_grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tm_shape</span><span class="p">(</span><span class="n">eng_wales</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">tm_borders</span><span class="p">(</span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">   </span><span class="nf">tm_shape</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">tm_raster</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">)</span><span class="o">+</span>
+<span class="w">   </span><span class="nf">tm_title</span><span class="p">(</span><span class="s">&#39;Estimated values of (log10) Cd in otters (closest observation)</span>
+<span class="s">            &#39;</span><span class="p">)</span>
+
+<span class="n">Cd_grid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">tmap v3 code detected</span> <span class=" -Color -Color-Cyan">───────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_polygons()`: use `fill_alpha` instead of `alpha`.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">tmap v3 code detected</span> <span class=" -Color -Color-Cyan">───────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_tm_raster()`: migrate the argument(s) related to the scale of the
+visual variable `col` namely &#39;palette&#39; (rename to &#39;values&#39;) to col.scale =
+tm_scale(&lt;HERE&gt;).
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_raster()`: use `col_alpha` instead of `alpha`.
+</pre></div>
+</div>
+<img alt="../../_images/65830135d42942e7ee26479ad51c84d8707385eacf72c46a79db8284c083cf2d.png" src="../../_images/65830135d42942e7ee26479ad51c84d8707385eacf72c46a79db8284c083cf2d.png" />
+<img alt="../../_images/93755c81b45a4cd495c23fb0b5efa0f0d16fafed32555b4d04bb8fb4ea277126.png" src="../../_images/93755c81b45a4cd495c23fb0b5efa0f0d16fafed32555b4d04bb8fb4ea277126.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#| fig-cap: Repeat for water quality</span>
+
+<span class="c1">### method (1) closest obs</span>
+<span class="c1"># Voronoi</span>
+<span class="c1"># v &lt;-terra::voronoi(x = terra::vect(st_as_sf( riv_metals[c(&#39;lon&#39;,&#39;lat&#39;, &#39;Cd_mean&#39;)], </span>
+<span class="c1">#                   coords = c(&quot;lon&quot;, &quot;lat&quot;), crs = 4326) ), bnd = eng_wales) </span>
+<span class="n">v</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">terra</span><span class="o">::</span><span class="nf">voronoi</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">vect</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="w"> </span><span class="n">riv_metals</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;easting&#39;</span><span class="p">,</span><span class="s">&#39;northing&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Cd_mean&#39;</span><span class="p">)],</span><span class="w"> </span>
+<span class="w">                  </span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;easting&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;northing&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">27700</span><span class="p">)</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="n">bnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eng_wales</span><span class="p">)</span><span class="w"> </span>
+
+<span class="n">resp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_intersection</span><span class="p">(</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">v</span><span class="p">),</span><span class="w"> </span><span class="n">Pred_loc</span><span class="p">)</span>
+<span class="n">resp</span><span class="o">$</span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">resp</span><span class="o">$</span><span class="n">Cd</span><span class="p">)</span>
+<span class="n">pred_riv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terra</span><span class="o">::</span><span class="nf">rasterize</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pred&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mean&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+attribute variables are assumed to be spatially constant throughout all geometries 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#| fig-cap: Data cube for cadmium data across compartments</span>
+<span class="c1">#| eval: true</span>
+<span class="c1">#| fig-height: 6</span>
+<span class="c1">#| fig-width: 3</span>
+
+
+<span class="c1"># tmap_grob(Cd_grid + tm_layout(legend.show=FALSE, frame = FALSE))</span>
+<span class="n">sm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+
+
+<span class="n">pred_sf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as.polygons</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span>
+<span class="n">pred_sf_tilt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_sf</span>
+<span class="n">pred_sf_tilt</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_sf</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sm</span>
+<span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_sf_tilt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_sf</span><span class="p">)</span>
+
+<span class="n">pred_sf_tilt2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_sf</span>
+<span class="n">pred_sf_tilt2</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_sf_tilt</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">-0</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_sf_tilt2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_sf</span><span class="p">)</span>
+
+<span class="c1">## River</span>
+<span class="n">pred_riv_sf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as.polygons</span><span class="p">(</span><span class="n">pred_riv</span><span class="p">))</span>
+<span class="n">pred_sf_tilt3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_riv_sf</span><span class="w"> </span>
+<span class="n">pred_sf_tilt3</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_riv_sf</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sm</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">-1e6</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_sf_tilt3</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">pred_riv_sf</span><span class="p">)</span>
+
+<span class="c1"># coarse, if not too slow</span>
+<span class="n">r_coarse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">resample</span><span class="p">(</span><span class="n">r_stack</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="o">=</span><span class="s">&quot;near&quot;</span><span class="p">)</span>
+<span class="c1"># crop r_stack to England and Wales</span>
+
+<span class="n">r_coarse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">crop</span><span class="p">(</span><span class="n">r_coarse</span><span class="p">,</span><span class="w"> </span><span class="n">eng_wales</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+
+<span class="n">r_coarse_sf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as.polygons</span><span class="p">(</span><span class="n">r_coarse</span><span class="p">))</span>
+<span class="n">r_coarse_sf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as.polygons</span><span class="p">(</span><span class="n">r_coarse</span><span class="o">$</span><span class="n">var2</span><span class="p">))</span>
+
+<span class="n">r_coarse_sf_tilt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_coarse_sf</span>
+<span class="n">r_coarse_sf_tilt</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_coarse_sf</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sm</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">-1.5e6</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">st_crs</span><span class="p">(</span><span class="n">r_coarse_sf_tilt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">r_coarse_sf</span><span class="p">)</span>
+
+
+<span class="n">r_coarse_sf2_tilt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_coarse_sf2</span>
+<span class="n">r_coarse_sf2_tilt</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_coarse_sf2</span><span class="o">$</span><span class="n">geometry</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sm</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">-0.5e6</span><span class="w"> </span><span class="p">)</span>
+<span class="nf">st_crs</span><span class="p">(</span><span class="n">r_coarse_sf2_tilt</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_crs</span><span class="p">(</span><span class="n">r_coarse_sf2</span><span class="p">)</span>
+
+
+
+
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">pred_sf_tilt3</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1">## everything relative to this</span>
+<span class="w">  </span><span class="nf">tm_fill</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;mean&#39;</span><span class="p">),</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;brewer.pi_yg&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">pred_sf_tilt2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">tm_fill</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;mean&#39;</span><span class="p">),</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;brewer.prgn&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">r_coarse_sf_tilt</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_fill</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;var1&#39;</span><span class="p">),</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;viridis&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="nf">tm_shape</span><span class="p">(</span><span class="n">r_coarse_sf2_tilt</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_fill</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;var2&#39;</span><span class="p">),</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;brewer.br_bg&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_credits</span><span class="p">(</span><span class="s">&#39;Water&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.88</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_credits</span><span class="p">(</span><span class="s">&#39;Air&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_credits</span><span class="p">(</span><span class="s">&#39;Otter&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.33</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_credits</span><span class="p">(</span><span class="s">&#39;Soil&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">tm_layout</span><span class="p">(</span><span class="n">legend.show</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">tmap v3 code detected</span> <span class=" -Color -Color-Cyan">───────────────────────────────────────────────────────</span>
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_tm_fill()`: migrate the argument(s) related to the scale of the
+visual variable `fill` namely &#39;palette&#39; (rename to &#39;values&#39;) to fill.scale =
+tm_scale(&lt;HERE&gt;).
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_fill()`: use `fill_alpha` instead of `alpha`.
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_fill()`: use `fill_alpha` instead of `alpha`.
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_fill()`: use `fill_alpha` instead of `alpha`.
+<span class=" -Color -Color-Green">[v3-&gt;v4]</span> `tm_fill()`: use `fill_alpha` instead of `alpha`.
+</pre></div>
+</div>
+<img alt="../../_images/d49df82ab1d71e543ad19fe6a112707a71e444d278cc8d2c9069e1735b34f7a7.png" src="../../_images/d49df82ab1d71e543ad19fe6a112707a71e444d278cc8d2c9069e1735b34f7a7.png" />
+</div>
+</div>
+<!-- Notes: to convert to Jupyter notebook: run `quarto convert metals_EEX_demo.qmd` --><hr class="footnotes docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>See more at <a class="reference external" href="https://www.paulamoraga.com/book-spatial/point-process-modeling.html">https://www.paulamoraga.com/book-spatial/point-process-modeling.html</a></p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./methods\ds-toolbox-notebook-metals_EEX_demo"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">RO-Crate Tutorial Notebook.</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metals-pollution">Metals Pollution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#causal-loop-diagram">Causal loop diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-difficulty-to-study-across-compartments">The difficulty to study across compartments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predatory-birds-and-otters-data">Predatory birds and otters data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#river-water-quality-data">River water quality data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-power-of-integration">The power of integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#displaying-the-data-together">(1) Displaying the data together</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-data-ready-for-statistical-or-machine-learning-analysis">(2) Getting data ready for statistical or machine learning analysis</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
