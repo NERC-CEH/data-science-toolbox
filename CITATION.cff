@@ -22,6 +22,6 @@ keywords:
   - Data Science
   - Jupyter Book
 url: "https://nerc-ceh.github.io/data-science-toolbox"
-license: tbd
+license: MIT
 commit: c6cffeb
 date-released: '2025-11-03'
