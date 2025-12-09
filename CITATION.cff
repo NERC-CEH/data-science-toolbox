@@ -1,0 +1,27 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: "Environmental Data Science Toolbox"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+    - name: "UK Centre for Ecology & Hydrology"
+      country: GB
+      website: "https://www.ceh.ac.uk/"
+    - given-names: Jeremy
+      family-names: Carter
+      name-suffix: PhD
+      email: jercar@ceh.ac.uk
+      affiliation: "UK Centre for Ecology & Hydrology"
+      orcid: 'https://orcid.org/0000-0003-1878-2277'
+repository-code: "https://github.com/NERC-CEH/data-science-toolbox"
+abstract: "This is a prototype version of the National Capability UK (NC-UK) Environmental Data Science Toolbox, hosted by the UK Centre for Ecology & Hydrology (UKCEH). The aim is to apply FAIR principles (Findable, Accessible, Interoperable, and Reusable) to a collection of data science methods that are generalizable across different environmental applications, with a focus on integrative modelling. The hope being that this will encourage cross-disciplinary use of methods, enhancing national environmental research."
+keywords:
+  - Environmental Science
+  - Data Science
+  - Jupyter Book
+url: "https://nerc-ceh.github.io/data-science-toolbox"
+license: MIT
+commit: c6cffeb
+date-released: '2025-11-03'
