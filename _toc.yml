@@ -20,4 +20,6 @@ parts:
     file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
   - title: Integration of Metals Data across Environmental Compartments 
     file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+  - title: Exploration of chemical pollution from a place based perspective  
+    file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
 
