@@ -19,6 +19,3 @@
 [submodule "methods/ds-toolbox-notebook-metals_EEX_demo"]
 	path = methods/ds-toolbox-notebook-metals_EEX_demo
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-metals_EEX_demo.git
-[submodule "ds-toolbox-notebook-EEX-placebased-exposure"]
-	path = ds-toolbox-notebook-EEX-placebased-exposure
-	url = https://github.com/NERC-CEH/ds-toolbox-notebook-EEX-placebased-exposure.git
