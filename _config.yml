@@ -59,6 +59,10 @@ html:
   announcement: >
     ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
 
+sphinx:
+  extra_extensions:
+    - myst_nb_bokeh
+
 # parse:
 #   myst_enable_extensions:
 #     # don't forget to list any other extensions you want enabled,
