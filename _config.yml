@@ -58,8 +58,7 @@ html:
   favicon: images/edsb-favicon.png  # Path to a favicon for your book
   announcement: >
     ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
-  analytics:
-    google_analytics_id: G-VSVWNW0JEP
+  google_analytics_id: G-VSVWNW0JEP
 
 # parse:
 #   myst_enable_extensions:
