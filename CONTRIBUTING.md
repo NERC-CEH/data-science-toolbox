@@ -45,7 +45,7 @@ git submodule add {url-of-repository}
 ```bash 
 conda create --name dstoolbox
 conda activate jupyter-book
-conda install -c conda-forge jupyter-book
+conda install -c conda-forge "jupyter-book<2"
 
 jupyter-book build data-science-toolbox
 ```
@@ -61,7 +61,7 @@ jupyter-book build data-science-toolbox
 A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised collection of [Jupyter Notebooks](https://www.dataquest.io/blog/jupyter-notebook-tutorial/) that cover a specific topic. This repository houses the 'UKCEH Data Science Toolbox' Jupyter book, which presents a collection of Jupyter notebook tutorials on specific data science methodologies developed at UKCEH, detailing the full data science pipeline. Here we provide a guideline on developing the Jupyter book's content and suggest useful links and documentation. See this [Jupyter Books 101](https://www.google.com/search?sca_esv=853f175af13f0422&rlz=1C1GCEA_enGB1127GB1127&sxsrf=ADLYWILIDB_FKqa2tEu-BFTAyFkn4C5pZA:1730195044702&q=ghp-import&tbm=vid&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWfbQph1uib-VfD_izZO2Y5sC3UdQE5x8XNnxUO1qJLaQdh3mUfgbiNAX47iHD_lJjnnrtkrknsy6VQXK4-aRHxqnPwuFZlmbREdWKLZFI-gq_UsBLTYJHKqEeHaFb3F8RYl5naC8STX8rrrXVJLtrqfmiz5ev1aurnZdmKum0bTFGUA16&sa=X&ved=2ahUKEwiYhKDoprOJAxWsVkEAHbmtBuoQ0pQJegQIGhAB&biw=1745&bih=828&dpr=1.1&safe=active&ssui=on#fpstate=ive&vld=cid:6619f956,vid:lZ2FHTkyaMU,st:0) for a nice YouTube introduction into the topic. 
 
 > [!NOTE]  
->To be able to re-build the Jupyter book and view your adjustments you'll need to download the Python package, either using PIP ([jupyter-book PyPI](https://pypi.org/project/jupyter-book/)) or Conda ([jupyter-book conda-forge](https://anaconda.org/conda-forge/jupyter-book)), see [Install Jupyter Book](https://jupyterbook.org/en/stable/start/overview.html). It is suggested to use Conda and to run the commands via the Anaconda Prompt if on a windows machine.  
+>To be able to re-build the Jupyter book and view your adjustments you'll need to download the Python package, either using PIP ([jupyter-book PyPI](https://pypi.org/project/jupyter-book/)) or Conda ([jupyter-book conda-forge](https://anaconda.org/conda-forge/jupyter-book)), see [Install Jupyter Book](https://jupyterbook.org/en/stable/start/overview.html). It is suggested to use Conda and to run the commands via the Anaconda Prompt if on a windows machine. At the moment we use Jupyter Book V1, so ensure this is specified when installing the package.  
 
 1. The repository contains a basic [anatomy of a jupyter book](https://jupyterbook.org/en/stable/start/create.html#anatomy-of-a-book). The most important files in terms of setting the build options are the table of contents (`_toc.yml`) and book configuration (`_config.yml`) files. It is suggested you will likely not need to edit the `_config.yml` file. However, after creating some content (such as a methodology notebook), for the content to show up in the build, the `_toc.yml` will need updating to include a respective link.  
 
