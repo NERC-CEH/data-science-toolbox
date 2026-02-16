@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -53,9 +53,22 @@
     <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VSVWNW0JEP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis';</script>
     <link rel="icon" href="../../../_static/edsb-favicon.png"/>
@@ -1022,7 +1035,7 @@ susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6883.24it/s]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/f11c9fb1ba1c78f5615c9d6455edfebf96f096de3b3f5fd03823acb234ae8253.svg" src="../../../_images/f11c9fb1ba1c78f5615c9d6455edfebf96f096de3b3f5fd03823acb234ae8253.svg" />
+<img alt="../../../_images/2ee39f621ac633eff233b5fd74216adf2d2d26721f2cbd6ad57de16fcfab96eb.svg" src="../../../_images/2ee39f621ac633eff233b5fd74216adf2d2d26721f2cbd6ad57de16fcfab96eb.svg" />
 </div>
 </div>
 <p>Looking at the top 10 loadings along PC1 can help elucidate what compounds were responsible for driving this sample separation. We can see that the compound ‘Inosine’ was particularly associated with negative PC1 scores. This suggests a link between inosine and muscle tissue in fish. Indeed, inosine (a type of nucleoside found in tRNAs) has been shown to form as a <a class="reference external" href="https://academic.oup.com/ijfst/article/41/4/341/7863908">degradation product of ATP in chill-stored post-mortem fish storage</a>, which may explain this finding.</p>
@@ -1034,7 +1047,7 @@ susdat: 100%|██████████| 20/20 [00:00&lt;00:00, 6883.24it/s]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/c2f486d60884650b598ddcae6cf4aa01c3b76fac22f0b5f04e1bdf639166ab3f.svg" src="../../../_images/c2f486d60884650b598ddcae6cf4aa01c3b76fac22f0b5f04e1bdf639166ab3f.svg" />
+<img alt="../../../_images/1eefdab0e256c992e2dc6634caa536f1e9d0ccc3587faf82b732df7a989a56c3.svg" src="../../../_images/1eefdab0e256c992e2dc6634caa536f1e9d0ccc3587faf82b732df7a989a56c3.svg" />
 </div>
 </div>
 <p>The loadings that PCA gives us are averaged across many samples, so to confirm the trends indicated by the PCA plots, we can access the raw data and create box plots of the compounds of interest across the relevant metadata categories. The boxplots below support our interpretation of the PCA, namely that inosine is concentration in fish liver tissue, and octadecatrienoic acid is mainly found in bird liver tissue.</p>
@@ -1179,7 +1192,7 @@ For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/ab623c8c4ee07cb9d3e4ea1dc5c192d61ca85e3e836db21ca1dbcd8611d238a2.svg" src="../../../_images/ab623c8c4ee07cb9d3e4ea1dc5c192d61ca85e3e836db21ca1dbcd8611d238a2.svg" />
+<img alt="../../../_images/6e1226b4999b96edc5c14eba99ed34a2ce0c66cdcc28e40d476735949e23c753.svg" src="../../../_images/6e1226b4999b96edc5c14eba99ed34a2ce0c66cdcc28e40d476735949e23c753.svg" />
 </div>
 </div>
 <p>We can read the data behind the plot saved in <code class="docutils literal notranslate"><span class="pre">fromContents.csv</span></code> to look at precisely what compounds were in each intersection.</p>
@@ -1492,7 +1505,7 @@ If you have LC-MS or GC-MS data that you would like to perform non-target analys
         },
         kernelOptions: {
             name: "python3",
-            path: "./methods\DSFP-PyExplorer\notebooks"
+            path: "./methods/DSFP-PyExplorer/notebooks"
         },
         predefinedOutput: true
     }
