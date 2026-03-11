@@ -4,6 +4,10 @@
 format: jb-book
 root: intro
 parts:
+- caption: 
+  chapters:
+  - title: How to Cite
+    file: "cite"
 - caption: Methodology Notebooks
   chapters:
   - title: Bias Correction of Climate Models
