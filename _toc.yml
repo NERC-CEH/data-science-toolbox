@@ -26,4 +26,5 @@ parts:
     file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
   - title: Exploration of chemical pollution from a place based perspective  
     file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
-
+  - title: Censored log-normal generalized additive modelling
+    file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
