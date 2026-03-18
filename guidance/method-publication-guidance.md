@@ -31,7 +31,7 @@ In this guidance, **methods** refer to research outputs that usually take one or
 
 ## When this guidance applies
 
-We ask for this guidence to be followed for any method that:
+We ask for this guidance to be followed for any method that:
 
 - supports a published research paper, data product or report
 - may reasonably be reused (for replication, validation or adaptation)
@@ -157,11 +157,13 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 
 ### Level 3: contribute your method to the Data Science Toolbox
 
-Before you get started, checklist to make sure your method is suitable:
+[This section is dependent on the guidance that will be developed for the Toolbox and therefore will evolve.]
+
+Before you get started, make sure your method is suitable:
 
 - has an open license
-- can be used with publicly-available data, or sample data provided
-- has potential to be reused by others
+- has the potential to be reused by others
+- can be used with publicly-available data, or you are able to provide sample data
 - can be presented in a Jupyter notebook format
 
-Follow the Toolbox contributing guidelines [link].
+Follow the Toolbox contributing guidelines [link to Toolbox guidelines - in progress].
