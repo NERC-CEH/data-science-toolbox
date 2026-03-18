@@ -2,51 +2,59 @@
 
 **Status**: draft
 
-**Version**: 0.1
+**Version**: 0.2
 
 **Project/Funding**: Data Science Platform
 
-**Contributors**: Helen Rawsthorne
+**Contributors**: Helen Rawsthorne, Phil Trembath, Matt Nichols, Michael Tso, Mike Holloway, Robin Long, Tim Waterfield, David Leaver
 
-**Last modified**: 9 March 2026
+**Last modified**: 18 March 2026
 
 Please add your name to **Contributors** and update the **Last modified** date whenever you make changes.
 
 ## Table of contents <!-- omit in toc -->
 
 - [Methods: what are they?](#methods-what-are-they)
-- [Why this guidance exists](#why-this-guidance-exists)
+- [When this guidance applies](#when-this-guidance-applies)
+- [What's in it for you](#whats-in-it-for-you)
 - [Method publication: step-by-step guide](#method-publication-step-by-step-guide)
 
 ## Methods: what are they?
 
-In this guidance, **methods** refer to research outputs that take the form of digital objects. These include (but are not limited to):
+In this guidance, **methods** refer to research outputs that usually take one or more digital objects as input (e.g. datasets) and produce one or more digital objects as output (e.g. models). Methods include, but are not limited to:
+
 - computational workflows
 - code and software
 - algorithms
 - models
 - computational notebooks
 
-Methods usually take one or more other digital objects as input (e.g. datasets) and produce one or more digital objects as output (e.g. models).
+## When this guidance applies
 
-## Why this guidance exists
+We ask for this guidence to be followed for any method that:
 
-Say something about which UKCEH methods this applies to.
+- supports a published research paper, data product or report
+- may reasonably be reused (for replication, validation or adaptation)
+- may need to be reviewed or audited in the future
 
-The aim of this gudiance is to help you make your method:
+In short, if your method supports a publication or could be reused, it should be available in a public repository with comprehensive metadata and archived for long term access.
 
-- discoverable
-- citable
-- reusable
-- archived for long-term access
+## What's in it for you
+
+Publishing your method openly with comprehensive metadata helps ensure that your work can be trusted, reused and cited. Following this guidance provides you with several concrete benefits:
+
+- **Improved reproducibility and transparency**. Clear documentation and versioned releases make your work easier to validate, reuse and audit in the future.
+- **Better long-term preservation**. Archiving your method with a DOI ensures it remains accessible beyond the lifetime of a project or repository.
+- **Clear credit for your contributions**. Including structured and machine-readable metadata means others can cite your method correctly, ensuring your work is fully recognised.
+- **Greater visibility within UKCEH and beyond**. Standardised metadata, tags and licensing make your method easier for colleagues and collaborators to find and reuse.
 
 ## Method publication: step-by-step guide
 
 This guide has **3 levels**. You do not need to complete them all at once, but they should be followed in order.
 
-- [Level 1](#level-1-make-your-method-available-on-github) - make your method publicly available and citable
-- [Level 2](#level-2-publish-your-method-on-zenodo) - publish your method and obtain a DOI
-- [Level 3](#level-3-contribute-your-method-to-the-data-science-toolbox) - make your method reusable through the Data Science Toolbox
+- [Level 1](#level-1-make-your-method-available-on-github): make your method publicly available and citable
+- [Level 2](#level-2-publish-your-method-on-zenodo): publish your method and obtain a DOI
+- [Level 3](#level-3-contribute-your-method-to-the-data-science-toolbox): make your method reusable through the Data Science Toolbox
 
 ### Level 1: make your method available on GitHub
 
@@ -54,22 +62,35 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 
 <details>
 
-<summary><h4 style="display:inline-block">Scenario 1: my method is already on GitHub - show me the checklist</h4></summary>
+<summary><h4 id="l1s1" style="display:inline-block">Scenario 1: my method is already on GitHub - show me the checklist</h4></summary>
 
-- [ ] My method is in a dedicated repository in the [UKCEH GitHub organisation](https://github.com/NERC-CEH)
+- [ ] My method is in a dedicated repository in the [UKCEH GitHub organisation](https://github.com/NERC-CEH) (or another institution's GitHub organisation, if that is required by the project) and not in a personal account. If you need help transferring your repository from a personal account to the UKCEH GitHub organisation, please follow the steps in the [help section below](#help).
 - [ ] The repository contains a `README.md` file, which includes:
-  - [ ] a clear title
-  - [ ] the appropriate [repostatus badge](https://www.repostatus.org/) for my method, and any other relevant badges
-  - [ ] a table of contents
-  - [ ] a description of my method
-  - [ ] contact details for at least one maintainer
-  - [ ] information on project funding, including end date if applicable
-- [ ] The repository contains an appropriate `LICENSE.md` file
-- [ ] The repository contains a `CITATION.cff` file that follows [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md)
-- [ ] The repository **About** section contains a short description of my method
-- [ ] The repository **Topics** section contains relevant tags
-- [ ] The repository contains a `CONTRIBUTING.md` file that explains how others may contribute to my method
-- [ ] The repository visibility is set to **Public**
+  - [ ] a clear title,
+  - [ ] the appropriate [repostatus badge](https://www.repostatus.org/) for my method, and any other relevant badges,
+  - [ ] a table of contents,
+  - [ ] a description of my method,
+  - [ ] instructions on how to install and use my method,
+  - [ ] contact details for at least one maintainer,
+  - [ ] information on project funding, including end date if applicable.
+- [ ] The repository contains an appropriate `LICENSE.md` file.
+- [ ] The repository contains a `CITATION.cff` file that follows [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md).
+- [ ] The repository **About** section contains a short description of my method.
+- [ ] The repository **Topics** section contains relevant tags.
+- [ ] The repository contains a `CONTRIBUTING.md` file that explains how others may contribute to my method.
+- [ ] The repository does not contain any sensitive information such as access keys, data protected under [UK GDPR](https://www.gov.uk/data-protection) or file paths.
+- [ ] The repository visibility is set to **Public**.
+
+<details>
+
+<summary><h5 id="help" style="display:inline-block">Help! My method is on my personal GitHub account</h4></summary>
+
+1. Ensure you are a member of the [UKCEH GitHub organisation](https://github.com/NERC-CEH). Contact [UKCEH IT Support](https://cehacuk.sharepoint.com/sites/hub-it/SitePages/Welcome-to-the-Information-Technology-(IT)-Site1.aspx) if you need access.
+2. Follow the [instructions issued by GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/transferring-a-repository) on how to transfer a repository from a personal account to an organisation, and select the [UKCEH GitHub organisation](https://github.com/NERC-CEH) when prompted.
+3. Next time you need to create a repository to host anything related to your work at UKCEH, create it directly in the UKCEH GitHub organisation rather than your personal account. You may set its visibility to private initially, until you are ready to make your method open.
+4. Return to the [checklist above](#l1s1).
+
+</details>
 
 </details>
 
@@ -77,20 +98,22 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 
 <summary><h4 style="display:inline-block">Scenario 2: my method is not yet on GitHub - walk me through what I need to do</h4></summary>
 
-1. Create a new repository for your method in the [UKCEH GitHub organisation](https://github.com/NERC-CEH) and not in a personal account. This ensures better visibility, sustainability and institutional support. Contact [UKCEH IT Support](https://cehacuk.sharepoint.com/sites/hub-it/SitePages/Welcome-to-the-Information-Technology-(IT)-Site1.aspx) if you need access.
+1. Create a new repository for your method in the [UKCEH GitHub organisation](https://github.com/NERC-CEH) (or another institution's GitHub organisation, if that is required by the project) and not in a personal account. This ensures better visibility, sustainability and institutional support. Contact [UKCEH IT Support](https://cehacuk.sharepoint.com/sites/hub-it/SitePages/Welcome-to-the-Information-Technology-(IT)-Site1.aspx) if you need access.
 2. Add a [`README.md` file](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes) to your repository, and include at least the following elements:
-   - a clear title (the name of your method)
-   - the appropriate [repostatus badge](https://www.repostatus.org/) for your method, and any other relevant badges
-   - a table of contents
-   - a description of your method
-   - contact details for at least one maintainer
-   - information on project funding, including end date if applicable
+   - a clear title (the name of your method),
+   - the appropriate [repostatus badge](https://www.repostatus.org/) for your method, and any other relevant badges,
+   - a table of contents,
+   - a description of your method,
+   - instructions on how to install and use your method,
+   - contact details for at least one maintainer,
+   - information on project funding, including end date if applicable.
 3. Add an appropriate [`LICENSE.md` file](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository) to your repository. The [MIT license](https://opensource.org/license/mit) is recommended for methods, unless funders or principal investigators request otherwise.
 4. Add a [`CITATION.cff` file](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files) to your repository that follows [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md).
 5. Fill in the **About** section of your repository with a short description of your method.
 6. Fill in the [**Topics** section](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics) of your repository with tags that are relevant to your method.
 7. Add a [`CONTRIBUTING.md` file](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files) to your repository that explains how others may contribute to your method.
-8. Ensure the visibility of your repository is [set to **Public**](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
+8. Ensure your repository does not contain any sensitive information such as access keys, data protected under [UK GDPR](https://www.gov.uk/data-protection) or file paths.
+9. Ensure the visibility of your repository is [set to **Public**](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories#about-repository-visibility).
 
 </details>
 
@@ -98,8 +121,7 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 
 <summary><h4 style="display:inline-block">Scenario 3: my method can not be made publicly available on GitHub</h4></summary>
 
-1. If the issue is with using GitHub itself, consider an alternative Git platform such as [Bitbucket](https://bitbucket.org/), [Codeberg](https://codeberg.org/) or [GitLab](https://about.gitlab.com/).
-2. If the issue is that your method cannot be made public, jump to [Level 2, Scenario 2](#l2s2) of this guide.
+1. If your method cannot be made public, jump to [Level 2, Scenario 2](#l2s2) of this guide.
 
 </details>
 
@@ -140,5 +162,6 @@ Before you get started, checklist to make sure your method is suitable:
 - has an open license
 - can be used with publicly-available data, or sample data provided
 - has potential to be reused by others
+- can be presented in a Jupyter notebook format
 
-Follow the Toolbox contributing guidelines.
+Follow the Toolbox contributing guidelines [link].
