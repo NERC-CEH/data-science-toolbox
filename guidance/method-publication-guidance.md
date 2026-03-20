@@ -6,9 +6,9 @@
 
 **Project/Funding**: Data Science Platform
 
-**Contributors**: Helen Rawsthorne, Phil Trembath, Matt Nichols, Michael Tso, Mike Holloway, Robin Long, Tim Waterfield, David Leaver
+**Contributors**: Helen Rawsthorne, Phil Trembath, Matt Nichols, Michael Tso, Mike Holloway, Robin Long, Tim Waterfield, David Leaver, Kelly Widdicks
 
-**Last modified**: 18 March 2026
+**Last modified**: 20 March 2026
 
 Please add your name to **Contributors** and update the **Last modified** date whenever you make changes.
 
@@ -54,7 +54,7 @@ This guide has **3 levels**. You do not need to complete them all at once, but t
 
 - [Level 1](#level-1-make-your-method-available-on-github): make your method publicly available and citable
 - [Level 2](#level-2-publish-your-method-on-zenodo): publish your method and obtain a DOI
-- [Level 3](#level-3-contribute-your-method-to-the-data-science-toolbox): make your method reusable through the Data Science Toolbox
+- [Level 3](#level-3-contribute-your-method-to-the-data-science-toolbox): make your method reusable through the Environmental Data Science Toolbox
 
 ### Level 1: make your method available on GitHub
 
@@ -73,7 +73,7 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
   - [ ] instructions on how to install and use my method,
   - [ ] contact details for at least one maintainer,
   - [ ] information on project funding, including end date if applicable.
-- [ ] The repository contains an appropriate `LICENSE.md` file.
+- [ ] The repository contains an appropriate `LICENSE.md` file ([MIT license](https://opensource.org/license/mit) recommended, unless funders or principal investigators request otherwise).
 - [ ] The repository contains a `CITATION.cff` file that follows [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md).
 - [ ] The repository **About** section contains a short description of my method.
 - [ ] The repository **Topics** section contains relevant tags.
@@ -155,7 +155,7 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 
 </details>
 
-### Level 3: contribute your method to the Data Science Toolbox
+### Level 3: contribute your method to the Environmental Data Science Toolbox
 
 [This section is dependent on the guidance that will be developed for the Toolbox and therefore will evolve.]
 
