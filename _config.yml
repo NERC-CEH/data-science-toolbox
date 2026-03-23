@@ -29,12 +29,6 @@ execute:
 
 # nb_execution_timeout = 60
 
-launch_buttons:
-  binderhub_url: "https://mybinder.org"  # The URL for your BinderHub (e.g., https://mybinder.org)
-  # colab_url: "https://colab.research.google.com"
-  colab_url: "https://deepnote.com"
-
-
 # Define the name of the latex output file for PDF builds
 latex:
   latex_documents:
@@ -59,6 +53,8 @@ html:
   announcement: >
     ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
   google_analytics_id: G-VSVWNW0JEP
+  extra_javascript:
+    - _static/set_launch_link.js
 
 # parse:
 #   myst_enable_extensions:
@@ -75,6 +71,12 @@ html:
 #   jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
 #   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
 #   colab_url                 : "" # The URL of Google Colab (https://colab.research.google.com)
+launch_buttons:
+  notebook_interface        : "jupyterlab"  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url             : "https://mybinder.org" # The URL of the BinderHub (e.g., https://mybinder.org or https://binder.pangeo.io, https://aws-uswest2-binder.pangeo.io)
+#  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  thebe                     : true  # Add a thebe button to pages (requires the repository to run on Binder)
+  colab_url                 : "https://colab.research.google.com" # The URL of Google Colab (https://colab.research.google.com)
 
 # html:
 #   use_issues_button: true
@@ -86,3 +88,10 @@ html:
 #   url: https://github.com/alan-turing-institute/environmental-ds-book # Online location of your book
 #   path_to_book: book  # Optional path to your book, relative to the repository root
 #   branch: master  # Which branch of the repository should be used when creating links (optional)
+
+sphinx:
+  config:
+    myst_html_meta:
+      "launch_branch": "main"
+  extra_extensions:
+    - custom-launch-buttons
