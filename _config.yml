@@ -54,7 +54,7 @@ html:
     ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
   google_analytics_id: G-VSVWNW0JEP
   extra_javascript:
-    - _static/set_launch_link.js
+    - _static/init_custom_launch_button.js
 
 # parse:
 #   myst_enable_extensions:
@@ -93,5 +93,6 @@ sphinx:
   config:
     myst_html_meta:
       "launch_branch": "main"
+      "launch_on": ""
   extra_extensions:
     - custom-launch-buttons
