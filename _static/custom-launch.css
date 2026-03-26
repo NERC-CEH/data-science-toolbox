@@ -1,0 +1,45 @@
+.btn-launch-aws {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ffffff !important;
+  background-color: #232f3e;
+  border: 1px solid #232f3e;
+  border-radius: 4px;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-launch-aws:hover,
+.btn-launch-aws:focus {
+  background-color: #ff9900;
+  border-color: #ff9900;
+  color: #232f3e !important;
+}
+
+.btn-launch-aws svg {
+  flex-shrink: 0;
+}
+
+/* Sit alongside sphinx-book-theme's own launch-button group */
+.launch-buttons {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+}
+
+.dropdown-launch-buttons {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-launch-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+}

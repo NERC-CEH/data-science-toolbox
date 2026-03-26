@@ -34,6 +34,20 @@ launch_buttons:
   # colab_url: "https://colab.research.google.com"
   colab_url: "https://deepnote.com"
 
+sphinx:
+  config:
+    aws_launch_options:
+      - label: "SageMaker Studio Lab"
+        url: "https://studiolab.sagemaker.aws/import/github/UKCEH/UKCEH_Data_Science_Book/blob/main/{notebook_path}.ipynb"
+        icon: "_static/signal-cellular-3-bar-svgrepo-com.png"
+      - label: "Medium Compute"
+        url: "https://medium-aws-platform.com//{notebook_path}.ipynb"
+        icon: "_static/signal-cellular-2-bar-svgrepo-com.png"
+      - label: "Low Compute"
+        url: "https://low-aws-platform.com/{notebook_path}.ipynb"
+        icon: "_static/signal-cellular-1-bar-svgrepo-com.png"
+  local_extensions:
+    aws_button: _ext
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -46,9 +60,9 @@ latex:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/Jez-Carter/UKCEH_Data_Science_Book  # Online location of your book
+  url: https://github.com/NERC-CEH/UKCEH_Data_Science_Book  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: master  # Which branch of the repository should be used when creating links (optional)
+  branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
@@ -59,7 +73,10 @@ html:
   announcement: >
     ⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
   google_analytics_id: G-VSVWNW0JEP
-
+  extra_css:
+    - custom-launch.css
+  extra_js:
+    - aws_button.js
 # parse:
 #   myst_enable_extensions:
 #     # don't forget to list any other extensions you want enabled,
