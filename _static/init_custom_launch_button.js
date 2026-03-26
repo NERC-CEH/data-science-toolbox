@@ -1,25 +1,28 @@
-document.addEventListener("click", function (event) {
-    const link = event.target.closest(".dropdown-source-buttons .dropdown-menu .dropdown-item");
-    if (!link) return;
-
-    if (window.location.pathname.includes("methods")) {
-        const baseUrl = decodeURIComponent(link.getAttribute("href"));
-        const url = getPath(baseUrl);
-        if (url) {
-            event.preventDefault();
-            window.open(url, '_blank');
-        }
-    }
-}, true);
-
 document.addEventListener("DOMContentLoaded", function() {
-    const dropdownLinks = document.querySelector(".dropdown-source-buttons").querySelectorAll(".dropdown-menu .dropdown-item");
+    const dropdownButton = document.querySelector(".dropdown-source-buttons");
+    const dropdownLinks = dropdownButton.querySelectorAll(".dropdown-menu .dropdown-item");
+
+    // set click event for update url
+    dropdownLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            const baseUrl = decodeURIComponent(link.getAttribute("href"));
+            const url = getPath(baseUrl);
+            if (url) {
+                event.preventDefault();
+                window.open(url, '_blank');
+            }
+        }, true);
+    });
 
     // Set tooltip
     dropdownLinks.forEach(link => {
         let url = decodeURIComponent(link.getAttribute("href"));
         if (url.includes("mybinder")) {
-            link.setAttribute("data-bs-title", "<b>Launch on Binder</b>");
+            const tooltip = `
+              <b>Launch on Binder</b>
+              <img src="https://mybinder.org/badge_logo.svg" alt="Open In Binder" height="30">
+            `
+            link.setAttribute("data-bs-title", tooltip);
         } else if (url.includes("colab")) {
             link.setAttribute("data-bs-title", "<b>Launch on Colab</b>");
         } else if (url.includes("sagemaker")) {
@@ -35,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // hide launch options with metadata launch_on
     const path = window.location.pathname
     if (path.includes("methods")) {
-        document.querySelector(".dropdown-source-buttons").style.display = "";
+        dropdownButton.style.display = "";
         const metadataLaunch = document.querySelector('meta[name="launch_on"]')
         const launchOn = metadataLaunch ? metadataLaunch.content.split(",") : [];
         dropdownLinks.forEach(link => {
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     } else {
-        document.querySelector(".dropdown-source-buttons").style.display = 'none';
+        dropdownButton.style.display = 'none';
     }
 });
 
