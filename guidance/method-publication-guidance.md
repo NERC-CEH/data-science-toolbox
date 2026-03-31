@@ -31,22 +31,22 @@ In this guidance, **methods** refer to research outputs that usually take one or
 
 ## When this guidance applies
 
-We ask for this guidance to be followed for any method that:
+This guidance should be followed for any method that:
 
 - supports a published research paper, data product or report
 - may reasonably be reused (for replication, validation or adaptation)
 - may need to be reviewed or audited in the future
 
-In short, if your method supports a publication or could be reused, it should be available in a public repository with comprehensive metadata and archived for long term access.
+In short, if your method supports a publication or could be reused, it should be available in a public repository with basic metadata and archived for long term access.
 
 ## What's in it for you
 
 Publishing your method openly with comprehensive metadata helps ensure that your work can be trusted, reused and cited. Following this guidance provides you with several concrete benefits:
 
+- **Greater impact within UKCEH and beyond**. Standardised metadata, tags and licensing make your method easier for colleagues and collaborators to find and reuse.
+- **Clear credit for your contributions**. Including structured and machine-readable metadata means others can cite your method correctly, ensuring your work is fully recognised.
 - **Improved reproducibility and transparency**. Clear documentation and versioned releases make your work easier to validate, reuse and audit in the future.
 - **Better long-term preservation**. Archiving your method with a DOI ensures it remains accessible beyond the lifetime of a project or repository.
-- **Clear credit for your contributions**. Including structured and machine-readable metadata means others can cite your method correctly, ensuring your work is fully recognised.
-- **Greater visibility within UKCEH and beyond**. Standardised metadata, tags and licensing make your method easier for colleagues and collaborators to find and reuse.
 
 ## Method publication: step-by-step guide
 
@@ -86,7 +86,7 @@ You can either follow the checklist (Scenario 1) or the step-by-step walkthrough
 <summary><h5 id="help" style="display:inline-block">Help! My method is on my personal GitHub account</h4></summary>
 
 1. Ensure you are a member of the [UKCEH GitHub organisation](https://github.com/NERC-CEH). Contact [UKCEH IT Support](https://cehacuk.sharepoint.com/sites/hub-it/SitePages/Welcome-to-the-Information-Technology-(IT)-Site1.aspx) if you need access.
-2. Follow the [instructions issued by GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/transferring-a-repository) on how to transfer a repository from a personal account to an organisation, and select the [UKCEH GitHub organisation](https://github.com/NERC-CEH) when prompted.
+2. Follow the [instructions issued by GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/transferring-a-repository) on how to transfer a repository from a personal account to an organisation, and select the [UKCEH GitHub organisation](https://github.com/NERC-CEH) when prompted. When you transfer a repository, GitHub adds a redirect function to the old repository URL that points to the new repository URL.
 3. Next time you need to create a repository to host anything related to your work at UKCEH, create it directly in the UKCEH GitHub organisation rather than your personal account. You may set its visibility to private initially, until you are ready to make your method open.
 4. Return to the [checklist above](#l1s1).
 
