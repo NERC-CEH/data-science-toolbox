@@ -24,4 +24,4 @@
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-EEX-placebased-exposure.git
 [submodule "methods/ds-toolbox-notebook-clognorm-mgcv"]
 	path = methods/ds-toolbox-notebook-clognorm-mgcv
-	url = git@github.com:NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
