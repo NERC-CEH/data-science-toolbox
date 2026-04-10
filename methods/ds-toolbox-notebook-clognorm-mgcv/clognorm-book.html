@@ -1,0 +1,1175 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modelling censored log-normal data in mgcv &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VSVWNW0JEP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Exploration of chemical pollution from a place based perspective" href="../ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Environmental Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cite.html">How to Cite</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html">RO-Crate Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.html">Integration of Metals Data across Environmental Compartments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.html">Exploration of chemical pollution from a place based perspective</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a></li>
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelling censored log-normal data in mgcv</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-preamble">Modelling preamble</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-versus-geometric-means">Arithmetic versus geometric means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-normal-response-in-regression-like-models">log-normal response in regression-like models</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-pollutant-data">Analysis of pollutant data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-checking">Data checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-data-prep">Final data prep</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making predictions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelling-censored-log-normal-data-in-mgcv">
+<h1>Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code><a class="headerlink" href="#modelling-censored-log-normal-data-in-mgcv" title="Link to this heading">#</a></h1>
+<p>David L Miller<br />
+2026-03-11</p>
+<p>Here I show how to model censored log-normally-distributed data. This
+kind of data often occurs in pollutant modelling where we have some
+concentration we are measuring which is a positive value, has a
+potentially skewed distribution, and might be censored at some limit for
+detection. In this case we can model the log of the response data as
+normally distributed, applying the appropriate transformation at the end
+of the analysis. Unfortunately this implies a <a class="reference external" href="https://en.wikipedia.org/wiki/AM%E2%80%93GM_inequality">geometric rather than
+arithmetic
+mean</a>, which can
+be difficult to compare to other modelling results.</p>
+<p>In this notebook, I’ll show show to perform this modelling using the
+popular R package <a class="reference external" href="https://cran.r-project.org/package=mgcv"><code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a>. You
+can find out more about generalized additive models
+<a class="reference external" href="https://training.bioss.ac.uk/course_materials/GAMintro2023/">here</a>. The
+methods shown here correct for the bias be incur by transforming
+predictions, ensuring that results are comparable to other modelling
+that uses the arithmetic mean.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modelling-preamble">
+<h1>Modelling preamble<a class="headerlink" href="#modelling-preamble" title="Link to this heading">#</a></h1>
+<p>What does it mean to model log-normal data? What we are saying is that
+we have some variable, Y, which is <span class="math notranslate nohighlight">\(\log_{b}\)</span>-normally[1] distributed so
+<span class="math notranslate nohighlight">\(Y\sim\log_{b}N(\mu,\sigma^{2})\)</span> where <span class="math notranslate nohighlight">\(\mu\)</span> is the logarithm of the
+mean and <span class="math notranslate nohighlight">\(\sigma^{2}\)</span> is the base <span class="math notranslate nohighlight">\(b\)</span> logarithm of the variance of <span class="math notranslate nohighlight">\(Y\)</span>.
+This is equivalent to defining a variable <span class="math notranslate nohighlight">\(Z=b^{Y}\)</span> where
+<span class="math notranslate nohighlight">\(Z\sim N(\mu_{*},\sigma_{*}^{2})\)</span>. The log-normal distribution is useful
+in cases where <span class="math notranslate nohighlight">\(Y\)</span> is defined over the interval <span class="math notranslate nohighlight">\((0,\infty]\)</span> (i.e.,
+<span class="math notranslate nohighlight">\(Y&gt;0\)</span>).</p>
+<p>Many kinds of sensor-collected data will be subject to some “limit of
+detection” (LoD), where there is some point at which observations are
+recorded to be zero because the value is smaller than the sensor can
+detect, and/or the observation is arbitrarily high due to a saturation
+effect. Censored normals can be used in this case. Core to their
+formulation is the separation of the observation into censored and
+non-censored groups, where the censored likelihood contributions are
+evaluations of the cumulative distribution function (CDF) of the normal
+distribution. Censored normal distributions are implemented in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code> in
+the <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> function.</p>
+<section id="arithmetic-versus-geometric-means">
+<h2>Arithmetic versus geometric means<a class="headerlink" href="#arithmetic-versus-geometric-means" title="Link to this heading">#</a></h2>
+<p>We can estimate estimate the expectation of <span class="math notranslate nohighlight">\(Y\)</span> (<span class="math notranslate nohighlight">\(\mathbb{E}(Y)\)</span>) by
+either an arithmetic or geometric mean (denoted <span class="math notranslate nohighlight">\(\mathbb{E}_{A}(Y)\)</span> or
+<span class="math notranslate nohighlight">\(\mathbb{E}_{G}(Y)\)</span>, respectively). These are defined as:</p>
+<p>Where the geometric “mean” corresponds to the median of the
+distribution. This difference is shown in the following plot</p>
+<p>[1] Throughout I use <span class="math notranslate nohighlight">\(\log_{b}\)</span> to indicate logarithm to the base <span class="math notranslate nohighlight">\(b\)</span>
+since these calculations work regardless of the base used. When the
+distribution is referred to informally (i.e., non-mathematically) I drop
+the base.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">length.out</span><span class="o">=</span><span class="m">300</span><span class="p">)</span>
+
+<span class="n">dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="n">xx</span><span class="p">),</span>
+<span class="w">                  </span><span class="n">dl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">dlnorm</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">                         </span><span class="nf">dlnorm</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)),</span>
+<span class="w">                  </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;0, 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1, 1/2&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="m">300</span><span class="p">)))</span>
+
+<span class="n">pardat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;0, 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1, 1/2&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)),</span>
+<span class="w">                     </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Arithmetic&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Geometric&quot;</span><span class="p">),</span>
+<span class="w">                                  </span><span class="m">2</span><span class="p">),</span>
+<span class="w">                     </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">exp</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0+1</span><span class="o">/</span><span class="m">2</span><span class="o">*</span><span class="m">1</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">                               </span><span class="m">1+1</span><span class="o">/</span><span class="m">2</span><span class="o">*</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="o">^</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)))</span>
+
+<span class="nf">ggplot</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">dl</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="o">=</span><span class="n">pars</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="n">pars</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">lty</span><span class="o">=</span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="o">=</span><span class="n">pars</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">colour</span><span class="o">=</span><span class="n">pars</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">pardat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s">&quot;Probability density&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;Parameters&quot;</span><span class="p">,</span>
+<span class="w">       </span><span class="n">lty</span><span class="o">=</span><span class="s">&quot;Estimator&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/744aaa7bf4d9360b99af99c64ebd5794f730516f0fd6ea23310a78510ae401cb.png" src="../../_images/744aaa7bf4d9360b99af99c64ebd5794f730516f0fd6ea23310a78510ae401cb.png" />
+</div>
+</div>
+<p>Similarly, we define the arithmetic and geometric standard deviations as
+follows:</p>
+<p>This is all fine in the simple case where we’re just estimating the
+distribution parameters, with no covariates involved. What about when we
+want to use covariates for prediction?</p>
+</section>
+<section id="log-normal-response-in-regression-like-models">
+<h2>log-normal response in regression-like models<a class="headerlink" href="#log-normal-response-in-regression-like-models" title="Link to this heading">#</a></h2>
+<p>We may want to model the mean via some linear model, for example when
+using a GLM or GAM. We decompose the mean as
+<span class="math notranslate nohighlight">\(\mathbf{X}\boldsymbol{\beta}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is an <span class="math notranslate nohighlight">\(n\times p\)</span>
+design matrix and <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> is a <span class="math notranslate nohighlight">\(p\)</span>-vector of coefficients
+to be estimated (where n is the number of observations).</p>
+<p>In practice, one can simply assume that the log-response is normally
+distributed and fit a GLM-a-like (GAM/GLMM/GAMM/etc) with a normal
+distribution. This model is:</p>
+<p>which is clearly modelling the geometric, rather than arithmetic mean
+(equivalently, we are modelling the median). This naturally extends to
+the case of random effects and therefore penalized smoothers (i.e.,
+GLMMs, GAMs and GAMMs).</p>
+<p>We can post hoc correct predictions to use the arithmetic mean using a
+multivariate version of the corrections above. These corrections lead to
+the following expressions:</p>
+<p>where <span class="math notranslate nohighlight">\(g(\boldsymbol{\beta})=b^{X\boldsymbol{\beta}}\)</span> if <span class="math notranslate nohighlight">\(b\)</span> is the base
+we are working in and <span class="math notranslate nohighlight">\(X\)</span> is the design matrix for our model. <span class="math notranslate nohighlight">\(D\)</span>
+indicates the derivative operator with respect to <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>,
+with powers of <span class="math notranslate nohighlight">\(D\)</span> giving that order of derivative. <span class="math notranslate nohighlight">\(\Sigma\)</span> is the
+posterior covariance matrix for <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span> (see, e.g. <a class="reference external" href="https://doi.org/10.1111/2041-210X.14498">Miller
+(2025)</a> for further explanation
+of covariance matrices in the context of empirical Bayes modelling).</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analysis-of-pollutant-data">
+<h1>Analysis of pollutant data<a class="headerlink" href="#analysis-of-pollutant-data" title="Link to this heading">#</a></h1>
+<p>We now start our analysis. This code is based on examples by Mike Dunbar
+to illustrate fitting a GAMM with censored normal family to water
+quality time series from multiple sites (<a class="reference external" href="https://en.wikipedia.org/wiki/Harmonised_monitoring_scheme">Harmonised Monitoring Scheme
+sites for
+England</a>) to
+look at smoothed trends over time and the effects of seasonality. For
+each determinand we fit a separate model where site is a random effect
+and we use two temporal smoothers.</p>
+<p>We begin by loading the requisite packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">mgcv</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tictoc</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">purrr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">gratia</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">stringr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are some non-CRAN packages required which we can install directly
+from GitHub, then load:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># for nice scales</span>
+<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;christyray/sciscales&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sciscales</span><span class="p">)</span>
+
+<span class="c1"># for the censored log normal helper functions</span>
+<span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;dill/mgcvUtils&quot;</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">mgcvUtils</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Michael Dunbar at the Environment Agency pre-prepared data for this
+analysis using open data from EA (extracted using EA APIs).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># created in data_prep.R</span>
+<span class="nf">load</span><span class="p">(</span><span class="s">&#39;data/HMS_open_data.rda&#39;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 6 × 15
+  sample.samplingPoint.notation sample.samplingPoint.label sample.sampleDateTime
+  &lt;chr&gt;                         &lt;chr&gt;                      &lt;dttm&gt;               
+1 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2000-01-11 10:16:00  
+2 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2000-01-11 10:16:00  
+3 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2000-01-11 10:16:00  
+4 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2008-05-02 13:30:00  
+5 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2008-05-02 13:30:00  
+6 AN-26M31                      HUNDRED FOOT RIVER EARITH… 2008-05-02 13:30:00  
+# ℹ 12 more variables: determinand.label &lt;chr&gt;, determinand.definition &lt;chr&gt;,
+#   determinand.notation &lt;chr&gt;, resultQualifier.notation &lt;chr&gt;, result &lt;dbl&gt;,
+#   codedResultInterpretation.interpretation &lt;lgl&gt;,
+#   determinand.unit.label &lt;chr&gt;, sample.sampledMaterialType.label &lt;chr&gt;,
+#   sample.isComplianceSample &lt;lgl&gt;, sample.purpose.label &lt;chr&gt;,
+#   sample.samplingPoint.easting &lt;dbl&gt;, sample.samplingPoint.northing &lt;dbl&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This data has four determinands, for brevity here we’ll just look at
+one: nitrate (where <code class="docutils literal notranslate"><span class="pre">determinand.notation==0117</span></code> in our data).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">samples</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">determinand.notation</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;0117&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="data-checking">
+<h2>Data checking<a class="headerlink" href="#data-checking" title="Link to this heading">#</a></h2>
+<p>Plotting the data, we can see how the limit of detection (red) changes
+over time.[1]</p>
+<p>[1] The censored data is coded in the <code class="docutils literal notranslate"><span class="pre">resultQualifier.notation</span></code> columns
+with a <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample.sampleDateTime</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sample.samplingPoint.notation</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultQualifier.notation</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s">&quot;Nitrate&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;LoD&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_bw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ee1a1c5c3c475a3dcd9374ec9da7e06e1e98a0a188daaf90ef8fe4e497955db5.png" src="../../_images/ee1a1c5c3c475a3dcd9374ec9da7e06e1e98a0a188daaf90ef8fe4e497955db5.png" />
+</div>
+</div>
+<p>If we tabulate the LoD values we can see one is certainly more common
+than the others:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="c1"># can comment out</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">resultQualifier.notation</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;&lt;&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">group_by</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">n</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># A tibble: 9 × 2
+   result     n
+    &lt;dbl&gt; &lt;int&gt;
+1 0.00001     1
+2 0.1         1
+3 0.192       1
+4 0.195       8
+5 0.196      90
+6 0.5        32
+7 0.504       1
+8 0.648       1
+9 0.996       1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The predominant LoD in the original data is 0.196 although some earlier
+data it is 0.5. For simplicity in this analysis, we use 0.196.</p>
+</section>
+<section id="final-data-prep">
+<h2>Final data prep<a class="headerlink" href="#final-data-prep" title="Link to this heading">#</a></h2>
+<p>When we log-transform we can’t use zero as the lower bound for censored
+values we just choose a very small value. We use a value 2 orders of
+magnitude below lowest limit of detection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">nearly.zero</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.000001</span>
+<span class="n">log.zero</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">nearly.zero</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create some extra columns, ensure categorical variables are factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="w"> </span><span class="o">&lt;-</span>
+<span class="w">  </span><span class="n">samples</span><span class="w"> </span><span class="o">|&gt;</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">DATE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">date</span><span class="p">(</span><span class="n">sample.sampleDateTime</span><span class="p">),</span>
+<span class="w">         </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">year</span><span class="p">(</span><span class="n">DATE</span><span class="p">),</span>
+<span class="w">         </span><span class="n">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">DATE</span><span class="p">),</span>
+<span class="w">         </span><span class="n">samplingPoint.F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">sample.samplingPoint.notation</span><span class="p">),</span>
+<span class="w">         </span><span class="n">det.code.desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">determinand.notation</span><span class="p">,</span><span class="w"> </span><span class="n">determinand.label</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;-&#39;</span><span class="p">),</span>
+<span class="w">         </span><span class="n">DATE_DEC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">decimal_date</span><span class="p">(</span><span class="n">DATE</span><span class="p">),</span><span class="m">2</span><span class="p">),</span>
+<span class="w">         </span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">replace_na</span><span class="p">(</span><span class="n">resultQualifier.notation</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;=&#39;</span><span class="p">),</span>
+<span class="w">         </span><span class="n">log.meas.upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">log10</span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nearly.zero</span><span class="p">),</span>
+<span class="w">         </span><span class="n">log.meas.lower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">if_else</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;&lt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">log.zero</span><span class="p">,</span><span class="w"> </span><span class="n">log.meas.upper</span><span class="p">),</span>
+<span class="w">         </span><span class="n">censored</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&#39;&lt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">),</span>
+<span class="w">         </span><span class="c1"># these two lines are because for the not artificially censored data,</span>
+<span class="w">         </span><span class="c1"># the ..original columns won&#39;t be populated yet</span>
+<span class="w">         </span><span class="n">result.original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">,</span>
+<span class="w">         </span><span class="n">qualifier.original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultQualifier.notation</span>
+<span class="w">         </span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally we create the response matrix, which is two columns (if entries
+are the same there was no censoring, if they are different there was
+censoring; see <code class="docutils literal notranslate"><span class="pre">?mgcv::cnorm</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="o">$</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">cbind</span><span class="p">(</span><span class="n">samples</span><span class="o">$</span><span class="n">log.meas.lower</span><span class="p">,</span><span class="w"> </span><span class="n">samples</span><span class="o">$</span><span class="n">log.meas.upper</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">samples</span><span class="o">$</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          [,1]      [,2]
+[1,] 1.1172713 1.1172713
+[2,] 0.8656961 0.8656961
+[3,] 0.7259117 0.7259117
+[4,] 0.7686382 0.7686382
+[5,] 0.7558749 0.7558749
+[6,] 0.7810370 0.7810370
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that although we pass a matrix to <code class="docutils literal notranslate"><span class="pre">mgcv</span></code> as the response, we only
+have a univariate response variable, the second column is only for
+indicating censoring to the code.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modelling">
+<h1>Modelling<a class="headerlink" href="#modelling" title="Link to this heading">#</a></h1>
+<p>We can now fit our generalized additive model. We want to fit a model of
+the following form:</p>
+<p>where <span class="math notranslate nohighlight">\(i\)</span> indexes the observations which have nitrate level <span class="math notranslate nohighlight">\(Y_i\)</span> on
+date <span class="math notranslate nohighlight">\(t_i\)</span> in month <span class="math notranslate nohighlight">\(m_i\)</span> and station <span class="math notranslate nohighlight">\(z_i\)</span> (where <span class="math notranslate nohighlight">\(\beta_{z}\)</span> is a
+random intercept for station <span class="math notranslate nohighlight">\(z\)</span>). Generic smoothers are denoted <span class="math notranslate nohighlight">\(s()\)</span>.
+We want to look at any common trend across our monitoring sites, which
+will be in the terms <span class="math notranslate nohighlight">\(s(t_i)\)</span> and <span class="math notranslate nohighlight">\(s(m_i)\)</span>. We use <span class="math notranslate nohighlight">\(b=10\)</span> for this
+modelling, though any scientifically appropriate base would be usable
+with these functions/methods.</p>
+<p>In practice we fit:</p>
+<p>Here we will use <a class="reference external" href="https://doi.org/10.1080/01621459.2016.1195744"><code class="docutils literal notranslate"><span class="pre">bam</span></code> and
+fREML</a> for speed here to
+show that these methods work with large data approaches too.</p>
+<p>We need to setup knots for the monthly smoother. Note that we just need
+to specify the first and last knot, then <code class="docutils literal notranslate"><span class="pre">mgcv</span></code> will fill in
+evenly-spaced knots in that range. See <a class="reference external" href="https://fromthebottomoftheheap.net/2014/05/09/modelling-seasonal-data-with-gam/">this useful blog post by Gavin
+Simpson about cyclic
+smoothing</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># for month cyclic cubic spline</span>
+<span class="n">sknots</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">12.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now fit the model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bam</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;cr&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">             </span><span class="nf">s</span><span class="p">(</span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;cc&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">             </span><span class="nf">s</span><span class="p">(</span><span class="n">samplingPoint.F</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;re&#39;</span><span class="p">),</span>
+<span class="w">         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;fREML&#39;</span><span class="p">,</span>
+<span class="w">         </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">clognorm</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="m">10</span><span class="p">),</span>
+<span class="w">         </span><span class="n">knots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sknots</span><span class="p">,</span>
+<span class="w">         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span>
+
+
+<span class="n">b_uncorrected</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">bam</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">s</span><span class="p">(</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;cr&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                         </span><span class="nf">s</span><span class="p">(</span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;cc&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                         </span><span class="nf">s</span><span class="p">(</span><span class="n">samplingPoint.F</span><span class="p">,</span><span class="w"> </span><span class="n">bs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;re&#39;</span><span class="p">),</span>
+<span class="w">                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;fREML&#39;</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">cnorm</span><span class="p">(),</span>
+<span class="w">                         </span><span class="n">knots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sknots</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samples</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at a summary output as usual. In particular we can see that we
+used the new <code class="docutils literal notranslate"><span class="pre">clognorm</span></code> family (see <code class="docutils literal notranslate"><span class="pre">Family:</span></code> line). This shows the base
+(10) and the standard deviation result (compare to the second summary
+from the <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> model).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: clog10norm(0.207) 
+Link function: identity 
+
+Formula:
+y ~ s(DATE_DEC, bs = &quot;cr&quot;) + s(month, bs = &quot;cc&quot;) + s(samplingPoint.F, 
+    bs = &quot;re&quot;)
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.44305    0.05678   7.803 6.35e-15 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Approximate significance of smooth terms:
+                      edf Ref.df       F p-value    
+s(DATE_DEC)         8.782  8.986   64.05  &lt;2e-16 ***
+s(month)            6.711  8.000  328.23  &lt;2e-16 ***
+s(samplingPoint.F) 50.957 51.000 1260.35  &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+R-sq.(adj) =  0.433   Deviance explained = 77.4%
+fREML =  79415  Scale est. = 1         n = 19596
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: cnorm(0.207) 
+Link function: identity 
+
+Formula:
+y ~ s(DATE_DEC, bs = &quot;cr&quot;) + s(month, bs = &quot;cc&quot;) + s(samplingPoint.F, 
+    bs = &quot;re&quot;)
+
+Parametric coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.44305    0.05678   7.803 6.35e-15 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Approximate significance of smooth terms:
+                      edf Ref.df       F p-value    
+s(DATE_DEC)         8.782  8.986   64.05  &lt;2e-16 ***
+s(month)            6.711  8.000  328.23  &lt;2e-16 ***
+s(samplingPoint.F) 50.957 51.000 1260.35  &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+R-sq.(adj) =  0.433   Deviance explained = 77.4%
+fREML =  79415  Scale est. = 1         n = 19596
+</pre></div>
+</div>
+</div>
+</div>
+<p>We note there are no differences in the estimated degrees of freedom
+(<code class="docutils literal notranslate"><span class="pre">edf</span></code>), fREML score etc.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="making-predictions">
+<h1>Making predictions<a class="headerlink" href="#making-predictions" title="Link to this heading">#</a></h1>
+<p>We want to make some predictions over the date range 2000 to 2025 (no
+extrapolation into the future). We are interested in patterns with and
+without the seasonality (month) component. We are not interested in
+per-site predictions (and we’ll exclude that effect in our predictions),
+so for now we just use one site.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">predgrid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">seq</span><span class="p">(</span><span class="nf">ymd</span><span class="p">(</span><span class="s">&quot;2021-01-01&quot;</span><span class="p">),</span><span class="w"> </span><span class="nf">ymd</span><span class="p">(</span><span class="s">&quot;2025-09-30&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="o">=</span><span class="m">1</span><span class="p">),</span>
+<span class="w">                       </span><span class="n">samplingPoint.F</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">samples</span><span class="o">$</span><span class="n">samplingPoint.F</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="n">predgrid</span><span class="o">$</span><span class="n">DATE_DEC</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">decimal_date</span><span class="p">(</span><span class="n">predgrid</span><span class="o">$</span><span class="n">date</span><span class="p">)</span>
+<span class="c1"># get decimal months for interpolation</span>
+<span class="n">predgrid</span><span class="o">$</span><span class="n">month</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">decimal_date</span><span class="p">(</span><span class="n">predgrid</span><span class="o">$</span><span class="n">date</span><span class="p">)</span><span class="o">-</span><span class="nf">year</span><span class="p">(</span><span class="n">predgrid</span><span class="o">$</span><span class="n">date</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">12</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code we used the <code class="docutils literal notranslate"><span class="pre">clognorm</span></code> response family, which is
+provided in the <code class="docutils literal notranslate"><span class="pre">mgcvUtils</span></code> package. Internally this package fits the
+same model as <code class="docutils literal notranslate"><span class="pre">cnorm</span></code> but implements a prediction method that corrects
+the results, provided we use the <code class="docutils literal notranslate"><span class="pre">type=&quot;response&quot;</span></code> argument to
+<code class="docutils literal notranslate"><span class="pre">predict</span></code>.</p>
+<p>All this means that we can use the usual <code class="docutils literal notranslate"><span class="pre">predict</span></code> method and get the
+corrected predictions transparently (provided we ask for results on the
+response scale). For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">predgrid</span><span class="o">$</span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">predgrid</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">,</span>
+<span class="w">                         </span><span class="n">exclude</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;s(samplingPoint.F)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;s(DATE_DEC)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can add a confidence band around this plot by manually calculating
+the upper and lower bounds, but <code class="docutils literal notranslate"><span class="pre">mgcvUtils</span></code> also provides a function to
+do this for you in an analogous way to the
+<a class="reference external" href="https://gavinsimpson.github.io/gratia/"><code class="docutils literal notranslate"><span class="pre">gratia</span></code></a> package, via the
+<code class="docutils literal notranslate"><span class="pre">fitted_values_clognorm</span></code> function[1].</p>
+<p>[1] Note that the <code class="docutils literal notranslate"><span class="pre">fitted_values</span></code> function in <code class="docutils literal notranslate"><span class="pre">gratia</span></code> will not work
+with the <code class="docutils literal notranslate"><span class="pre">clognorm</span></code> family at this time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">fv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fitted_values_clognorm</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">predgrid</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">,</span>
+<span class="w">                             </span><span class="n">exclude</span><span class="o">=</span><span class="s">&quot;s(samplingPoint.F)&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">fv</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  .row       date samplingPoint.F DATE_DEC      month  .fitted         .se
+1    1 2021-01-01        AN-26M31 2021.000 0.00000000 2.940149 0.002760783
+2    2 2021-01-02        AN-26M31 2021.003 0.03287671 2.944586 0.002765074
+3    3 2021-01-03        AN-26M31 2021.005 0.06575342 2.948817 0.002769199
+4    4 2021-01-04        AN-26M31 2021.008 0.09863014 2.952850 0.002773164
+5    5 2021-01-05        AN-26M31 2021.011 0.13150685 2.956694 0.002776974
+6    6 2021-01-06        AN-26M31 2021.014 0.16438356 2.960360 0.002780632
+  .lower_ci .upper_ci
+1  2.903744  2.977011
+2  2.908070  2.981561
+3  2.912194  2.985900
+4  2.916124  2.990037
+5  2.919871  2.993982
+6  2.923443  2.997743
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compare the trend from the corrected predictions alongside the
+uncorrected. In this case we first must construct covariance matrix for
+the transformed standard error (using the delta method):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">fv_gm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">fitted_values</span><span class="p">(</span><span class="n">b_uncorrected</span><span class="p">,</span><span class="w"> </span><span class="n">predgrid</span><span class="p">,</span><span class="w"> </span><span class="n">exclude</span><span class="o">=</span><span class="s">&quot;s(samplingPoint.F)&quot;</span><span class="p">)</span>
+
+<span class="c1"># partial correction</span>
+<span class="n">Xp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">b_uncorrected</span><span class="p">,</span><span class="w"> </span><span class="n">predgrid</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;lpmatrix&quot;</span><span class="p">)</span>
+<span class="n">tpred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="nf">predict</span><span class="p">(</span><span class="n">b_uncorrected</span><span class="p">,</span><span class="w"> </span><span class="n">predgrid</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s">&quot;response&quot;</span><span class="p">)</span>
+<span class="n">base</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span>
+<span class="n">Dg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sweep</span><span class="p">(</span><span class="n">Xp</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">tpred</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;*&quot;</span><span class="p">)</span>
+<span class="n">fv_gm</span><span class="o">$</span><span class="n">.se</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">diag</span><span class="p">(</span><span class="nf">tcrossprod</span><span class="p">(</span><span class="n">Dg</span><span class="o">%*%</span><span class="nf">vcov</span><span class="p">(</span><span class="n">b_uncorrected</span><span class="p">),</span><span class="w"> </span><span class="n">Dg</span><span class="p">))</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">b_uncorrected</span><span class="o">$</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">crit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gratia</span><span class="o">:::</span><span class="nf">coverage_normal</span><span class="p">(</span><span class="m">0.95</span><span class="p">)</span>
+<span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.lower_ci&quot;</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.fitted&quot;</span><span class="p">]]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">crit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.se&quot;</span><span class="p">]])</span>
+<span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.upper_ci&quot;</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.fitted&quot;</span><span class="p">]]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">crit</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fv_gm</span><span class="p">[[</span><span class="s">&quot;.se&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now compare these graphically:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">fv</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_ribbon</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="o">=</span><span class="m">10</span><span class="o">^</span><span class="n">.lower_ci</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="o">=</span><span class="m">10</span><span class="o">^</span><span class="n">.upper_ci</span><span class="p">),</span>
+<span class="w">              </span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">fv_gm</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="m">10</span><span class="o">^</span><span class="n">.fitted</span><span class="p">),</span><span class="w"> </span><span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">fv_gm</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_ribbon</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="o">=</span><span class="n">.lower_ci</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="o">=</span><span class="n">.upper_ci</span><span class="p">),</span>
+<span class="w">              </span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">DATE_DEC</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="n">.fitted</span><span class="p">),</span><span class="w"> </span><span class="n">colour</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&quot;Date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="s">&quot;Prediction&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme_minimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f0fc507377cb7edc2582cb7b9745f0f7c4e22fe1b16303ba527cfbdd4dd9346a.png" src="../../_images/f0fc507377cb7edc2582cb7b9745f0f7c4e22fe1b16303ba527cfbdd4dd9346a.png" />
+</div>
+</div>
+<p>Here the red line/band indicate the corrected predictions with
+uncertainty, blue is the uncorrected predictions. We can’t see much
+difference in the mean estimates (red line overlaps blue) but there is a
+considerable reduction in uncertainty.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h1>
+<p>We can now correct for the bias incurred by using a geometric mean
+estimator when we really want to use an arithmetic mean. To do this we
+use the <code class="docutils literal notranslate"><span class="pre">clognorm</span></code> family as provided by the <code class="docutils literal notranslate"><span class="pre">mgcvUtils</span></code> package. Once
+we’ve fitted the model, we can use the standard <code class="docutils literal notranslate"><span class="pre">predict</span></code> method or to
+save time, we can use <code class="docutils literal notranslate"><span class="pre">fitted_values_clognorm</span></code>.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./methods\ds-toolbox-notebook-clognorm-mgcv"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploration of chemical pollution from a place based perspective</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-preamble">Modelling preamble</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-versus-geometric-means">Arithmetic versus geometric means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-normal-response-in-regression-like-models">log-normal response in regression-like models</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-of-pollutant-data">Analysis of pollutant data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-checking">Data checking</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-data-prep">Final data prep</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling">Modelling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#making-predictions">Making predictions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
