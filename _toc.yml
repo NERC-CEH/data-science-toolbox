@@ -28,3 +28,5 @@ parts:
     file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
   - title: Censored log-normal generalized additive modelling
     file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+  - title: Multivariate Modelling of Censored Chemicals using jsdmstan
+    file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
