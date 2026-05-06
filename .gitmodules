@@ -25,3 +25,6 @@
 [submodule "methods/ds-toolbox-notebook-clognorm-mgcv"]
 	path = methods/ds-toolbox-notebook-clognorm-mgcv
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
+[submodule "methods/ds-toolbox-notebook-ai-plant-drivers"]
+	path = methods/ds-toolbox-notebook-ai-plant-drivers
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-ai-plant-drivers.git

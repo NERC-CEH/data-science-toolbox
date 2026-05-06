@@ -28,3 +28,5 @@ parts:
     file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
   - title: Censored log-normal generalized additive modelling
     file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+  - title: Extracting evidence-linked abundance drivers from species-account text
+    file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
