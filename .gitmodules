@@ -25,3 +25,6 @@
 [submodule "methods/ds-toolbox-notebook-clognorm-mgcv"]
 	path = methods/ds-toolbox-notebook-clognorm-mgcv
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
+[submodule "methods/ds-toolbox-notebook-jsdm-censor"]
+	path = methods/ds-toolbox-notebook-jsdm-censor
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
