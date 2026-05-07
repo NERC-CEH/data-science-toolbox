@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -219,6 +219,13 @@
 <li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.html">Integration of Metals Data across Environmental Compartments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.html">Exploration of chemical pollution from a place based perspective</a></li>
 <li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.html">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.html">Multivariate Modelling of Censored Chemicals using jsdmstan</a></li>
+
 
 
 
@@ -465,31 +472,35 @@ document.write(`
 <td><p>Place based data exploration, Data Integration, Data Visualisation, Data analysis</p></td>
 <td class="text-right"><p>Air quality data from Defra and Water Quality data from Environment Agency</p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>Accessing EA Data via an API <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<tr class="row-odd"><td class="text-left"><p><a class="reference internal" href="methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.html"><span class="doc std std-doc">Multivariate Modelling of Censored Chemicals using jsdmstan</span></a></p></td>
+<td><p>Multivariate, Censored Data, Joint Species Distribution Modelling, Bayesian Inference</p></td>
+<td class="text-right"><p>Environment Agency PFAS River Monitoring &amp; PAH Estuary Datasets, Simulated lognormal Censored Dataset</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Accessing EA Data via an API <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
 <td><p>Data Access, Data Integration</p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>Data Pipelines for JULES Emulation/Portable JULES <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<tr class="row-odd"><td class="text-left"><p>Data Pipelines for JULES Emulation/Portable JULES <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
 <td><p></p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>River Utility Tools <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<tr class="row-even"><td class="text-left"><p>River Utility Tools <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
 <td><p>Spatio-temporal Integration, Networks</p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>CSV File Checker <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
+<tr class="row-odd"><td class="text-left"><p>CSV File Checker <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Planned</span></p></td>
 <td><p>Data Quality, Data Integrity</p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>Spatio-temporal Data Integration with INLA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<tr class="row-even"><td class="text-left"><p>Spatio-temporal Data Integration with INLA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
 <td><p>Spatio-temporal Integration, Bayesian</p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p>Understanding and Modelling Spatio-temporal Lags along Networks <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<tr class="row-odd"><td class="text-left"><p>Understanding and Modelling Spatio-temporal Lags along Networks <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
 <td><p>Spatio-temporal Integration, Networks</p></td>
 <td class="text-right"><p></p></td>
 </tr>
-<tr class="row-odd"><td class="text-left"><p>State Tagging for Environmental Data QA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
+<tr class="row-even"><td class="text-left"><p>State Tagging for Environmental Data QA <span class="sd-sphinx-override sd-badge sd-outline-warning sd-text-warning">Tentative</span></p></td>
 <td><p>Data Quality, Data Integrity</p></td>
 <td class="text-right"><p></p></td>
 </tr>

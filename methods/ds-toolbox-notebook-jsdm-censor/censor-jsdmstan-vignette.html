@@ -1,0 +1,1763 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Multivariate Modelling of Censored Chemicals using jsdmstan &#8212; UKCEH Environmental Data Science Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VSVWNW0JEP"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-VSVWNW0JEP');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette';</script>
+    <link rel="icon" href="../../_static/edsb-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Modelling censored log-normal data in mgcv" href="../ds-toolbox-notebook-clognorm-mgcv/clognorm-book.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+<aside class="bd-header-announcement" aria-label="Announcement">
+  <div class="bd-header-announcement__content">⚠️ PROTOTYPE: This book is a work in progress and is still in the prototype phase. If you have any questions or suggestions, please raise them through the GitHub discussions tab.
+</div>
+</aside>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-light" alt="UKCEH Environmental Data Science Book - Home"/>
+    <script>document.write(`<img src="../../_static/ukceh-edsb-logo.png" class="logo__image only-dark" alt="UKCEH Environmental Data Science Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Environmental Data Science Toolbox
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../cite.html">How to Cite</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Methodology Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-biascorrection/bias-correction.html">Bias Correction of Climate Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.html">Calculator of Risk to Terrestrial C Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.html">Understanding Error of Multispecies Biodiversity Indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-jsdmstan/jsdmstan-book.html">Fitting Joint Species Distribution Models with jsdmstan</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.html">Non-Target Analysis of Environmental Mass Spectrometry Data</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.html">RO-Crate Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.html">Integration of Metals Data across Environmental Compartments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.html">Exploration of chemical pollution from a place based perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ds-toolbox-notebook-clognorm-mgcv/clognorm-book.html">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Multivariate Modelling of Censored Chemicals using jsdmstan</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/Jez-Carter/UKCEH_Data_Science_Book/master?urlpath=tree/docs/methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://deepnote.com/github/Jez-Carter/UKCEH_Data_Science_Book/blob/master/docs/methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Jez-Carter/UKCEH_Data_Science_Book/issues/new?title=Issue%20on%20page%20%2Fmethods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Multivariate Modelling of Censored Chemicals using jsdmstan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multivariate Modelling of Censored Chemicals using jsdmstan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology">Methodology</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-species-distribution-modelling">Joint Species Distribution Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-generalised-linear-mixed-models">Multivariate Generalised Linear Mixed Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-linear-latent-variable-models">Generalised Linear Latent Variable Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-and-lognormal-responses">Normal and lognormal responses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censored-response-modelling">Censored Response Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-flexible-effects-splines-and-random-effects">Fitting flexible effects (splines and random effects)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-model-fits">Example model fits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-data">Simulated data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pfas-case-study">PFAS Case Study</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sources">Data Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit">Model fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pah-case-study">PAH case study</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="multivariate-modelling-of-censored-chemicals-using-jsdmstan">
+<h1>Multivariate Modelling of Censored Chemicals using jsdmstan<a class="headerlink" href="#multivariate-modelling-of-censored-chemicals-using-jsdmstan" title="Link to this heading">#</a></h1>
+<p><a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git"><span>Notebook Repository</span></a>
+<a class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info reference external" href="https://github.com/NERC-CEH/jsdmstan.git"><span>Method Repository</span></a>
+<img alt="alt text" src="../../_images/ukceh-logo-badge8.png" /></p>
+<p>Primary Contact: <a class="reference external" href="https://www.ceh.ac.uk/staff/fiona-seaton">Dr. Fiona Seaton</a></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Challenge:</div>
+<p class="sd-card-text">Water quality data often occurs in subsets of closely-related chemicals, that can be expected to correlate in their strength. Notable examples include per- and polyfluoroalkyl substances (PFAS), which are of ever-increasing policy and public relevance. Generally, statistical modelling of these chemicals is done one chemical at a time. However, it is possible that multivariate modelling techniques, which would allow information to be shared between different chemicals, could lead to more accurate predictions of chemical concentrations for both the individual chemicals and the entire family group.</p>
+<p class="sd-card-text">Multivariate modelling of water quality chemicals is particularly relevant due to the presence of censoring, i.e. measurements fall above or below the limit of detection. While laboratory methods are ever-improving, there are still often chemical measurements that fall outside the measurement limits. And if we are to compare across longer periods of time we must account for changing limits of detection. In theory, multivariate modelling could allow the concentration of a more abundant chemical to inform the prediction of a chemical below the limit of detection.</p>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Approach:</div>
+<p class="sd-card-text">In practice, most traditional multivariate modelling techniques are less able to cope with the censoring and complex structures present within water quality datasets. However, a potential option is the application of the joint species distribution modelling (JSDM) framework adopted recently in ecology (<a class="reference external" href="https://doi.org/10.1016/j.tree.2015.09.007">Warton et al., 2015</a>). This framework models multiple species simultaneously, taking account of their co-occurrence and response to environmental covariates, and allows for a wide variety of potential response families. The existing methods for JSDMs, however, do not allow for either left-censoring or lognormal distributions due to the focus on species-type data.</p>
+<p class="sd-card-text">Here we present the results of extending the JSDM approach within the <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> package to include left-censoring and non-linear environmental effects. The <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> package is an R package that allows the fitting of JSDMs within Stan, a probabilistic programming language for fitting Bayesian models using a variant of Hamiltonian Monte Carlo (<a class="reference external" href="https://doi.org/10.18637/jss.v076.i01">Carpenter et al., 2017</a>, <a class="reference external" href="https://mc-stan.org/">Stan website</a>, <a class="reference external" href="https://doi.org/10.1101/2025.11.10.687559">Seaton, 2025</a>, <a class="reference external" href="https://nerc-ceh.github.io/jsdmstan/">jsdmstan website</a>). We provide here a brief introduction to the JSDM framework, plus explanation of the extension to left-censoring and non-linear effects, then illustrate these models using two case studies. This first case study is a model of per- and polyfluoroalkyl substances (PFAS) chemicals and the second a model of polycyclic aromatic hydrocarbons (PAH) chemicals.</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">jsdmstan</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+<span class="n">gbr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;Data/gbr.shp&quot;</span><span class="p">)</span>
+<span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_classic</span><span class="p">())</span>
+<span class="nf">set.seed</span><span class="p">(</span><span class="m">1113156</span><span class="p">)</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="p">)</span>
+<span class="nf">theme_set</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ggplot2</span><span class="o">::</span><span class="nf">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reading layer `gbr&#39; from data source 
+  `C:\Users\jercar\OneDrive - UKCEH\VSCode\data-science-toolbox\methods\ds-toolbox-notebook-jsdm-censor\Data\gbr.shp&#39; 
+  using driver `ESRI Shapefile&#39;
+Simple feature collection with 4 features and 9 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -13.69139 ymin: 49.86542 xmax: 1.764168 ymax: 61.52708
+Geodetic CRS:  WGS 84
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>Water quality data often occurs in subsets of closely-related chemicals, that can be expected to correlate in their strength. Notable examples
+include per- and polyfluoroalkyl substances (PFAS), which are of ever-increasing policy and public relevance. Generally, statistical modelling of these chemicals is done one chemical at a time. However, it is possible that multivariate modelling techniques, which would allow information to be shared between different chemicals, could lead to more accurate predictions of chemical concentrations for both the individual chemicals and the entire family group.</p>
+<p>Multivariate modelling of water quality chemicals is particularly relevant due to the presence of censoring, i.e. measurements fall above or below the limit of detection. While laboratory methods are ever-improving, there are still often chemical measurements that fall outside the measurement limits. And if we are to compare across longer periods of time we must account for changing limits of detection. In theory, multivariate modelling could allow the concentration of a more abundant chemical to inform the prediction of a chemical below the limit of detection.</p>
+<p>In practice, most traditional multivariate modelling techniques are less able to cope with the censoring and complex structures present within water quality datasets. However, a potential option is the application of the joint species distribution modelling (JSDM) framework adopted recently in ecology (<a class="reference external" href="https://doi.org/10.1016/j.tree.2015.09.007">Warton et al., 2015</a>). This framework models multiple species simultaneously, taking account of their co-occurrence and response to environmental covariates, and allows for a wide variety of potential response families. The existing methods for JSDMs, however, do not allow for either left-censoring or lognormal distributions due to the focus on species-type data.</p>
+<p>Here we present the results of extending the JSDM approach within the <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> package to include left-censoring and non-linear environmental effects. The <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> package is an R package that allows the fitting of JSDMs within Stan, a probabilistic programming language for fitting Bayesian models using a variant of Hamiltonian Monte Carlo (<a class="reference external" href="https://doi.org/10.18637/jss.v076.i01">Carpenter et al., 2017</a>, <a class="reference external" href="https://mc-stan.org/">Stan website</a>, <a class="reference external" href="https://doi.org/10.1101/2025.11.10.687559">Seaton, 2025</a>, <a class="reference external" href="https://nerc-ceh.github.io/jsdmstan/">jsdmstan website</a>). We provide here a brief introduction to the JSDM framework, plus explanation of the extension to left-censoring and non-linear effects, then illustrate these models using two case studies. This first case study is a model of per- and polyfluoroalkyl substances (PFAS) chemicals and the second a model of polycyclic aromatic hydrocarbons (PAH) chemicals.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="methodology">
+<h1>Methodology<a class="headerlink" href="#methodology" title="Link to this heading">#</a></h1>
+<section id="joint-species-distribution-modelling">
+<h2>Joint Species Distribution Modelling<a class="headerlink" href="#joint-species-distribution-modelling" title="Link to this heading">#</a></h2>
+<p>Joint Species Distribution Modelling (JSDM) is a technique that can be used to model multiple species simultaneously. Every JSDM models the species community matrix as a function of both the environmental covariates and the species-by-species relationship matrix. Where this differs from modelling data as multivariate normal is that the species-by-species relationships are represented within the linear predictor. This means that there are a much wider range of response families and model functions that can be accounted for within the JSDM framework.</p>
+<p>We model the community data <span class="math notranslate nohighlight">\(m_{ij}\)</span> for each site <span class="math notranslate nohighlight">\(i\)</span> and taxon <span class="math notranslate nohighlight">\(j\)</span> as a function of a species intercept, environmental covariates and species covariance matrix:</p>
+<div class="math notranslate nohighlight">
+\[ g(m_{ij}) = \beta_{0j} + \mathbf{x}_i^\intercal\beta_j + u_{ij} \]</div>
+<p>where <span class="math notranslate nohighlight">\(g(\cdot)\)</span> is the link function, <span class="math notranslate nohighlight">\(\mathbf{x}_i^\intercal\)</span> is the transpose of vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, and for each taxon <span class="math notranslate nohighlight">\(j\)</span>, <span class="math notranslate nohighlight">\(\beta_{0j}\)</span> is an intercept and <span class="math notranslate nohighlight">\(\beta_{j}\)</span> is a vector of regression coefficients related to measured predictors.</p>
+<p>A site effect <span class="math notranslate nohighlight">\(\alpha_{i}\)</span> can also be added to allow for effects that are consistent across sites. This can be modelled as a site-specific intercept, a site-specific random effect, or with the non-linear model extensions mentioned in the flexible effects section below:</p>
+<div class="math notranslate nohighlight">
+\[ g(m_{ij}) = \alpha_{i} + \beta_{0j} + \mathbf{x}_i^\intercal\beta_j + u_{ij} \]</div>
+<section id="multivariate-generalised-linear-mixed-models">
+<h3>Multivariate Generalised Linear Mixed Models<a class="headerlink" href="#multivariate-generalised-linear-mixed-models" title="Link to this heading">#</a></h3>
+<p>The entire matrix of covariance between species is modelled in MGLMMs.</p>
+<div class="math notranslate nohighlight">
+\[ u_{ij} \sim \mathrm{N}(\mathbf{0},\mathbf{\Sigma}) \]</div>
+<p>Fitting the entire covariance matrix means that the amount of time required to fit these models scales with the number of species cubed, and the data required scales with the number of species squared. This makes these models both computationally and data intensive, particularly as the number of species increases.</p>
+</section>
+<section id="generalised-linear-latent-variable-models">
+<h3>Generalised Linear Latent Variable Models<a class="headerlink" href="#generalised-linear-latent-variable-models" title="Link to this heading">#</a></h3>
+<p>In response to some of the computational issues in fitting MGLMMs to many species, GLLVMs were developed in which <span class="math notranslate nohighlight">\(u_{ij}\)</span> is now specified as a linear function of a set of latent variables <span class="math notranslate nohighlight">\(\mathbf{z_i}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ y_{ij}|\mathbf{u}_i \sim \mathrm{F}(m_{ij},\phi_j) \]</div>
+<div class="math notranslate nohighlight">
+\[ u_{ij} = \mathbf{z}_i^\intercal \lambda_j \]</div>
+<p>The latent variables <span class="math notranslate nohighlight">\(\mathbf{z_i}\)</span> are treated as random by assuming:</p>
+<div class="math notranslate nohighlight">
+\[y_{ij}|\mathbf{z_i} \sim \mathrm{F}(m_{ij},\phi_j) \]</div>
+<div class="math notranslate nohighlight">
+\[\mathbf{z_i} \sim \mathrm{N}(\mathbf{0},\mathbf{1}) \]</div>
+<p>Treating the species covariance as pulling from a set of latent variables greatly reduces the computational time required to fit these models.</p>
+</section>
+<section id="normal-and-lognormal-responses">
+<h3>Normal and lognormal responses<a class="headerlink" href="#normal-and-lognormal-responses" title="Link to this heading">#</a></h3>
+<p>Within the link function for the normal and lognormal families the sigma parameter is modelled as a constant across all species, which is different from the case in other families with shape parameters (e.g. the negative binomial). This is necessary because of the high flexibility of the species-covariance matrix, which can within the Gaussian context lead to the model being unable to fit if there are also species-specific sigma parameters. This does not mean that the measured species variance is constrained to be identical, as the species variance within the species-covariance matrix propagates to the overall species variance. This can be shown using the data simulation functions within <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code>.</p>
+</section>
+</section>
+<section id="censored-response-modelling">
+<h2>Censored Response Modelling<a class="headerlink" href="#censored-response-modelling" title="Link to this heading">#</a></h2>
+<p>Censored data occurs when we know the limit of the measurement but not the true value. This is particularly common within water quality measurements, where the laboratory method may only be able to determine the true value within a certain range and for anything above or below that range returns a censored value. Left-censoring occurs when the true value is below the lower limit-of-detection, while right-censoring occurs when the true value is above the upper limit-of-detection. Within the jsdmstan package we can model left-censored data.</p>
+<p>Modelling left-censored data can be done by combining a standard probability density-based model for the uncensored measurements with a cumulative density-based model for the left-censored measurements. The model does not need to impute the values directly, but instead integrates them out as described in the <a class="reference external" href="https://mc-stan.org/docs/stan-users-guide/truncation-censoring.html#integrating-out-censored-values">Stan’s User Guide</a>. Within the multivariate context in Stan code, this involves some fancy indexing, but in general follows the following pattern:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>for (s in 1:S){
+  target += normal_lpdf(Y[uncensored] | mu[uncensored], sigma)
+  target += normal_lcdf(Y[censored] | mu[censored], sigma)
+}
+</pre></div>
+</div>
+<p>Note that within jsdmstan left-censoring is currently only implemented for Gaussian/normal, lognormal, and gamma families. The gamma family is also still experimental and not fully tested yet, so in practice the lognormal or normal distributions should be used.</p>
+</section>
+<section id="fitting-flexible-effects-splines-and-random-effects">
+<h2>Fitting flexible effects (splines and random effects)<a class="headerlink" href="#fitting-flexible-effects-splines-and-random-effects" title="Link to this heading">#</a></h2>
+<p>Though we can use the standard regression “fixed effects” like intercepts and slopes to describe features in the data, sometimes these are not enough and we require more flexible terms in our models.</p>
+<p>Splines and random effects can be included to allow functions of the covariates that are more flexible and random effects can be used to include blocking structures and heterogeneity in the samples.</p>
+<p>Within <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code>, it is now possible to fit spline effects at the site/measurement level. This is facilitated by a link to the <a class="reference external" href="https://cran.r-project.org/package=mgcv"><code class="docutils literal notranslate"><span class="pre">mgcv</span></code></a> package’s function for setting-up such models. <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> now supports all types of splines supported by <code class="docutils literal notranslate"><span class="pre">s()</span></code> (see <a class="reference external" href="https://cran.r-project.org/web/packages/mgcv/refman/mgcv.html#smooth.terms">this manual page for more information</a> and see also <a class="reference external" href="https://cran.r-project.org/web/packages/mgcv/refman/mgcv.html#random.effects">the random effects in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code> help page</a>. (Not all basis functions have been tested yet.) It is also now possible to fit a factor-smooth that varies by species (or water quality chemical, in this case; see <a class="reference external" href="http://doi.org/10.7717/peerj.6876">Pedersen et al 2019</a> for more information on this formulation).</p>
+<p>To fit this model as part of <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> we utilize the connections between smoothers and Bayesian methods (see <a class="reference external" href="https://doi.org/10.1111/2041-210X.14498">Miller (2025)</a> and references therein). We can write our flexible functions as a sum of basis functions:</p>
+<div class="math notranslate nohighlight">
+\[
+s(x) = \sum_{k=1}^K \beta_k b_k(x)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(b_k(x)\)</span> are <span class="math notranslate nohighlight">\(K\)</span> simple basis functions which are added-up to create the model complicated <span class="math notranslate nohighlight">\(s(x)\)</span> term. Each basis function is scaled by a parameter (<span class="math notranslate nohighlight">\(\beta_k\)</span>) to be estimated during fitting. To avoid overfitting (since these models can be very flexible. We impose a prior on the <span class="math notranslate nohighlight">\(\beta_k\)</span>s which controls their values (and correlations) via a multivariate normal distribution. Since we have the prior control for overfitting, we can specify the number of basis functions to use (<span class="math notranslate nohighlight">\(K\)</span>) to be relatively large and the prior will ensure the result is not too wiggly.</p>
+<p>If you are familiar fitting generalized additive models (GAMs) in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code> then you can use <code class="docutils literal notranslate"><span class="pre">jsdmstan</span></code> in a similar way. If you are less familiar we recommend reading the above references to aid your understanding before starting to fit models of your own.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example-model-fits">
+<h1>Example model fits<a class="headerlink" href="#example-model-fits" title="Link to this heading">#</a></h1>
+<section id="simulated-data">
+<h2>Simulated data<a class="headerlink" href="#simulated-data" title="Link to this heading">#</a></h2>
+<p>First, we can simulate data according to a lognormal distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">430150</span><span class="p">)</span>
+<span class="n">cens_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">jsdm_sim_data</span><span class="p">(</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mglmm&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lognormal&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">censor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;left&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                          </span><span class="n">censor_points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.05</span><span class="p">),</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">                                                 </span><span class="n">replace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have to supply the censoring point per species to the data simulation. In this case we randomly choose those to be between 0.05 and
+1.</p>
+<p>Now we can fit the model, using the dat_list argument to supply all the data needed and lowering the number of iterations to improve runtime. We also have to thin the chains in the saved model object, to allow the object to be saved into GitHub so this doesn’t have to be refit everytime:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># cens_mod &lt;- stan_jsdm(dat_list = cens_dat, family = &quot;lognormal&quot;, method = &quot;mglmm&quot;,</span>
+<span class="c1">#                       censoring = &quot;left&quot;, iter = 2000, cores = 4,</span>
+<span class="c1">#                       control = list(adapt_delta = 0.9), thin = 5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cens_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/cens_mod.rds&quot;</span><span class="p">)</span>
+<span class="n">cens_mod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: lognormal 
+ With parameters: sigma 
+Model type: mglmm
+  Number of species: 6
+  Number of sites: 100
+  Number of predictors: 0
+
+Model run on 4 chains with 2000 iterations per chain (1000 warmup).
+
+Parameters with Rhat &gt; 1.01, or Neff/N &lt; 0.05:
+                        mean    sd    15%    85%  Rhat Bulk.ESS Tail.ESS
+z_species[5,23]       -0.844 0.818 -1.657 -0.027 1.011      650      652
+z_species[6,47]       -0.036 1.155 -1.236  1.213 1.011      416      618
+z_species[6,59]       -0.076 1.058 -1.170  1.029 1.012      568      585
+z_species[6,72]       -0.035 1.015 -1.106  1.065 1.015      494      816
+z_species[6,85]       -0.041 0.990 -1.067  1.023 1.014      492      630
+cor_species_chol[6,3] -0.051 0.383 -0.438  0.361 1.018      228      489
+cor_species[3,6]      -0.076 0.354 -0.426  0.320 1.023      227      381
+cor_species[5,6]       0.059 0.336 -0.302  0.405 1.013      247      414
+cor_species[6,3]      -0.076 0.354 -0.426  0.320 1.023      227      381
+cor_species[6,5]       0.059 0.336 -0.302  0.405 1.013      247      414
+u[47,6]                0.001 0.215 -0.164  0.172 1.014      370      683
+u[65,6]                0.019 0.139 -0.078  0.125 1.011      660      715
+u[72,6]               -0.017 0.160 -0.132  0.092 1.019      344      699
+u[77,6]               -0.011 0.172 -0.138  0.128 1.017      425      683
+u[80,6]                0.030 0.175 -0.104  0.176 1.021      445      672
+u[85,6]               -0.025 0.179 -0.160  0.116 1.013      432      754
+u[100,6]               0.003 0.149 -0.117  0.120 1.014      497      768
+</pre></div>
+</div>
+</div>
+</div>
+<p>Due to the thinning, a few parameters have slightly lower ESS than ideal. However, for our purposes here, the fact that all parameters have Rhat &lt; 1.05 and ESS &gt; 200 means this should be sufficient for us.</p>
+<p>Now we can look at the data recovery, specifically comparing the empirical cumulative distribution function of the data to a random subset of model draws. The empirical CDF estimates deal better with the censoring in the original data as opposed to the default smoothed density kernel estimation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/69f3d221b1aa514ed8b13fb585f0c8fb3c0738d4c8948d0e597d467f1525782a.png"><img alt="../../_images/69f3d221b1aa514ed8b13fb585f0c8fb3c0738d4c8948d0e597d467f1525782a.png" src="../../_images/69f3d221b1aa514ed8b13fb585f0c8fb3c0738d4c8948d0e597d467f1525782a.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>We can see that the data are always nested within the model predictions (with the exception of the initial jumps due to the censoring, visible as the straight lines), indicating a reasonable fit to the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="o">=</span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="n">ggplot2</span><span class="o">::</span><span class="nf">coord_cartesian</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/c34456b6303a1bc8986b763aedf0fc73fafb070b27dba7623f529602dcff03a8.png"><img alt="../../_images/c34456b6303a1bc8986b763aedf0fc73fafb070b27dba7623f529602dcff03a8.png" src="../../_images/c34456b6303a1bc8986b763aedf0fc73fafb070b27dba7623f529602dcff03a8.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>In this case the distribution of the overall predicted sum across all variables per site is relatively similar between the raw data and the model estimates, but in cases where more of the data is censored or just above the censoring limit this would not necessarily be true in a well-fitted model.</p>
+<p>We can also see if the model did well at recovering the parameters used within the data simulation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sigma&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cens_dat</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/b91be205f436e17d4c4d0548e469edd931f417599e02827377a17ca4988037b9.png"><img alt="../../_images/b91be205f436e17d4c4d0548e469edd931f417599e02827377a17ca4988037b9.png" src="../../_images/b91be205f436e17d4c4d0548e469edd931f417599e02827377a17ca4988037b9.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;betas[1,&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="s">&quot;]&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cens_dat</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">betas</span><span class="p">[</span><span class="m">1</span><span class="p">,])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/7c5e6e7c84a1ca0ab9834c76cdbf3c0037af5e2d57f6509045310125aa8d70b3.png"><img alt="../../_images/7c5e6e7c84a1ca0ab9834c76cdbf3c0037af5e2d57f6509045310125aa8d70b3.png" src="../../_images/7c5e6e7c84a1ca0ab9834c76cdbf3c0037af5e2d57f6509045310125aa8d70b3.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;betas[2,&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="s">&quot;]&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cens_dat</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">betas</span><span class="p">[</span><span class="m">2</span><span class="p">,])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/fb19dcc6b8112f710393850df2f561a9632db584a96343649d2cd92e065d3103.png"><img alt="../../_images/fb19dcc6b8112f710393850df2f561a9632db584a96343649d2cd92e065d3103.png" src="../../_images/fb19dcc6b8112f710393850df2f561a9632db584a96343649d2cd92e065d3103.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;betas[3,&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="s">&quot;]&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cens_dat</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">betas</span><span class="p">[</span><span class="m">3</span><span class="p">,])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/9eb83ea39ad2d6fa65341ea910e52b2897c87271058fa59c61df2eea955abe3c.png"><img alt="../../_images/9eb83ea39ad2d6fa65341ea910e52b2897c87271058fa59c61df2eea955abe3c.png" src="../../_images/9eb83ea39ad2d6fa65341ea910e52b2897c87271058fa59c61df2eea955abe3c.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">cens_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;recover_hist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;sigmas_species[&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="s">&quot;]&quot;</span><span class="p">),</span>
+<span class="w">          </span><span class="n">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cens_dat</span><span class="o">$</span><span class="n">pars</span><span class="o">$</span><span class="n">sigmas_species</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/2030a38c9440899159a0b2f75a646fdc25296c6c033f623062b19a3074ae127b.png"><img alt="../../_images/2030a38c9440899159a0b2f75a646fdc25296c6c033f623062b19a3074ae127b.png" src="../../_images/2030a38c9440899159a0b2f75a646fdc25296c6c033f623062b19a3074ae127b.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Overall the model has performed well at recovering the various parameters.</p>
+</section>
+<section id="pfas-case-study">
+<h2>PFAS Case Study<a class="headerlink" href="#pfas-case-study" title="Link to this heading">#</a></h2>
+<section id="data-sources">
+<h3>Data Sources<a class="headerlink" href="#data-sources" title="Link to this heading">#</a></h3>
+<p>The PFAS dataset is sourced from EA measurements on river samples, but we limited the analysis to a subset of sites that had multiple measurements over a time series to explore the ability of the splines to represent change over time. We ended up with 79 measurements over 10 sites taken within 2024. The dataset contained 16 PFAS chemicals that had been uncensored in at least 10% of all measurements, which we limited our analysis to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/pfas_subset.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We prepare the data, by moving it into a wide format with each chemical occupying its own column and retaining the variables that we want to use as predictors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pfas</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">SAMP_ID</span><span class="p">,</span><span class="w"> </span><span class="n">MEAS_RESULT</span><span class="p">,</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">,</span>
+<span class="w">         </span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">,</span><span class="w"> </span><span class="n">DATE_TIME</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_RESULT</span><span class="p">,</span><span class="w"> </span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We limit to measurements that have values for all chemicals (i.e. no missing measurements):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">dim</span><span class="p">(</span><span class="nf">na.omit</span><span class="p">(</span><span class="n">pfas_y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>79</li><li>50</li></ol>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas_y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">na.omit</span><span class="p">(</span><span class="n">pfas_y</span><span class="p">)</span>
+<span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pfas_y</span><span class="p">[,</span><span class="w"> </span><span class="m">4</span><span class="o">:</span><span class="m">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create censoring matrix (1 if left-censored, 0 if not). We treat all right-censored data as uncensored:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cens_ID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pfas</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="n">SAMP_ID</span><span class="p">,</span><span class="w"> </span><span class="n">MEAS_SIGN</span><span class="p">,</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">,</span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">,</span><span class="w"> </span><span class="n">DATE_TIME</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&lt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_SIGN</span><span class="p">,</span><span class="w"> </span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">SAMP_ID</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">pfas_y</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now just perform some checks to make sure the censoring ID matrix has the same measurements in order and chemicals in order as the dataframe with the actual measurements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">all.equal</span><span class="p">(</span><span class="n">cens_ID</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">,</span><span class="w"> </span><span class="n">pfas_y</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">all.equal</span><span class="p">(</span><span class="n">cens_ID</span><span class="o">$</span><span class="n">DATE_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">pfas_y</span><span class="o">$</span><span class="n">DATE_TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">all.equal</span><span class="p">(</span><span class="n">cens_ID</span><span class="o">$</span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">,</span><span class="w"> </span><span class="n">pfas_y</span><span class="o">$</span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">all.equal</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">cens_ID</span><span class="p">),</span><span class="nf">colnames</span><span class="p">(</span><span class="n">pfas_y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">cens_ID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cens_ID</span><span class="p">[,</span><span class="m">4</span><span class="o">:</span><span class="m">50</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We remove chemicals that are mostly or wholly uncensored in subset for trial model fits:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Y</span><span class="p">[,</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">cens_ID</span><span class="p">)</span><span class="o">&lt;</span><span class="m">72</span><span class="p">]</span>
+<span class="n">cens_ID2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cens_ID</span><span class="p">[,</span><span class="w"> </span><span class="nf">colSums</span><span class="p">(</span><span class="n">cens_ID</span><span class="p">)</span><span class="o">&lt;</span><span class="m">72</span><span class="p">]</span>
+<span class="n">cens_ID2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">cens_ID2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We add columns that give time as number of days since 1st January 2024 and sample location as a factor, to allow the splines to be set up correctly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas_y</span><span class="o">$</span><span class="n">DATE_TIME2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">pfas_y</span><span class="o">$</span><span class="n">DATE_TIME</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1704067201</span><span class="p">)</span><span class="o">/</span><span class="m">60</span><span class="o">/</span><span class="m">60</span><span class="o">/</span><span class="m">24</span>
+<span class="n">pfas_y</span><span class="o">$</span><span class="n">samp_location</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">pfas_y</span><span class="o">$</span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we plot the data to show how the trend over time varies by sampling location:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">MEAS_DETERMINAND_CODE</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">colnames</span><span class="p">(</span><span class="n">Y</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_RESULT</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                 </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">scale_y_log10</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">wims_region</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">SAMP_SMPT_USER_REFERENCE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/2797865e59f8c2a4915e6bed2d1cf64c59637a13e6a1713396f61b6b6767d78a.png"><img alt="../../_images/2797865e59f8c2a4915e6bed2d1cf64c59637a13e6a1713396f61b6b6767d78a.png" src="../../_images/2797865e59f8c2a4915e6bed2d1cf64c59637a13e6a1713396f61b6b6767d78a.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">trends</span> <span class="pre">in</span> <span class="pre">PFAS</span> <span class="pre">chemicals</span> <span class="pre">over</span> <span class="pre">time</span></code></p>
+</section>
+<section id="model-fit">
+<h3>Model fit<a class="headerlink" href="#model-fit" title="Link to this heading">#</a></h3>
+<p>The model is fit using factor-smooth of time over sampling location, allowing the non-linear effect to vary by sampling location. We adapt the priors to allow for the intercepts being quite low (so the betas parameters are centred around -6 on the log-scale but with a heavy-tail), and the smoothing parameter sp being more constrained than the default. We also have a very tightly constrained prior on the sigma parameter, as initial testing revealed this could be problematic for convergence. We have set the sigma prior to constrain the parameter to within the range where most of the initial model (with weakly informative priors) found it to be. Due to the constraints of needing to save the model object in a smaller form so it doesn’t need to run each time this notebook renders, we also thin the chains considerably.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># pfas_mod &lt;- stan_jsdm(~s(DATE_TIME2, samp_location, bs = &quot;fs&quot;),</span>
+<span class="c1">#                       data = pfas_y, Y = Y,</span>
+<span class="c1">#                       prior = jsdm_prior(betas = &quot;student_t(3,-6,1)&quot;,</span>
+<span class="c1">#                                          sp = &quot;normal(0,1)&quot;,</span>
+<span class="c1">#                                          sigma = &quot;normal(0.05,0.01)&quot;),</span>
+<span class="c1">#                       method = &quot;mglmm&quot;, family = &quot;lognormal&quot;,</span>
+<span class="c1">#                       censoring = &quot;left&quot;, cens_ID = cens_ID2, cores = 4,</span>
+<span class="c1">#                       control = list(adapt_delta = 0.95), thin = 10)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/pfas_mod.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, let’s check the model performance statistics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pfas_mod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: lognormal 
+ With parameters: sigma 
+Model type: mglmm
+  Number of species: 16
+  Number of sites: 79
+  Number of predictors: 0
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+Parameters with Rhat &gt; 1.01, or Neff/N &lt; 0.05:
+                            mean      sd      15%      85%  Rhat Bulk.ESS
+z_species[3,16]            1.805   0.727    1.039    2.576 1.012      719
+z_species[5,16]            0.112   1.097   -1.095    1.273 1.020      434
+z_species[7,65]           -0.678   0.672   -1.382   -0.012 1.010      437
+z_species[8,22]            1.988   0.611    1.349    2.646 1.011      828
+z_species[15,39]          -0.767   0.923   -1.713    0.182 1.013      652
+cor_species_chol[11,5]    -0.101   0.220   -0.328    0.132 1.013      606
+cor_species_chol[13,11]    0.150   0.157   -0.017    0.308 1.012      567
+cor_species_chol[14,5]    -0.052   0.227   -0.291    0.187 1.014      490
+sigma                      0.053   0.006    0.047    0.059 1.014      217
+cor_species[5,11]         -0.034   0.181   -0.223    0.163 1.015      544
+cor_species[11,5]         -0.034   0.181   -0.223    0.163 1.015      544
+cor_species[13,15]        -0.009   0.089   -0.106    0.083 1.012      730
+cor_species[15,13]        -0.009   0.089   -0.106    0.083 1.012      730
+u[36,4]                   -0.023   0.098   -0.120    0.079 1.011      713
+u[48,5]                    0.313   0.398   -0.052    0.730 1.015      528
+u[65,7]                   -1.249   0.779   -2.090   -0.484 1.010      715
+lp__                    5980.865 105.636 5872.420 6089.116 1.017      212
+                        Tail.ESS
+z_species[3,16]              706
+z_species[5,16]              699
+z_species[7,65]              757
+z_species[8,22]              804
+z_species[15,39]             774
+cor_species_chol[11,5]       693
+cor_species_chol[13,11]      701
+cor_species_chol[14,5]       606
+sigma                        475
+cor_species[5,11]            696
+cor_species[11,5]            696
+cor_species[13,15]           726
+cor_species[15,13]           726
+u[36,4]                      727
+u[48,5]                      620
+u[65,7]                      515
+lp__                         376
+</pre></div>
+</div>
+</div>
+</div>
+<p>A couple of problematic parameters are highlighted, which isn’t great but the ESS is okay for our purposes - note also that the unthinned model fit fine, but we can’t include that here due to file size limits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rhat_hist&quot;</span><span class="p">)</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neff_hist&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Dropped 1 NAs from &#39;new_neff_ratio(ratio)&#39;.&quot;
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/93631dc27583f727cad972d2e6e8bcf8cbf82537414d413cffe89b6f2c2d3fd0.png"><img alt="../../_images/93631dc27583f727cad972d2e6e8bcf8cbf82537414d413cffe89b6f2c2d3fd0.png" src="../../_images/93631dc27583f727cad972d2e6e8bcf8cbf82537414d413cffe89b6f2c2d3fd0.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">distribution</span> <span class="pre">of</span> <span class="pre">Rhat</span> <span class="pre">values</span> <span class="pre">(a)</span> <span class="pre">and</span> <span class="pre">ESS</span> <span class="pre">values</span> <span class="pre">(b)</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">PFAS</span> <span class="pre">model</span></code></p>
+<p>While there are a few more parameters with low Neff/N ratios, the total sample size is still high enough that we should be okay for the analyses we are doing.</p>
+<p>Model performance in terms of fit to the data can be assessed graphically using posterior predictive checks, i.e. we predict data with the model and then compare to the original data used to fit the model. We can do this on a chemical by chemical basis using <code class="docutils literal notranslate"><span class="pre">multi_pp_check</span></code>, or by comparing summary statistics using <code class="docutils literal notranslate"><span class="pre">pp_check</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/dce8098c078e62de50e6621dd3472849c75e9d5539b78bd65406701e17f2557e.png"><img alt="../../_images/dce8098c078e62de50e6621dd3472849c75e9d5539b78bd65406701e17f2557e.png" src="../../_images/dce8098c078e62de50e6621dd3472849c75e9d5539b78bd65406701e17f2557e.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/16559979324f3abd09d51747259da8f962345aa71890c1f4e3803e70a3f303e7.png"><img alt="../../_images/16559979324f3abd09d51747259da8f962345aa71890c1f4e3803e70a3f303e7.png" src="../../_images/16559979324f3abd09d51747259da8f962345aa71890c1f4e3803e70a3f303e7.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">9</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/76f3767b18b5dedd8931f6b63fe887d6dc63f9178b2f3e119ec957f9a004a3e4.png"><img alt="../../_images/76f3767b18b5dedd8931f6b63fe887d6dc63f9178b2f3e119ec957f9a004a3e4.png" src="../../_images/76f3767b18b5dedd8931f6b63fe887d6dc63f9178b2f3e119ec957f9a004a3e4.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">13</span><span class="o">:</span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/33884d1fe862bc53ec022eda788c39e508ceefcc50a72b70cc88a350b03d3f28.png"><img alt="../../_images/33884d1fe862bc53ec022eda788c39e508ceefcc50a72b70cc88a350b03d3f28.png" src="../../_images/33884d1fe862bc53ec022eda788c39e508ceefcc50a72b70cc88a350b03d3f28.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>This fits the data pretty well, the lags due to censoring are noticeable in all several in the chemical but as the model predictions are assuming no lags, that works out fine.</p>
+<p>If we’re interested in overall summaries, such as the total PFAS value predicted, we can use the pp_check function. The default is to calculate sums over the rows of the model predictions, equivalent to calculating the predicted total PFAS chemical concentrations per row. This can be changed to calculate any summary statistic over either the rows or columns of the data. Note that this will not match the raw data, as the raw data contains within it the censoring and the predictions are assuming no censoring:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_dens_overlay&#39; by default.
+
+Warning message:
+&quot;The following arguments were unrecognized and ignored: discrete&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/23789ec5982f28d2b74a5c00998562cb1c6d8e81a645576e45c6467fcb99ec9d.png"><img alt="../../_images/23789ec5982f28d2b74a5c00998562cb1c6d8e81a645576e45c6467fcb99ec9d.png" src="../../_images/23789ec5982f28d2b74a5c00998562cb1c6d8e81a645576e45c6467fcb99ec9d.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Model-</span> <span class="pre">and</span> <span class="pre">data-</span> <span class="pre">estimated</span> <span class="pre">distribution</span> <span class="pre">of</span> <span class="pre">total</span> <span class="pre">PFAS</span> <span class="pre">concentration.</span> <span class="pre">Actual</span> <span class="pre">data</span> <span class="pre">shown</span> <span class="pre">in</span> <span class="pre">dark</span> <span class="pre">blue</span> <span class="pre">line,</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">shown</span> <span class="pre">as</span> <span class="pre">light</span> <span class="pre">blue</span> <span class="pre">lines.</span></code></p>
+<p>If you want the predicted value of total PFAS concentration, you can access that using <code class="docutils literal notranslate"><span class="pre">jsdm_statsummary</span></code> which runs <code class="docutils literal notranslate"><span class="pre">posterior_predict</span></code> in the background to come up with the prediction by chemical and then sum them together. By default this runs using all draws, and returns a matrix where every row is a draw from the model and every column is a measurement point. The default is also to return on the scale of the linear predictor, which is the log-scale for a lognormal so this needs to be changed to return values on the prediction scale. This function could be used to give interval estimates for total chemical concentration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">totalchem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">jsdm_statsummary</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">post_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;predict&quot;</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">totalchem</span><span class="p">[,</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       V1                V2                V3                V4         
+ Min.   :0.04676   Min.   :0.02857   Min.   :0.01851   Min.   :0.02598  
+ 1st Qu.:0.04940   1st Qu.:0.03076   1st Qu.:0.01964   1st Qu.:0.02793  
+ Median :0.05017   Median :0.03130   Median :0.01995   Median :0.02842  
+ Mean   :0.05020   Mean   :0.03133   Mean   :0.01997   Mean   :0.02845  
+ 3rd Qu.:0.05094   3rd Qu.:0.03184   3rd Qu.:0.02032   3rd Qu.:0.02895  
+ Max.   :0.05478   Max.   :0.03487   Max.   :0.02168   Max.   :0.03107  
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also look at the predicted effects of each predictor. The fixed effects (in this case only the intercepts) can be explored using the <code class="docutils literal notranslate"><span class="pre">envplot</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">include_intercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/48317bfe52d1c1351d8d9ee8a423ed1c8d886c13ac90e8aeefc78f43bb6526e1.png"><img alt="../../_images/48317bfe52d1c1351d8d9ee8a423ed1c8d886c13ac90e8aeefc78f43bb6526e1.png" src="../../_images/48317bfe52d1c1351d8d9ee8a423ed1c8d886c13ac90e8aeefc78f43bb6526e1.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Model-estimated</span> <span class="pre">intercepts</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">PFAS</span> <span class="pre">chemicals.</span></code></p>
+<p>As expected, these are very low due to the low concentrations of PFAS chemicals usually present. If the numeric values are of interest, then the <code class="docutils literal notranslate"><span class="pre">summary</span></code> function can be used to get the actual values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">pars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;betas&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 16 × 7 of type dbl</caption>
+<thead>
+	<tr><th></th><th scope=col>mean</th><th scope=col>sd</th><th scope=col>15%</th><th scope=col>85%</th><th scope=col>Rhat</th><th scope=col>Bulk.ESS</th><th scope=col>Tail.ESS</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>betas[1,1]</th><td>-8.363</td><td>0.292</td><td>-8.651</td><td>-8.065</td><td>1.004</td><td>531</td><td>691</td></tr>
+	<tr><th scope=row>betas[1,2]</th><td>-5.151</td><td>0.188</td><td>-5.336</td><td>-4.974</td><td>1.004</td><td>484</td><td>644</td></tr>
+	<tr><th scope=row>betas[1,3]</th><td>-6.022</td><td>0.187</td><td>-6.201</td><td>-5.840</td><td>1.002</td><td>497</td><td>643</td></tr>
+	<tr><th scope=row>betas[1,4]</th><td>-5.689</td><td>0.187</td><td>-5.868</td><td>-5.510</td><td>1.003</td><td>494</td><td>643</td></tr>
+	<tr><th scope=row>betas[1,5]</th><td>-7.688</td><td>0.232</td><td>-7.922</td><td>-7.461</td><td>1.000</td><td>535</td><td>640</td></tr>
+	<tr><th scope=row>betas[1,6]</th><td>-5.145</td><td>0.188</td><td>-5.325</td><td>-4.966</td><td>1.002</td><td>488</td><td>616</td></tr>
+	<tr><th scope=row>betas[1,7]</th><td>-7.247</td><td>0.316</td><td>-7.577</td><td>-6.942</td><td>1.001</td><td>617</td><td>703</td></tr>
+	<tr><th scope=row>betas[1,8]</th><td>-5.419</td><td>0.190</td><td>-5.613</td><td>-5.227</td><td>1.003</td><td>504</td><td>629</td></tr>
+	<tr><th scope=row>betas[1,9]</th><td>-7.057</td><td>0.192</td><td>-7.249</td><td>-6.864</td><td>1.002</td><td>508</td><td>638</td></tr>
+	<tr><th scope=row>betas[1,10]</th><td>-8.545</td><td>0.309</td><td>-8.847</td><td>-8.235</td><td>0.999</td><td>656</td><td>775</td></tr>
+	<tr><th scope=row>betas[1,11]</th><td>-5.871</td><td>0.190</td><td>-6.062</td><td>-5.690</td><td>1.003</td><td>475</td><td>642</td></tr>
+	<tr><th scope=row>betas[1,12]</th><td>-6.001</td><td>0.192</td><td>-6.190</td><td>-5.821</td><td>1.001</td><td>481</td><td>676</td></tr>
+	<tr><th scope=row>betas[1,13]</th><td>-5.854</td><td>0.195</td><td>-6.051</td><td>-5.667</td><td>1.005</td><td>507</td><td>687</td></tr>
+	<tr><th scope=row>betas[1,14]</th><td>-7.603</td><td>0.195</td><td>-7.796</td><td>-7.403</td><td>1.002</td><td>484</td><td>614</td></tr>
+	<tr><th scope=row>betas[1,15]</th><td>-7.302</td><td>0.189</td><td>-7.490</td><td>-7.107</td><td>1.003</td><td>473</td><td>667</td></tr>
+	<tr><th scope=row>betas[1,16]</th><td>-5.278</td><td>0.189</td><td>-5.454</td><td>-5.101</td><td>1.002</td><td>497</td><td>608</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The spline effects can be explored using the <code class="docutils literal notranslate"><span class="pre">smoothplot</span></code> function. As smoothplot returns a list of plots (one for each spline in the model), we only call the first element of it for simplicity:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">smoothplot</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/f4cc85be613c5148e944e55d4d787317781926420b66b9b5e9ee5fe6a9622a8f.png"><img alt="../../_images/f4cc85be613c5148e944e55d4d787317781926420b66b9b5e9ee5fe6a9622a8f.png" src="../../_images/f4cc85be613c5148e944e55d4d787317781926420b66b9b5e9ee5fe6a9622a8f.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">estimated</span> <span class="pre">smooth</span> <span class="pre">effects</span> <span class="pre">of</span> <span class="pre">time</span> <span class="pre">per</span> <span class="pre">sampling</span> <span class="pre">location</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">PFAS</span> <span class="pre">model,</span> <span class="pre">given</span> <span class="pre">as</span> <span class="pre">50</span> <span class="pre">random</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model.</span></code></p>
+<p>The correlation between chemicals can be plotted using the <code class="docutils literal notranslate"><span class="pre">corrplot</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">corrplot</span><span class="p">(</span><span class="n">pfas_mod</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;8891&quot;</span><span class="p">,</span><span class="s">&quot;2995&quot;</span><span class="p">,</span><span class="s">&quot;2960&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/6cde91788a3bb1814d00235869a7bada3a4f7abc0f8549de122c2dd8d4dd713c.png"><img alt="../../_images/6cde91788a3bb1814d00235869a7bada3a4f7abc0f8549de122c2dd8d4dd713c.png" src="../../_images/6cde91788a3bb1814d00235869a7bada3a4f7abc0f8549de122c2dd8d4dd713c.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">model-estimated</span> <span class="pre">correlation</span> <span class="pre">between</span> <span class="pre">each</span> <span class="pre">chemical</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">other</span> <span class="pre">chemicals.</span> <span class="pre">For</span> <span class="pre">graphical</span> <span class="pre">simplicity,</span> <span class="pre">we</span> <span class="pre">only</span> <span class="pre">plot</span> <span class="pre">subplots</span> <span class="pre">for</span> <span class="pre">three</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">chemicals</span> <span class="pre">chosen</span> <span class="pre">at</span> <span class="pre">random:</span> <span class="pre">8891</span> <span class="pre">(PFnonncAcid);</span> <span class="pre">2995</span> <span class="pre">(PFBA);</span> <span class="pre">and</span> <span class="pre">2960</span> <span class="pre">(PFOS</span> <span class="pre">(B)).</span></code></p>
+</section>
+</section>
+<section id="pah-case-study">
+<h2>PAH case study<a class="headerlink" href="#pah-case-study" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Data Sources<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>For the PAH case study, we have EA measurements that were taken on the Severn estuary between January 2015 to April 2017. This resulted in 196 measurements across 9 sites. Four PAH chemicals were measured during this period at all sites, with varying degrees of censoring. In total 339 measurements were left-censored, more often within the earlier part of the time series. There were a number of right-censored measurements as well (110), however unfortunately jsdmstan cannot currently deal with this and so we treat right-censored measurements as uncensored.</p>
+<p>Here we read in the subset of the data as described above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/pah_data.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then reformat the data into a wide format where each chemical appears as its own column and each row represents a measurement point in time and space. We do this twice, once with the actual numbers of the measurements and once with a representation of whether the measurement was left censored. We also double check that we end up with the same rows across both. This follows the same pattern as described above within the PFAS case study.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pah_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">MEAS_SIGN</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">,</span><span class="w"> </span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_RESULT</span><span class="p">,</span>
+<span class="w">              </span><span class="n">names_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAH&quot;</span><span class="p">)</span>
+<span class="n">pah_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">na.omit</span><span class="p">(</span><span class="n">pah_df</span><span class="p">)</span>
+
+<span class="n">cens_ID_pah</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pah_data</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">MEAS_RESULT</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">replace_na</span><span class="p">(</span><span class="nf">ifelse</span><span class="p">(</span><span class="n">MEAS_SIGN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&lt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">pivot_wider</span><span class="p">(</span><span class="n">names_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_DETERMINAND_CODE</span><span class="p">,</span><span class="w"> </span><span class="n">values_from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MEAS_SIGN</span><span class="p">,</span>
+<span class="w">              </span><span class="n">names_prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;PAH&quot;</span><span class="p">)</span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">filter</span><span class="p">(</span><span class="n">SAMP_ID</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">pah_df</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">)</span>
+
+<span class="nf">all.equal</span><span class="p">(</span><span class="n">cens_ID_pah</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">,</span><span class="w"> </span><span class="n">pah_df</span><span class="o">$</span><span class="n">SAMP_ID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">all.equal</span><span class="p">(</span><span class="n">cens_ID_pah</span><span class="o">$</span><span class="n">DATE_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">pah_df</span><span class="o">$</span><span class="n">DATE_TIME</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+<p>We take a quick look at the data using some exploratory plots, including site location and number of censored measurements over time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pas_sf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pah_df</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">count</span><span class="p">(</span><span class="n">SMPT_EASTING</span><span class="p">,</span><span class="w"> </span><span class="n">SMPT_NORTHING</span><span class="p">,</span><span class="w"> </span><span class="n">SMPT</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">coords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;SMPT_EASTING&quot;</span><span class="p">,</span><span class="s">&quot;SMPT_NORTHING&quot;</span><span class="p">),</span>
+<span class="w">           </span><span class="n">crs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">27700</span><span class="p">)</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gbr</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_sf</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pas_sf</span><span class="p">,</span><span class="w"> </span><span class="n">mapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="o">+</span>
+<span class="w">  </span><span class="nf">coord_sf</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-3.5</span><span class="p">,</span><span class="m">-2</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">51.2</span><span class="p">,</span><span class="m">52</span><span class="p">))</span><span class="w">  </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">))</span>
+
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cens_ID_pah</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">mutate</span><span class="p">(</span><span class="n">ncens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.factor</span><span class="p">(</span><span class="n">PAH0714</span><span class="o">+</span><span class="n">PAH0731</span><span class="o">+</span><span class="n">PAH0733</span><span class="o">+</span><span class="n">PAH6399</span><span class="p">),</span>
+<span class="w">         </span><span class="n">SMPT_NORTHING</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMPT_NORTHING</span><span class="o">/</span><span class="m">1000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span>
+<span class="w">  </span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATE_TIME</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SMPT_NORTHING</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncens</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Northing (000s)&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">  </span><span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">))</span>
+<span class="n">p1</span><span class="o">+</span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/33ac27c164403cba0bdfa3e04b878f207dd31a3abc96ce8813a692bf5f2fbb9e.png"><img alt="../../_images/33ac27c164403cba0bdfa3e04b878f207dd31a3abc96ce8813a692bf5f2fbb9e.png" src="../../_images/33ac27c164403cba0bdfa3e04b878f207dd31a3abc96ce8813a692bf5f2fbb9e.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Locations</span> <span class="pre">of</span> <span class="pre">sampling</span> <span class="pre">points</span> <span class="pre">(a)</span> <span class="pre">and</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">censored</span> <span class="pre">measurements</span> <span class="pre">over</span> <span class="pre">time</span> <span class="pre">per</span> <span class="pre">location</span> <span class="pre">(b).</span></code></p>
+<p>Get into jsdmstan format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pahs_Y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">select</span><span class="p">(</span><span class="n">pah_df</span><span class="p">,</span><span class="w"> </span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&quot;PAH&quot;</span><span class="p">))</span>
+
+<span class="n">cens_ID_pah</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.matrix</span><span class="p">(</span><span class="nf">select</span><span class="p">(</span><span class="n">cens_ID_pah</span><span class="p">,</span><span class="w"> </span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&quot;PAH&quot;</span><span class="p">)))</span>
+<span class="nf">all.equal</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">cens_ID_pah</span><span class="p">),</span><span class="nf">colnames</span><span class="p">(</span><span class="n">pahs_Y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">TRUE</div></div>
+</div>
+</section>
+<section id="model">
+<h3>Model<a class="headerlink" href="#model" title="Link to this heading">#</a></h3>
+<p>We specify a PAH model where every non-linear effect is shared across the different chemicals. There are three non-linear effects, the first being a spline over the location (represented by northing only), the second being a cyclic spline over day of year to capture seasonal effects, and the third being a random effect on sampling point. The first spline we fit as a factor-smooth, with the spline varying by chemical. To do this within jsdmstan we add <code class="docutils literal notranslate"><span class="pre">species</span></code> to the spline call and set <code class="docutils literal notranslate"><span class="pre">bs</span> <span class="pre">=</span> <span class="pre">&quot;fs&quot;</span></code>. This will sort everything under the hood, so we
+don’t need to worry about including a variable in the model call that is not within the data.frame supplied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># pah_mod_bychem &lt;- stan_jsdm(~s(SMPT_NORTHING,species,bs=&quot;fs&quot;, k = 4) +</span>
+<span class="c1">#                               s(yday, bs = &quot;cc&quot;) +</span>
+<span class="c1">#                               s(SMPT, bs = &quot;re&quot;) ,</span>
+<span class="c1">#                             data = pah_df, Y = pahs_Y,</span>
+<span class="c1">#                             method = &quot;mglmm&quot;, family = &quot;lognormal&quot;,</span>
+<span class="c1">#                             prior = jsdm_prior(sigma = &quot;normal(0.1,0.01)&quot;,</span>
+<span class="c1">#                                                sp = &quot;normal(0,1)&quot;,</span>
+<span class="c1">#                                                betas = &quot;student_t(3,-5,1)&quot;),</span>
+<span class="c1">#                             censoring = &quot;left&quot;, cens_ID = cens_ID_pah,</span>
+<span class="c1">#                             cores = 4, thin = 5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You’ll notice the prior on the sigma parameter is extremely tight. Due to the high degree of flexibility in the normal and lognormal families within the jsdm context, the sigma parameter sometimes proves problematic in model fitting. As such, the prior on the sigma is set based upon an earlier model fit with a weakly informative prior (normal(0,1)) where &gt;90% of the model fit had the sigma within the range of 0.08-0.12. In the earlier model, sigma occasionally went lower than this range for brief periods leading to convergence and sampler efficiency warnings. For the sake of this vignette, we are removing these cases where sigma drops and more variance is therefore explained by the species covariance parameters.</p>
+<p>The other priors are equivalent to saying the intercept is around 0.01 (the beta parameters are specified on the log-scale) and constraining the smoothing parameters to be relatively low.</p>
+<p>The model takes about 10-20 minutes to run on a windows laptop over four cores, so we are loading in the result separately:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_mod_bychem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/pah_mod_bychem.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluating model fit can be done by looking at fit statistics and graphical checks. If we print the model object to the (), we get a summary of the model plus it would include any parameters with high Rhat values or low effective sample size values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_mod_bychem</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: lognormal 
+ With parameters: sigma 
+Model type: mglmm
+  Number of species: 4
+  Number of sites: 196
+  Number of predictors: 0
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>No problematic parameters are highlighted, which is a good start!</p>
+<p>While the Rhat values and ESS values of every parameter can be accessed using the summary command, the high number of parameters in these models means a quicker way to check would be through calling the bayesplot package with mcmc_plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pah_mod_bychem</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rhat_hist&quot;</span><span class="p">)</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pah_mod_bychem</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neff_hist&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;Dropped 1 NAs from &#39;new_neff_ratio(ratio)&#39;.&quot;
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/693c0ac9448a1e2191ba293bde5564a3a6a4823041195a070b792da5f6e2513d.png"><img alt="../../_images/693c0ac9448a1e2191ba293bde5564a3a6a4823041195a070b792da5f6e2513d.png" src="../../_images/693c0ac9448a1e2191ba293bde5564a3a6a4823041195a070b792da5f6e2513d.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">distribution</span> <span class="pre">of</span> <span class="pre">Rhat</span> <span class="pre">values</span> <span class="pre">(a)</span> <span class="pre">and</span> <span class="pre">ESS</span> <span class="pre">values</span> <span class="pre">(b)</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">PAH</span> <span class="pre">model.</span></code></p>
+<p>While there are a few parameters with low Neff/N ratios, the total sample size is still high enough that we should be okay. There are many other potential plotting functions for looking at model fit, see bayesplot::available_mcmc() for a full list.</p>
+<p>We can also check to see how well the data is recovered, using a posterior predictive check. Due to the censored nature of this data, we use an empirical cumulative density function overlay:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pah_mod_bychem</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="o">=</span><span class="w">  </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+
+Warning message:
+&quot;Removed 83 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 3 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 2 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 2 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 287 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 1 row containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 49 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 2 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/f40b2fcdf8cf553ea0ec68f8bc1475def2ed0187b4aa4e2b5441f7532310f2b8.png"><img alt="../../_images/f40b2fcdf8cf553ea0ec68f8bc1475def2ed0187b4aa4e2b5441f7532310f2b8.png" src="../../_images/f40b2fcdf8cf553ea0ec68f8bc1475def2ed0187b4aa4e2b5441f7532310f2b8.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Ability</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">PAH</span> <span class="pre">model</span> <span class="pre">to</span> <span class="pre">recover</span> <span class="pre">the</span> <span class="pre">raw</span> <span class="pre">data</span> <span class="pre">values</span> <span class="pre">per</span> <span class="pre">chemical.</span> <span class="pre">Actual</span> <span class="pre">data</span> <span class="pre">shown</span> <span class="pre">in</span> <span class="pre">dark</span> <span class="pre">blue</span> <span class="pre">line,</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">shown</span> <span class="pre">as</span> <span class="pre">light</span> <span class="pre">blue</span> <span class="pre">lines.</span></code></p>
+<p>The data recovery of the model isn’t great, with the model often overestimating the chemical concentrations present. This is due to the factor-smooth on species, unfortunately, so we are better off fitting a reduced model assuming the same responses across the chemical concentrations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># pah_mod &lt;- stan_jsdm(~s(SMPT_NORTHING, k = 4) +</span>
+<span class="c1">#                        s(yday, bs = &quot;cc&quot;) +</span>
+<span class="c1">#                        s(SMPT, bs = &quot;re&quot;) ,</span>
+<span class="c1">#                      data = pah_df, Y = pahs_Y,</span>
+<span class="c1">#                      method = &quot;mglmm&quot;, family = &quot;lognormal&quot;,</span>
+<span class="c1">#                      prior = jsdm_prior(sigma = &quot;normal(0.1,0.01)&quot;,</span>
+<span class="c1">#                                         sp = &quot;normal(0,1)&quot;,</span>
+<span class="c1">#                                         betas = &quot;student_t(3,-5,1)&quot;),</span>
+<span class="c1">#                      censoring = &quot;left&quot;, cens_ID = cens_ID_pah,</span>
+<span class="c1">#                      cores = 4, thin = 5)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_mod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;Data/pah_mod.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay, so let’s see how this model performs.</p>
+<p>First, the model fit statistics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pah_mod</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Family: lognormal 
+ With parameters: sigma 
+Model type: mglmm
+  Number of species: 4
+  Number of sites: 196
+  Number of predictors: 0
+
+Model run on 4 chains with 4000 iterations per chain (2000 warmup).
+
+No parameters with Rhat &gt; 1.01 or Neff/N &lt; 0.05
+</pre></div>
+</div>
+</div>
+</div>
+<p>No problematic parameters are highlighted, which is a good start!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;rhat_hist&quot;</span><span class="p">)</span>
+<span class="n">p2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">mcmc_plot</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;neff_hist&quot;</span><span class="p">)</span>
+<span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/e85d65b520605cee93a6b3280ea93b05f89eb95b9e8e5de3a95ba445f039adb3.png"><img alt="../../_images/e85d65b520605cee93a6b3280ea93b05f89eb95b9e8e5de3a95ba445f039adb3.png" src="../../_images/e85d65b520605cee93a6b3280ea93b05f89eb95b9e8e5de3a95ba445f039adb3.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">distribution</span> <span class="pre">of</span> <span class="pre">Rhat</span> <span class="pre">values</span> <span class="pre">(a)</span> <span class="pre">and</span> <span class="pre">ESS</span> <span class="pre">values</span> <span class="pre">(b)</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">second</span> <span class="pre">PAH</span> <span class="pre">model</span></code></p>
+<p>This model also performs very well in that all Rhat values are well under 1.01 and the effective sample size ratio of the parameters is always greater than 0.5.</p>
+<p>Let’s see if this model has recovered the data better:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">multi_pp_check</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+
+Warning message:
+&quot;Removed 26 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 3 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 22 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 2 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 10 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 1 row containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 21 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+Warning message:
+&quot;Removed 2 rows containing non-finite outside the scale range (`stat_ecdf()`).&quot;
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/bb49e8e74cfa7308e1059ce567c0ea2bfbbbf8b8c66d9fe7c9601a11545079d6.png"><img alt="../../_images/bb49e8e74cfa7308e1059ce567c0ea2bfbbbf8b8c66d9fe7c9601a11545079d6.png" src="../../_images/bb49e8e74cfa7308e1059ce567c0ea2bfbbbf8b8c66d9fe7c9601a11545079d6.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Ability</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">second</span> <span class="pre">PAH</span> <span class="pre">model</span> <span class="pre">to</span> <span class="pre">recover</span> <span class="pre">the</span> <span class="pre">raw</span> <span class="pre">data</span> <span class="pre">values</span> <span class="pre">per</span> <span class="pre">chemical.</span> <span class="pre">Actual</span> <span class="pre">data</span> <span class="pre">shown</span> <span class="pre">in</span> <span class="pre">dark</span> <span class="pre">blue</span> <span class="pre">line,</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">shown</span> <span class="pre">as</span> <span class="pre">light</span> <span class="pre">blue</span> <span class="pre">lines.</span></code></p>
+<p>This is a much better fit to the data! Note that as the limits of detection varies across the time series, there is not such a clear cutoff where the LOD is present in the original data, but in the lower concentrations present we can see there are some sections where the model smooths over the jumps in the raw data. If we’re interested in overall summaries, such as the total PAH value predicted, we can use the pp_check function. Note that this will not match the raw data, as the raw data contains within it the censoring and the predictions are assuming no censoring:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">pp_check</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">plotfun</span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ecdf_overlay&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">discrete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using 10 posterior draws for ppc plot type &#39;ppc_ecdf_overlay&#39; by default.
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/16e6503c8a1f74fd4d9d8dac30a16d0b62d8c57eebb8f13e026b31b7f4c5f240.png"><img alt="../../_images/16e6503c8a1f74fd4d9d8dac30a16d0b62d8c57eebb8f13e026b31b7f4c5f240.png" src="../../_images/16e6503c8a1f74fd4d9d8dac30a16d0b62d8c57eebb8f13e026b31b7f4c5f240.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Model-</span> <span class="pre">and</span> <span class="pre">data-</span> <span class="pre">estimated</span> <span class="pre">distribution</span> <span class="pre">of</span> <span class="pre">total</span> <span class="pre">PAH</span> <span class="pre">concentration.</span> <span class="pre">Actual</span> <span class="pre">data</span> <span class="pre">shown</span> <span class="pre">in</span> <span class="pre">dark</span> <span class="pre">blue</span> <span class="pre">line,</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model</span> <span class="pre">shown</span> <span class="pre">as</span> <span class="pre">light</span> <span class="pre">blue</span> <span class="pre">lines.</span></code></p>
+<p>We can also look at the predicted effects of each predictor. The fixed effects (in this case only the intercepts) can be explored using the <code class="docutils literal notranslate"><span class="pre">envplot</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">envplot</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">include_intercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/70abc1711291aa59d44489f89865f47f4b417963853480e4b10988b288297d56.png"><img alt="../../_images/70abc1711291aa59d44489f89865f47f4b417963853480e4b10988b288297d56.png" src="../../_images/70abc1711291aa59d44489f89865f47f4b417963853480e4b10988b288297d56.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Model-estimated</span> <span class="pre">intercepts</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">PAH</span> <span class="pre">chemicals.</span></code></p>
+<p>The spline effects can be explored using the <code class="docutils literal notranslate"><span class="pre">smoothplot</span></code> function. As smoothplot returns a list of plots (one for each spline in the model), we wrap them up into a patchwork object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">design</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;AB</span>
+<span class="s">           CC&quot;</span>
+<span class="nf">wrap_plots</span><span class="p">(</span><span class="nf">smoothplot</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">,</span><span class="w"> </span><span class="n">ndraws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"> </span><span class="n">design</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">design</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">  </span><span class="nf">plot_annotation</span><span class="p">(</span><span class="n">tag_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/dab0c0702d425484cffa2e3624f018f2eff23b20d9dfaba0dbe8748fa96e081a.png"><img alt="../../_images/dab0c0702d425484cffa2e3624f018f2eff23b20d9dfaba0dbe8748fa96e081a.png" src="../../_images/dab0c0702d425484cffa2e3624f018f2eff23b20d9dfaba0dbe8748fa96e081a.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Plots</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">estimated</span> <span class="pre">smooth</span> <span class="pre">effects</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">PAH</span> <span class="pre">model,</span> <span class="pre">given</span> <span class="pre">as</span> <span class="pre">50</span> <span class="pre">random</span> <span class="pre">draws</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">model.</span> <span class="pre">The</span> <span class="pre">predicted</span> <span class="pre">change</span> <span class="pre">as</span> <span class="pre">we</span> <span class="pre">go</span> <span class="pre">north</span> <span class="pre">(a),</span> <span class="pre">the</span> <span class="pre">predicted</span> <span class="pre">change</span> <span class="pre">over</span> <span class="pre">the</span> <span class="pre">year</span> <span class="pre">(b),</span> <span class="pre">and</span> <span class="pre">deviation</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">average</span> <span class="pre">per</span> <span class="pre">site</span> <span class="pre">(i.e.</span> <span class="pre">the</span> <span class="pre">random</span> <span class="pre">effects,</span> <span class="pre">c).</span></code></p>
+<p>The correlation between chemicals can be plotted using the <code class="docutils literal notranslate"><span class="pre">corrplot</span></code>
+function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">corrplot</span><span class="p">(</span><span class="n">pah_mod</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/b84eaf5ceb9631366ecfcea0ff0ae56bd642a8f2d3e714d830393273368b5e25.png"><img alt="../../_images/b84eaf5ceb9631366ecfcea0ff0ae56bd642a8f2d3e714d830393273368b5e25.png" src="../../_images/b84eaf5ceb9631366ecfcea0ff0ae56bd642a8f2d3e714d830393273368b5e25.png" style="width: 660px; height: 420px;" />
+</a>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">model-estimated</span> <span class="pre">correlation</span> <span class="pre">between</span> <span class="pre">each</span> <span class="pre">chemical</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">other</span> <span class="pre">three</span> <span class="pre">chemicals.</span> <span class="pre">Note</span> <span class="pre">that</span> <span class="pre">there</span> <span class="pre">is</span> <span class="pre">repetition</span> <span class="pre">within</span> <span class="pre">this</span> <span class="pre">plot,</span> <span class="pre">i.e.</span> <span class="pre">PAH0714-PAH6399</span> <span class="pre">appears</span> <span class="pre">within</span> <span class="pre">both</span> <span class="pre">the</span> <span class="pre">PAH0714</span> <span class="pre">and</span> <span class="pre">PAH6399</span> <span class="pre">subplots.</span></code></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="discussion">
+<h1>Discussion<a class="headerlink" href="#discussion" title="Link to this heading">#</a></h1>
+<p>Within this work we have demonstrated the potential for joint species distribution models to model multivariate censored water quality chemical datasets. These can lead to further insight into water quality dynamics and improve the total predictions of groups of censored water quality chemical concentrations.</p>
+<p>The ability of a JSDM approach to improve the predictions of species depends upon the common species being a good predictor for the rarer species (<a class="reference external" href="https://doi.org/10.1111/ecog.06500">Erickson &amp; Smith, 2023</a>). Within our two case studies we found very different levels of residual correlation between chemicals, with PFAS chemicals showing weak to moderate correlation with each other while PAH chemicals show strong to very strong correlations with each other. The residual correlation will change based upon what data is included within the model and the model
+structure, but it is worth considering which chemical groups (or subgroups) would benefit from being modelled jointly.</p>
+<p>One concern about the models presented here is the tight prior upon the global sigma parameter (i.e. the standard deviation of the lognormal distribution) that was required to fit the models. The high degree of flexibility within the lognormal distribution means that there are multiple ways to fit the model, and the analyst needs to supply a high degree of control to achieve convergence. There may be other model parameterisations that fit this better, which could be explored in future, and, alternatively, other families such as the gamma family could be explored to see if they improve the model fitting procedure.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Link to this heading">#</a></h1>
+<p>This work was funded by the Department of Environment, Food and Rural Affairs, Natural Capital Ecosystem Assessment Programme. It was managed by the Environment Agency and delivered by the UK Centre for Ecology and Hydrology, under Research, Development and Evidence Framework contract RDE945.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>Carpenter, B., Gelman, A., Hoffman, M. D., Lee, D., Goodrich, B., Betancourt, M., Brubaker, M. A., Guo, J., Li, P., &amp; Riddell, A. (2017). Stan: A probabilistic programming language. Journal of Statistical Software, 76(1), 1–32. <a class="reference external" href="https://doi.org/10.18637/jss.v076.i01">https://doi.org/10.18637/jss.v076.i01</a></p>
+<p>Erickson, K. D., &amp; Smith, A. B. (2023). Modeling the rarest of the rare: A comparison between multi‐species distribution models, ensembles of small models, and single‐species models at extremely low sample sizes. Ecography, 2023(6), 861–875. <a class="reference external" href="https://doi.org/10.1111/ecog.06500">https://doi.org/10.1111/ecog.06500</a></p>
+<p>Miller, D. L. (2025). Bayesian views of generalized additive modelling. Methods in Ecology and Evolution, 16(3), 446–455. <a class="reference external" href="https://doi.org/10.1111/2041-210X.14498">https://doi.org/10.1111/2041-210X.14498</a></p>
+<p>Pedersen, E. J., Miller, D. L., Simpson, G. L., &amp; Ross, N. (2019). Hierarchical generalized additive models in ecology: An introduction with mgcv. PeerJ, 7, e6876. <a class="reference external" href="https://doi.org/10.7717/peerj.6876">https://doi.org/10.7717/peerj.6876</a></p>
+<p>Seaton, F. (2025). jsdmstan: An R package for fitting joint species distribution models in Stan (p. 2025.11.10.687559). bioRxiv. <a class="reference external" href="https://doi.org/10.1101/2025.11.10.687559">https://doi.org/10.1101/2025.11.10.687559</a></p>
+<p>Warton, D. I., Blanchet, F. G., O’Hara, R. B., Ovaskainen, O., Taskinen, S., Walker, S. C., &amp; Hui, F. K. C. (2015). So many variables: Joint modeling in community ecology. Trends in Ecology &amp; Evolution, 30(12), 766–779. <a class="reference external" href="https://doi.org/10.1016/j.tree.2015.09.007">https://doi.org/10.1016/j.tree.2015.09.007</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "renv-r"
+        },
+        kernelOptions: {
+            name: "renv-r",
+            path: "./methods\ds-toolbox-notebook-jsdm-censor"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'renv-r'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ds-toolbox-notebook-clognorm-mgcv/clognorm-book.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modelling censored log-normal data in <code class="docutils literal notranslate"><span class="pre">mgcv</span></code></p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Multivariate Modelling of Censored Chemicals using jsdmstan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#methodology">Methodology</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-species-distribution-modelling">Joint Species Distribution Modelling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-generalised-linear-mixed-models">Multivariate Generalised Linear Mixed Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalised-linear-latent-variable-models">Generalised Linear Latent Variable Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normal-and-lognormal-responses">Normal and lognormal responses</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#censored-response-modelling">Censored Response Modelling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-flexible-effects-splines-and-random-effects">Fitting flexible effects (splines and random effects)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-model-fits">Example model fits</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-data">Simulated data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pfas-case-study">PFAS Case Study</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sources">Data Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit">Model fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pah-case-study">PAH case study</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Data Sources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model">Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion">Discussion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgements">Acknowledgements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By UKCEH
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
