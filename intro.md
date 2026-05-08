@@ -1,23 +1,20 @@
-```{image} images/NatCapUK_colour.png
-:alt: natcapuk-logo
-:class: bg-primary mb-1
-:align: right
-:width: 400px
-```
-
-```{image} images/eds-abstract-image.jpg 
-:alt: abstract-environmental-data-science
-:class: bg-primary mb-1 sd-rounded-3
-:align: center
-```
+---
+title: Environmental Data Science Toolbox
+---
 
 # Environmental Data Science Toolbox
 
+:::{image} images/eds-abstract-image.jpg
+:alt: abstract-environmental-data-science
+:class: abstract-image
+:align: center
+:::
+
+[Contributing 🌞](https://wikipedia.org) | [Citing 📝](https://wikipedia.org) | [Interacting 🚀](https://wikipedia.org)
+
 This is a **prototype** version of the National Capability UK (NC-UK) Environmental Data Science Toolbox, hosted by the UK Centre for Ecology & Hydrology (UKCEH). The aim is to apply FAIR principles (Findable, Accessible, Interoperable, and Reusable) to a collection of data science methods that are generalizable across different environmental applications, with a focus on integrative modelling. The hope being that this will encourage cross-disciplinary use of methods, enhancing national environmental research. 
 
-If you're interested in contributing to this project it would be great to hear from you and you can find details of how to do so via the `CONTRIBUTING.md` page in the root of the repository. 🌞
-
-The current recommended workflow for interactively engaging with the code in the methodology notebooks is to clone the {bdg-info}`Notebook Repository` linked at the top of each notebook to get access to the relevant files and then to create a virtual environment and test running different sections of the code in your favourite IDE, such as VS Code.  
+## Methods Table of Contents
 
 | Methods | Key Concepts | Key Datasets |
 | :--- | --- | ---: |
@@ -29,28 +26,13 @@ The current recommended workflow for interactively engaging with the code in the
 | [RO-Crate Tutorial](<../methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial>) {bdg-warning-line}`Ongoing Development` | Data Access, Metadata, Data Integrity | COSMOS Dataset from EIDC
 | [EEX-placebased-exposure](<../methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure>) {bdg-warning-line}`Ongoing Development` | Place based data exploration, Data Integration, Data Visualisation, Data analysis | Air quality data from Defra and Water Quality data from Environment Agency
 | [Multivariate Modelling of Censored Chemicals using jsdmstan](<../methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette>) | Multivariate, Censored Data, Joint Species Distribution Modelling, Bayesian Inference  | Environment Agency PFAS River Monitoring & PAH Estuary Datasets, Simulated lognormal Censored Dataset
-| Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
+
+<br>
+
+<!-- | Accessing EA Data via an API {bdg-warning-line}`Planned` | Data Access, Data Integration | |
 | Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` | | |
 | River Utility Tools {bdg-warning-line}`Planned` | Spatio-temporal Integration, Networks | |
 | CSV File Checker {bdg-warning-line}`Planned` | Data Quality, Data Integrity | |
 | Spatio-temporal Data Integration with INLA {bdg-warning-line}`Tentative` | Spatio-temporal Integration, Bayesian | | 
 | Understanding and Modelling Spatio-temporal Lags along Networks {bdg-warning-line}`Tentative` | Spatio-temporal Integration, Networks | |
-| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` | Data Quality, Data Integrity | |
-
-<br>
-
-<!-- | Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | Stochastic Partial Differential Equations, Integrated Nested Laplace Approximations | UK Butterfly Monitoring Scheme (UKBMS), British Trust for Ornithology (BTO), Environment Agency (EA), Citizen Science Anglers' Riverfly Monitoring Initiative
-| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | Multivariate Methods, Uncertainty, Theory | | -->
-
-<!-- | Methods | Generalisability |
-| :--- | ---: |
-| [Bias Correction of Climate Models](<../notebooks/methods/Bias_Correction_Application/walkthrough_tutorial/Walkthrough Tutorial>) {bdg-warning-line}`Ongoing Development` | Combining good-coverage biased datasets with poor-coverage unbiased datasets. Modelling uncertainty when interpolating spatial and/or temporal data. 
-| Joint Species Distribution Models in Stan {bdg-warning-line}`Planned` | 
-| Decomposing Error in Multispecies Indicators {bdg-warning-line}`Planned` | 
-| Accessing EA Data via an API {bdg-warning-line}`Planned` | 
-| Data Pipelines for JULES Emulation/Portable JULES {bdg-warning-line}`Planned` |
-| River Utility Tools {bdg-warning-line}`Planned` | 
-| CSV File Checker {bdg-warning-line}`Planned` |
-| Spatio-temporal Data Integration with INLA {bdg-warning-line}`Tentative` |
-| Understanding and Modelling Spatio-temporal Lags along Networks {bdg-warning-line}`Tentative` |
-| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` |  -->
+| State Tagging for Environmental Data QA {bdg-warning-line}`Tentative` | Data Quality, Data Integrity | | -->
