@@ -30,3 +30,5 @@ parts:
     file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
   - title: Extracting evidence-linked abundance drivers from species-account text
     file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+  - title: Multivariate Modelling of Censored Chemicals using jsdmstan
+    file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb

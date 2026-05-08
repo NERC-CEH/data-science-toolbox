@@ -25,6 +25,12 @@
 [submodule "methods/ds-toolbox-notebook-clognorm-mgcv"]
 	path = methods/ds-toolbox-notebook-clognorm-mgcv
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
+<<<<<<< lily/llm-plant-drivers
 [submodule "methods/ds-toolbox-notebook-ai-plant-drivers"]
 	path = methods/ds-toolbox-notebook-ai-plant-drivers
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-ai-plant-drivers.git
+=======
+[submodule "methods/ds-toolbox-notebook-jsdm-censor"]
+	path = methods/ds-toolbox-notebook-jsdm-censor
+	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+>>>>>>> main
