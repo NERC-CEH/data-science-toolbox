@@ -1,4 +1,4 @@
-🌞 Thanks for being interested in contributing to the UKCEH data science toolbox! 
+🌞 Thanks for being interested in contributing to the UKCEH data science toolbox!
 
 Here's some useful information for getting started... 🌱
 
@@ -11,9 +11,9 @@ If you have a method that you think would be useful to include in the UKCEH Data
 ## Contributing a Method/Notebook:
 Here we'll go through the basic steps for contributing a method or notebook to the UKCEH Data Science Book. The process is designed to be simple and straightforward, allowing you to focus on developing your method or notebook without getting bogged down in technical details.
 
-1. [Create a standalone repository for the notebook/method](#create-standalone-repository). Upload the notebook and any necessary files to run it, as well as a [CITATION.cff](https://citation-file-format.github.io/) file. Do this in the NERC-CEH GitHub organisation and follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction).
+1. [Create a standalone repository for the notebook/method](#create-standalone-repository). Upload the notebook and any necessary files to run it, as well as a [CITATION.cff](https://citation-file-format.github.io/) file. Do this in the NERC-CEH GitHub organisation and follow the naming convention `ds-toolbox-notebook-notebookname` (e.g., `ds-toolbox-notebook-bias-correction`; we'll use this as a concrete example throughout).
 
-2. [Request collaborator access](#access) to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk. 
+2. [Request collaborator access](#access) to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox) - email jercar@ceh.ac.uk. 
 
 3. [Clone the repository](#clone-repository) to your local machine:
 ```bash
@@ -30,27 +30,35 @@ git fetch origin
 git checkout -b branch_name origin/remote_branch_name
 ```
 
-7. [Create a link to your standalone repository using git submodules](#create-submodule). Change directory into the methods folder and run:
+7. [Create a link to your standalone repository using git submodules](#create-submodule). Change directory into the methods folder and add your notebook repository as a submodule, e.g.:
 ```bash
-git submodule add {url-of-repository}
+git submodule add https://github.com/NERC-CEH/ds-toolbox-notebook-bias-correction.git
 ```
+Then initialize and update the submodule repositories your copy of the `data-science-toolbox` repo:
+```bash
+git submodule init
+git submodule update
+```
+This will pull all of the submodules currently in the Data Science Toolbox.
 
 8. [Update the `_toc.yml` file](#update-toc) in the repository to include a link to your notebook, e.g.:
 ```yaml
-- file: methods/ds-toolbox-notebook-bias-correction/notebook.ipynb
-  title: Bias Correction Application
+- title: Bias Correction Application
+  file: methods/ds-toolbox-notebook-bias-correction/notebook.ipynb
 ```
 
-9. [Render the Jupyter book](#render-jupyter-book) to see how the notebook looks in the book format. First creat a virtual environment then change directory into folder above data-science-toolbox and create the new build files by running the jupyter-book build command:
-```bash 
+9. [Render the Jupyter book](#render-jupyter-book) to see how the notebook looks in the book format. First create a virtual environment using [conda](https://www.anaconda.com/docs/getting-started/miniconda/main)
+```bash
 conda create --name dstoolbox
 conda activate jupyter-book
 conda install -c conda-forge "jupyter-book<2"
-
+```
+then change directory into folder above `data-science-toolbox` and create the new build files by running the `jupyter-book build` command:
+```bash
 jupyter-book build data-science-toolbox
 ```
 
-10. [Examine the rendered book](#render-jupyter-book) by double clicking the `data-science-toolbox/_build/html/index.html` file. 
+10. [Examine the rendered book](#render-jupyter-book) by opening `data-science-toolbox/_build/html/index.html`. This should let you see the whole Data Science Toolbox site and let you navigate to your new notebook page.
 
 11. If you're happy with how the notebook looks, then you commit any uncommited changes and push to the remote branch, then [create a pull request](#pull-changes) on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch.
 
@@ -58,7 +66,7 @@ jupyter-book build data-science-toolbox
 
 ## Jupyter Book Description:
 
-A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised collection of [Jupyter Notebooks](https://www.dataquest.io/blog/jupyter-notebook-tutorial/) that cover a specific topic. This repository houses the 'UKCEH Data Science Toolbox' Jupyter book, which presents a collection of Jupyter notebook tutorials on specific data science methodologies developed at UKCEH, detailing the full data science pipeline. Here we provide a guideline on developing the Jupyter book's content and suggest useful links and documentation. See this [Jupyter Books 101](https://www.google.com/search?sca_esv=853f175af13f0422&rlz=1C1GCEA_enGB1127GB1127&sxsrf=ADLYWILIDB_FKqa2tEu-BFTAyFkn4C5pZA:1730195044702&q=ghp-import&tbm=vid&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWfbQph1uib-VfD_izZO2Y5sC3UdQE5x8XNnxUO1qJLaQdh3mUfgbiNAX47iHD_lJjnnrtkrknsy6VQXK4-aRHxqnPwuFZlmbREdWKLZFI-gq_UsBLTYJHKqEeHaFb3F8RYl5naC8STX8rrrXVJLtrqfmiz5ev1aurnZdmKum0bTFGUA16&sa=X&ved=2ahUKEwiYhKDoprOJAxWsVkEAHbmtBuoQ0pQJegQIGhAB&biw=1745&bih=828&dpr=1.1&safe=active&ssui=on#fpstate=ive&vld=cid:6619f956,vid:lZ2FHTkyaMU,st:0) for a nice YouTube introduction into the topic. 
+A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised collection of [Jupyter Notebooks](https://www.dataquest.io/blog/jupyter-notebook-tutorial/) that cover a specific topic. This repository houses the 'UKCEH Data Science Toolbox' Jupyter book, which presents a collection of Jupyter notebook tutorials on specific data science methodologies developed at UKCEH, detailing the full data science pipeline. Here we provide a guideline on developing the Jupyter book's content and suggest useful links and documentation. See this [Jupyter Books 101](https://www.google.com/search?sca_esv=853f175af13f0422&rlz=1C1GCEA_enGB1127GB1127&sxsrf=ADLYWILIDB_FKqa2tEu-BFTAyFkn4C5pZA:1730195044702&q=ghp-import&tbm=vid&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWfbQph1uib-VfD_izZO2Y5sC3UdQE5x8XNnxUO1qJLaQdh3mUfgbiNAX47iHD_lJjnnrtkrknsy6VQXK4-aRHxqnPwuFZlmbREdWKLZFI-gq_UsBLTYJHKqEeHaFb3F8RYl5naC8STX8rrrXVJLtrqfmiz5ev1aurnZdmKum0bTFGUA16&sa=X&ved=2ahUKEwiYhKDoprOJAxWsVkEAHbmtBuoQ0pQJegQIGhAB&biw=1745&bih=828&dpr=1.1&safe=active&ssui=on#fpstate=ive&vld=cid:6619f956,vid:lZ2FHTkyaMU,st:0) for a nice YouTube introduction into the topic.
 
 > [!NOTE]  
 >To be able to re-build the Jupyter book and view your adjustments you'll need to download the Python package, either using PIP ([jupyter-book PyPI](https://pypi.org/project/jupyter-book/)) or Conda ([jupyter-book conda-forge](https://anaconda.org/conda-forge/jupyter-book)), see [Install Jupyter Book](https://jupyterbook.org/en/stable/start/overview.html). It is suggested to use Conda and to run the commands via the Anaconda Prompt if on a windows machine. At the moment we use Jupyter Book V1, so ensure this is specified when installing the package.  
@@ -71,12 +79,12 @@ A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised c
 
 3. After making adjustments to a file or adding a new file to your local copy of the repository, you'll then want to view how the changes impact/look on the published Jupyter book. To do this first make sure the `_toc.yml` file is suitably updated and then you'll need to [recompile the Jupyter book](https://jupyterbook.org/en/stable/start/build.html), updating the `_build` files. Change directory to one above the cloned repository and execute *'jupyter-book build mybookreponame/'* (if on a Windows machine you can run this command in an Anaconda prompt). To then [preview the changes](https://jupyterbook.org/en/stable/start/build.html#preview-your-built-html) find the `_build/index.html` and double click in your file explorer.
 
-4. Follow the GitHub workflow advice above to contribute your changes to the repository. For the changes to appear on the online published book, this is done via [GitHub pages](https://jupyterbook.org/en/stable/start/publish.html#publish-your-book-online-with-github-pages). Please request this directly by emailing Jeremy Carter at jercar@ceh.ac.uk rather than attempting to do it yourself.   
+4. Follow the GitHub workflow advice above to contribute your changes to the repository. For the changes to appear on the online published book, this is done via [GitHub pages](https://jupyterbook.org/en/stable/start/publish.html#publish-your-book-online-with-github-pages). Please request this directly by emailing Jeremy Carter at jercar@ceh.ac.uk rather than attempting to do it yourself.
 
 ## Additional Detail:
 
 ### 1. Create a Standalone Repository for the Notebook/Method <a id='create-standalone-repository'></a>
-- Instead of housing the notebook in the data-science-toolbox repository, it is recommended to create a separate repository for the notebook/method. This helps keep the main repository clean and reduces its file size. The new repository can be created on GitHub and relevant files uploaded. Files might include the notebook itself, any modules that are used in the notebook, images and small data files, the yml file for creating the environment for running the notebook. A CITATION.cff file should be generated and stored in the root of the repository to allow for the notebook to be easily cited by others. It is advised to follow the [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md#the-citation-file-format-cff) for producing CITATION.cff files. The repository should be created in the NERC-CEH GitHub organisation and follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction).
+- Instead of housing the notebook in the data-science-toolbox repository, it is recommended to create a separate repository for the notebook/method. This helps keep the main repository clean and reduces its file size. The new repository can be created on GitHub and relevant files uploaded. Files might include the notebook itself, any modules that are used in the notebook, images and small data files, the yml file for creating the environment for running the notebook. A `CITATION.cff` file should be generated and stored in the root of the repository to allow for the notebook to be easily cited by others. It is advised to follow the [UKCEH best practice guidelines](https://github.com/NERC-CEH/repo-guidance/blob/main/cff-guidance/citation-cff_guidelines.md#the-citation-file-format-cff) for producing `CITATION.cff` files. The repository should be created in the NERC-CEH GitHub organisation and follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction).
 
 ### 2. Request Collaborator Access or Fork Repository <a id='access'></a>
 - If internal to UKCEH and wanting to contribute regularly to the project then request to become a collaborator on the GitHub repository or email me at jercar@ceh.ac.uk. If external to UKCEH it is currently advised to [create a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo), which is a remote copy of the repository to your personal GitHub account.
@@ -98,7 +106,7 @@ A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised c
 > Creating an issue allows collaborative work from the community and additionally allows you to add updating comments that link to commits and highlight progress, keeping the community informed. You can assign individuals to join work on specific '*issues*', link them in specific comments and create a link to the respective development branch that work is being conducted on.  
 
 ### 5/6. Create Branch <a id='create-branch'></a>
-- Create a branch on the remote GitHub page:[data-science-toolbox/branches](https://github.com/NERC-CEH/data-science-toolbox/branches). Naming convention for branches is {yourname}/{branchname} (e.g. jez/bias-correction). Fetch the remote branch to your local machine via '*git fetch origin*' and then create a linked local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. This also checks out the branch so you can start working on it.
+- Create a branch on the remote GitHub page:[data-science-toolbox/branches](https://github.com/NERC-CEH/data-science-toolbox/branches). Naming convention for branches is `{yourname}/{branchname}` (e.g., `jez/bias-correction`). Fetch the remote branch to your local machine via '*git fetch origin*' and then create a linked local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. This also checks out the branch so you can start working on it.
 	
 > [!TIP] 
 > - Branches are spaces to develop code, edit files and make commits without affecting the parent branch (normally labelled *'main'* or *'master'*). 
@@ -111,10 +119,16 @@ A [Jupyter Book](https://jupyterbook.org/en/stable/intro.html) is an organised c
 ```bash
 git submodule add {url-of-repository}
 ```
-- This creates a submodule within the data-science-toolbox repository that points at the standalone repository housing the notebook/method. This is important as it reduces the total file size of the Jupyter book repository and keeps it clean while also allowing you to include additional files related to your notebook in the external repository, such as modules, images and small data files. Changes to your notebook and relevant files will need to be commited to both the standalone repository and the data-science-toolbox repository.
+- This creates a submodule within the data-science-toolbox repository that points at the standalone repository housing the notebook/method. This is important as it reduces the total file size of the Jupyter book repository and keeps it clean while also allowing you to include additional files related to your notebook in the external repository, such as modules, images and small data files. Changes to your notebook and relevant files will need to be committed to both the standalone repository and the data-science-toolbox repository.
+- In order to render the full site later, you will also need to initialize and update the submodules in the `data-science-toolbox` repo:
+```bash
+git submodule init
+git submodule update
+```
+
 
 ### 8 . Update the `_toc.yml` file <a id='update-toc'></a>
-- The repository contains a basic [anatomy of a jupyter book](https://jupyterbook.org/en/stable/start/create.html#anatomy-of-a-book). The most important files in terms of setting the build options are the table of contents (`_toc.yml`) and book configuration (`_config.yml`) files. It is suggested you will likely not need to edit the `_config.yml` file. However, after creating some content (such as a methodology notebook), for the content to show up in the build, the `_toc.yml` will need updating to include a respective link.  
+- The repository contains a basic [anatomy of a jupyter book](https://jupyterbook.org/en/stable/start/create.html#anatomy-of-a-book). The most important files in terms of setting the build options are the table of contents (`_toc.yml`) and book configuration (`_config.yml`) files. It is suggested you will likely not need to edit the `_config.yml` file. However, after creating some content (such as a methodology notebook), for the content to show up in the build, the `_toc.yml` will need updating to include a respective link.
 
 ### 9/10. Render the Jupyter book <a id='render-jupyter-book'></a>
 - After making adjustments to a file or adding a new file to your local copy of the repository, you'll then want to view how the changes impact/look on the published Jupyter book. To do this first make sure the `_toc.yml` file is suitably updated and then you'll need to [recompile the Jupyter book](https://jupyterbook.org/en/stable/start/build.html), updating the `_build` files. Change directory to one above the cloned repository and execute *'jupyter-book build data-science-toolbox/'* (if on a Windows machine you can run this command in an Anaconda prompt). To then [preview the changes](https://jupyterbook.org/en/stable/start/build.html#preview-your-built-html) find the `_build/index.html` and double click in your file explorer.
