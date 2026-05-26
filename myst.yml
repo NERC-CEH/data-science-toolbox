@@ -7,7 +7,19 @@ project:
   keywords: [environmental data science, Jupyter Book, open-source, analytical methods, integrative modelling, UKCEH, NERC, NC-UK]
   authors: [UK Centre for Ecology & Hydrology]
   github: https://github.com/NERC-CEH/data-science-toolbox
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  toc:
+    - file: intro.md
+    - title: About this Project 
+      children: 
+        - file: about_this_project/vision.md
+        - file: about_this_project/get_involved.md
+        - file: about_this_project/utilising_the_toolbox.md
+        - file: about_this_project/table_of_contents.md 
+        - file: about_this_project/cite.md
+    - title: Data Science Methods
+      children:
+        - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+    
 site:
   template: book-theme
   options:
