@@ -1,3 +1,51 @@
 img.abstract-image {
   border-radius: 32px !important;
 }
+
+/* Theme-aware intro logo swap. */
+img.abstract-image--dark {
+  display: none;
+}
+
+html.dark img.abstract-image--light {
+  display: none;
+}
+
+html.dark img.abstract-image--dark {
+  display: block;
+}
+
+/* Slightly increase the MyST v2 top bar and logo size. */
+:root {
+  --myst-topbar-height: 110px;
+  --myst-logo-height: 92px;
+}
+
+.myst-top-nav {
+  height: var(--myst-topbar-height) !important;
+  min-height: var(--myst-topbar-height) !important;
+}
+
+.myst-home-link-logo img {
+  height: var(--myst-logo-height) !important;
+  max-height: var(--myst-logo-height) !important;
+  width: auto !important;
+}
+
+/* MyST v2 book-theme sidebar uses .myst-primary-sidebar with inline top style. */
+.myst-primary-sidebar {
+  top: var(--myst-topbar-height) !important;
+  max-height: calc(100vh - var(--myst-topbar-height)) !important;
+}
+
+.myst-navigation-overlay {
+  margin-top: var(--myst-topbar-height) !important;
+}
+
+/* Keep older/fallback selectors in case theme classes vary. */
+.myst-left-nav,
+.myst-sidebar,
+.myst-toc {
+  top: var(--myst-topbar-height) !important;
+  max-height: calc(100vh - var(--myst-topbar-height)) !important;
+}

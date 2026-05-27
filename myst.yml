@@ -24,5 +24,7 @@ site:
   template: book-theme
   options:
     favicon: images/edsb-favicon.png
-    logo: images/UKCEH_NatCapUK_Black.png
+    logo: images/ukceh-edsb-logo-updated-black.svg
+    logo_dark: images/ukceh-edsb-logo-updated-white.svg
+    logo_alt: NC-UK Environmental Data Science Toolbox
     style: ./_static/custom.css
