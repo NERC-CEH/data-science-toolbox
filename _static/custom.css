@@ -15,6 +15,19 @@ html.dark img.abstract-image--dark {
   display: block;
 }
 
+/* Notebook resource-row theme logo swap. */
+img.bc-logo-dark {
+  display: none;
+}
+
+html.dark img.bc-logo-light {
+  display: none;
+}
+
+html.dark img.bc-logo-dark {
+  display: inline-block;
+}
+
 /* Slightly increase the MyST v2 top bar and logo size. */
 :root {
   --myst-topbar-height: 110px;
