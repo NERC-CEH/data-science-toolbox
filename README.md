@@ -1,11 +1,10 @@
 <p align="center">
-<img width="400" src="images/NatCapUK_colour.png" alt="NCUK Logo">
+<picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/ukceh-edsb-logo-updated-white-readme.svg">
+    <source media="(prefers-color-scheme: light)" srcset="images/ukceh-edsb-logo-updated-black-readme.svg">
+    <img width="300" style="height: auto;" src="images/ukceh-edsb-logo-updated-black-readme.svg" alt="Environmental Data Science Book Logo">
+</picture>
 </p>
-
-<p align="center">
-<img width="300" style="height: auto;" src="images/ukceh-edsb-logo.png" alt="Environmental Data Science Book Logo">
-</p>
-
 
 > ⚠️ ***PROTOTYPE: This Jupyter Book is a work in progress and is currently in a prototype stage***.
 
