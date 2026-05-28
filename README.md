@@ -2,7 +2,7 @@
 <picture>
     <source media="(prefers-color-scheme: dark)" srcset="images/ukceh-edsb-logo-updated-white-readme.svg">
     <source media="(prefers-color-scheme: light)" srcset="images/ukceh-edsb-logo-updated-black-readme.svg">
-    <img width="300" style="height: auto;" src="images/ukceh-edsb-logo-updated-black-readme.svg" alt="Environmental Data Science Book Logo">
+    <img width="800" style="height: auto;" src="images/ukceh-edsb-logo-updated-black-readme.svg" alt="Environmental Data Science Book Logo">
 </picture>
 </p>
 
