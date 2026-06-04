@@ -19,6 +19,14 @@ project:
     - title: Data Science Methods
       children:
         - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+        - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+        - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+        - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+        - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+        - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+        - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
+        - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+        - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
     
 site:
   template: book-theme
