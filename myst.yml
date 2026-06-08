@@ -5,7 +5,7 @@ project:
   title: NC-UK Environmental Data Science Toolbox
   description: This Jupyter Book aligns with the NC-UK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science.
   keywords: [environmental data science, Jupyter Book, open-source, analytical methods, integrative modelling, UKCEH, NERC, NC-UK]
-  authors: []
+  authors: UK Centre for Ecology and Hydrology
   github: https://github.com/NERC-CEH/data-science-toolbox
   toc:
     - file: intro.md
