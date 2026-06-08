@@ -1,6 +1,6 @@
 # Get Involved! 🪴
 
-This project is being designed with and for the Environmental Sciences community. It's success is dependent on you getting involved and engaged 😊 
+This project is being designed with and for the Environmental Sciences community. Its success is dependent on you getting involved and engaged 😊 
 
 There's various ways of doing this including:
 
