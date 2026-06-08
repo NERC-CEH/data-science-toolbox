@@ -1,0 +1,12 @@
+# The Vision 
+
+Our vision for the Environmental Data Science Toolbox is to create a shared digital space where environmental data science methods do not disappear into fragmented repositories, supplementary materials, or isolated project workflows, but instead remain discoverable, executable, reusable, and open to community evolution. We see the toolbox as part of a broader shift toward interactive and collaborative digital research infrastructure for environmental science, where methods become living research objects connected to data, metadata, computational environments, and communities of practice. 
+
+The major focus throughout 2026 is around establishing the governance foundations needed to support long-term sustainability and community trust. This includes developing guidance for publishing methods, improving metadata and provenance standards, defining accessibility and inclusivity best practices, exploring responsible approaches to cloud compute and sustainability, and creating clearer contribution pathways that enable wider participation across the environmental science community.
+
+:::{image} ../images/eds-abstract-image.svg
+:alt: abstract-environmental-data-science
+:class: abstract-image
+:align: center
+:width: 95%
+:::

@@ -1,0 +1,41 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 2
+project:
+  id: b6b4a0aa-e5de-47c8-a053-90fbabe2ed6a
+  title: NC-UK Environmental Data Science Toolbox
+  description: This Jupyter Book aligns with the NC-UK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science.
+  keywords: [environmental data science, Jupyter Book, open-source, analytical methods, integrative modelling, UKCEH, NERC, NC-UK]
+  authors: UK Centre for Ecology and Hydrology
+  github: https://github.com/NERC-CEH/data-science-toolbox
+  toc:
+    - file: intro.md
+    - title: About this Project 
+      children: 
+        - file: about_this_project/vision.md
+        - file: about_this_project/get_involved.md
+        - file: about_this_project/utilising_the_toolbox.md
+        - file: about_this_project/table_of_contents.md 
+        - file: about_this_project/cite.md
+    - title: Data Science Methods
+      children:
+        - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+        - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+        - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+        - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+        - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+        - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+        - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
+        - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+        - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+        - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+        - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+    
+site:
+  template: book-theme
+  options:
+    favicon: images/ukceh-edsb-logo-updated-black.svg
+    logo: images/ukceh-edsb-logo-updated-black.svg
+    logo_dark: images/ukceh-edsb-logo-updated-white.svg
+    logo_alt: NC-UK Environmental Data Science Toolbox
+    analytics_google: G-VSVWNW0JEP
+    style: ./_static/custom.css
