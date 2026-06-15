@@ -29,7 +29,7 @@ project:
         - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
         - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
         - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
-        - file: methods/ds-toolbox-notebook-file check/file-check-notebook.ipynb
+        - file: methods/ds-toolbox-notebook-file-check/file-check-notebook.ipynb
     
 site:
   template: book-theme
