@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: ds-toolbox-notebook-file-check
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Matthew
+    family-names: Nichols
+    email: matnic@ceh.ac.uk
+    affiliation: UKCEH
+    orcid: 'https://orcid.org/0000-0001-7219-4594'
+repository-code: 'https://github.com/NERC-CEH/ds-toolbox-notebook-file-check'
+repository: 'https://github.com/NERC-CEH/fileCheckCore'
+abstract: >-
+  This notebook takes the user through the functions used to
+  check csv files that are ingested into the Environmental
+  Information Data Centre (EIDC). The approach is based on
+  common issues encountered when checking data deposited to
+  the EIDC and flags issues that do not meet EIDC standards
+  of re-usability.
+license: MIT

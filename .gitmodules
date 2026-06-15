@@ -31,3 +31,6 @@
 [submodule "methods/ds-toolbox-notebook-jsdm-censor"]
 	path = methods/ds-toolbox-notebook-jsdm-censor
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+[submodule "ds-toolbox-notebook-file-check"]
+	path = ds-toolbox-notebook-file-check
+	url = git@github.com:NERC-CEH/ds-toolbox-notebook-file-check.git
