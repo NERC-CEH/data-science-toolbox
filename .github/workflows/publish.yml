@@ -4,7 +4,9 @@
 name: Jupyter Book (via myst) GitHub Pages Deploy
 on:
   push:
-    # Runs on pushes targeting the default branch
+    # Runs on pushes targeting the default branch or the redirect-test branch
+    branches: [main, jez/redirect]
+  pull_request:
     branches: [main]
 env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.
@@ -41,10 +43,17 @@ jobs:
         run: npm install -g jupyter-book
       - name: Build HTML Assets
         run: jupyter-book build --html
+      - name: Add legacy redirects
+        run: python scripts/add_redirects.py ./_build/html
+      - name: Verify legacy redirects
+        run: |
+          test -f ./_build/html/intro.html
+          grep -q "/data-science-toolbox/" ./_build/html/intro.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './_build/html'
       - name: Deploy to GitHub Pages
         id: deployment
+        if: github.ref == 'refs/heads/main'
         uses: actions/deploy-pages@v4

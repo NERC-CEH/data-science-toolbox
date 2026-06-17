@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "from": "intro.html",
+      "to": "/data-science-toolbox/",
+      "canonical": "https://nerc-ceh.github.io/data-science-toolbox/"
+    }
+  ]
+}
