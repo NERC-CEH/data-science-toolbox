@@ -15,7 +15,7 @@ The contribution process is very straightforward and requires only a few steps -
 - Create a [GitHub issue in the repository](https://github.com/NERC-CEH/data-science-toolbox/issues) and use either the early stage 'notebook idea' template or the later stage 'notebook inclusion' template if you've got a notebook ready to go. 
 
 If the notebook is ready to go then continue by:
-- Create a standalone GitHub repository for the notebook/method. Upload the notebook/method and any necessary files to run it, as well as a [CITATION.cff](https://citation-file-format.github.io/) file. Follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction).
+- Create a standalone GitHub repository for the notebook/method. Upload the notebook/method and any necessary files to run it, as well as a [CITATION.cff](https://citation-file-format.github.io/) file. Follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction). We recommend using the [template notebook](https://nerc-ceh.github.io/data-science-toolbox/template-notebook) as a starting point, and following the [notebook metadata guidance](https://nerc-ceh.github.io/data-science-toolbox/notebook-metadata-guidance) to correctly complete the required frontmatter fields.
 - Request collaborator access to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk. 
 - [Clone the repository](#clone-repository) to your local machine:
 ```bash
