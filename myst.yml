@@ -16,6 +16,9 @@ project:
         - file: about_this_project/utilising_the_toolbox.md
         - file: about_this_project/table_of_contents.md 
         - file: about_this_project/cite.md
+        - title: Contributing Projects 
+          children: 
+            - file: about_this_project/projects/fdri.md
     - title: Data Science Methods
       children:
         - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
@@ -29,6 +32,7 @@ project:
         - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
         - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
         - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+        - file: methods/fdri-gridded-notebooks/notebooks/CEH-GEAR-1hr/gear_netcdf_python.ipynb
     
 site:
   template: book-theme

@@ -31,3 +31,7 @@
 [submodule "methods/ds-toolbox-notebook-jsdm-censor"]
 	path = methods/ds-toolbox-notebook-jsdm-censor
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+[submodule "methods/fdri-gridded-notebooks"]
+	path = methods/fdri-gridded-notebooks
+	url = https://github.com/Jez-Carter/fdri-gridded-notebooks.git
+	branch = main
