@@ -12,9 +12,16 @@ authors:
 
 
 
-:::{image} ../../images/contributing_projects/fdri/FDRI-logos-whiteout.png
+:::{image} ../../images/contributing_projects/fdri/FDRI-logo-mono-black-long-CMYK.png
 :alt: abstract-environmental-data-science
-:class: abstract-image
+:class: abstract-image abstract-image--light
 :align: center
-:width: 95%
+:width: 65%
+:::
+
+:::{image} ../../images/contributing_projects/fdri/FDRI-logo-mono-white-long-CMYK.png
+:alt: abstract-environmental-data-science
+:class: abstract-image abstract-image--dark
+:align: center
+:width: 65%
 :::
