@@ -2,7 +2,7 @@
 
 This document contains guidance on how to include metadata in your notebook for the NC-UK Data Science Toolbox.
 
-If you are using the [template notebook](https://github.com/NERC-CEH/data-science-toolbox/blob/main/template_notebook/template_notebook.ipynb), the metadata section is pre-filled with placeholder text. You should replace this placeholder text with information that is relevant to your own method. Although the template contains some indications on how to fill-in the metadata section, this document contains more comprehensive guidance.
+If you are using the [template notebook](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb), the metadata section is pre-filled with placeholder text. You should replace this placeholder text with information that is relevant to your own method. Although the template contains some indications on how to fill-in the metadata section, this document contains more comprehensive guidance.
 
 You do not have to use the template to contribute your notebook to the toolbox, but you must follow the metadata guidance below.
 
@@ -20,7 +20,7 @@ A short title for your method, which must contain fewer than 40 characters. It w
 
 ``subtitle``
 
-An optional subtitle for your method. If you include one, it will be displayed below the main title
+An optional subtitle for your method. If you include one, it will be displayed below the main title.
 
 ``description``
 
@@ -38,17 +38,19 @@ The date on which your notebook was last updated, in YYYY-MM-DD format.
 
 ## Licenses
 
-``license``
+``code``
 
-``code``: the [SPDX Identifier](https://spdx.org/licenses/) of the license for the code in your notebook.
+The [SPDX Identifier](https://spdx.org/licenses/) of the license for the code in your notebook.
 
-``content``: the [SPDX Identifier](https://spdx.org/licenses/) of the license for the rest of the content in your notebook.
+``content``
+
+The [SPDX Identifier](https://spdx.org/licenses/) of the license for the rest of the content in your notebook.
 
 ## Links
 
 ``github``
 
-The URL of the repository that contains your notebook.
+The URL of the GitHub repository that contains your notebook.
 
 ``doi``
 
@@ -98,7 +100,7 @@ The author's [ORCID](https://orcid.org/) identifier, without the URL.
 
 ``corresponding``
 
-`true` if the author is a corresponding author, `false` otherwise. At least one author must be marked as the corresponding author.
+Set to `true` if the author is a corresponding author, `false` otherwise. At least one author must be marked as the corresponding author.
 
 ``email``
 
