@@ -31,3 +31,6 @@
 [submodule "methods/ds-toolbox-notebook-jsdm-censor"]
 	path = methods/ds-toolbox-notebook-jsdm-censor
 	url = https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+[submodule "methods/uk-crop-classification-prithvi"]
+	path = methods/uk-crop-classification-prithvi
+	url = https://github.com/BenjaminKenRus/uk-crop-classification-prithvi.git
