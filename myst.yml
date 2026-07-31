@@ -21,18 +21,18 @@ project:
         - file: about_this_project/cite.md
     - title: Data Science Methods
       children:
-        - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb
-        # - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
-    #     - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
-    #     - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
-    #     - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
-    #     - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
-    #     - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
-    #     - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
-    #     - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
-    #     - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
-    #     - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
-    #     - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+        - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+        - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+        - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+        - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+        - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+        - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+        - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
+        - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+        - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+        - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+        - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+        - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb 
 
 site:
   template: book-theme
