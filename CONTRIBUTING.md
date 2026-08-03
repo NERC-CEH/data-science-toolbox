@@ -32,10 +32,18 @@ git clone https://github.com/NERC-CEH/data-science-toolbox.git
 > - You can see current local branches via '*git branch*' and can see the available remote branches via '*git branch -r*'. If you've created a new remote branch via GitHub you'll need to run either '*git fetch origin*' or '*git pull origin*' to observe it when running '*git branch -r*'. 
 > - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'.
 
-- [Create a link to your standalone repository using git submodules](#create-submodule). Change directory into the methods folder and run:
+- Add your standalone notebook repository to notebooks.yml (see example at notebooks.yml in the repo root). Change directory into the repository root and run the provided sync script to fetch clones into the methods/ directory for local development:
+
 ```bash
-git submodule add {url-of-repository}
+# dry-run (default) - prints the clone commands that would be run
+python scripts/sync_notebooks.py --manifest notebooks.yml
+
+# actually perform clones (for local testing only)
+# WARNING: this will clone remote repositories into methods/
+python scripts/sync_notebooks.py --manifest notebooks.yml --execute
 ```
+
+This avoids submodule workflows — contributors can keep their notebook in a separate repo and add a single entry to notebooks.yml. The methods/ directory is gitignored and only used for local/CI build-time sync.
 
 - Update the `myst.yml` table of contents in the repository to include a link to your notebook, e.g.:
 ```yaml

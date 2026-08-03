@@ -1,0 +1,13 @@
+# Example manifest for notebook contributions
+# Fields: name (optional), url (required), branch (optional), path (optional), sha (optional)
+
+notebooks:
+  - name: example-notebook
+    url: https://github.com/example/ds-toolbox-notebook-example.git
+    branch: main
+    path: notebooks/example
+
+  - name: fdri-gridded-notebooks
+    url: https://github.com/Jez-Carter/fdri-gridded-notebooks.git
+    branch: main
+    # path: notebooks/CEH-GEAR-1hr  # optional subdirectory inside the repo
