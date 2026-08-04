@@ -1,13 +1,87 @@
-# Example manifest for notebook contributions
-# Fields: name (optional), url (required), branch (optional), path (optional), sha (optional)
+# Manifest for notebook contributions
+# Fields: name (optional), url (required), branch (optional), path (path to notebook file inside the repo), sha (optional)
 
 notebooks:
-  - name: example-notebook
-    url: https://github.com/example/ds-toolbox-notebook-example.git
+  - name: ds-toolbox-notebook-biascorrection
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-biascorrection.git
     branch: main
-    path: notebooks/example
+    path: bias-correction.ipynb
+    assets:
+      - images/
 
-  - name: fdri-gridded-notebooks
-    url: https://github.com/Jez-Carter/fdri-gridded-notebooks.git
+  - name: ds-toolbox-notebook-risk-terrestrial-carbon-pool
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-risk-terrestrial-carbon-pool.git
     branch: main
-    # path: notebooks/CEH-GEAR-1hr  # optional subdirectory inside the repo
+    path: RiskQuantificationNotebook.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-multispecies-biodiversity-indicators
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-multispecies-biodiversity-indicators.git
+    branch: main
+    path: msbi-error.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-jsdmstan
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-jsdmstan.git
+    branch: main
+    path: jsdmstan-book.ipynb
+    assets:
+      - images/
+
+  - name: DSFP-PyExplorer
+    url: https://github.com/NERC-CEH/DSFP-PyExplorer
+    branch: main
+    path: notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+    assets:
+      - dsfp-pylogo.png
+
+  - name: ds-toolbox-notebook-rocrate-tutorial
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-rocrate-tutorial.git
+    branch: main
+    path: rocrate-tutorial.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-metals_EEX_demo
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-metals_EEX_demo.git
+    branch: master
+    path: metals_EEX_demo.ipynb
+    assets:
+      - img/
+
+  - name: ds-toolbox-notebook-EEX-placebased-exposure
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-EEX-placebased-exposure.git
+    branch: main
+    path: EEX-placebased-exposure.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-clognorm-mgcv
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-clognorm-mgcv.git
+    branch: main
+    path: clognorm-book.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-ai-plant-drivers
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-ai-plant-drivers.git
+    branch: main
+    path: plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+    assets:
+      - images/
+
+  - name: ds-toolbox-notebook-jsdm-censor
+    url: https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+    branch: main
+    path: censor-jsdmstan-vignette.ipynb
+    assets:
+      - images/
+
+  - name: uk-crop-classification-prithvi
+    url: https://github.com/BenjaminKenRus/uk-crop-classification-prithvi.git
+    branch: main
+    path: prithvi-uk-crop-fine-tuning.ipynb
+    assets:
+      - crop-classification.png
