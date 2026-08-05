@@ -12,19 +12,23 @@ The toolbox supports inclusion of a wide range of methods and different coding l
 
 The contribution process is very straightforward and requires only a few steps - so don't hold back and start the process as follows:
 
-- Create a [GitHub issue in the repository](https://github.com/NERC-CEH/data-science-toolbox/issues) and use either the early stage 'notebook idea' template or the later stage 'notebook inclusion' template if you've got a notebook ready to go. 
+1. Create a [GitHub issue in the repository](https://github.com/NERC-CEH/data-science-toolbox/issues) and use either the early stage 'notebook idea' template or the later stage 'notebook inclusion' template if you've got a notebook ready to go. If struggling with any of the further stages, write a comment about it in your GitHub issue and tag the toolbox reviewers using: @NERC-CEH/toolbox-reviewers.
 
-If the notebook is ready to go then continue by:
-- Create a standalone GitHub repository for the notebook/method. Upload the notebook/method and any necessary files to run it, as well as a [CITATION.cff](https://citation-file-format.github.io/) file. Follow the naming convention ds-toolbox-notebook-notebookname (e.g. ds-toolbox-notebook-bias-correction). We recommend using the [template notebook](https://nerc-ceh.github.io/data-science-toolbox/template-notebook) as a starting point, and following the [notebook metadata guidance](https://nerc-ceh.github.io/data-science-toolbox/notebook-metadata-guidance) to correctly complete the required frontmatter fields.
-- Request collaborator access to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk. 
-- [Clone the repository](#clone-repository) to your local machine:
+2. Create a notebook utilising the structure in this [template](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb), which when rendered in the toolbox will look like this: [template rendered](https://nerc-ceh.github.io/data-science-toolbox/template-notebook). Follow the [notebook metadata guidance](https://nerc-ceh.github.io/data-science-toolbox/notebook-metadata-guidance) to correctly complete the required frontmatter fields in the first cell of the notebook.
+
+3. Store the notebook either in a GitHub repository. This can be an existing repository or you can create a standalone GitHub repository for the notebook/method following the naming convention: ds-toolbox-notebook-notebookname. Include any necessary files to run it (e.g. referenced images etc.), as well as a [CITATION.cff](https://citation-file-format.github.io/) file.
+
+4. Request collaborator access to the [data-science-toolbox repository](https://github.com/NERC-CEH/data-science-toolbox.git) - email jercar@ceh.ac.uk, or create a fork. 
+
+5. [Clone the repository](#clone-repository) to your local machine:
 ```bash
 git clone https://github.com/NERC-CEH/data-science-toolbox.git
 ```
+
 > [!TIP]
 > This local repository tracks the remote repository hosted on GitHub and you can run commands such as '*git fetch origin*' and '*git pull origin*' to update your local copy when the remote repository changes (see [Git fetch and merge](https://longair.net/blog/2009/04/16/git-fetch-and-merge/)).
 
-- [Create a remote branch](#create-branch) on the GitHub page: [data-science-toolbox/branches](https://github.com/NERC-CEH/data-science-toolbox/branches). Naming convention for branches is {yourname}/{branchname} (e.g. jez/bias-correction). Fetch the remote branch to your local machine via '*git fetch origin*' and then create a linked local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. This also checks out the branch so you can start working on it.
+6. [Create a remote branch](#create-branch) on the GitHub page: [data-science-toolbox/branches](https://github.com/NERC-CEH/data-science-toolbox/branches). Naming convention for branches is {yourname}/{branchname} (e.g. jez/bias-correction). Fetch the remote branch to your local machine via '*git fetch origin*' and then create a linked local branch that tracks the remote one via '*git checkout -b branch_name origin/remote_branch_name*'. This also checks out the branch so you can start working on it.
 	
 > [!TIP] 
 > - Branches are spaces to develop code, edit files and make commits without affecting the parent branch (normally labelled *'main'* or *'master'*). 
@@ -32,18 +36,24 @@ git clone https://github.com/NERC-CEH/data-science-toolbox.git
 > - You can see current local branches via '*git branch*' and can see the available remote branches via '*git branch -r*'. If you've created a new remote branch via GitHub you'll need to run either '*git fetch origin*' or '*git pull origin*' to observe it when running '*git branch -r*'. 
 > - If you've got a local branch and want to create a remote branch to link to it, this can be done via '*git push -u origin local_branch*'.
 
-- Add your standalone notebook repository to notebooks.yml (see example at notebooks.yml in the repo root). Change directory into the repository root and run the provided sync script to fetch clones into the methods/ directory for local development:
+7. Add your standalone notebook repository to notebooks.yml (see example at notebooks.yml in the repo root). 
+
+8. Create a python virtual environment using conda, install Jupyter Book and pyyaml:
+```bash 
+conda create --name dstoolbox
+conda activate dstoolbox
+conda install -c conda-forge jupyter-book
+conda install -c conda-forge pyyaml
+```
+
+9. Change directory into the repository root and run the provided sync script to fetch clones into the methods/ directory for local development:
 
 ```bash
-# dry-run (default) - prints the clone commands that would be run
-python scripts/sync_notebooks.py --manifest notebooks.yml
-
-# actually perform clones (for local testing only)
 # WARNING: this will clone remote repositories into methods/
 python scripts/sync_notebooks.py --manifest notebooks.yml --execute
 ```
 
-This avoids submodule workflows — contributors can keep their notebook in a separate repo and add a single entry to notebooks.yml. The methods/ directory is gitignored and only used for local/CI build-time sync.
+The methods/ directory is gitignored and only used for local/CI build-time sync.
 
 - Update the `myst.yml` table of contents in the repository to include a link to your notebook, e.g.:
 ```yaml
@@ -51,16 +61,12 @@ This avoids submodule workflows — contributors can keep their notebook in a se
   title: Bias Correction Application
 ```
 
-- Render the Jupyter book to see how the notebook looks in the published format. First create a virtual environment, install Jupyter Book, then run live preview and build command from the repository root:
+10. Render the Jupyter book to see how the notebook looks in the published format. Run live preview and build command from the repository root:
 ```bash 
-conda create --name dstoolbox
-conda activate dstoolbox
-conda install -c conda-forge jupyter-book
-
 jupyter book start
 ```
 
-10. Iteratively adjust the notebook and once you're happy with how the notebook looks, then commit any uncommited changes and push to the remote branch. Then create a pull request on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch.
+11. Iteratively adjust the notebook and once you're happy with how the notebook looks, then commit any uncommited changes and push to the remote branch. Then create a pull request on GitHub to ask collaborators for feedback on the changes and to hopefully merge changes into the main repository branch.
 
 > [!TIP] 
 > If the local branch is linked to a remote branch you can push your changes there periodically using '*git push origin branch_name*'. This is useful if collaborating on a development task. If other collaborators have pushed changes to the remote branch so that is ahead of your local branch, then you can absorb these changes either by using '*git pull origin*' or doing it in stages using '*git fetch origin*' and then '*git checkout branch_name*' and '*git merge origin/branch_name*'. Note if your branch falls behind changes made to the main remote branch, these can be merged in using '*git merge origin/main*'.
@@ -70,5 +76,4 @@ jupyter book start
 >- Reviewers will typically leave comments/suggestions on the pull request and these can be addressed, see "[Reviewing changes in pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests).
 >- Once the pull request is approved the development branch can be merged with the main repository branch.  
 
-
-- Delete the development branch after merging with the main repository branch. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain.
+12. Delete the development branch after merging with the main repository branch. The commit history of the development branch will be transferred to the main branch and a commit specific to the pull request will remain.
