@@ -10,12 +10,12 @@
 
 **Access the current published version here**: [**NC-UK Environmental Data Science Toolbox 🌱**](https://NERC-CEH.github.io/data-science-toolbox)
 
-[**Get Involved**](/about_this_project/get_involved.md)
-| [**Contributing a Method**](/about_this_project/contributing_a_method.md)
-| [**Interactivity**](/about_this_project/utilising_the_toolbox.md)
-| [**Table of Content**](/about_this_project/table_of_contents.md)
+[**Get Involved**](https://nerc-ceh.github.io/data-science-toolbox/get-involved/)
+| [**Contributing a Method**](https://nerc-ceh.github.io/data-science-toolbox/contributing-a-method/)
+| [**Interactivity**](https://nerc-ceh.github.io/data-science-toolbox/utilising-the-toolbox/)
+| [**Table of Content**](https://nerc-ceh.github.io/data-science-toolbox/table-of-contents/)
 | [**Discussions**](https://github.com/NERC-CEH/data-science-toolbox/discussions)
-| [**Feedback**](/about_this_project/feedback.md)
+| [**Feedback**](https://nerc-ceh.github.io/data-science-toolbox/feedback/)
 
 This repository houses the NC-UK Jupyter Book that aligns with the NC-UK task of providing a suite of open-source, adaptable analytical methods for the academic community. The concept is to create a collection of user-friendly notebooks demonstrating sophisticated data science methods developed at UKCEH and external contributing organisations. These methods are expected to be generalizable across different areas of application and to have a strong focus on integrative modelling. This resource will enhance collaborative use of data science methods across different environmental themes and will support the UK's national capability in delivering world-leading environmental science. The book is currently in a prototyping stage with methodologies/notebooks expected to evolve over time.
 
