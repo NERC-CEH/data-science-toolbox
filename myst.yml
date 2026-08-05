@@ -19,6 +19,7 @@ project:
         - file: notebook_guidance/template_notebook.ipynb
         - file: notebook_guidance/notebook_metadata_guidance.md
         - file: about_this_project/cite.md
+        - file: about_this_project/feedback.md
     - title: Data Science Methods
       children:
         - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
