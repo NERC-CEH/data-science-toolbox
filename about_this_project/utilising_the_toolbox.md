@@ -15,21 +15,19 @@ Most method pages begin with a short summary and metadata that help you decide i
 
 - Read the opening Challenge and Method summary to understand scope and intended use.
 - Review the notebook metadata (authors, DOI, links, and funding) for provenance and citation context.
-- Use dropdown sections to quickly access details such as runtime guidance, assumptions, data scope, and caveats.
+- Use available dropdown or tab sections to quickly access details such as runtime guidance, assumptions, data scope, and caveats.
 
 ## Key Buttons and Links
 
 At the top of method notebooks, you will typically find links such as:
 
 - Notebook Repository: points to the code repository hosting that notebook.
-- Method Repository: points to the package or broader method implementation when this is separate.
-- DOI links: point to the citable archived version (for example, Zenodo).
-
-Use these links to access full source code, issue trackers, release snapshots, and citation metadata.
+- Downloads Button: points to relevant linked resources, e.g. papers/packages/etc.
+- Licensing Info: informs the user on the content licensing that the notebook repository has.
 
 ## Running Notebooks Locally
 
-Future versions of the Data Science Toolbox will support direct execution from the published site using Jupyter Book v2's interactive execution functionality. **This has been scoped and is coming soon!**
+Future versions of the Data Science Toolbox will support direct execution from the published site using Jupyter Book v2's interactive execution functionality. **This has been scoped and is coming soon!** We are also exploring the addition of Binder and Google Colab buttons to allow notebooks to be launched directly from the site without any local setup.
 
 For now, you can perform local execution in your preferred IDE (for example, VS Code or JupyterLab).
 

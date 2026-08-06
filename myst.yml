@@ -23,31 +23,33 @@ project:
   authors: UK Centre for Ecology and Hydrology
   github: https://github.com/NERC-CEH/data-science-toolbox
   toc:
-  - file: intro.md
-  - title: About this Project
-    children:
-    - file: about_this_project/vision.md
-    - file: about_this_project/get_involved.md
-    - file: about_this_project/contributing_a_method.md
-    - file: about_this_project/utilising_the_toolbox.md
-    - file: about_this_project/table_of_contents.md
-    - file: notebook_guidance/template_notebook.ipynb
-    - file: notebook_guidance/notebook_metadata_guidance.md
-    - file: about_this_project/cite.md
-  - title: Data Science Methods
-    children:
-    - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
-    - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
-    - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
-    - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
-    - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
-    - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
-    - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
-    - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
-    - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
-    - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
-    - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
-    - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb
+    - file: intro.md
+    - title: About this Project 
+      children: 
+        - file: about_this_project/vision.md
+        - file: about_this_project/get_involved.md
+        - file: about_this_project/contributing_a_method.md
+        - file: about_this_project/utilising_the_toolbox.md
+        - file: about_this_project/table_of_contents.md 
+        - file: notebook_guidance/template_notebook.ipynb
+        - file: notebook_guidance/notebook_metadata_guidance.md
+        - file: about_this_project/cite.md
+        - file: about_this_project/feedback.md
+    - title: Data Science Methods
+      children:
+        - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+        - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+        - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+        - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+        - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+        - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+        - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
+        - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+        - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+        - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+        - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+        - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb 
+
 site:
   template: book-theme
   options:
@@ -57,3 +59,6 @@ site:
     logo_alt: NC-UK Environmental Data Science Toolbox
     analytics_google: G-VSVWNW0JEP
     style: ./_static/custom.css
+  actions:
+    - title: Give feedback
+      url: https://nerc-ceh.github.io/data-science-toolbox/feedback/
