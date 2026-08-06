@@ -19,6 +19,7 @@ project:
         - file: notebook_guidance/template_notebook.ipynb
         - file: notebook_guidance/notebook_metadata_guidance.md
         - file: about_this_project/cite.md
+        - file: about_this_project/feedback.md
     - title: Data Science Methods
       children:
         - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
@@ -43,3 +44,6 @@ site:
     logo_alt: NC-UK Environmental Data Science Toolbox
     analytics_google: G-VSVWNW0JEP
     style: ./_static/custom.css
+  actions:
+    - title: Give feedback
+      url: https://nerc-ceh.github.io/data-science-toolbox/feedback/
