@@ -7,7 +7,7 @@ The toolbox supports inclusion of a wide range of methods and different coding l
 The contribution process is very straightforward and requires only a few steps - so don't hold back and start the process as follows:
 
 ## 1. Open a GitHub issue
-Create a [GitHub issue in the repository](https://github.com/NERC-CEH/data-science-toolbox/issues) and add the '*notebook inclusion*' label. If struggling with any of the further stages, write a comment about it in your GitHub issue and tag the toolbox reviewers using: *\@NERC-CEH/toolbox-reviewers*.
+[Create a GitHub issue in the repository](https://github.com/NERC-CEH/data-science-toolbox/issues/new/choose) and select the '*Notebook Inclusion Request*' template. Fill in the initial fields. If you're able to fill in the additional fields section do that as well, although these can also be done subsequently after following the below steps. If struggling with any of the below steps, write a comment about it in your GitHub issue and tag the toolbox reviewers using: *\@NERC-CEH/toolbox-reviewers*.
 
 ## 2. Prepare your notebook
 Create a notebook utilising the structure in this [template](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb), which when rendered in the toolbox will look like this: [template rendered](https://nerc-ceh.github.io/data-science-toolbox/template-notebook). 

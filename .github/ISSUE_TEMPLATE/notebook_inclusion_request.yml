@@ -1,0 +1,79 @@
+name: Notebook Inclusion Request
+description: Submit a completed notebook for review and inclusion.
+title: "Including notebook on ..."
+labels:
+  - notebook-inclusion
+assignees:
+  - Jez-Carter
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to highlight a notebook for inclusion into the data science toolbox.
+
+  - type: input
+    id: notebook_title
+    attributes:
+      label: Notebook Title
+    validations:
+      required: true
+      
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary of Notebook/Method
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Additional Details
+
+        Use this section to provide required additional info (datasets, reproducibility notes, links). This can be done iteratively, and the notebook will be reviewed once all required information is provided.
+
+  - type: textarea
+    id: repository_details
+    attributes:
+      label: Repository Details
+      description: In the format below provide the relevant details about where the notebook is stored.
+      value: |
+        notebooks:
+        - name: ds-toolbox-notebook-name
+          url: https://github.com/NERC-CEH/ds-toolbox-notebook-name.git
+          branch: main
+          path: notebook.ipynb
+          assets:
+            - images/
+
+  - type: textarea
+    id: keywords
+    attributes:
+      label: Key Concepts/Keywords
+      description: Terms that will aid discovery within the toolbox, e.g. Bayesian Inference, Climatology, etc.
+      value: |
+        - Example 1
+        - Example 2, etc.
+
+  - type: textarea
+    id: datasets
+    attributes:
+      label: Key Datasets
+      description: List the key datasets involved in the notebook, e.g. Automatic Weather Station Data (link)
+      value: |
+        - Example 1
+        - Example 2, etc.
+        
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist for Repository Readiness
+      description: Please confirm which of the following are completed.
+      options:
+        - label: Repository is publicly accessible
+        - label: Repository includes a licence
+        - label: Repository includes a README
+        - label: Repository includes a CITATION.cff file
+        - label: Dependencies are documented/environment file is provided
+        - label: Notebook executes successfully from start to finish
+        - label: Notebook allows interactive execution, e.g. via Binder or Colab
+      
