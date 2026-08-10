@@ -35,7 +35,7 @@ body:
     id: repository_details
     attributes:
       label: Repository Details
-      description: In the format below provide the relevant details about where the notebook is stored.
+      description: In the format below provide the relevant details about your repository and where the notebook and its assets are stored within it.
       value: |
         notebooks:
         - name: ds-toolbox-notebook-name
