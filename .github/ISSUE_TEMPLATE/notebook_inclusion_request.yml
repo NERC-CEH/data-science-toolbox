@@ -58,7 +58,7 @@ body:
     id: datasets
     attributes:
       label: Key Datasets
-      description: List the key datasets involved in the notebook, e.g. Automatic Weather Station Data (link)
+      description: List the key datasets involved in the notebook, indicate what the dataset access is and include links where possible e.g. Automatic Weather Station Data (freely available online - link)
       value: |
         - Example 1
         - Example 2, etc.
