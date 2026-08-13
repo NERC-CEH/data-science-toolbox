@@ -11,3 +11,6 @@ dependencies = [
     "jupyter-book>=2.1.6",
     "pyyaml>=6.0.3",
 ]
+
+[tool.setuptools]
+packages = []

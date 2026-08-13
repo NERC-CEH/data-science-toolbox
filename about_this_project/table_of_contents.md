@@ -14,6 +14,7 @@
 | [Extracting evidence-linked abundance drivers from species-account text](<../methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised>) | LLM Assisted Knowledge Extraction, Evidence-linked Causal Relationships, Structured JSON Extraction, Causal DAG generation | Plant Atlas-style Species Account Text, Synthetic Biodiversity Species-account Examples, Extracted Ecological Driver Relationship Table
 | [Multivariate Modelling of Censored Chemicals using jsdmstan](<../methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette>) | Multivariate Modelling, Censored Data, Joint Species Distribution Modelling, Bayesian Inference | Environment Agency PFAS River Monitoring and PAH Estuary datasets, Simulated lognormal censored data.
 | [Fine-Tuning a Geospatial Foundation Model for UK Crop Classification](<../methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning>) | Geospatial Foundation Models, Semantic Segmentation, Fine-tuning, Multi-temporal Classification | UKCEH Land Cover® plus: Crops, Sentinel-2 Imagery.
+| [Metamet. A Toolkit for Meteorological Data Standardisation](<../methods/metamet/notebook/metamet_notebook>) | Metadata Standardisation, Data Integration, Automated Quality Control, Gap-filling/Imputation | Meteorological and Flux Tower Observation Data, ECMWF ERA5 Reanalysis Data.
 
 
 
