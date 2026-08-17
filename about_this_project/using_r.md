@@ -42,7 +42,7 @@ This is normally a one-off setup step on each machine.
 
 While several approaches exist for converting R markdown/quarto documents into Jupyter .ipynb notebooks, we recommend simply starting from fresh with the following [notebook template](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb) and copying across code/text. Ultimately, this is more efficient than troubleshooting issues with a direct conversion and it allows you to test the cells all run as expected. 
 
-Open the [notebook template](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb) file in a interface such as VS Code with the Jupyter extension, JupyterLab, or another Jupyter-compatible interface. Select the R kernel registered in the previous step:
+Open the [notebook template](https://github.com/NERC-CEH/data-science-toolbox/blob/main/notebook_guidance/template_notebook.ipynb) file in an interface such as VS Code with the Jupyter extension, JupyterLab, or another Jupyter-compatible interface. Select the R kernel registered in the previous step:
 **Select Kernel → Jupyter Kernel → R - notebookname**
 
 Notebooks use markdown(.md) and R code cells. Include general descriptive text in the markdown cells and include 
