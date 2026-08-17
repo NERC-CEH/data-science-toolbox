@@ -33,6 +33,7 @@ project:
         - file: about_this_project/table_of_contents.md 
         - file: notebook_guidance/template_notebook.ipynb
         - file: notebook_guidance/notebook_metadata_guidance.md
+        - file: about_this_project/using_r.md
         - file: about_this_project/cite.md
         - file: about_this_project/feedback.md
     - title: Data Science Methods
