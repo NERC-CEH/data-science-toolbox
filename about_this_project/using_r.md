@@ -2,7 +2,6 @@
 
 For methods developed in `R`, documentation will often take the form of an `R Markdown` document, `Quarto` document, or package `vignette`. For inclusion in the Environmental Data Science Toolbox, however, methods are presented as Jupyter `.ipynb` notebooks, which can be executed using an R kernel. The approach is used so methods developed in `R`, `Python` and other languages are all visible in the same interface, promoting cross-language method discovery and knowledge sharing.
 
-For methods developed in R the normal approach to documenting the method is to have an rmarkdown or vignette. For inclusion into the toolbox we need a Jupyter .ipynb file, which can be run with an R kernel. The approach is used to allow having methods developed in R and Python and other languages all visible in a similar interface, promoting cross-language method discovery and knowledge sharing.
 
 The guidance below describes how to make an R-based method available as a runnable Jupyter notebook, including the required R and Jupyter setup, dependency management, and registration of an R kernel.
 
