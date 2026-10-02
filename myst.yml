@@ -50,6 +50,7 @@ project:
         - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
         - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
         - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb 
+        - file: methods/ds-toolbox-notebook-dataintegration/data_integration_notebook.ipynb
 
 site:
   url: https://nerc-ceh.github.io/data-science-toolbox

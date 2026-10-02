@@ -85,3 +85,10 @@ notebooks:
     path: prithvi-uk-crop-fine-tuning.ipynb
     assets:
       - crop-classification.png
+
+  - name: ds-toolbox-notebook-dataintegration
+    url: https://github.com/JoeAWilde/ds-toolbox-notebook-dataintegration.git
+    branch: main
+    path: data_integration_notebook.ipynb
+    assets:
+      - Assets/
