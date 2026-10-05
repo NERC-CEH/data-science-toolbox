@@ -87,7 +87,7 @@ notebooks:
       - crop-classification.png
 
   - name: ds-toolbox-notebook-dataintegration
-    url: https://github.com/JoeAWilde/ds-toolbox-notebook-dataintegration.git
+    url: https://github.com/BiomathematicsAndStatisticsScotland/ds-toolbox-notebook-dataintegration.git
     branch: main
     path: data_integration_notebook.ipynb
     assets:
