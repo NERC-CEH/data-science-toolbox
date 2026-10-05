@@ -1,12 +1,11 @@
 <p align="center">
-<picture>
-    <source media="(prefers-color-scheme: dark)" srcset="images\EDST-logo\SVG\For-dark-themes\EDST-logo-full-mono-white-txt+NCUK.svg">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/EDST-logo/SVG/For-dark-themes/EDST-logo-full-mono-white-txt+NCUK.svg">
     <source media="(prefers-color-scheme: light)" srcset="images/EDST-logo/SVG/For-light-themes/EDST-logo-full-mono-blk+NCUK.svg">
-    <img width="800" style="height: auto;" src="images/EDST-logo/SVG/For-light-themes/EDST-logo-full-mono-blk+NCUK.svg" alt="Environmental Data Science Book Logo">
-</picture>
+    <img width="300" style="height: auto;" src="images/EDST-logo/SVG/For-light-themes/EDST-logo-full-mono-blk+NCUK.svg" alt="Environmental Data Science Book Logo">
+  </picture>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
-
-> ⚠️ ***PROTOTYPE: This Jupyter Book is a work in progress and is currently in a prototype stage***.
 
 **Access the current published version here**: [**NC-UK Environmental Data Science Toolbox 🌱**](https://NERC-CEH.github.io/data-science-toolbox)
 
