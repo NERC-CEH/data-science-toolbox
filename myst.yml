@@ -56,9 +56,9 @@ site:
   url: https://nerc-ceh.github.io/data-science-toolbox
   template: book-theme
   options:
-    favicon: images/ukceh-edsb-logo-updated-black.svg
-    logo: images/ukceh-edsb-logo-updated-black.svg
-    logo_dark: images/ukceh-edsb-logo-updated-white.svg
+    favicon: images/EDST-logo/PNG/For-dark-themes/EDST-logo-col-for-dark-theme.png
+    logo: images/EDST-logo/SVG/For-light-themes/EDST-logo-full-col-blk+NCUK-Horiz.svg
+    logo_dark: images/EDST-logo/SVG/For-dark-themes/EDST-logo-full-col-white+NCUK-Horiz.svg
     logo_alt: NC-UK Environmental Data Science Toolbox
     analytics_google: G-VSVWNW0JEP
     style: ./_static/custom.css
