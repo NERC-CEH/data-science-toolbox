@@ -51,6 +51,12 @@ project:
         - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
         - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb 
         - file: methods/ds-toolbox-notebook-dataintegration/data_integration_notebook.ipynb
+        - title: The Connected River
+          children:
+            - file: methods/connected-river/The_Connected_River_Part_1_Building.ipynb
+              title: Part 1 - Building
+            - file: methods/connected-river/The_Connected_River_Part_2_Exploring.ipynb
+              title: Part 2 - Exploring
 
 site:
   url: https://nerc-ceh.github.io/data-science-toolbox
