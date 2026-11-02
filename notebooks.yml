@@ -92,3 +92,13 @@ notebooks:
     path: data_integration_notebook.ipynb
     assets:
       - Assets/
+
+  - name: connected-river-building
+    url: https://github.com/lilgou/connected-river.git
+    branch: main
+    path: The_Connected_River_Part_1_Building.ipynb
+
+  - name: connected-river-exploring
+    url: https://github.com/lilgou/connected-river.git
+    branch: main
+    path: The_Connected_River_Part_2_Exploring.ipynb
