@@ -72,19 +72,36 @@ notebooks:
 #     assets:
 #       - images/
 
-#   - name: ds-toolbox-notebook-jsdm-censor
-#     url: https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
-#     branch: main
-#     path: censor-jsdmstan-vignette.ipynb
-#     assets:
-#       - images/
+  # - name: ds-toolbox-notebook-jsdm-censor
+  #   url: https://github.com/NERC-CEH/ds-toolbox-notebook-jsdm-censor.git
+  #   branch: main
+  #   path: censor-jsdmstan-vignette.ipynb
+  #   assets:
+  #     - images/
 
-#   - name: uk-crop-classification-prithvi
-#     url: https://github.com/BenjaminKenRus/uk-crop-classification-prithvi.git
-#     branch: main
-#     path: prithvi-uk-crop-fine-tuning.ipynb
-#     assets:
-#       - crop-classification.png
+  # - name: uk-crop-classification-prithvi
+  #   url: https://github.com/BenjaminKenRus/uk-crop-classification-prithvi.git
+  #   branch: main
+  #   path: prithvi-uk-crop-fine-tuning.ipynb
+  #   assets:
+  #     - crop-classification.png
+
+  # - name: ds-toolbox-notebook-dataintegration
+  #   url: https://github.com/BiomathematicsAndStatisticsScotland/ds-toolbox-notebook-dataintegration.git
+  #   branch: main
+  #   path: data_integration_notebook.ipynb
+  #   assets:
+  #     - Assets/
+
+  # - name: connected-river-building
+  #   url: https://github.com/lilgou/connected-river.git
+  #   branch: main
+  #   path: The_Connected_River_Part_1_Building.ipynb
+
+  # - name: connected-river-exploring
+  #   url: https://github.com/lilgou/connected-river.git
+  #   branch: main
+  #   path: The_Connected_River_Part_2_Exploring.ipynb
 
   - name: metamet
     url: https://github.com/Jez-Carter/metamet.git
@@ -92,3 +109,4 @@ notebooks:
     path: notebook/metamet_notebook.ipynb
     assets:
       - notebook/images/
+      - crop-classification.png
