@@ -24,39 +24,47 @@ project:
   github: https://github.com/NERC-CEH/data-science-toolbox
   toc:
     - file: intro.md
-    - title: About this Project 
-      children: 
+    - title: About this Project
+      children:
         - file: about_this_project/vision.md
         - file: about_this_project/get_involved.md
         - file: about_this_project/contributing_a_method.md
         - file: about_this_project/utilising_the_toolbox.md
-        - file: about_this_project/table_of_contents.md 
+        - file: about_this_project/table_of_contents.md
         - file: notebook_guidance/template_notebook.ipynb
         - file: notebook_guidance/notebook_metadata_guidance.md
         - file: about_this_project/using_r.md
         - file: about_this_project/cite.md
         - file: about_this_project/feedback.md
-    - title: Data Science Methods
+    - file: data_science_methods.md
       children:
-        - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
-        - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
-        - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
-        - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
-        - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
-        - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
-        - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
-        - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
-        - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
-        - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
-        - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
-        - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb 
-        - file: methods/ds-toolbox-notebook-dataintegration/data_integration_notebook.ipynb
-        - title: The Connected River
+        - title: Climate, land & Earth observation
           children:
-            - file: methods/connected-river/The_Connected_River_Part_1_Building.ipynb
-              title: Part 1 - Building
-            - file: methods/connected-river/The_Connected_River_Part_2_Exploring.ipynb
-              title: Part 2 - Exploring
+            - file: methods/ds-toolbox-notebook-biascorrection/bias-correction.ipynb
+            - file: methods/uk-crop-classification-prithvi/prithvi-uk-crop-fine-tuning.ipynb
+            - file: methods/ds-toolbox-notebook-risk-terrestrial-carbon-pool/RiskQuantificationNotebook.ipynb
+        - title: Biodiversity & species
+          children:
+            - file: methods/ds-toolbox-notebook-jsdmstan/jsdmstan-book.ipynb
+            - file: methods/ds-toolbox-notebook-multispecies-biodiversity-indicators/msbi-error.ipynb
+            - file: methods/ds-toolbox-notebook-ai-plant-drivers/plant_drivers/plant_atlas_llm_dag_toolbox_revised.ipynb
+        - title: Pollution & chemical exposure
+          children:
+            - file: methods/DSFP-PyExplorer/notebooks/ds-toolbox-notebook-nta-analysis.ipynb
+            - file: methods/ds-toolbox-notebook-EEX-placebased-exposure/EEX-placebased-exposure.ipynb
+            - file: methods/ds-toolbox-notebook-metals_EEX_demo/metals_EEX_demo.ipynb
+            - file: methods/ds-toolbox-notebook-clognorm-mgcv/clognorm-book.ipynb
+            - file: methods/ds-toolbox-notebook-jsdm-censor/censor-jsdmstan-vignette.ipynb
+        - title: Data integration & FAIR
+          children:
+            - file: methods/ds-toolbox-notebook-rocrate-tutorial/rocrate-tutorial.ipynb
+            - file: methods/ds-toolbox-notebook-dataintegration/data_integration_notebook.ipynb
+            - title: The Connected River
+              children:
+                - file: methods/connected-river/The_Connected_River_Part_1_Building.ipynb
+                  title: Part 1 - Building
+                - file: methods/connected-river/The_Connected_River_Part_2_Exploring.ipynb
+                  title: Part 2 - Exploring
 
 site:
   url: https://nerc-ceh.github.io/data-science-toolbox

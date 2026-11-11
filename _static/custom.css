@@ -27,3 +27,180 @@ html.dark img.bc-logo-light {
 html.dark img.bc-logo-dark {
   display: inline-block;
 }
+
+/* ===== EDST landing page styles — append this block to the end of _static/custom.css ===== */
+/* ------------------------------------------------------------------
+   EDST landing page — UKCEH brand palette (light tints)
+   Loaded via myst.yml → site.options.style
+   Colours from UKCEH Brand Guidelines 2.0, pp. 40–42:
+     Air   #D6EAE6  tints #DFEFEA #EBF5F4 #F5F9F7
+     Water #477AE2  tints #7A9AD0 #A4BAE1 #D1DBF1
+     Land  #90A968  tints #ADBE8E #C6D3B4 #E1EAD9
+     Earth #D7B7AA  tints #E1C9BF #EBDBD4 #F5EDEA
+     Data  #DBFE52  tints #DEE276 #E7EAA6 #F5F5D3
+   ------------------------------------------------------------------ */
+
+:root {
+  --edst-air: #d6eae6;
+  --edst-air-25: #f5f9f7;
+  --edst-water-25: #d1dbf1;
+  --edst-water-50: #a4bae1;
+  --edst-land-25: #e1ead9;
+  --edst-earth-25: #f5edea;
+  --edst-data: #dbfe52;
+  --edst-data-25: #f5f5d3;
+  --edst-land-50: #c6d3b4;
+  --edst-earth-50: #ebdbd4;
+  --edst-data-50: #e7eaa6;
+  --edst-ink: #000000;
+}
+
+/* ---------- Intro: logo beside the original text ---------- */
+.edst-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.edst-hero .edst-hero-logo,
+.edst-hero img {
+  width: 190px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  flex: 0 0 auto;
+}
+.edst-hero .edst-hero-text {
+  flex: 999 1 420px;
+  min-width: 0;
+}
+.edst-hero .edst-hero-text p {
+  margin: 0 0 0.75rem;
+}
+
+/* ---------- Search / quick-links band ---------- */
+.edst-band {
+  background: var(--edst-air);
+  color: var(--edst-ink);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 2rem;
+}
+.edst-band p {
+  margin: 0.25rem 0;
+}
+.edst-band kbd {
+  background: #fff;
+  border: 1px solid var(--edst-water-50);
+  border-radius: 4px;
+  padding: 0 0.35em;
+  font-size: 0.85em;
+}
+/* MyST {button} role renders as a link styled as a button */
+.edst-band a {
+  display: inline-block;
+  margin: 0.5rem 0.5rem 0 0;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--edst-data);
+  color: var(--edst-ink) !important;
+  border: 0;
+}
+.edst-band a[href*="contributing"] {
+  background: var(--edst-ink);
+  color: #fff !important;
+}
+
+/* ---------- Theme cards ---------- */
+.edst-themes > * {
+  border-radius: 18px !important;
+  overflow: hidden;
+  border: 1px solid var(--edst-air) !important;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.edst-themes > *:hover {
+  border-color: var(--edst-ink) !important;
+  transform: translateY(-2px);
+}
+.edst-themes img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 0 0 0.5rem;
+}
+.edst-themes > *:nth-child(1) { background: var(--edst-water-25); }
+.edst-themes > *:nth-child(2) { background: var(--edst-land-25); }
+.edst-themes > *:nth-child(3) { background: var(--edst-earth-25); }
+.edst-themes > *:nth-child(4) { background: var(--edst-data-25); }
+
+/* Keep theme-card text compact so four cards fit side by side */
+.edst-themes p { font-size: 0.95rem; line-height: 1.5; }
+.edst-themes .myst-card-title, .edst-themes > * > div:first-child { font-size: 1.05rem; line-height: 1.35; }
+.edst-methods p { font-size: 0.95rem; line-height: 1.5; }
+
+/* ---------- Method cards: coloured top edge per theme ---------- */
+.edst-methods > * {
+  border-radius: 14px !important;
+  border: 1px solid var(--edst-air) !important;
+  border-top-width: 8px !important;
+}
+.edst-methods.edst-climate > *      { border-top-color: var(--edst-water-50) !important; }
+.edst-methods.edst-biodiversity > * { border-top-color: var(--edst-land-50) !important; }
+.edst-methods.edst-pollution > *    { border-top-color: var(--edst-earth-50) !important; }
+.edst-methods.edst-data > *         { border-top-color: var(--edst-data-50) !important; }
+
+/* ---------- Get-started cards ---------- */
+.edst-start > * {
+  background: var(--edst-air-25);
+  border-radius: 14px !important;
+  border: 1px solid var(--edst-air) !important;
+}
+
+/* ---------- Dark mode (book-theme adds .dark to <html>) ---------- */
+html.dark .edst-band,
+html.dark .edst-themes > *,
+html.dark .edst-start > * {
+  background: #1f2a28;
+  color: #f2f2f2;
+  border-color: #2f3d3a !important;
+}
+html.dark .edst-methods > * {
+  border-color: #2f3d3a !important;
+}
+html.dark .edst-band kbd {
+  background: #000;
+  color: #fff;
+}
+
+/* ---------- Sidebar: colour the theme groups under "Data Science Methods" ----------
+   Targets the Data Science Methods entry by its link, then its 1st–4th child groups,
+   in the same order as myst.yml (Climate, Biodiversity, Pollution, Data). */
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > :nth-child(1) { --edst-theme: var(--edst-water-25); --edst-theme-strong: var(--edst-water-50); }
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > :nth-child(2) { --edst-theme: var(--edst-land-25);  --edst-theme-strong: var(--edst-land-50); }
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > :nth-child(3) { --edst-theme: var(--edst-earth-25); --edst-theme-strong: var(--edst-earth-50); }
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > :nth-child(4) { --edst-theme: var(--edst-data-25);  --edst-theme-strong: var(--edst-data-50); }
+
+/* the theme row itself */
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > * > .myst-toc-item {
+  background: var(--edst-theme);
+  border-left: 5px solid var(--edst-theme-strong);
+  color: #000;
+}
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > * > .myst-toc-item:hover {
+  background: var(--edst-theme-strong);
+}
+/* the methods listed under each theme get a matching guide line */
+.myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > * > .collapsible-content {
+  border-left: 3px solid var(--edst-theme);
+  margin-left: 0.4rem;
+}
+
+/* dark mode: keep the colour as an edge only, so text stays readable */
+html.dark .myst-toc > :has(> .myst-toc-item a[href*="data-science-methods"]) > .collapsible-content > * > .myst-toc-item {
+  background: transparent;
+  color: inherit;
+}
