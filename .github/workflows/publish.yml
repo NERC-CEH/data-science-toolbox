@@ -51,6 +51,11 @@ jobs:
       - name: Install Jupyter Book (via myst)
         run: npm install -g jupyter-book
       - name: Build HTML Assets
+        env:
+          # Used by the github-issue-table MyST plugin to read the org Project board.
+          # The built-in GITHUB_TOKEN cannot read org-level Projects, so this is a PAT
+          # stored as a repository secret (needs read access to org projects + issues).
+          GITHUB_TOKEN: ${{ secrets.PROJECT_READ_TOKEN }}
         run: jupyter-book build --html
       - name: Add legacy redirects
         run: python scripts/add_redirects.py ./_build/html

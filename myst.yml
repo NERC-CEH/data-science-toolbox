@@ -22,11 +22,16 @@ project:
   - NC-UK
   authors: UK Centre for Ecology and Hydrology
   github: https://github.com/NERC-CEH/data-science-toolbox
+  plugins:
+    # github-issue-table: renders the {issue-table} directive (needs GITHUB_TOKEN at build time).
+    # Pinned to a dated release; see https://github.com/jupyter-book/myst-plugins/releases
+    - https://github.com/jupyter-book/myst-plugins/releases/download/github-issue-table%402026-02-09/index.mjs
   toc:
     - file: intro.md
     - title: About this Project 
       children: 
         - file: about_this_project/vision.md
+        - file: about_this_project/roadmap.md
         - file: about_this_project/get_involved.md
         - file: about_this_project/contributing_a_method.md
         - file: about_this_project/utilising_the_toolbox.md
