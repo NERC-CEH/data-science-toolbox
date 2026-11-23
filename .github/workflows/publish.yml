@@ -47,7 +47,7 @@ jobs:
         run: python scripts/sync_notebooks.py --execute
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Install Jupyter Book (via myst)
         run: npm install -g jupyter-book
       - name: Build HTML Assets
@@ -82,11 +82,6 @@ jobs:
           else
             echo "Netlify secrets not available; skipping preview."
           fi
-      - name: Set up Node for Netlify CLI
-        if: steps.netlify.outputs.available == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
       - name: Deploy PR preview to Netlify
         if: steps.netlify.outputs.available == 'true'
         env:
