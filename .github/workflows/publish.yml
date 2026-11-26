@@ -47,10 +47,15 @@ jobs:
         run: python scripts/sync_notebooks.py --execute
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: Install Jupyter Book (via myst)
         run: npm install -g jupyter-book
       - name: Build HTML Assets
+        env:
+          # Used by the github-issue-table MyST plugin to read the org Project board.
+          # The built-in GITHUB_TOKEN cannot read org-level Projects, so this is a PAT
+          # stored as a repository secret (needs read access to org projects + issues).
+          GITHUB_TOKEN: ${{ secrets.PROJECT_READ_TOKEN }}
         run: jupyter-book build --html
       - name: Add legacy redirects
         run: python scripts/add_redirects.py ./_build/html
@@ -62,6 +67,38 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './_build/html'
+
+      # --- Pull request previews on Netlify (GitHub Pages only serves main) ---
+      - name: Check for Netlify secrets
+        id: netlify
+        if: github.event_name == 'pull_request'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          # Secrets are unavailable to PRs from forks, so skip quietly there.
+          if [ -n "$NETLIFY_AUTH_TOKEN" ] && [ -n "$NETLIFY_SITE_ID" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Netlify secrets not available; skipping preview."
+          fi
+      - name: Deploy PR preview to Netlify
+        if: steps.netlify.outputs.available == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          # The site is built to live under $BASE_URL (/data-science-toolbox), so keep
+          # that path in the preview and redirect the root to it.
+          mkdir -p preview
+          cp -r ./_build/html "preview${BASE_URL}"
+          echo "/  ${BASE_URL}/  302" > preview/_redirects
+          npx --yes netlify-cli@27 deploy --dir preview \
+            --alias "pr-${{ github.event.number }}" \
+            --message "PR #${{ github.event.number }}" --json > netlify.json
+          URL="$(jq -r '.deploy_url' netlify.json)${BASE_URL}/"
+          echo "Preview: $URL"
+          echo "### 🔍 Preview for PR #${{ github.event.number }}: $URL" >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     if: github.ref == 'refs/heads/main'
